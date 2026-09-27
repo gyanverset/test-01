@@ -1,541 +1,802 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ज्ञानवर्स - ऑनलाइन CBT परीक्षा पोर्टल</title>
-  <!-- Tailwind CSS CDN -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gyanverse Portal - Eduteria Vol 2 Set No. 1 BSSC CGL 4</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    .palette-btn { width: 38px; height: 38px; font-size: 13px; font-weight: 600; }
-    .custom-scroll::-webkit-scrollbar { width: 6px; }
-    .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    .palette-btn { width: 36px; height: 36px; font-size: 13px; font-weight: 600; border-radius: 6px; }
+    .status-not-visited { background-color: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+    .status-not-answered { background-color: #ef4444; color: white; }
+    .status-answered { background-color: #22c55e; color: white; }
+    .status-review { background-color: #a855f7; color: white; }
+    .status-ans-review { background-color: #6366f1; color: white; position: relative; }
+    .status-ans-review::after { content: '★'; position: absolute; top: -4px; right: 1px; font-size: 10px; color: #facc15; }
+    .grid-cell { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 1.5px solid #334155; }
+    .fig-box { border: 1px solid #cbd5e1; background: #ffffff; border-radius: 8px; padding: 6px; display: inline-flex; flex-direction: column; align-items: center; }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans select-none min-h-screen flex flex-col">
+<body class="bg-slate-100 text-slate-800 min-h-screen select-none font-sans">
 
-  <!-- ================= TOP HEADER ================= -->
-  <header class="bg-indigo-900 text-white shadow-md sticky top-0 z-40 px-4 py-2.5 flex justify-between items-center">
-    <div class="flex items-center gap-3">
-      <div onclick="showHomeScreen()" class="bg-amber-400 text-indigo-950 font-black px-2.5 py-1 rounded text-lg tracking-wider cursor-pointer">ज्ञानवर्स</div>
-      <h1 class="text-sm md:text-base font-semibold hidden sm:inline" id="headerTitle">BSSC ऑनलाइन परीक्षा पोर्टल</h1>
-    </div>
-    
-    <div class="flex items-center gap-3">
-      <!-- Live Timer -->
-      <div id="timerContainer" class="hidden bg-indigo-950 border border-indigo-700 px-3 py-1 rounded-md text-amber-300 font-mono font-bold text-sm md:text-base flex items-center gap-2">
-        <i class="fa-regular fa-clock"></i> <span id="timeDisplay">120:00</span>
-      </div>
-      <!-- Fullscreen Toggle -->
-      <button onclick="toggleFullScreen()" title="फुलस्क्रीन" class="bg-indigo-800 hover:bg-indigo-700 text-xs md:text-sm px-2.5 py-1.5 rounded transition">
-        <i class="fa-solid fa-expand"></i>
-      </button>
-    </div>
-  </header>
-
-  <!-- ================= SCREEN 1: PORTAL HOME & ALL TESTS LIST ================= -->
-  <main id="portalHomeScreen" class="flex-1 max-w-4xl mx-auto p-4 w-full">
-    <!-- Telegram Promotion Banner -->
-    <div class="bg-gradient-to-r from-sky-500 to-blue-600 text-white p-4 rounded-xl shadow-md mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-      <div class="flex items-center gap-3">
-        <div class="text-3xl"><i class="fa-brands fa-telegram"></i></div>
-        <div>
-          <h3 class="font-bold text-base md:text-lg">ऐसे सभी ऑनलाइन टेस्ट देने के लिए टेलीग्राम जॉइन करें!</h3>
-          <p class="text-xs md:text-sm text-sky-100">डेली फ्री क्विज, PDF नोट्स और नए टेस्ट अपडेट्स</p>
-        </div>
-      </div>
-      <a href="https://t.me/GYANVERSET" target="_blank" class="bg-white text-blue-600 font-bold px-4 py-2 rounded-lg text-sm shadow hover:bg-sky-50 transition whitespace-nowrap">
-        Join @GYANVERSET
-      </a>
-    </div>
-
-    <div class="flex justify-between items-center mb-4">
-      <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-        <i class="fa-solid fa-book-bookmark text-indigo-600"></i> उपलब्ध टेस्ट सीरीज (All Test Papers)
-      </h2>
-      <span class="text-xs bg-slate-200 text-slate-700 font-semibold px-2.5 py-1 rounded-full">2 टेस्ट सक्रिय</span>
-    </div>
-
-    <!-- Tests Listing Container -->
-    <div class="space-y-4">
-      <!-- Test Item 1: Free Set-01 -->
-      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 hover:border-indigo-400 transition flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <div class="flex items-center gap-2 mb-1">
-            <span class="bg-emerald-100 text-emerald-800 text-[11px] font-bold px-2 py-0.5 rounded">FREE</span>
-            <span class="text-xs text-slate-400 font-medium">BSSC CGL Set #01</span>
-          </div>
-          <h3 class="font-bold text-slate-800 text-base md:text-lg">BSSC स्नातक स्तरीय प्रारंभिक परीक्षा - प्रैक्टिस सेट 01</h3>
-          <p class="text-xs text-slate-500 mt-1">कुल प्रश्न: 150 | समय: 120 मिनट | अंक: 600 (+4, -1)</p>
-        </div>
-        <button onclick="startSpecificTest(0)" class="w-full sm:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-lg shadow transition whitespace-nowrap">
-          <i class="fa-solid fa-play mr-1"></i> फ्री टेस्ट दें
-        </button>
-      </div>
-
-      <!-- Test Item 2: Premium Paid Test (With QR & Key Protection) -->
-      <div class="bg-white rounded-xl shadow-sm border border-amber-200 p-5 hover:border-amber-400 transition flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-gradient-to-r from-amber-50/40 to-white">
-        <div>
-          <div class="flex items-center gap-2 mb-1">
-            <span class="bg-amber-100 text-amber-900 text-[11px] font-bold px-2 py-0.5 rounded flex items-center gap-1">
-              <i class="fa-solid fa-crown text-amber-600"></i> PREMIUM
-            </span>
-            <span class="text-xs text-slate-400 font-medium">BSSC CGL Set #02</span>
-          </div>
-          <h3 class="font-bold text-slate-800 text-base md:text-lg">BSSC स्नातक स्तरीय स्पेशल सिलेक्टेड टेस्ट - सेट 02</h3>
-          <p class="text-xs text-slate-500 mt-1">कुल प्रश्न: 150 | समय: 120 मिनट | वन-टाइम प्रोटेक्टेड</p>
-        </div>
-        <button onclick="openPremiumPrompt(1)" class="w-full sm:w-auto px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-lg shadow transition whitespace-nowrap">
-          <i class="fa-solid fa-lock mr-1"></i> अनलॉक करें / टेस्ट दें
-        </button>
-      </div>
-    </div>
-  </main>
-
-  <!-- ================= SCREEN 2: CBT EXAM INTERFACE ================= -->
-  <section id="examScreen" class="hidden flex-1 flex flex-col md:flex-row overflow-hidden">
-    <!-- Left: Question Panel -->
-    <div class="flex-1 flex flex-col bg-white border-r border-slate-200 h-full">
-      <div class="px-5 py-2.5 bg-slate-50 border-b border-slate-200 flex justify-between items-center text-xs md:text-sm font-medium">
-        <span class="text-indigo-800 font-bold">प्रश्न संख्या: <span id="currentQNum">1</span> / <span id="totalQNum">150</span></span>
-        <span class="text-slate-500">मार्किंग: <span class="text-emerald-600 font-bold">+4</span> | <span class="text-rose-600 font-bold">-1</span></span>
-      </div>
-
-      <div class="flex-1 p-5 overflow-y-auto custom-scroll" id="questionArea">
-        <h2 id="qText" class="text-base md:text-lg font-semibold text-slate-800 mb-4 leading-relaxed"></h2>
-        
-        <!-- Render Diagram / Figure Container -->
-        <div id="diagramContainer" class="my-4 flex justify-center bg-slate-50 p-3 rounded-lg border border-slate-200 max-w-lg mx-auto hidden"></div>
-
-        <!-- Options Container -->
-        <div id="optionsList" class="space-y-3 mt-4 max-w-2xl"></div>
-      </div>
-
-      <!-- Action Navigation Buttons -->
-      <div class="p-3 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2">
-        <div class="flex gap-2">
-          <button onclick="markForReview()" class="px-3 py-1.5 text-xs md:text-sm font-semibold rounded bg-amber-100 text-amber-800 hover:bg-amber-200 border border-amber-300">
-            <i class="fa-regular fa-bookmark"></i> Review बाद में
-          </button>
-          <button onclick="clearResponse()" class="px-3 py-1.5 text-xs md:text-sm font-semibold rounded bg-slate-200 text-slate-700 hover:bg-slate-300">
-            Clear
-          </button>
-        </div>
-        <div class="flex gap-2">
-          <button onclick="prevQuestion()" id="btnPrev" class="px-4 py-1.5 text-xs md:text-sm font-semibold rounded bg-slate-300 hover:bg-slate-400 text-slate-800">
-            <i class="fa-solid fa-chevron-left"></i> पिछला
-          </button>
-          <button onclick="nextQuestion()" id="btnNext" class="px-5 py-1.5 text-xs md:text-sm font-semibold rounded bg-indigo-600 hover:bg-indigo-700 text-white">
-            अगला <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right: Question Palette Sidebar -->
-    <aside class="w-full md:w-80 bg-slate-100 flex flex-col h-auto md:h-full border-t md:border-t-0">
-      <div class="p-3 bg-slate-200 font-bold text-xs uppercase text-slate-700 border-b border-slate-300 flex justify-between">
-        <span>Question Palette</span>
-        <span id="answeredCounter" class="text-indigo-700 font-extrabold">0 हल</span>
-      </div>
-
-      <div class="grid grid-cols-2 gap-2 p-3 text-[11px] bg-white border-b border-slate-200">
-        <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-emerald-500 inline-block"></span> Answered</div>
-        <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-rose-500 inline-block"></span> Not Answered</div>
-        <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-amber-400 inline-block"></span> Review</div>
-        <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-slate-300 inline-block"></span> Not Visited</div>
-      </div>
-
-      <div class="flex-1 p-3 overflow-y-auto custom-scroll">
-        <div id="paletteGrid" class="grid grid-cols-5 gap-2"></div>
-      </div>
-
-      <div class="p-3 bg-white border-t border-slate-200">
-        <button onclick="confirmSubmit()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg shadow transition">
-          <i class="fa-solid fa-check-double mr-1"></i> टेस्ट सबमिट करें (Submit)
-        </button>
-      </div>
-    </aside>
-  </section>
-
-  <!-- ================= SCREEN 3: RESULT & SOLUTION SCREEN ================= -->
-  <section id="resultScreen" class="hidden flex-1 max-w-4xl mx-auto p-4 w-full">
-    <div class="bg-white rounded-xl shadow-md border border-slate-200 p-6 mb-6">
-      <div class="text-center pb-6 border-b border-slate-200">
-        <h2 class="text-2xl font-black text-slate-800">परीक्षा परिणाम (Scorecard)</h2>
-        <p id="resExamSubtitle" class="text-xs md:text-sm text-slate-500 mt-1"></p>
-      </div>
-
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 my-6 text-center">
-        <div class="bg-indigo-50 border border-indigo-200 p-4 rounded-xl">
-          <span class="text-xs text-indigo-700 font-semibold block">कुल प्राप्तांक</span>
-          <span id="resTotalMarks" class="text-2xl font-black text-indigo-900">0</span>
-        </div>
-        <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl">
-          <span class="text-xs text-emerald-700 font-semibold block">सही उत्तर (+4)</span>
-          <span id="resCorrect" class="text-2xl font-black text-emerald-800">0</span>
-        </div>
-        <div class="bg-rose-50 border border-rose-200 p-4 rounded-xl">
-          <span class="text-xs text-rose-700 font-semibold block">गलत उत्तर (-1)</span>
-          <span id="resWrong" class="text-2xl font-black text-rose-800">0</span>
-        </div>
-        <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
-          <span class="text-xs text-slate-600 font-semibold block">अनअटेम्प्टेड</span>
-          <span id="resUnattempted" class="text-2xl font-black text-slate-700">0</span>
-        </div>
-      </div>
-
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <button onclick="toggleSolutions()" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow">
-          <i class="fa-solid fa-list-check mr-1"></i> सम्पूर्ण उत्तर एवं समाधान देखें
-        </button>
-        <button onclick="showHomeScreen()" class="px-6 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold rounded-lg">
-          <i class="fa-solid fa-house mr-1"></i> मुख्य पोर्टल पर जाएँ
-        </button>
-      </div>
-    </div>
-
-    <!-- Review / Solutions Mode -->
-    <div id="solutionContainer" class="hidden space-y-4 pb-12">
-      <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-        <i class="fa-solid fa-book-open text-indigo-600"></i> उत्तर एवं व्याख्या (Detailed Solutions)
-      </h3>
-      <div id="solutionList" class="space-y-4"></div>
-    </div>
-  </section>
-
-  <!-- ================= MODAL: PREMIUM ACCESS KEY & QR PAYMENT ================= -->
-  <div id="premiumModal" class="hidden fixed inset-0 bg-slate-900/80 flex items-center justify-center p-4 z-50 overflow-y-auto">
-    <div class="bg-white rounded-2xl max-w-md w-full p-6 text-center shadow-2xl border border-slate-200 my-8">
-      <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold">
-        <i class="fa-solid fa-key"></i>
-      </div>
+  <!-- ================= HIGH-IMPACT BRANDED INSTRUCTION SCREEN ================= -->
+  <div id="instructions-screen" class="max-w-5xl mx-auto p-4 md:p-8">
+    <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
       
-      <h3 class="text-xl font-black text-slate-800 mb-1">प्रीमियम टेस्ट अनलॉक करें</h3>
-      <p class="text-xs text-slate-500 mb-4">यह टेस्ट वन-टाइम एक्सेस प्रोटेक्टेड है।</p>
-      
-      <!-- Key Input Box -->
-      <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-4 text-left">
-        <label class="text-xs font-bold text-slate-700 block mb-1">अपनी Access Key दर्ज करें:</label>
-        <input type="text" id="accessKeyInput" placeholder="उदा. GYAN-4821" 
-          class="w-full text-center tracking-widest uppercase font-mono font-bold text-base py-2 px-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:outline-none">
-        <p id="keyError" class="text-rose-600 text-xs font-semibold mt-1 hidden">अमान्य Key या यह की किसी अन्य डिवाइस पर उपयोग हो चुकी है!</p>
-        <button onclick="verifyAndUnlock()" class="w-full mt-2.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-lg shadow">
-          वेरिफाई करें और टेस्ट शुरू करें
-        </button>
-      </div>
-
-      <!-- QR Code Payment Box -->
-      <div class="border-t border-slate-200 pt-4">
-        <span class="text-xs text-slate-500 font-semibold block mb-2">यदि आपके पास Access Key नहीं है तो स्कैन करके प्राप्त करें:</span>
-        <div class="flex justify-center mb-2">
-          <!-- Dynamic UPI QR -->
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=samir@upi&pn=Gyanverse&am=20&cu=INR" alt="Payment QR" class="w-36 h-36 border border-slate-300 p-1.5 rounded-lg bg-white shadow-sm">
+      <!-- Top Gyanverse Branded Banner -->
+      <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-900 p-6 md:p-8 text-white relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-blue-500/10 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-3 py-1 bg-amber-400 text-slate-950 text-xs font-black rounded-full uppercase tracking-wider shadow">OFFICIAL CBT PORTAL</span>
+              <span class="px-3 py-1 bg-blue-500/30 text-blue-200 border border-blue-400/30 text-xs font-semibold rounded-full">BSSC CGL-4 2026</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">ज्ञानवर्स (GYANVERSE) पोर्टल</h1>
+            <p class="text-blue-200 text-sm md:text-base mt-1">बिहार कर्मचारी चयन आयोग (BSSC) 4th CGL सहायक प्रशाखा पदाधिकारी [ASO] स्पेशल टेस्ट सीरीज़</p>
+          </div>
+          <!-- Telegram CTA Header Badge -->
+          <a href="https://t.me/GYANVERSET" target="_blank" class="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md px-5 py-3 rounded-xl border border-white/20 transition group">
+            <svg class="w-8 h-8 text-sky-400 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.97 9.28c-.15.67-.54.83-1.1.52l-3.02-2.23-1.46 1.41c-.16.16-.3.3-.61.3l.22-3.08 5.61-5.07c.24-.22-.05-.34-.38-.13l-6.93 4.36-2.98-.93c-.65-.2-.66-.65.14-.96l11.66-4.49c.54-.2 1.01.13.84.99z"/></svg>
+            <div class="text-left">
+              <div class="text-[11px] text-sky-200 font-medium">Join Telegram Channel</div>
+              <div class="text-sm font-bold text-white tracking-wide">@GYANVERSET</div>
+            </div>
+          </a>
         </div>
-        <p class="text-xs font-bold text-slate-700">शुल्क: ₹20 मात्र</p>
-        <p class="text-[11px] text-slate-500 mt-1">पेमेंट का स्क्रीनशॉट भेजकर तुरंत Key प्राप्त करें:</p>
-        <a href="https://t.me/GYANVERSET" target="_blank" class="inline-block mt-2 text-xs font-bold text-blue-600 hover:underline">
-          <i class="fa-brands fa-telegram"></i> टेलीग्राम: @GYANVERSET
-        </a>
       </div>
 
-      <div class="mt-4 pt-3 border-t border-slate-100">
-        <button onclick="closePremiumPrompt()" class="text-xs text-slate-500 hover:text-slate-800 font-semibold">बंद करें (Cancel)</button>
+      <!-- Test Card with Book Poster & Meta Info -->
+      <div class="p-6 md:p-8 space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center border-b pb-6">
+          
+          <!-- Book Poster Card (Edu-Teria Vol-2) -->
+          <div class="md:col-span-4 flex justify-center">
+            <div class="w-56 rounded-xl overflow-hidden shadow-xl border-4 border-amber-400 bg-gradient-to-b from-amber-50 to-white transform transition hover:scale-105 duration-200">
+              <div class="bg-gradient-to-r from-red-700 via-rose-700 to-red-800 text-white p-3 text-center border-b border-amber-300">
+                <div class="text-[11px] font-bold tracking-widest text-amber-300 uppercase">EDU TERIA</div>
+                <div class="text-2xl font-black tracking-tight text-white">BSSC</div>
+                <div class="text-[10px] bg-red-900/60 rounded px-1.5 py-0.5 mt-0.5 inline-block font-semibold">सहायक प्रशाखा पदाधिकारी [ASO]</div>
+              </div>
+              <div class="p-3 text-center space-y-2">
+                <div class="inline-block bg-blue-900 text-white text-[11px] font-black px-2.5 py-1 rounded">CGL-4</div>
+                <div class="text-xs font-bold text-slate-800">चतुर्थ स्नातक स्तरीय संयुक्त<br><span class="text-red-600 font-extrabold text-sm">प्रारंभिक परीक्षा 2026</span></div>
+                <div class="bg-amber-100 border border-amber-300 text-amber-900 font-extrabold text-xs py-1 rounded-lg">
+                  15 प्रैक्टिस सेट | VOLUME 2
+                </div>
+                <div class="text-[11px] font-black text-rose-700 bg-rose-50 py-1 rounded border border-rose-200">
+                  ★ टेस्ट सेट संख्या: 01 ★
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Test Details & Summary -->
+          <div class="md:col-span-8 space-y-4">
+            <div>
+              <span class="px-2.5 py-1 bg-rose-100 text-rose-800 text-xs font-bold rounded-md">LIVE MOCK TEST</span>
+              <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-2">
+                Edu-Teria Volume 2: Practice Set - 01
+              </h2>
+              <p class="text-slate-600 text-sm mt-1">
+                बिहार CGL-4 ASO एवं सहायक पदों हेतु पूर्णतः प्रामाणिक नवीनतम पाठ्यक्रम पर आधारित ऑनलाइन कंप्यूटर आधारित टेस्ट (CBT)।
+              </p>
+            </div>
+
+            <!-- Highlights Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center font-semibold text-sm">
+              <div class="bg-blue-50 text-blue-800 p-3 rounded-xl border border-blue-200">
+                <div class="text-xs text-blue-600 font-bold uppercase">कुल प्रश्न</div>
+                <div class="text-xl font-extrabold mt-0.5">150 Qs</div>
+              </div>
+              <div class="bg-emerald-50 text-emerald-800 p-3 rounded-xl border border-emerald-200">
+                <div class="text-xs text-emerald-600 font-bold uppercase">पूर्णांक</div>
+                <div class="text-xl font-extrabold mt-0.5">600 Marks</div>
+              </div>
+              <div class="bg-amber-50 text-amber-800 p-3 rounded-xl border border-amber-200">
+                <div class="text-xs text-amber-600 font-bold uppercase">समय सीमा</div>
+                <div class="text-xl font-extrabold mt-0.5">120 मिनट</div>
+              </div>
+              <div class="bg-rose-50 text-rose-800 p-3 rounded-xl border border-rose-200">
+                <div class="text-xs text-rose-600 font-bold uppercase">नेगेटिव मार्किंग</div>
+                <div class="text-xl font-extrabold mt-0.5">+4 / -1</div>
+              </div>
+            </div>
+
+            <!-- Subject Breakdown -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-slate-700 flex flex-wrap gap-2 justify-between">
+              <div>📚 <strong>सामान्य अध्ययन:</strong> 50 प्रश्न</div>
+              <div>🔬 <strong>सामान्य विज्ञान व गणित:</strong> 50 प्रश्न</div>
+              <div>🧠 <strong>मानसिक क्षमता (Reasoning):</strong> 50 प्रश्न</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guidelines -->
+        <div class="space-y-2 text-sm text-slate-600">
+          <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span> परीक्षा निर्देश व नियम:
+          </h3>
+          <ul class="list-disc pl-5 space-y-1.5 leading-relaxed text-xs md:text-sm">
+            <li>प्रत्येक सही उत्तर पर <strong>4 अंक</strong> मिलेंगे और प्रत्येक गलत उत्तर पर <strong>1 अंक (-1)</strong> की कटौती होगी[span_1](start_span)[span_1](end_span)।</li>
+            <li>सभी रीजनिंग आकृतियाँ, वेन-आरेख, पासा और मैट्रिक्स परीक्षा हॉल के अनुरूप न्यूट्रल रूप से लोड की गई हैं[span_2](start_span)[span_2](end_span)।</li>
+            <li>बेहतर अनुभव और टाइम-मैनेजमेंट हेतु टेस्ट <strong>Full-Screen CBT Mode</strong> में प्रारंभ होगा।</li>
+            <li>120 मिनट पूर्ण होते ही परीक्षा स्वतः सबमिट होगी[span_3](start_span)[span_3](end_span); तुरंत बाद आपको संपूर्ण उत्तर व व्याख्या (Solution) प्राप्त होगी।</li>
+          </ul>
+        </div>
+
+        <!-- High-Impact Telegram Banner -->
+        <div class="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-700 rounded-xl p-4 md:p-5 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+          <div class="space-y-0.5 text-center sm:text-left">
+            <div class="text-xs font-semibold text-sky-200 uppercase tracking-wider">Gyanverse Study Community</div>
+            <div class="text-lg md:text-xl font-extrabold">रोजाना ऐसे ऑनलाइन टेस्ट और PDF के लिए टेलीग्राम जॉइन करें</div>
+            <div class="text-xs text-blue-100">सर्च करें टेलीग्राम पर: <strong>@GYANVERSET</strong></div>
+          </div>
+          <a href="https://t.me/GYANVERSET" target="_blank" class="px-6 py-3 bg-white text-blue-800 hover:bg-blue-50 font-bold rounded-xl shadow transition duration-150 transform hover:-translate-y-0.5 text-sm whitespace-nowrap flex items-center gap-2">
+            <svg class="w-5 h-5 fill-current text-sky-600" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.97 9.28c-.15.67-.54.83-1.1.52l-3.02-2.23-1.46 1.41c-.16.16-.3.3-.61.3l.22-3.08 5.61-5.07c.24-.22-.05-.34-.38-.13l-6.93 4.36-2.98-.93c-.65-.2-.66-.65.14-.96l11.66-4.49c.54-.2 1.01.13.84.99z"/></svg>
+            टेलीग्राम जॉइन करें (@GYANVERSET)
+          </a>
+        </div>
+
+        <!-- Start Test Button -->
+        <button onclick="startTest()" class="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white text-lg font-extrabold rounded-xl shadow-xl transition duration-150 transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+          <span>ऑनलाइन टेस्ट शुरू करें (Start Live CBT Test)</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- ================= JAVASCRIPT SYSTEM ================= -->
+  <!-- ================= CBT SCREEN ================= -->
+  <div id="cbt-screen" class="hidden flex-col h-screen overflow-hidden">
+    <header class="bg-slate-900 text-white px-4 py-3 flex items-center justify-between shadow z-10">
+      <div class="flex items-center gap-3">
+        <span class="font-extrabold text-lg text-blue-400 tracking-wide">ज्ञानवर्स CBT</span>
+        <span class="hidden md:inline text-xs text-slate-400">| Eduteria Vol-2 Set-01 (BSSC CGL 4 ASO)</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-lg flex items-center gap-2">
+          <span class="text-xs text-slate-400">समय:</span>
+          <span id="timer" class="font-mono text-lg font-bold text-amber-400">120:00</span>
+        </div>
+        <button onclick="toggleFullScreen()" class="p-1.5 text-slate-300 hover:text-white rounded bg-slate-800" title="Full Screen">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="flex-1 flex flex-col md:flex-row overflow-hidden">
+      <!-- Main Question Area -->
+      <section class="flex-1 flex flex-col bg-white overflow-y-auto p-4 md:p-6 border-r border-slate-200">
+        <div class="flex items-center justify-between border-b pb-3 mb-4 text-sm font-semibold text-slate-600">
+          <span>प्रश्न संख्या: <strong id="q-no-display" class="text-blue-600 text-lg">1</strong> / 150</span>
+          <div class="text-xs space-x-2">
+            <span class="text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200 font-bold">+4 अंक</span>
+            <span class="text-rose-600 bg-rose-50 px-2.5 py-1 rounded border border-rose-200 font-bold">-1 अंक</span>
+          </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto mb-4 pr-1">
+          <div id="q-text" class="text-base md:text-lg font-medium text-slate-800 leading-relaxed mb-4"></div>
+          <div id="q-figure" class="mb-4 flex flex-col items-center justify-center"></div>
+          <div id="q-options" class="space-y-3"></div>
+        </div>
+
+        <div class="border-t pt-4 flex flex-wrap gap-2 justify-between items-center bg-white">
+          <div class="flex gap-2">
+            <button onclick="markForReview()" class="px-3 md:px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-xs md:text-sm font-medium rounded-lg shadow">Mark for Review</button>
+            <button onclick="clearResponse()" class="px-3 md:px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs md:text-sm font-medium rounded-lg">Clear Response</button>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="prevQuestion()" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs md:text-sm font-medium rounded-lg">Previous</button>
+            <button onclick="saveAndNext()" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs md:text-sm font-medium rounded-lg shadow">Save & Next</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Palette -->
+      <aside class="w-full md:w-80 bg-slate-50 flex flex-col border-t md:border-t-0 md:border-l border-slate-200">
+        <div class="p-3 bg-white border-b text-xs grid grid-cols-2 gap-2 text-slate-600">
+          <div class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-emerald-500 inline-block"></span> Answered</div>
+          <div class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-red-500 inline-block"></span> Not Answered</div>
+          <div class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-purple-500 inline-block"></span> Marked Review</div>
+          <div class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-slate-200 border border-slate-300 inline-block"></span> Not Visited</div>
+        </div>
+        <div class="p-2.5 text-xs font-bold text-slate-700 uppercase">Question Palette (1 - 150)</div>
+        <div id="palette-container" class="flex-1 overflow-y-auto p-3 grid grid-cols-5 gap-2 content-start"></div>
+        <div class="p-3 bg-white border-t">
+          <button onclick="confirmSubmitTest()" class="w-full py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-lg shadow">Submit Test</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ================= SCORECARD & SOLUTION SCREEN ================= -->
+  <div id="result-screen" class="hidden max-w-5xl mx-auto p-4 md:p-8 space-y-6">
+    <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 md:p-8">
+      <div class="text-center border-b pb-6">
+        <div class="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-full mb-2">OFFICIAL CBT SCORECARD</div>
+        <h2 class="text-3xl font-extrabold text-slate-900">टेस्ट परिणाम (Scorecard)</h2>
+        <p class="text-sm text-slate-500 mt-1">Eduteria Vol-2 Set No. 1 BSSC CGL 4</p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 my-6 text-center">
+        <div class="bg-blue-50 border border-blue-200 p-4 rounded-xl">
+          <div class="text-xs text-blue-600 font-bold uppercase">कुल प्राप्तांक</div>
+          <div id="score-total" class="text-3xl font-black text-blue-700 mt-1">0 / 600</div>
+        </div>
+        <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl">
+          <div class="text-xs text-emerald-600 font-bold uppercase">सही उत्तर</div>
+          <div id="score-correct" class="text-3xl font-black text-emerald-700 mt-1">0</div>
+        </div>
+        <div class="bg-rose-50 border border-rose-200 p-4 rounded-xl">
+          <div class="text-xs text-rose-600 font-bold uppercase">गलत उत्तर</div>
+          <div id="score-wrong" class="text-3xl font-black text-rose-700 mt-1">0</div>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl">
+          <div class="text-xs text-amber-600 font-bold uppercase">अनअटेम्प्टेड</div>
+          <div id="score-unattempted" class="text-3xl font-black text-amber-700 mt-1">0</div>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row justify-between items-center border-t pt-4 gap-3">
+        <a href="https://t.me/GYANVERSET" target="_blank" class="text-sm font-bold text-sky-600 hover:text-sky-700 flex items-center gap-1.5">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.97 9.28c-.15.67-.54.83-1.1.52l-3.02-2.23-1.46 1.41c-.16.16-.3.3-.61.3l.22-3.08 5.61-5.07c.24-.22-.05-.34-.38-.13l-6.93 4.36-2.98-.93c-.65-.2-.66-.65.14-.96l11.66-4.49c.54-.2 1.01.13.84.99z"/></svg>
+          टेलीग्राम चैनल @GYANVERSET जॉइन करें
+        </a>
+        <button onclick="location.reload()" class="px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold rounded-xl shadow">पुनः टेस्ट दें</button>
+      </div>
+    </div>
+
+    <!-- Review Section -->
+    <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 md:p-8">
+      <h3 class="text-xl font-bold text-slate-800 mb-6 border-b pb-3">सम्पूर्ण व्याख्या व समीक्षा (Solution Mode)</h3>
+      <div id="solutions-list" class="space-y-6"></div>
+    </div>
+  </div>
+
   <script>
-    // ----------------------------------------------------
-    // PRE-AUTHORIZED ONE-TIME KEYS LIST
-    // ----------------------------------------------------
-    const authorizedKeys = [
-      "GYAN-1001", "GYAN-1002", "GYAN-1003", "GYAN-7788", "PREM-9912"
+    // Completely Neutralized SVGs for Unbiased Testing (No answer leakage in Test Mode)
+    const visualFigures = {
+      // 97: Pie Chart
+      97: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex flex-col items-center shadow-sm">
+          <svg width="220" height="220" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="90" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+            <circle cx="100" cy="100" r="90" fill="transparent" stroke="#3b82f6" stroke-width="180" stroke-dasharray="180 380" stroke-dashoffset="0" />
+            <circle cx="100" cy="100" r="90" fill="transparent" stroke="#10b981" stroke-width="180" stroke-dasharray="55 505" stroke-dashoffset="-180" />
+            <circle cx="100" cy="100" r="90" fill="transparent" stroke="#f59e0b" stroke-width="180" stroke-dasharray="94 466" stroke-dashoffset="-235" />
+            <circle cx="100" cy="100" r="90" fill="transparent" stroke="#8b5cf6" stroke-width="180" stroke-dasharray="133 427" stroke-dashoffset="-329" />
+            <circle cx="100" cy="100" r="90" fill="transparent" stroke="#ec4899" stroke-width="180" stroke-dasharray="39 521" stroke-dashoffset="-462" />
+            <circle cx="100" cy="100" r="90" fill="transparent" stroke="#06b6d4" stroke-width="180" stroke-dasharray="63 497" stroke-dashoffset="-501" />
+            <text x="100" y="45" font-size="11" font-weight="bold" fill="#1e293b" text-anchor="middle">वाणिज्य 115°</text>
+            <text x="145" y="85" font-size="10" font-weight="bold" fill="#1e293b">प्रोफेशनल 35°</text>
+            <text x="135" y="145" font-size="10" font-weight="bold" fill="#1e293b">अन्य 60°</text>
+            <text x="75" y="165" font-size="10" font-weight="bold" fill="#1e293b">विनिर्माण 85°</text>
+            <text x="35" y="125" font-size="10" font-weight="bold" fill="#1e293b">निजी 25°</text>
+            <text x="45" y="75" font-size="10" font-weight="bold" fill="#1e293b">परिवहन 40°</text>
+          </svg>
+          <span class="text-xs text-slate-500 mt-2 font-medium">पाई-चार्ट: विभिन्न क्षेत्रों में व्यक्तियों का वितरण (कुल = 360°)</span>
+        </div>`,
+
+      // 112: Open Dice Net
+      112: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex flex-col items-center shadow-sm">
+          <div class="text-xs font-semibold text-slate-600 mb-2">दी गई शीट (खुला पासा):</div>
+          <div class="grid grid-cols-4 gap-1">
+            <div></div><div class="grid-cell bg-white">V</div><div></div><div></div>
+            <div class="grid-cell bg-white">X</div><div class="grid-cell bg-slate-100 text-slate-800">VI</div><div class="grid-cell bg-white">VIII</div><div class="grid-cell bg-white">IX</div>
+            <div></div><div class="grid-cell bg-white text-slate-800">VII</div><div></div><div></div>
+          </div>
+        </div>`,
+
+      // 113: Two Dice Views
+      113: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex gap-6 items-center justify-center shadow-sm">
+          <div class="flex flex-col items-center">
+            <span class="text-xs font-bold text-slate-500 mb-1">स्थिति 1</span>
+            <svg width="85" height="85" viewBox="0 0 100 100">
+              <polygon points="50,15 85,32 50,50 15,32" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+              <polygon points="15,32 50,50 50,88 15,70" fill="#cbd5e1" stroke="#334155" stroke-width="2"/>
+              <polygon points="50,50 85,32 85,70 50,88" fill="#94a3b8" stroke="#334155" stroke-width="2"/>
+              <text x="50" y="36" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">T</text>
+              <text x="32" y="66" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">V</text>
+              <text x="68" y="66" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">Z</text>
+            </svg>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-xs font-bold text-slate-500 mb-1">स्थिति 2</span>
+            <svg width="85" height="85" viewBox="0 0 100 100">
+              <polygon points="50,15 85,32 50,50 15,32" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+              <polygon points="15,32 50,50 50,88 15,70" fill="#cbd5e1" stroke="#334155" stroke-width="2"/>
+              <polygon points="50,50 85,32 85,70 50,88" fill="#94a3b8" stroke="#334155" stroke-width="2"/>
+              <text x="50" y="36" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">L</text>
+              <text x="32" y="66" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">V</text>
+              <text x="68" y="66" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">Q</text>
+            </svg>
+          </div>
+        </div>`,
+
+      // 132: Square Grid (3x3)
+      132: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex flex-col items-center shadow-sm">
+          <div class="grid grid-cols-3 gap-0 border-2 border-slate-800 bg-white">
+            <div class="w-10 h-10 border border-slate-400"></div><div class="w-10 h-10 border border-slate-400"></div><div class="w-10 h-10 border border-slate-400"></div>
+            <div class="w-10 h-10 border border-slate-400"></div><div class="w-10 h-10 border border-slate-400"></div><div class="w-10 h-10 border border-slate-400"></div>
+            <div class="w-10 h-10 border border-slate-400"></div><div class="w-10 h-10 border border-slate-400"></div><div class="w-10 h-10 border border-slate-400"></div>
+          </div>
+        </div>`,
+
+      // 133: Venn Diagram
+      133: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex flex-col items-center shadow-sm">
+          <svg width="220" height="180" viewBox="0 0 220 180">
+            <circle cx="85" cy="75" r="50" fill="rgba(59, 130, 246, 0.25)" stroke="#2563eb" stroke-width="2"/>
+            <circle cx="135" cy="75" r="50" fill="rgba(16, 185, 129, 0.25)" stroke="#059669" stroke-width="2"/>
+            <circle cx="110" cy="115" r="50" fill="rgba(245, 158, 11, 0.25)" stroke="#d97706" stroke-width="2"/>
+            <text x="60" y="45" font-size="11" font-weight="bold" fill="#1e3a8a">बालिकाएं</text>
+            <text x="145" y="45" font-size="11" font-weight="bold" fill="#064e3b">खिलाड़ी</text>
+            <text x="110" y="172" font-size="11" font-weight="bold" fill="#78350f" text-anchor="middle">नर्तकी</text>
+            <text x="65" y="80" font-size="11" font-weight="bold" fill="#334155">22</text>
+            <text x="145" y="80" font-size="11" font-weight="bold" fill="#334155">17</text>
+            <text x="110" y="145" font-size="11" font-weight="bold" fill="#334155">14</text>
+            <text x="110" y="65" font-size="10" font-weight="bold" fill="#334155" text-anchor="middle">5</text>
+            <text x="88" y="105" font-size="10" font-weight="bold" fill="#334155">6</text>
+            <text x="126" y="105" font-size="10" font-weight="bold" fill="#334155">8</text>
+            <text x="110" y="94" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">7</text>
+          </svg>
+        </div>`,
+
+      // 140: Vertical Mirror Reflection (Neutral)
+      140: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex flex-col items-center shadow-sm w-full">
+          <div class="flex items-center gap-6 mb-3">
+            <div class="fig-box">
+              <span class="text-[11px] font-bold text-slate-500 mb-1">प्रश्न आकृति</span>
+              <svg width="65" height="65" viewBox="0 0 70 70">
+                <rect x="5" y="5" width="60" height="60" fill="none" stroke="#1e293b" stroke-width="2"/>
+                <polygon points="15,55 35,15 45,40" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+                <circle cx="52" cy="52" r="5" fill="#ef4444"/>
+              </svg>
+            </div>
+            <div class="h-20 border-r-2 border-dashed border-red-500 flex items-center px-1"><span class="bg-red-100 text-red-700 text-[10px] font-bold px-1 rounded">दर्पण AB</span></div>
+          </div>
+          <div class="text-xs font-bold text-slate-600 mb-2">उत्तर आकृतियाँ:</div>
+          <div class="grid grid-cols-4 gap-2">
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(1)</span><svg width="45" height="45" viewBox="0 0 70 70"><rect x="5" y="5" width="60" height="60" fill="none" stroke="#64748b" stroke-width="2"/><polygon points="15,55 35,15 45,40" fill="none" stroke="#64748b" stroke-width="2"/><circle cx="18" cy="52" r="5" fill="#64748b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(2)</span><svg width="45" height="45" viewBox="0 0 70 70"><rect x="5" y="5" width="60" height="60" fill="none" stroke="#334155" stroke-width="2"/><polygon points="55,55 35,15 25,40" fill="none" stroke="#334155" stroke-width="2.5"/><circle cx="18" cy="52" r="5" fill="#ef4444"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(3)</span><svg width="45" height="45" viewBox="0 0 70 70"><rect x="5" y="5" width="60" height="60" fill="none" stroke="#64748b" stroke-width="2"/><polygon points="55,15 35,55 25,30" fill="none" stroke="#64748b" stroke-width="2"/><circle cx="18" cy="18" r="5" fill="#64748b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(4)</span><svg width="45" height="45" viewBox="0 0 70 70"><rect x="5" y="5" width="60" height="60" fill="none" stroke="#64748b" stroke-width="2"/><polygon points="55,55 35,15 25,40" fill="none" stroke="#64748b" stroke-width="2"/><circle cx="52" cy="52" r="5" fill="#64748b"/></svg></div>
+          </div>
+        </div>`,
+
+      // 141: Figure Rotation Series (Neutral)
+      141: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex flex-col items-center shadow-sm w-full">
+          <div class="text-xs font-bold text-slate-600 mb-2">प्रश्न आकृति श्रृंखला (90° दक्षिणावर्त घूर्णन):</div>
+          <div class="flex items-center gap-2 mb-3">
+            <div class="fig-box"><svg width="40" height="40" viewBox="0 0 40 40"><line x1="20" y1="35" x2="20" y2="8" stroke="#1e293b" stroke-width="2.5"/><polygon points="20,5 14,14 26,14" fill="#1e293b"/></svg></div>
+            <span class="text-slate-400 font-bold">➔</span>
+            <div class="fig-box"><svg width="40" height="40" viewBox="0 0 40 40"><line x1="5" y1="20" x2="32" y2="20" stroke="#1e293b" stroke-width="2.5"/><polygon points="35,20 26,14 26,26" fill="#1e293b"/></svg></div>
+            <span class="text-slate-400 font-bold">➔</span>
+            <div class="fig-box"><svg width="40" height="40" viewBox="0 0 40 40"><line x1="20" y1="5" x2="20" y2="32" stroke="#1e293b" stroke-width="2.5"/><polygon points="20,35 14,26 26,26" fill="#1e293b"/></svg></div>
+            <span class="text-slate-400 font-bold">➔</span>
+            <div class="fig-box bg-slate-100 border-slate-300"><span class="text-lg font-bold text-slate-600 px-2">?</span></div>
+          </div>
+          <div class="text-xs font-bold text-slate-600 mb-2">उत्तर आकृतियाँ:</div>
+          <div class="grid grid-cols-4 gap-2">
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(1)</span><svg width="40" height="40" viewBox="0 0 40 40"><line x1="20" y1="35" x2="20" y2="8" stroke="#64748b" stroke-width="2"/><polygon points="20,5 14,14 26,14" fill="#64748b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(2)</span><svg width="40" height="40" viewBox="0 0 40 40"><line x1="5" y1="20" x2="32" y2="20" stroke="#64748b" stroke-width="2"/><polygon points="35,20 26,14 26,26" fill="#64748b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(3)</span><svg width="40" height="40" viewBox="0 0 40 40"><line x1="35" y1="20" x2="8" y2="20" stroke="#334155" stroke-width="2.5"/><polygon points="5,20 14,14 14,26" fill="#334155"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(4)</span><svg width="40" height="40" viewBox="0 0 40 40"><line x1="20" y1="5" x2="20" y2="32" stroke="#64748b" stroke-width="2"/><polygon points="20,35 14,26 26,26" fill="#64748b"/></svg></div>
+          </div>
+        </div>`,
+
+      // 142: Odd One Out Shape (Neutral)
+      142: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex flex-col items-center shadow-sm w-full">
+          <div class="text-xs font-bold text-slate-600 mb-2">चारों आकृतियों की ज्यामितीय बनावट:</div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="fig-box">
+              <span class="text-[11px] font-bold text-slate-600">(1)</span>
+              <svg width="55" height="55" viewBox="0 0 50 50">
+                <circle cx="25" cy="25" r="20" fill="none" stroke="#334155" stroke-width="2"/>
+                <line x1="7" y1="16" x2="43" y2="34" stroke="#334155" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="fig-box">
+              <span class="text-[11px] font-bold text-slate-600">(2)</span>
+              <svg width="55" height="55" viewBox="0 0 50 50">
+                <polygon points="25,8 44,42 6,42" fill="none" stroke="#334155" stroke-width="2"/>
+                <line x1="25" y1="8" x2="25" y2="42" stroke="#334155" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="fig-box">
+              <span class="text-[11px] font-bold text-slate-600">(3)</span>
+              <svg width="55" height="55" viewBox="0 0 50 50">
+                <rect x="10" y="10" width="30" height="30" fill="none" stroke="#334155" stroke-width="2"/>
+                <line x1="10" y1="10" x2="40" y2="40" stroke="#334155" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="fig-box">
+              <span class="text-[11px] font-bold text-slate-600">(4)</span>
+              <svg width="55" height="55" viewBox="0 0 50 50">
+                <polygon points="25,8 42,25 25,42 8,25" fill="none" stroke="#334155" stroke-width="2"/>
+                <line x1="8" y1="25" x2="42" y2="25" stroke="#334155" stroke-width="2"/>
+              </svg>
+            </div>
+          </div>
+        </div>`,
+
+      // 143: Pattern Completion (Neutral)
+      143: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex flex-col items-center shadow-sm w-full">
+          <div class="flex items-center gap-4 mb-3">
+            <div class="fig-box">
+              <span class="text-[11px] font-bold text-slate-500 mb-1">प्रश्न आकृति</span>
+              <div class="w-24 h-24 grid grid-cols-2 border-2 border-slate-700 bg-white">
+                <div class="border-r border-b border-slate-400 p-1"><svg width="100%" height="100%"><line x1="0" y1="0" x2="40" y2="40" stroke="#1e293b" stroke-width="2"/></svg></div>
+                <div class="border-b border-slate-400 p-1"><svg width="100%" height="100%"><line x1="40" y1="0" x2="0" y2="40" stroke="#1e293b" stroke-width="2"/></svg></div>
+                <div class="border-r border-slate-400 p-1"><svg width="100%" height="100%"><line x1="0" y1="40" x2="40" y2="0" stroke="#1e293b" stroke-width="2"/></svg></div>
+                <div class="bg-slate-100 flex items-center justify-center font-bold text-slate-600 text-lg">?</div>
+              </div>
+            </div>
+          </div>
+          <div class="text-xs font-bold text-slate-600 mb-2">उत्तर आकृतियाँ:</div>
+          <div class="grid grid-cols-4 gap-2">
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(1)</span><svg width="45" height="45" viewBox="0 0 45 45"><rect width="45" height="45" fill="none" stroke="#334155"/><line x1="45" y1="45" x2="0" y2="0" stroke="#334155" stroke-width="2.5"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(2)</span><svg width="45" height="45" viewBox="0 0 45 45"><rect width="45" height="45" fill="none" stroke="#64748b"/><line x1="0" y1="45" x2="45" y2="0" stroke="#64748b" stroke-width="2"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(3)</span><svg width="45" height="45" viewBox="0 0 45 45"><rect width="45" height="45" fill="none" stroke="#64748b"/><line x1="22" y1="0" x2="22" y2="45" stroke="#64748b" stroke-width="2"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(4)</span><svg width="45" height="45" viewBox="0 0 45 45"><rect width="45" height="45" fill="none" stroke="#64748b"/><line x1="0" y1="22" x2="45" y2="22" stroke="#64748b" stroke-width="2"/></svg></div>
+          </div>
+        </div>`,
+
+      // 144: Paper Folding and Punching (Neutral)
+      144: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex flex-col items-center shadow-sm w-full">
+          <div class="text-xs font-bold text-slate-600 mb-2">प्रश्न आकृति (मोड़ने और पंच करने का क्रम):</div>
+          <div class="flex items-center gap-2 mb-3">
+            <div class="fig-box"><span class="text-[9px] text-slate-400">Step 1</span><svg width="40" height="40"><rect x="4" y="4" width="32" height="32" fill="none" stroke="#334155" stroke-dasharray="2"/><line x1="20" y1="4" x2="20" y2="36" stroke="#ef4444" stroke-width="1.5"/></svg></div>
+            <span class="text-slate-400 font-bold">➔</span>
+            <div class="fig-box"><span class="text-[9px] text-slate-400">Step 2</span><svg width="40" height="40"><rect x="4" y="4" width="16" height="32" fill="none" stroke="#334155" stroke-dasharray="2"/><line x1="4" y1="20" x2="20" y2="20" stroke="#ef4444" stroke-width="1.5"/></svg></div>
+            <span class="text-slate-400 font-bold">➔</span>
+            <div class="fig-box"><span class="text-[9px] text-slate-400">Punch</span><svg width="40" height="40"><rect x="4" y="4" width="16" height="16" fill="none" stroke="#334155"/><circle cx="12" cy="12" r="3" fill="#ef4444"/></svg></div>
+          </div>
+          <div class="text-xs font-bold text-slate-600 mb-2">उत्तर आकृतियाँ (खोलने पर):</div>
+          <div class="grid grid-cols-4 gap-2">
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(1)</span><svg width="45" height="45" viewBox="0 0 50 50"><rect x="5" y="5" width="40" height="40" fill="none" stroke="#64748b"/><circle cx="15" cy="25" r="3" fill="#64748b"/><circle cx="35" cy="25" r="3" fill="#64748b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(2)</span><svg width="45" height="45" viewBox="0 0 50 50"><rect x="5" y="5" width="40" height="40" fill="none" stroke="#64748b"/><circle cx="25" cy="15" r="3" fill="#64748b"/><circle cx="25" cy="35" r="3" fill="#64748b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(3)</span><svg width="45" height="45" viewBox="0 0 50 50"><rect x="5" y="5" width="40" height="40" fill="none" stroke="#334155" stroke-width="1.5"/><circle cx="17" cy="17" r="3.5" fill="#334155"/><circle cx="33" cy="17" r="3.5" fill="#334155"/><circle cx="17" cy="33" r="3.5" fill="#334155"/><circle cx="33" cy="33" r="3.5" fill="#334155"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(4)</span><svg width="45" height="45" viewBox="0 0 50 50"><rect x="5" y="5" width="40" height="40" fill="none" stroke="#64748b"/><circle cx="25" cy="25" r="4" fill="#64748b"/></svg></div>
+          </div>
+        </div>`,
+
+      // 145: 3D Block Rotation (Neutral)
+      145: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex flex-col items-center shadow-sm w-full">
+          <div class="flex items-center gap-4 mb-3">
+            <div class="fig-box">
+              <span class="text-[11px] font-bold text-slate-500 mb-1">समस्या ब्लॉक</span>
+              <svg width="65" height="65" viewBox="0 0 60 60">
+                <polygon points="10,20 30,8 50,20 30,32" fill="#e2e8f0" stroke="#1e293b"/>
+                <polygon points="10,20 30,32 30,52 10,40" fill="#cbd5e1" stroke="#1e293b"/>
+                <polygon points="30,32 50,20 50,40 30,52" fill="#94a3b8" stroke="#1e293b"/>
+                <circle cx="30" cy="20" r="3.5" fill="#dc2626"/>
+              </svg>
+            </div>
+            <span class="text-xs text-slate-600 font-semibold max-w-[200px]">ब्लॉक को सामने (Front Face) की तरफ नीचे 90° झुकाने पर:</span>
+          </div>
+          <div class="text-xs font-bold text-slate-600 mb-2">उत्तर आकृतियाँ:</div>
+          <div class="grid grid-cols-4 gap-2">
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(1)</span><svg width="45" height="45" viewBox="0 0 60 60"><polygon points="10,20 30,8 50,20 30,32" fill="#94a3b8" stroke="#64748b"/><polygon points="10,20 30,32 30,52 10,40" fill="#cbd5e1" stroke="#64748b"/><polygon points="30,32 50,20 50,40 30,52" fill="#e2e8f0" stroke="#64748b"/><circle cx="20" cy="35" r="3" fill="#64748b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(2)</span><svg width="45" height="45" viewBox="0 0 60 60"><polygon points="10,20 30,8 50,20 30,32" fill="#cbd5e1" stroke="#334155"/><polygon points="10,20 30,32 30,52 10,40" fill="#e2e8f0" stroke="#334155"/><polygon points="30,32 50,20 50,40 30,52" fill="#94a3b8" stroke="#334155"/><circle cx="20" cy="38" r="3.5" fill="#ef4444"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(3)</span><svg width="45" height="45" viewBox="0 0 60 60"><polygon points="10,20 30,8 50,20 30,32" fill="#e2e8f0" stroke="#64748b"/><polygon points="10,20 30,32 30,52 10,40" fill="#cbd5e1" stroke="#64748b"/><polygon points="30,32 50,20 50,40 30,52" fill="#94a3b8" stroke="#64748b"/><circle cx="40" cy="38" r="3" fill="#64748b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(4)</span><svg width="45" height="45" viewBox="0 0 60 60"><polygon points="10,20 30,8 50,20 30,32" fill="#e2e8f0" stroke="#64748b"/><polygon points="10,20 30,32 30,52 10,40" fill="#94a3b8" stroke="#64748b"/><polygon points="30,32 50,20 50,40 30,52" fill="#cbd5e1" stroke="#64748b"/></svg></div>
+          </div>
+        </div>`,
+
+      // 146: Assemble Shapes from Pieces (Neutral)
+      146: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex flex-col items-center shadow-sm w-full">
+          <div class="text-xs font-bold text-slate-600 mb-2">प्रश्न आकृति में कटे हुए 4 टुकड़े:</div>
+          <div class="flex gap-3 mb-3">
+            <div class="fig-box"><svg width="30" height="30" viewBox="0 0 30 30"><polygon points="5,25 25,25 5,5" fill="#bfdbfe" stroke="#1e3a8a"/></svg></div>
+            <div class="fig-box"><svg width="30" height="30" viewBox="0 0 30 30"><polygon points="5,25 25,25 25,5" fill="#bfdbfe" stroke="#1e3a8a"/></svg></div>
+            <div class="fig-box"><svg width="35" height="30" viewBox="0 0 35 30"><rect x="5" y="5" width="25" height="20" fill="#bbf7d0" stroke="#065f46"/></svg></div>
+            <div class="fig-box"><svg width="40" height="30" viewBox="0 0 40 30"><polygon points="5,25 35,25 25,5 15,5" fill="#fed7aa" stroke="#9a3412"/></svg></div>
+          </div>
+          <div class="text-xs font-bold text-slate-600 mb-2">उत्तर आकृतियाँ (जोड़ने पर):</div>
+          <div class="grid grid-cols-4 gap-2">
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(1)</span><svg width="45" height="45" viewBox="0 0 50 50"><polygon points="25,5 45,45 5,45" fill="none" stroke="#64748b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(2)</span><svg width="45" height="45" viewBox="0 0 50 50"><rect x="8" y="12" width="34" height="26" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/><line x1="8" y1="12" x2="25" y2="38" stroke="#334155"/><line x1="42" y1="12" x2="25" y2="38" stroke="#334155"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(3)</span><svg width="45" height="45" viewBox="0 0 50 50"><circle cx="25" cy="25" r="18" fill="none" stroke="#64748b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(4)</span><svg width="45" height="45" viewBox="0 0 50 50"><polygon points="10,25 25,10 40,25 25,40" fill="none" stroke="#64748b"/></svg></div>
+          </div>
+        </div>`,
+
+      // 147: Grouping of Figures (Neutral)
+      147: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex flex-col items-center shadow-sm w-full">
+          <div class="text-xs font-bold text-slate-700 mb-2">दी गई 9 आकृतियाँ:</div>
+          <div class="grid grid-cols-3 gap-2 mb-3">
+            <div class="fig-box"><span class="text-[10px] font-bold">1</span><svg width="35" height="35"><polygon points="17,5 30,30 5,30" fill="none" stroke="#1e293b" stroke-width="1.5"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold">2</span><svg width="35" height="35"><circle cx="17" cy="17" r="12" fill="none" stroke="#1e293b" stroke-width="1.5"/><circle cx="17" cy="17" r="6" fill="none" stroke="#1e293b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold">3</span><svg width="35" height="35"><rect x="6" y="6" width="22" height="22" fill="none" stroke="#1e293b" stroke-width="1.5"/><line x1="6" y1="6" x2="28" y2="28" stroke="#1e293b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold">4</span><svg width="35" height="35"><polygon points="17,5 30,30 5,30" fill="none" stroke="#1e293b" stroke-width="1.5"/><line x1="17" y1="5" x2="17" y2="30" stroke="#1e293b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold">5</span><svg width="35" height="35"><circle cx="17" cy="17" r="14" fill="none" stroke="#1e293b" stroke-width="1.5"/><line x1="3" y1="17" x2="31" y2="17" stroke="#1e293b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold">6</span><svg width="35" height="35"><rect x="6" y="6" width="22" height="22" fill="none" stroke="#1e293b" stroke-width="1.5"/><line x1="6" y1="28" x2="28" y2="6" stroke="#1e293b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold">7</span><svg width="35" height="35"><polygon points="17,5 30,30 5,30" fill="none" stroke="#1e293b" stroke-width="1.5"/><circle cx="17" cy="20" r="4" fill="#1e293b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold">8</span><svg width="35" height="35"><circle cx="17" cy="17" r="13" fill="none" stroke="#1e293b" stroke-width="1.5"/><circle cx="17" cy="17" r="4" fill="#1e293b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold">9</span><svg width="35" height="35"><rect x="6" y="6" width="22" height="22" fill="none" stroke="#1e293b" stroke-width="1.5"/><line x1="17" y1="6" x2="17" y2="28" stroke="#1e293b"/><line x1="6" y1="17" x2="28" y2="17" stroke="#1e293b"/></svg></div>
+          </div>
+        </div>`,
+
+      // 148: Embedded Figure (Neutral)
+      148: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex flex-col items-center shadow-sm w-full">
+          <div class="flex items-center gap-4 mb-3">
+            <div class="fig-box">
+              <span class="text-[11px] font-bold text-slate-500 mb-1">प्रश्न आकृति (Z-कट)</span>
+              <svg width="50" height="50" viewBox="0 0 50 50">
+                <path d="M10,12 L38,12 L14,38 L40,38" fill="none" stroke="#2563eb" stroke-width="3"/>
+              </svg>
+            </div>
+            <span class="text-xs text-slate-600 font-semibold max-w-[200px]">यह आकृति किस उत्तर आकृति में छिपी हुई है?</span>
+          </div>
+          <div class="text-xs font-bold text-slate-600 mb-2">उत्तर आकृतियाँ:</div>
+          <div class="grid grid-cols-4 gap-2">
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(1)</span><svg width="45" height="45" viewBox="0 0 50 50"><rect x="5" y="5" width="40" height="40" fill="none" stroke="#64748b"/><line x1="5" y1="5" x2="45" y2="45" stroke="#64748b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(2)</span><svg width="45" height="45" viewBox="0 0 50 50"><polygon points="25,5 45,45 5,45" fill="none" stroke="#64748b"/><line x1="15" y1="25" x2="35" y2="25" stroke="#64748b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(3)</span><svg width="45" height="45" viewBox="0 0 50 50"><rect x="5" y="5" width="40" height="40" fill="none" stroke="#cbd5e1"/><path d="M10,12 L38,12 L14,38 L40,38" fill="none" stroke="#334155" stroke-width="2.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="#e2e8f0"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(4)</span><svg width="45" height="45" viewBox="0 0 50 50"><circle cx="25" cy="25" r="18" fill="none" stroke="#64748b"/><path d="M12,25 L38,25" stroke="#64748b"/></svg></div>
+          </div>
+        </div>`,
+
+      // 149: 135 Degree Anticlockwise Rotation (Neutral)
+      149: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex flex-col items-center shadow-sm w-full">
+          <div class="flex items-center gap-4 mb-3">
+            <div class="fig-box">
+              <span class="text-[11px] font-bold text-slate-500 mb-1">मूल आकृति (उत्तर)</span>
+              <svg width="50" height="50" viewBox="0 0 50 50">
+                <line x1="25" y1="42" x2="25" y2="12" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="25,6 17,20 33,20" fill="#1e293b"/>
+              </svg>
+            </div>
+            <div class="text-xs font-bold text-slate-600 bg-slate-100 p-2 rounded border border-slate-300 text-center">
+              135° वामावर्त घुमाने पर
+            </div>
+          </div>
+          <div class="text-xs font-bold text-slate-600 mb-2">उत्तर आकृतियाँ:</div>
+          <div class="grid grid-cols-4 gap-2">
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(A)</span><svg width="45" height="45" viewBox="0 0 50 50"><line x1="12" y1="38" x2="34" y2="16" stroke="#64748b" stroke-width="2.5"/><polygon points="38,12 26,15 37,26" fill="#64748b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(B)</span><svg width="45" height="45" viewBox="0 0 50 50"><line x1="38" y1="12" x2="16" y2="34" stroke="#334155" stroke-width="2.5"/><polygon points="12,38 15,26 26,37" fill="#334155"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(C)</span><svg width="45" height="45" viewBox="0 0 50 50"><line x1="8" y1="25" x2="38" y2="25" stroke="#64748b" stroke-width="2.5"/><polygon points="44,25 32,18 32,32" fill="#64748b"/></svg></div>
+            <div class="fig-box"><span class="text-[10px] font-bold text-slate-500">(D)</span><svg width="45" height="45" viewBox="0 0 50 50"><line x1="25" y1="8" x2="25" y2="38" stroke="#64748b" stroke-width="2.5"/><polygon points="25,44 18,32 32,32" fill="#64748b"/></svg></div>
+          </div>
+        </div>`,
+
+      // 150: Matrix Coding Table (Matrix I & Matrix II)
+      150: `
+        <div class="p-4 bg-slate-50 border rounded-xl flex flex-col md:flex-row gap-4 justify-center items-center shadow-sm w-full">
+          <div>
+            <div class="text-[11px] font-bold text-center text-slate-600 mb-1">आव्यूह-I (Matrix-I)</div>
+            <table class="text-xs border-collapse border border-slate-400 text-center bg-white">
+              <tr class="bg-slate-200">
+                <th class="border border-slate-300 px-2 py-1"></th>
+                <th class="border border-slate-300 px-2 py-1">0</th>
+                <th class="border border-slate-300 px-2 py-1">1</th>
+                <th class="border border-slate-300 px-2 py-1">2</th>
+                <th class="border border-slate-300 px-2 py-1">3</th>
+                <th class="border border-slate-300 px-2 py-1">4</th>
+              </tr>
+              <tr><th class="bg-slate-200 border border-slate-300 px-1">0</th><td class="border border-slate-300 px-2 py-0.5">D</td><td class="border border-slate-300 px-2 py-0.5">R</td><td class="border border-slate-300 px-2 py-0.5">U</td><td class="border border-slate-300 px-2 py-0.5">N</td><td class="border border-slate-300 px-2 py-0.5">K</td></tr>
+              <tr><th class="bg-slate-200 border border-slate-300 px-1">1</th><td class="border border-slate-300 px-2 py-0.5">N</td><td class="border border-slate-300 px-2 py-0.5">K</td><td class="border border-slate-300 px-2 py-0.5">D</td><td class="border border-slate-300 px-2 py-0.5">R</td><td class="border border-slate-300 px-2 py-0.5">U</td></tr>
+              <tr><th class="bg-slate-200 border border-slate-300 px-1">2</th><td class="border border-slate-300 px-2 py-0.5">K</td><td class="border border-slate-300 px-2 py-0.5">D</td><td class="border border-slate-300 px-2 py-0.5">R</td><td class="border border-slate-300 px-2 py-0.5">U</td><td class="border border-slate-300 px-2 py-0.5">N</td></tr>
+              <tr><th class="bg-slate-200 border border-slate-300 px-1">3</th><td class="border border-slate-300 px-2 py-0.5">U</td><td class="border border-slate-300 px-2 py-0.5">N</td><td class="border border-slate-300 px-2 py-0.5">K</td><td class="border border-slate-300 px-2 py-0.5">D</td><td class="border border-slate-300 px-2 py-0.5">R</td></tr>
+              <tr><th class="bg-slate-200 border border-slate-300 px-1">4</th><td class="border border-slate-300 px-2 py-0.5">R</td><td class="border border-slate-300 px-2 py-0.5">U</td><td class="border border-slate-300 px-2 py-0.5">N</td><td class="border border-slate-300 px-2 py-0.5">K</td><td class="border border-slate-300 px-2 py-0.5">D</td></tr>
+            </table>
+          </div>
+          <div>
+            <div class="text-[11px] font-bold text-center text-slate-600 mb-1">आव्यूह-II (Matrix-II)</div>
+            <table class="text-xs border-collapse border border-slate-400 text-center bg-white">
+              <tr class="bg-slate-200">
+                <th class="border border-slate-300 px-2 py-1"></th>
+                <th class="border border-slate-300 px-2 py-1">5</th>
+                <th class="border border-slate-300 px-2 py-1">6</th>
+                <th class="border border-slate-300 px-2 py-1">7</th>
+                <th class="border border-slate-300 px-2 py-1">8</th>
+                <th class="border border-slate-300 px-2 py-1">9</th>
+              </tr>
+              <tr><th class="bg-slate-200 border border-slate-300 px-1">5</th><td class="border border-slate-300 px-2 py-0.5">L</td><td class="border border-slate-300 px-2 py-0.5">A</td><td class="border border-slate-300 px-2 py-0.5">V</td><td class="border border-slate-300 px-2 py-0.5">E</td><td class="border border-slate-300 px-2 py-0.5">S</td></tr>
+              <tr><th class="bg-slate-200 border border-slate-300 px-1">6</th><td class="border border-slate-300 px-2 py-0.5">E</td><td class="border border-slate-300 px-2 py-0.5">S</td><td class="border border-slate-300 px-2 py-0.5">L</td><td class="border border-slate-300 px-2 py-0.5">A</td><td class="border border-slate-300 px-2 py-0.5">V</td></tr>
+              <tr><th class="bg-slate-200 border border-slate-300 px-1">7</th><td class="border border-slate-300 px-2 py-0.5">V</td><td class="border border-slate-300 px-2 py-0.5">E</td><td class="border border-slate-300 px-2 py-0.5">S</td><td class="border border-slate-300 px-2 py-0.5">L</td><td class="border border-slate-300 px-2 py-0.5">A</td></tr>
+              <tr><th class="bg-slate-200 border border-slate-300 px-1">8</th><td class="border border-slate-300 px-2 py-0.5">A</td><td class="border border-slate-300 px-2 py-0.5">V</td><td class="border border-slate-300 px-2 py-0.5">E</td><td class="border border-slate-300 px-2 py-0.5">S</td><td class="border border-slate-300 px-2 py-0.5">L</td></tr>
+              <tr><th class="bg-slate-200 border border-slate-300 px-1">9</th><td class="border border-slate-300 px-2 py-0.5">S</td><td class="border border-slate-300 px-2 py-0.5">L</td><td class="border border-slate-300 px-2 py-0.5">A</td><td class="border border-slate-300 px-2 py-0.5">V</td><td class="border border-slate-300 px-2 py-0.5">E</td></tr>
+            </table>
+          </div>
+        </div>`
+    };
+
+    // Full 150 Questions Dataset
+    const questionsData = [
+      { id: 1, q: "परम भागवत की उपाधि ग्रहण करने वाला पहला गुप्त शासक था?", options: ["चंद्रगुप्त प्रथम", "चंद्रगुप्त द्वितीय", "समुद्रगुप्त", "स्कन्दगुप्त"], ans: 2, exp: "समुद्रगुप्त ने परम भागवत, कविराज तथा अश्वमेध पराक्रम की उपाधियाँ ग्रहण की थीं[span_4](start_span)[span_4](end_span)।" },
+      { id: 2, q: "निम्न कथनों में से कौन से कथन सही हैं?<br>I. हड़प्पा का उत्खनन 1921 में किया गया था।<br>II. वर्तमान में, हड़प्पा पाकिस्तान में है।<br>III. हड़प्पा व्यास नदी के किनारे था।<br>IV. हड़प्पा के उत्खननकर्ता आर. डी. बनर्जी थे।<br>V. छत्र वाला ताम्र-रथ हड़प्पा से मिला है।", options: ["केवल I और II", "केवल I, II और V", "केवल II और IV", "केवल I, II, III और IV"], ans: 0, exp: "हड़प्पा रावी नदी के तट पर है और इसकी खोज दयाराम साहनी ने 1921 में की थी[span_5](start_span)[span_5](end_span)। अतः केवल I और II सही हैं[span_6](start_span)[span_6](end_span)।" },
+      { id: 3, q: "हड़प्पा संस्कृति के ह्रास के लिये विभिन्न कारण सुझाए गए हैं। नीचे दिये गए कारणों में से क्षीणतम कारण को इंगित कीजिये।", options: ["लगातार बाढ़ आने की घटनाएँ", "मृदा में लवणता की वृद्धि", "भूकंप के कारण सिंधु के मार्ग में परिवर्तन", "आर्यों ने आक्रमण कर हड़प्पा संस्कृति को नष्ट कर दिया"], ans: 3, exp: "आधुनिक इतिहासकार आर्य आक्रमण के सिद्धांत को सबसे कमजोर और क्षीणतम साक्ष्य मानते हैं[span_7](start_span)[span_7](end_span)।" },
+      { id: 4, q: "'उलुक' तथा 'दावा' व्यवस्था का संबंध तुगलक काल में निम्नलिखित में से किससे था?", options: ["शिल्प से", "डाक व्यवस्था से", "लंबी दूरी के व्यापार से", "नैतिक नियमों से"], ans: 1, exp: "इब्नबतूता के अनुसार उलुक अश्व डाक और दावा पैदल संदेशवाहक डाक व्यवस्था थी[span_8](start_span)[span_8](end_span)।" },
+      { id: 5, q: "शेरशाह की 'प्रशासनिक व्यवस्था' के संदर्भ में निम्नलिखित कथनों पर विचार कीजिये—<br>1. परगना, शिकदार के अधिकार में था।<br>2. मुंसिफ, भूराजस्व की वसूली की देख-रेख करता था।<br>3. शेरशाह ने सोने, चांदी और तांबे के सिक्के चलवाए।", options: ["केवल 1", "केवल 2", "केवल 1 और 3", "इनमे से सभी"], ans: 3, exp: "शेरशाह ने परगना में शिकदार व मुंसिफ रखे और मानक अशर्फी, रुपया तथा दाम जारी किए[span_9](start_span)[span_9](end_span)।" },
+      { id: 6, q: "निम्नलिखित में से कौन-सी एक विशिष्टता 'इक्ता व्यवस्था' की नहीं है?", options: ["इक्ता एक राजस्व एकत्रित करने की व्यवस्था थी", "सियासतनामा इक्ता व्यवस्था की जानकारी का स्रोत था", "इक्ता से एकत्रित राजस्व सीधा सुल्तान के खाते में जाता था", "मुक्ती को इक्ता से एकत्रित राजस्व से सैनिक रखने पड़ते थे"], ans: 2, exp: "इक्ता का राजस्व सीधे सुल्तान के खाते में नहीं जाता था, मुक्ती खर्चे काटकर शेष राशि राजकोष में भेजता था[span_10](start_span)[span_10](end_span)।" },
+      { id: 7, q: "औरंगजेब के संदर्भ में निम्नलिखित कथनों पर विचार कीजिये—<br>1. उसने साम्राज्य का अत्यधिक विस्तार किया।<br>2. उसे 'जिंदा पीर' कहा जाता था।<br>3. उसने हनफी कानून को अपनाया था।", options: ["केवल 1 और 2", "केवल 2 और 3", "केवल 3", "इनमे से सभी"], ans: 3, exp: "औरंगजेब के समय सर्वाधिक विस्तार हुआ और उसने फतावा-ए-आलमगीरी (हनफी कानून) लागू करवाया[span_11](start_span)[span_11](end_span)।" },
+      { id: 8, q: "'डचों' के संदर्भ में निम्नलिखित कथनों पर विचार कीजिये—<br>1. इन्होंने मछलीपट्टनम में अपनी पहली कोठी बनाई।<br>2. इन्होंने दक्षिण-पूर्व एशिया में मसालों के द्वीपों पर वर्चस्व स्थापित किया।<br>3. इन्होंने पुलीकट हासिल कर लिया।<br>4. इन्होंने सूरत में अपनी पहली फैक्ट्री बनाई।", options: ["केवल 1 और 2", "केवल 1 और 4", "केवल 1, 2 और 3", "इनमे से सभी"], ans: 2, exp: "डचों की पहली फैक्ट्री 1605 में मसूलीपट्टनम में खुली, सूरत में पहली नहीं थी[span_12](start_span)[span_12](end_span)।" },
+      { id: 9, q: "1857 की क्रांति के धार्मिक कारणों के संबंध में कथनों पर विचार कीजिये—<br>1. ईसाई मिशनरियों द्वारा तीखा प्रहार।<br>2. मंदिर-मस्जिदों की ज़मीनों पर कर लगाना।<br>3. सामाजिक कुरीतियों के विरुद्ध कानून बनाना।", options: ["केवल 1 और 2", "केवल 2 और 3", "केवल 3", "1, 2 और 3"], ans: 3, exp: "ये तीनों धार्मिक व सामाजिक असंतोष के मुख्य कारण थे[span_13](start_span)[span_13](end_span)।" },
+      { id: 10, q: "भारत के वि-औद्योगीकरण के लिये ब्रिटिश नीतियों में से कौन उत्तरदायी था?<br>1. 'गुमाश्ता' का हस्तक्षेप। 2. देशी राजाओं का पतन। 3. भेदभावपूर्ण नीतियाँ।", options: ["केवल 1 और 2", "केवल 2 और 3", "1, 2 और 3", "केवल 1 और 3"], ans: 2, exp: "देशी रियासतों के पतन और गुमाश्ता व्यवस्था ने भारतीय हस्तशिल्प को समाप्त कर दिया[span_14](start_span)[span_14](end_span)।" },
+      { id: 11, q: "ईश्वरचंद्र विद्यासागर के संबंध में सत्य कथन चुनें:<br>1. संस्कृत कॉलेज गैर-ब्राह्मणों के लिए खोला। 2. विधवा पुनर्विवाह का समर्थन। 3. बाल विवाह का समर्थन।", options: ["केवल 1", "केवल 1 और 2", "केवल 2 और 3", "1, 2 और 3"], ans: 1, exp: "विद्यासागर जी ने बाल विवाह का विरोध किया था, समर्थन नहीं[span_15](start_span)[span_15](end_span)।" },
+      { id: 12, q: "प्रथम बार स्वदेशी एवं बहिष्कार किसके दौरान अपनाए गए थे?", options: ["होम रूल आंदोलन", "साइमन कमीशन आगमन", "बंगाल विभाजन विरोधी आंदोलन", "इनमे से कोई नहीं"], ans: 2, exp: "1905 में बंगाल विभाजन के विरोध में स्वदेशी और बहिष्कार आंदोलन का जन्म हुआ[span_16](start_span)[span_16](end_span)।" },
+      { id: 13, q: "ऑल इंडिया हरिजन संघ की स्थापना 1932 में किसके द्वारा की गई थी?", options: ["डॉ. बी. आर अम्बेडकर", "जगजीवन राम", "महात्मा गाँधी", "इनमे से कोई नहीं"], ans: 2, exp: "महात्मा गांधी ने 1932 में हरिजन सेवक संघ की स्थापना की थी[span_17](start_span)[span_17](end_span)।" },
+      { id: 14, q: "भारत में कौन-सी नदी घाटी कोयले के भण्डारों से समृद्ध है?", options: ["महानदी घाटी", "दामोदर घाटी", "सोन घाटी", "इनमे से सभी"], ans: 3, exp: "गोंडवाना कोयला दामोदर, सोन, महानदी और गोदावरी नदी घाटियों में प्रचुर मात्रा में है[span_18](start_span)[span_18](end_span)।" },
+      { id: 15, q: "निम्नलिखित कथनों पर विचार करें—<br>1. आंतरिक प्रवास जनसंख्या वितरण प्रभावित नहीं करता।<br>2. ग्रामीण प्रवास के लिए अपकर्षण कारक जिम्मेदार हैं।<br>3. 2011 में नगरीय जनसंख्या 31.16% थी।", options: ["केवल 1", "केवल 1 और 2", "केवल 2 और 3", "इनमे से सभी"], ans: 2, exp: "आंतरिक प्रवास देश के अंदर जनसंख्या घनत्व व वितरण को सीधे प्रभावित करता है[span_19](start_span)[span_19](end_span)।" },
+      { id: 16, q: "बिहार के किस जिले में अभ्रक (Mica) का मुख्य भण्डार है?", options: ["रोहतास", "पटना", "गया", "सारण"], ans: 2, exp: "बिहार में अभ्रक मुख्य रूप से गया, नवादा और जमुई में पाया जाता है[span_20](start_span)[span_20](end_span)।" },
+      { id: 17, q: "चम्बल नदी पर राणा प्रताप सागर जल-विद्युत् परियोजना किस राज्य में स्थित है?", options: ["मध्य प्रदेश", "राजस्थान", "उत्तर प्रदेश", "छत्तीसगढ़"], ans: 1, exp: "राणा प्रताप सागर परियोजना राजस्थान के रावतभाटा में स्थित है[span_21](start_span)[span_21](end_span)।" },
+      { id: 18, q: "पृथ्वी की उत्पत्ति के संबंध में कौन-सा कथन असत्य है?", options: ["काण्ट ने वायव्य राशि परिकल्पना दी", "चेंबरलेन व मोल्टन ने निहारिका परिकल्पना दी", "जैफरी ने ज्वारीय परिकल्पना दी", "केवल 1 तथा 3"], ans: 1, exp: "निहारिका परिकल्पना लाप्लास ने दी थी, चेंबरलेन व मोल्टन ने ग्रहणाणु परिकल्पना दी थी[span_22](start_span)[span_22](end_span)।" },
+      { id: 19, q: "धरातलीय जल संसाधनों के संदर्भ में सत्य कथन चुनें:", options: ["केवल 1", "केवल 3", "केवल 1 और 3", "1, 2 और 3"], ans: 2, exp: "भारत में भौम और धरातलीय जल का सर्वाधिक उपयोग कृषि (सिंचाई) में होता है, उद्योगों में नहीं[span_23](start_span)[span_23](end_span)।" },
+      { id: 20, q: "चाय की खेती के लिए कौन-सी भौगोलिक दशाएँ अनुकूल हैं?", options: ["केवल 2 और 3", "केवल 1, 3 और 4", "केवल 1, 2 और 4", "इनमे से सभी"], ans: 3, exp: "चाय के लिए ढालू भूमि, अम्लीय मिट्टी, भारी वर्षा तथा उष्ण आर्द्र जलवायु चाहिए[span_24](start_span)[span_24](end_span)।" },
+      { id: 21, q: "भारत का महान्यायवादी किसके द्वारा नियुक्त किया जाता है?", options: ["विधि मंत्री", "भारत के राष्ट्रपति", "लोकसभा अध्यक्ष", "प्रधानमंत्री"], ans: 1, exp: "अनुच्छेद 76 के अंतर्गत महान्यायवादी की नियुक्ति राष्ट्रपति करते हैं[span_25](start_span)[span_25](end_span)।" },
+      { id: 22, q: "धन विधेयक केवल पेश किया जा सकता है—", options: ["केवल लोकसभा में", "केवल राज्यसभा में", "दोनों सदनों में", "संयुक्त सत्र में"], ans: 0, exp: "अनुच्छेद 109 के अनुसार धन विधेयक केवल लोकसभा में प्रस्तुत होता है[span_26](start_span)[span_26](end_span)।" },
+      { id: 23, q: "भारत का प्रधानमंत्री किसके प्रति जवाबदेह है?", options: ["मंत्रिमंडल", "राष्ट्रपति", "लोकसभा", "राज्यसभा"], ans: 2, exp: "अनुच्छेद 75(3) के अनुसार मंत्रिपरिषद लोकसभा के प्रति उत्तरदायी होती है[span_27](start_span)[span_27](end_span)।" },
+      { id: 24, q: "केंद्र सरकार में उच्चतम नागरिक सेवा अधिकारी कौन है?", options: ["महान्यायवादी", "मंत्रिमंडल सचिव", "गृह सचिव", "वित्त सचिव"], ans: 1, exp: "कैबिनेट सचिव देश का सर्वोच्च प्रशासनिक व सिविल अधिकारी होता है[span_28](start_span)[span_28](end_span)।" },
+      { id: 25, q: "निजी भवनों के ऊपर राष्ट्रीय झंडा फहराना किस अनुच्छेद के तहत मौलिक अधिकार है?", options: ["अनुच्छेद-14", "अनुच्छेद-19(1)(a)", "अनुच्छेद-21", "अनुच्छेद-25"], ans: 1, exp: "सुप्रीम कोर्ट के नवीन जिंदल केस फैसले के तहत यह अभिव्यक्ति की स्वतंत्रता (19(1)(a)) है[span_29](start_span)[span_29](end_span)।" },
+      { id: 26, q: "ब्लॉक स्तर पर बनी पंचायत समिति केवल है:", options: ["सलाहकार निकाय", "सलाहकार समिति", "समन्वय और पर्यवेक्षी प्राधिकारी", "प्रशासनिक प्राधिकारी"], ans: 2, exp: "पंचायत समिति पर्यवेक्षक व समन्वयकारी भूमिका निभाती है[span_30](start_span)[span_30](end_span)।" },
+      { id: 27, q: "किस अनुच्छेद के अनुसार राष्ट्रपति राष्ट्रीय आपातकाल घोषित करते हैं?", options: ["अनुच्छेद-352", "अनुच्छेद-370", "अनुच्छेद-371", "अनुच्छेद-395"], ans: 0, exp: "अनुच्छेद 352 में राष्ट्रीय आपातकाल का प्रावधान है[span_31](start_span)[span_31](end_span)।" },
+      { id: 28, q: "गैर-सदस्य के रूप में संसद की कार्यवाही में कौन भाग ले सकता है?", options: ["उप-राष्ट्रपति", "मुख्य न्यायाधीश", "महान्यायवादी", "मुख्य निर्वाचन आयुक्त"], ans: 2, exp: "अनुच्छेद 88 महान्यायवादी को संसद में बोलने और भाग लेने का अधिकार देता है[span_32](start_span)[span_32](end_span)।" },
+      { id: 29, q: "मौलिक कर्तव्य किस संविधान संशोधन द्वारा जोड़े गए?", options: ["32वें संशोधन", "42वें संशोधन", "15वें संशोधन", "46वें संशोधन"], ans: 1, exp: "42वें संविधान संशोधन 1976 द्वारा भाग IV-A जोड़ा गया[span_33](start_span)[span_33](end_span)।" },
+      { id: 30, q: "वैश्वीकरण में कौन सम्मिलित नहीं है?", options: ["आयात शुल्क में कमी", "आयात लाइसेंसिंग का उन्मूलन", "FDI का उन्मुक्त प्रवाह", "सार्वजनिक क्षेत्र का विनिवेश"], ans: 3, exp: "सार्वजनिक क्षेत्र की इक्विटी का विनिवेश निजीकरण (Privatization) के अंतर्गत आता है[span_34](start_span)[span_34](end_span)।" },
+      { id: 31, q: "पहली पंचवर्षीय योजना किस मॉडल पर आधारित थी?", options: ["हेरॉड-डोमर मॉडल", "महालनोबिस मॉडल", "दादाभाई नौरोजी", "नेहरू मॉडल"], ans: 0, exp: "प्रथम पंचवर्षीय योजना (1951-56) हैरॉड-डोमर मॉडल पर आधारित थी[span_35](start_span)[span_35](end_span)।" },
+      { id: 32, q: "मूल्य वर्धित कर (VAT) संग्रह प्रणाली के संदर्भ में सत्य कथन चुनें:", options: ["केवल 1", "केवल 2 और 3", "केवल 1 और 4", "केवल 1, 3 और 4"], ans: 0, exp: "VAT एक मल्टी-पॉइंट कर प्रणाली है जो कैस्केडिंग (कर पर कर) को रोकती है[span_36](start_span)[span_36](end_span)।" },
+      { id: 33, q: "MS-Excel में वर्कशीट के एकदम दायें स्थान पर क्या दिखाई देता है?", options: ["वर्टीकल स्क्रॉल बार", "मेनू बार", "स्टेटस बार", "हॉरिजॉन्टल स्क्रॉल बार"], ans: 0, exp: "दाईं ओर लंबवत स्क्रॉल करने हेतु वर्टिकल स्क्रॉल बार होता है[span_37](start_span)[span_37](end_span)।" },
+      { id: 34, q: "MS-Word में Ctrl + A दबाने पर क्या होता है?", options: ["सभी टेक्स्ट को सेलेक्ट करना", "पेस्ट करना", "विंडो बंद करना", "कॉपी करना"], ans: 0, exp: "Ctrl + A शॉर्टकट पूरे डॉक्यूमेंट को Select All करता है[span_38](start_span)[span_38](end_span)।" },
+      { id: 35, q: "निम्नलिखित में से कौन तबला वादक से संबंधित है?", options: ["पंडित रविशंकर", "ज़ाकिर हुसैन", "हरि प्रसाद चौरसिया", "अमजद अली खान"], ans: 1, exp: "उस्ताद ज़ाकिर हुसैन सुप्रसिद्ध तबला वादक हैं[span_39](start_span)[span_39](end_span)।" },
+      { id: 36, q: "पुस्तक मुद्रित करने वाला विश्व का पहला देश कौन-सा है?", options: ["चीन", "ब्रिटेन", "जापान", "अमेरिका"], ans: 0, exp: "कागज व मुद्रण का आविष्कार चीन में हुआ था[span_40](start_span)[span_40](end_span)।" },
+      { id: 37, q: "खेल प्रशिक्षण (कोचिंग) के क्षेत्र में दिया जाने वाला पुरस्कार कौन-सा है?", options: ["खेल रत्न", "अर्जुन पुरस्कार", "द्रोणाचार्य पुरस्कार", "ध्यानचंद पुरस्कार"], ans: 2, exp: "उत्कृष्ट कोचों को द्रोणाचार्य पुरस्कार दिया जाता है[span_41](start_span)[span_41](end_span)।" },
+      { id: 38, q: "लाल बहादुर शास्त्री अंतर्राष्ट्रीय हवाई अड्डा कहाँ स्थित है?", options: ["पटना", "वाराणसी", "लखनऊ", "कोलकाता"], ans: 1, exp: "यह हवाई अड्डा वाराणसी (बाबतपुर) में स्थित है[span_42](start_span)[span_42](end_span)।" },
+      { id: 39, q: "समुद्री वातावरण में मुख्य प्राथमिक उत्पादक कौन होते हैं?", options: ["जलीय ब्रायोफाइट्स", "समुद्री आवृतबीजी", "समुद्री अपतृण", "फाइटोप्लैंकटॉन"], ans: 3, exp: "फाइटोप्लैंकटॉन प्रकाश-संश्लेषण द्वारा समुद्री पारिस्थितिकी का आधार बनाते हैं[span_43](start_span)[span_43](end_span)।" },
+      { id: 40, q: "मानसूनी वर्षा की विशेषताओं में कौन-सा कथन असत्य है?", options: ["दक्षिण-पश्चिम मानसून मौसमी है", "मानसून विच्छेद चक्रवातों से होता है", "स्थानिक वितरण प्रत्येक स्थान पर एकसमान रहता है", "वर्षा उच्चावच से नियंत्रित होती है"], ans: 2, exp: "भारत में मानसूनी वर्षा का स्थानिक वितरण बहुत असमान है[span_44](start_span)[span_44](end_span)।" },
+      { id: 41, q: "स्वच्छ वायु सर्वेक्षण पुरस्कार-2024 में श्रेणी-1 में पहला स्थान किसे मिला?", options: ["इंदौर", "जबलपुर", "आगरा", "सूरत"], ans: 3, exp: "श्रेणी-1 (10 लाख से अधिक आबादी) में सूरत ने पहला स्थान हासिल किया[span_45](start_span)[span_45](end_span)।" },
+      { id: 42, q: "5वाँ अखिल भारतीय राजभाषा सम्मेलन कहाँ आयोजित किया गया?", options: ["नई दिल्ली", "जयपुर", "गाँधीनगर", "इंदौर"], ans: 0, exp: "सम्मेलन का आयोजन नई दिल्ली में हुआ[span_46](start_span)[span_46](end_span)।" },
+      { id: 43, q: "मुख्यमंत्री महिला रोजगार योजना की शुरूआत किस राज्य ने की?", options: ["उत्तर प्रदेश", "हरियाणा", "बिहार", "मध्यप्रदेश"], ans: 2, exp: "बिहार सरकार ने महिलाओं के स्वावलंबन हेतु यह योजना चलाई है[span_47](start_span)[span_47](end_span)।" },
+      { id: 44, q: "Vikram 3201 प्रोसेसर के संदर्भ में सत्य कथन चुनें:", options: ["केवल 1", "केवल 2", "केवल 1 तथा 2", "1, 2 तथा 3 सभी"], ans: 3, exp: "इसरो और एससीएल द्वारा यह 32-बिट अंतरिक्ष प्रोसेसर तैयार किया गया है[span_48](start_span)[span_48](end_span)।" },
+      { id: 45, q: "अरुंधति रॉय द्वारा लिखित पुस्तक कौन-सी है?", options: ["Different but no less", "Mother Mary Comes to Me", "The Chola Tigers", "इनमें से सभी"], ans: 1, exp: "Mother Mary Comes to Me अरुंधति रॉय का चर्चित संस्मरण है[span_49](start_span)[span_49](end_span)।" },
+      { id: 46, q: "स्वदेश दर्शन योजना के तहत बिहार में कितने बौद्ध स्थल विकसित किए गए?", options: ["4", "5", "6", "8"], ans: 1, exp: "बिहार के 5 बौद्ध स्थलों को सर्किट में शामिल किया गया[span_50](start_span)[span_50](end_span)।" },
+      { id: 47, q: "नीति आयोग ने दालों का उत्पादन दोगुना करने का लक्ष्य कब तक रखा है?", options: ["2030", "2036 ई०", "2047 ई०", "2050"], ans: 0, exp: "दलहन में आत्मनिर्भरता हेतु 2030 का विज़न तय किया गया है[span_51](start_span)[span_51](end_span)।" },
+      { id: 48, q: "ग्रीनहाउस गैस उत्सर्जन तीव्रता लक्ष्य 2025 किन उद्योगों के लिए अधिसूचित हुए?", options: ["एल्यूमीनियम, सीमेंट", "क्लोर-क्षार", "लुगदी और कागज", "इनमें से सभी"], ans: 3, exp: "सीमेंट, पेपर, एल्यूमीनियम और Chemical उद्योगों को CCTS में शामिल किया गया है[span_52](start_span)[span_52](end_span)।" },
+      { id: 49, q: "NCRB के अनुसार भारत का सबसे सुरक्षित शहर कौन-सा है?", options: ["कोलकाता", "मुम्बई", "नई दिल्ली", "हैदराबाद"], ans: 0, exp: "प्रति लाख जनसंख्या पर न्यूनतम अपराध दर के कारण कोलकाता शीर्ष पर है[span_53](start_span)[span_53](end_span)।" },
+      { id: 50, q: "केन्द्रीय बजट सामान्यतः किस तिथि को संसद में प्रस्तुत किया जाता है?", options: ["31 जनवरी", "1 फरवरी", "2 फरवरी", "28 फरवरी"], ans: 1, exp: "प्रत्येक वर्ष 1 फरवरी को बजट पेश किया जाता है[span_54](start_span)[span_54](end_span)।" },
+      { id: 51, q: "ध्वनि की तीक्ष्णता (तारत्व) किसके द्वारा निर्धारित होती है?", options: ["ध्वनि का वेग", "ध्वनि का आयाम", "ध्वनि की आवृत्ति (Frequency)", "इनमे से कोई नहीं"], ans: 2, exp: "तारत्व (Pitch) सीधे आवृत्ति पर निर्भर करता है[span_55](start_span)[span_55](end_span)।" },
+      { id: 52, q: "बॉल बेयरिंग का उपयोग स्थैतिक घर्षण को किसमें बदलने के लिए किया जाता है?", options: ["रोलिंग घर्षण", "कर्षण", "सर्पी घर्षण", "इनमे से कोई नहीं"], ans: 0, exp: "बॉल बेयरिंग संपर्क घटाकर रोलिंग घर्षण में बदलती है[span_56](start_span)[span_56](end_span)।" },
+      { id: 53, q: "आवर्द्धक काँच (Magnifying Glass) में किस लेंस का उपयोग होता है?", options: ["अवतल", "समतल अवतल", "उत्तल लेंस", "उत्तल दर्पण"], ans: 2, exp: "अभिसारी यानी उत्तल लेंस का उपयोग होता है[span_57](start_span)[span_57](end_span)।" },
+      { id: 54, q: "कौन-सा सही सुमेलित नहीं है?", options: ["वोल्टमीटर - विभवांतर", "ऐमीटर - विद्युत धारा", "पोटेंशियोमीटर - विद्युत-वाहक बल", "गैल्वेनोमीटर - विद्युत प्रतिरोध"], ans: 3, exp: "गैल्वेनोमीटर धारा की उपस्थिति मापता है, प्रतिरोध ओह्ममीटर मापता है[span_58](start_span)[span_58](end_span)।" },
+      { id: 55, q: "विद्युत शक्ति की इकाई क्या है?", options: ["ऐम्पीयर", "वोल्ट", "कूलम्ब", "वॉट"], ans: 3, exp: "विद्युत शक्ति का मात्रक वॉट (जूल/सेकंड) है[span_59](start_span)[span_59](end_span)।" },
+      { id: 56, q: "विद्युत धारा की SI इकाई क्या है?", options: ["कूलम्ब", "वोल्ट", "वॉट", "ऐम्पियर"], ans: 3, exp: "धारा का मात्रक ऐम्पियर (A) होता है[span_60](start_span)[span_60](end_span)।" },
+      { id: 57, q: "आइंस्टीन को भौतिकी का नोबेल प्राइज किस कार्य पर मिला?", options: ["सापेक्षिकता", "बोस-आइंस्टीन संघनन", "ऊर्जा तुल्यता", "प्रकाश विद्युत प्रभाव"], ans: 3, exp: "1921 में प्रकाश-वैद्युत प्रभाव के सिद्धांत की खोज हेतु नोबेल मिला था[span_61](start_span)[span_61](end_span)।" },
+      { id: 58, q: "अम्ल धातु कार्बोनेट से अभिक्रिया करके कौन-सी गैस मुक्त करते हैं?", options: ["H₂", "CO", "CO₂", "उपर्युक्त में से कोई नहीं"], ans: 2, exp: "कार्बोनेट से अभिक्रिया पर कार्बन डाइऑक्साइड (CO₂) गैस बनती है[span_62](start_span)[span_62](end_span)।" },
+      { id: 59, q: "HOOC-COOH को कौन-सा अम्ल कहा जाता है?", options: ["कार्बोनिक अम्ल", "ऑक्सेलिक अम्ल", "ऐसीटिक अम्ल", "इनमे से कोई नहीं"], ans: 1, exp: "C₂H₂O₄ डाई-कार्बोक्सिलिक एसिड ऑक्सेलिक अम्ल है[span_63](start_span)[span_63](end_span)।" },
+      { id: 60, q: "हीरा और ग्रेफाइट के बारे में कौन-सा कथन सत्य है?", options: ["विद्युत चालकता समान है", "समान क्रिस्टल संरचना है", "समान कठोरता है", "इनमें से कोई नहीं"], ans: 3, exp: "संरचना, कठोरता और चालकता दोनों की पूरी तरह भिन्न होती है[span_64](start_span)[span_64](end_span)।" },
+      { id: 61, q: "उत्कृष्ट धातुओं (Noble metals) के संदर्भ में सत्य कथन चुनें:", options: ["केवल 1", "केवल 2", "1 एवं 2 दोनों", "पीतल भी उत्कृष्ट धातु है"], ans: 0, exp: "उत्कृष्ट धातुएं (जैसे सोना, प्लेटिनम) प्रकृति में मुक्त अवस्था में मिलती हैं[span_65](start_span)[span_65](end_span)।" },
+      { id: 62, q: "रेत और नेफ्थलीन के मिश्रण को कैसे अलग किया जाता है?", options: ["ऊर्ध्वपातन (Sublimation)", "आसवन", "क्रोमैटोग्राफी", "आंशिक आसवन"], ans: 0, exp: "नेफ्थलीन सीधे वाष्पीकृत होकर अलग हो जाता है[span_66](start_span)[span_66](end_span)।" },
+      { id: 63, q: "प्राकृतिक रबर किसका बहुलक है?", options: ["आइसोप्रीन", "स्टाइरीन", "विनाइल ऐसीटेट", "प्रोटीन"], ans: 0, exp: "प्राकृतिक रबर आइसोप्रीन का बहुलक है[span_67](start_span)[span_67](end_span)।" },
+      { id: 64, q: "विद्युत व गैसीय आग के लिए सबसे अच्छा अग्निशामक कौन-सा है?", options: ["मिट्टी", "जल", "ऑक्सीजन", "कार्बन डाइऑक्साइड (CO₂)"], ans: 3, exp: "CO₂ हवा से भारी है और विद्युत की कुचालक है[span_68](start_span)[span_68](end_span)।" },
+      { id: 65, q: "टूटी हड्डियों पर प्लास्टर ऑफ पेरिस चढ़ाया जाता है, यह रासायनिक रूप से है—", options: ["बुझा चूना", "कैल्शियम कार्बोनेट", "कैल्शियम ऑक्साइड", "जिप्सम हेमीहाइड्रेट"], ans: 3, exp: "CaSO₄·½H₂O जिप्सम को गर्म करके बनता है[span_69](start_span)[span_69](end_span)।" },
+      { id: 66, q: "कंकाल के लचीले हिस्से जो हड्डियों जितने सख्त नहीं होते, वे हैं—", options: ["वर्टिब्रा", "कार्पल्स", "कार्टिलेज (उपास्थि)", "इनमे से कोई नहीं"], ans: 2, exp: "उपास्थि (Cartilage) लचीला संयोजी ऊतक है[span_70](start_span)[span_70](end_span)।" },
+      { id: 67, q: "मादा एनोफिलीज मच्छर बैठती है—", options: ["सतह के समकोण पर", "सतह के साथ तिरछे कोण पर", "सतह के समानांतर", "इनमें से कोई नहीं"], ans: 1, exp: "एनोफिलीज सतह से लगभग 45° के झुकाव पर बैठती है[span_71](start_span)[span_71](end_span)।" },
+      { id: 68, q: "शरीर की प्रतिरक्षा प्रणाली से जुड़ी सबसे महत्वपूर्ण कोशिका कौन-सी है?", options: ["RBC", "प्लेटलेट्स", "लिम्फोसाइट्स", "इनमे से कोई नहीं"], ans: 2, exp: "लिम्फोसाइट्स (WBC) एंटीबॉडी निर्माण करती हैं[span_72](start_span)[span_72](end_span)।" },
+      { id: 69, q: "कार्बोहाइड्रेट के पाचन के बाद अंतिम उत्पाद क्या बनता है?", options: ["अमीनो अम्ल", "ग्लिसरॉल", "ग्लूकोज", "माल्टोज़"], ans: 2, exp: "जटिल कार्बोहाइड्रेट्स अंत में ग्लूकोज में टूटते हैं[span_73](start_span)[span_73](end_span)।" },
+      { id: 70, q: "पिट्यूटरी (पीयूष) ग्रंथि कहाँ स्थित होती है?", options: ["आंत में", "लीवर में", "किडनी में", "मस्तिष्क में"], ans: 3, exp: "यह मस्तिष्क के आधार पर स्थित मास्टर ग्रंथि है[span_74](start_span)[span_74](end_span)।" },
+      { id: 71, q: "कड़वे स्वाद के प्रति मानव जीभ का संवेदनशील भाग कौन-सा है?", options: ["अग्र नोक", "मध्य भाग", "पीछे का भाग", "किनारा"], ans: 2, exp: "जीभ का पिछला हिस्सा कड़वे स्वाद को पहचानता है[span_75](start_span)[span_75](end_span)।" },
+      { id: 72, q: "लाइकेन में शैवाल और कवक का सहजीवी संबंध कहलाता है—", options: ["पैरासाइटिज्म", "म्युचुअलिज्म", "कमेंसलिज्म", "कन्वर्शन"], ans: 1, exp: "यह परस्पर लाभकारी सहोपकारिता (Mutualism) है[span_76](start_span)[span_76](end_span)।" },
+      { id: 73, q: "सौर ऊर्जा ATP में कहाँ बदलती है?", options: ["माइटोकॉन्ड्रिया", "क्लोरोप्लास्ट", "राइबोसोम", "परऑक्सीसोम"], ans: 1, exp: "प्रकाश-संश्लेषण क्लोरोप्लास्ट में संपन्न होता है[span_77](start_span)[span_77](end_span)।" },
+      { id: 74, q: "आंत्रज्वर (टाइफाइड) किस अंग को प्रभावित करता है?", options: ["फेफड़ा", "रीढ़ की हड्डी", "जोड़", "आँत"], ans: 3, exp: "साल्मोनेला टाइफी आंतों में संक्रमण उत्पन्न करता है[span_78](start_span)[span_78](end_span)।" },
+      { id: 75, q: "निम्न में से जैविक उर्वरक (Biofertilizer) कौन-सा है?<br>I. माइकोराइजा II. BGA III. बीटी (Bt)", options: ["केवल I", "केवल I तथा II", "केवल II", "केवल III"], ans: 1, exp: "माइकोराइजा व नील-हरित शैवाल उर्वरक हैं, बीटी कीटनाशक है[span_79](start_span)[span_79](end_span)।" },
+      { id: 76, q: "2.4, 0.36 तथा 7.2 का HCF कितना है?", options: ["12", "1.2", "0.12", "120"], ans: 2, exp: "240/100, 36/100, 720/100 का HCF = 12/100 = 0.12[span_80](start_span)[span_80](end_span)।" },
+      { id: 77, q: "संख्यायें 1:2:3 में हैं और HCF 12 है, संख्याएँ होंगी:", options: ["6, 12, 18", "12, 24, 30", "12, 24, 36", "5, 12, 15"], ans: 2, exp: "संख्याएँ = 1×12, 2×12, 3×12 = 12, 24, 36[span_81](start_span)[span_81](end_span)।" },
+      { id: 78, q: "लघुगणक नियम: log m - log n बराबर है:", options: ["log(m/n)", "log(m×n)", "log(mⁿ)", "log(nᵐ)"], ans: 0, exp: "log a - log b = log(a/b)[span_82](start_span)[span_82](end_span)।" },
+      { id: 79, q: "चार क्रमागत सम संख्याओं का औसत 15 है, दूसरी सबसे बड़ी संख्या होगी:", options: ["12", "18", "14", "16"], ans: 3, exp: "संख्याएं 12, 14, 16, 18 हैं। दूसरी सबसे बड़ी 16 है[span_83](start_span)[span_83](end_span)।" },
+      { id: 80, q: "x संख्याओं का औसत y² और y संख्याओं का औसत x² है, कुल औसत होगा:", options: ["x - y", "xy", "x + y", "xy² - yx²"], ans: 1, exp: "कुल योग = xy(x+y), औसत = xy[span_84](start_span)[span_84](end_span)।" },
+      { id: 81, q: "₹9000 व ₹10500 के निवेश पर ₹6500 लाभ में द्वितीय साझेदार का हिस्सा:", options: ["3000", "3500", "4000", "6000"], ans: 1, exp: "अनुपात 6:7, हिस्सा = 6500 × (7/13) = ₹3500[span_85](start_span)[span_85](end_span)।" },
+      { id: 82, q: "₹4/किग्रा का 25 किग्रा व ₹4.50 का 35 किग्रा गेहूँ ₹4.25 में बेचने पर लाभ/हानि:", options: ["₹2.50 हानि", "₹2.50 लाभ", "₹5.00 हानि", "कोई नहीं"], ans: 0, exp: "CP = ₹257.50, SP = ₹255.00 => ₹2.50 की हानि[span_86](start_span)[span_86](end_span)।" },
+      { id: 83, q: "पिता-पुत्र की आयु का योग 60 है। 6 वर्ष पूर्व पिता पुत्र से 5 गुना था, 6 वर्ष बाद पुत्र की आयु:", options: ["20 वर्ष", "14 वर्ष", "12 वर्ष", "18 वर्ष"], ans: 0, exp: "पुत्र वर्तमान 14 वर्ष, 6 वर्ष बाद = 20 वर्ष[span_87](start_span)[span_87](end_span)।" },
+      { id: 84, q: "A व B मिलकर कार्य 6 दिन में, B अकेला 8 दिन में करे, तो A करेगा:", options: ["24 दिन", "14 दिन", "12 दिन", "22 दिन"], ans: 0, exp: "1/A = 1/6 - 1/8 = 1/24 => 24 दिन[span_88](start_span)[span_88](end_span)।" },
+      { id: 85, q: "A काम 4 दिन में, B 6 दिन में करता है, दोनों मिलकर करेंगे:", options: ["3⅖ दिन", "2⅖ दिन", "2 दिन", "3 दिन"], ans: 1, exp: "दिन = 24/10 = 12/5 = 2⅖ दिन[span_89](start_span)[span_89](end_span)।" },
+      { id: 86, q: "उस संख्या का 40% क्या होगा जिसका 200% = 90 है?", options: ["18", "45", "16", "36"], ans: 0, exp: "संख्या = 45, 45 का 40% = 18[span_90](start_span)[span_90](end_span)।" },
+      { id: 87, q: "किसी संख्या के ⅖ के ⅜ के ⅗ का मान 16 हो, तो उस संख्या का 25% क्या होगा?", options: ["504", "126", "252", "378"], ans: 1, exp: "प्रामाणिक गणना के अनुसार उत्तर 126 है[span_91](start_span)[span_91](end_span)।" },
+      { id: 88, q: "किसी संख्या में से 40 घटाने पर वह 60% रह जाती है, संख्या है:", options: ["60", "100", "40", "अपूर्ण"], ans: 1, exp: "40% = 40 => 100% = 100[span_92](start_span)[span_92](end_span)।" },
+      { id: 89, q: "₹450 में बेचने पर लाभ, ₹320 में बेचने पर हानि से ₹30 अधिक है। क्रय मूल्य है:", options: ["350", "370", "400", "420"], ans: 1, exp: "2 CP = 740 => CP = ₹370[span_93](start_span)[span_93](end_span)।" },
+      { id: 90, q: "10% व 15% लाभ पर विक्रय मूल्यों का अंतर ₹20 है, दोनों विक्रय मूल्य हैं:", options: ["₹420, ₹440", "₹440, ₹460", "₹460, ₹440", "₹400, ₹420"], ans: 1, exp: "5% = 20 => CP = 400. SPs: ₹440 व ₹460[span_94](start_span)[span_94](end_span)।" },
+      { id: 91, q: "[(3.4567)² - (3.4533)²] / 0.0034 का मान होगा:", options: ["6.91", "7", "6.81", "7.1"], ans: 0, exp: "a+b = 3.4567 + 3.4533 = 6.91[span_95](start_span)[span_95](end_span)।" },
+      { id: 92, q: "यदि x + 1/x = 2 हो, तो √x + 1/√x का मान है:", options: ["√2", "2", "√2+1", "1"], ans: 1, exp: "x = 1, मान = 1 + 1 = 2[span_96](start_span)[span_96](end_span)।" },
+      { id: 93, q: "दो संख्याओं का योग 25 व गुणनफल 144 है, अंतर होगा:", options: ["3", "5", "7", "11"], ans: 2, exp: "16 और 9 का अंतर = 7[span_97](start_span)[span_97](end_span)।" },
+      { id: 94, q: "यदि a² - b² = 19 हो, तो a का मान है:", options: ["19", "20", "9", "10"], ans: 3, exp: "a + b = 19, a - b = 1 => a = 10[span_98](start_span)[span_98](end_span)।" },
+      { id: 95, q: "यदि 4ᵃ=5, 5ᵇ=6, 6ᶜ=7, 7ᵈ=8 हो, तो a×b×c×d का मान है:", options: ["1", "1.5", "3", "4.5"], ans: 1, exp: "2^(2abcd) = 2³ => abcd = 1.5[span_99](start_span)[span_99](end_span)।" },
+      { id: 96, q: "BD ⊥ AC, ∠CAE=30°, ∠CBD=40° हो, तो ∠AEB = ?", options: ["50°", "60°", "70°", "80°"], ans: 2, exp: "बहिष्कोण गणना अनुसार कोण का मान 70°/80° प्राप्त होता है[span_100](start_span)[span_100](end_span)।" },
+      { id: 97, q: "दिए गए पाई-चार्ट में यदि निजी सेवा (25°) में 2160 लोग हों, तो परिवहन (40°) में कितने होंगे?", options: ["3456", "5448", "5648", "2486"], ans: 0, exp: "2160 / 25 × 40 = 3456 व्यक्ति[span_101](start_span)[span_101](end_span)।" },
+      { id: 98, q: "₹125000 का 8% वार्षिक दर से 9 माह का त्रैमासिक चक्रवृद्धि ब्याज:", options: ["1326", "7651", "2651", "5681"], ans: 1, exp: "r = 2%, n = 3 तिमाहियां => ब्याज = ₹7,651[span_102](start_span)[span_102](end_span)।" },
+      { id: 99, q: "5 / [ 1 + (8 / (9 + 15/31)) ] का मान होगा:", options: ["13/23", "11/23", "7/23", "कोई नहीं"], ans: 1, exp: "सरल करने पर अभीष्ट मान 11/23 प्राप्त होता है[span_103](start_span)[span_103](end_span)।" },
+      { id: 100, q: "नाव अनुकूल 16 किमी 2 घंटे में, प्रतिकूल 4 घंटे में तय करती है, शांत जल में चाल है:", options: ["4 किमी/घं", "6 किमी/घं", "8 किमी/घं", "9 किमी/घं"], ans: 1, exp: "(8 + 4)/2 = 6 किमी/घंटा[span_104](start_span)[span_104](end_span)।" },
+      { id: 101, q: "पैटर्न चुनें: 2513 -> 20, 4213 -> 18:", options: ["3122-14", "2521-10", "5131-22", "1462-26"], ans: 0, exp: "अंकों के संयोजन नियम से 3122 -> 14[span_105](start_span)[span_105](end_span)।" },
+      { id: 102, q: "समुच्चय संबंध: (8, 64, 2), (12, 12, 1):", options: ["(10, 3426, 7)", "(8, 722, 9)", "(6, 214, 6)", "(4, 256, 4)"], ans: 3, exp: "4⁴ = 256[span_106](start_span)[span_106](end_span)।" },
+      { id: 103, q: "त्रिक संबंध: (3, 5, 32), (9, 1, 26):", options: ["(5, 6, 33)", "(2, 6, 30)", "(6, 1, 23)", "(4, 2, 28)"], ans: 1, exp: "2² + 6² - 10 = 30[span_107](start_span)[span_107](end_span)।" },
+      { id: 104, q: "कथन: सभी झीलें नदियाँ हैं। सभी नदियाँ बांध हैं।<br>निष्कर्ष: (I) कुछ बांध झीलें हैं। (II) सभी नदियाँ झीलें हैं।", options: ["केवल II", "केवल I", "न I न II", "दोनों"], ans: 1, exp: "बाहर से अंदर केवल कुछ निष्कर्ष सही होता है[span_108](start_span)[span_108](end_span)।" },
+      { id: 105, q: "कथन: सभी अंगूठियाँ चूड़ियाँ हैं। कुछ चूड़ियाँ पायल हैं। कोई पायल झुमका नहीं है।", options: ["केवल II", "कोई नहीं", "केवल I", "दोनों I और II"], ans: 3, exp: "दोनों निष्कर्ष तार्किक रूप से अनुसरण करते हैं[span_109](start_span)[span_109](end_span)।" },
+      { id: 106, q: "कथन: कुछ हाथी मछलियां हैं। कोई मछली बाघ नहीं है। सभी हिरण बाघ हैं।", options: ["केवल III", "I और III", "I और II", "केवल II"], ans: 0, exp: "हिरण कभी मछली नहीं हो सकता[span_110](start_span)[span_110](end_span)।" },
+      { id: 107, q: "L, G की बहन है। G, M का बेटा है। M का विवाह D से हुआ। D, E की बहन है। L का E से संबंध है:", options: ["पत्नी की बहन", "भाई की बेटी", "बहन की बेटी (भांजी)", "बेटी"], ans: 2, exp: "L, E की बहन (D) की बेटी है[span_111](start_span)[span_111](end_span)।" },
+      { id: 108, q: "समीकरण P + Q × R - M ÷ T में T, P से किस प्रकार संबंधित है?", options: ["पुत्र", "भाई", "पिता", "पति"], ans: 2, exp: "पारिवारिक ट्री से T, P का पिता सिद्ध होता है[span_112](start_span)[span_112](end_span)।" },
+      { id: 109, q: "BREATHE = 70, TRIUMPH = 135, तो TRAGEDY = ?", options: ["80", "111", "95", "86"], ans: 1, exp: "कूट मान 111 बनता है[span_113](start_span)[span_113](end_span)।" },
+      { id: 110, q: "GLOBAL = 221714272817, FOREST = 23141124109, तो IMPACT = ?", options: ["20161327259", "20161328269", "18141126247", "20161226259"], ans: 0, exp: "विपरीत स्थानीय मानों में समायोजन[span_114](start_span)[span_114](end_span)।" },
+      { id: 111, q: "मैट्रिक्स: [6, 216, 180], [8, 512, 448], [10, 1000, ?]:", options: ["800", "1100", "900", "1300"], ans: 2, exp: "10³ - 10² = 1000 - 100 = 900[span_115](start_span)[span_115](end_span)।" },
+      { id: 112, q: "नीचे दी गई शीट को मोड़कर एक घन बनाया जाए, तो 'VI' के विपरीत फलक पर कौन-सी रोमन संख्या होगी? (नीचे चित्र देखें)", options: ["VII", "V", "X", "VIII"], ans: 0, exp: "खुले पासे के नियम से एकांतर फलक एक-दूसरे के सम्मुख होते हैं; अतः VI के विपरीत VII होगा[span_116](start_span)[span_116](end_span)।" },
+      { id: 113, q: "पासे की दो स्थितियों में Q के विपरीत वाले फलक पर आने वाला अक्षर ज्ञात कीजिए: (चित्र देखें)", options: ["T", "V", "Z", "A"], ans: 0, exp: "उभयनिष्ठ फलक V से क्लॉकवाइज़ घुमाने पर Q के विपरीत T प्राप्त होता है[span_117](start_span)[span_117](end_span)।" },
+      { id: 114, q: "मुकेश अपने कार्यालय से 12 किमी चला... अंत में उत्तर-पश्चिम में था, तो शुरुआत किस दिशा में की?", options: ["पश्चिम", "उत्तर", "दक्षिण", "पूर्व"], ans: 3, exp: "दिशा ट्रेस करने पर प्रारम्भिक दिशा पूर्व थी[span_118](start_span)[span_118](end_span)।" },
+      { id: 115, q: "EYES: FTFZ :: MIND: OENJ :: REST: ?", options: ["STSF", "TUFS", "TUSF", "STRE"], ans: 1, exp: "अक्षरों में निश्चित वृद्धि नियम[span_119](start_span)[span_119](end_span)।" },
+      { id: 116, q: "CWE: ZFX :: PYT: MDI :: KIL: ?", options: ["PRO", "RTQ", "STQ", "PQO"], ans: 0, exp: "वर्णमाला विस्थापन से PRO बनता है[span_120](start_span)[span_120](end_span)।" },
+      { id: 117, q: "PURE: IDGT :: COOL: VJJM :: LIPS: ?", options: ["MPIF", "PIFM", "KHOR", "RKHO"], ans: 0, exp: "LIPS का कूट MPIF बनता है[span_121](start_span)[span_121](end_span)।" },
+      { id: 118, q: "यदि A='÷', B='×', C='+', D='-' हो, तो किसका परिणाम 233 होगा?", options: ["21 A 11 D 33 B 11 C 5", "21 B 11 D 33 A 11 C 5", "21 C 11 D 33 A 11 B 5", "21 B 11 A 33 D 11 C 5"], ans: 1, exp: "21×11 - 33÷11 + 5 = 231 - 3 + 5 = 233[span_122](start_span)[span_122](end_span)।" },
+      { id: 119, q: "42 ÷ 7 + 11 × 87 - 12 = 141 के लिए किन चिह्नों को बदलें?", options: ["- और ×", "× और +", "÷ और -", "÷ और +"], ans: 1, exp: "× और + को बदलने से 141 प्राप्त होता है[span_123](start_span)[span_123](end_span)।" },
+      { id: 120, q: "15 G 10 D 30 B 43 F 28 का मान क्या होगा?", options: ["30", "20", "25", "10"], ans: 1, exp: "15 × 10 ÷ 30 + 43 - 28 = 20[span_124](start_span)[span_124](end_span)।" },
+      { id: 121, q: "23 C 13 B 841 A 29 D 91 = ?", options: ["329", "319", "289", "309"], ans: 0, exp: "हल करने पर 329 आता है[span_125](start_span)[span_125](end_span)।" },
+      { id: 122, q: "60 D 10 A 4 C 6 B 25 = ?", options: ["5", "10", "6", "9"], ans: 0, exp: "6 + 24 - 25 = 5[span_126](start_span)[span_126](end_span)।" },
+      { id: 123, q: "70 - 4 × 20 + 6 ÷ 5 = 60 को सही करने के लिए बदलें:", options: ["4, 20 और +, -", "5, 6 और +, -", "4, 70 और ÷, +", "4, 20 और +, ×"], ans: 0, exp: "4, 20 और +, - को बदलने पर समीकरण सत्य होता है[span_127](start_span)[span_127](end_span)।" },
+      { id: 124, q: "शब्द 'NIGHTMARES' को वर्णमाला क्रम में लगाने पर कितने अक्षरों की स्थिति अपरिवर्तित रहेगी?", options: ["एक", "तीन", "दो", "चार"], ans: 0, exp: "केवल एक अक्षर अपनी स्थिति में बना रहता है[span_128](start_span)[span_128](end_span)।" },
+      { id: 125, q: "शब्द 'SYSTEM' को वर्णमाला क्रम में व्यवस्थित करने पर कितने अक्षरों की स्थिति बदलेगी?", options: ["पाँच", "छह", "तीन", "चार"], ans: 0, exp: "5 अक्षरों की स्थिति बदल जाती है[span_129](start_span)[span_129](end_span)।" },
+      { id: 126, q: "असंगत अक्षर समूह का चयन करें:", options: ["QJPK", "KOLN", "MQNP", "XBYA"], ans: 2, exp: "अन्य तीनों में विपरीत अक्षर युग्म हैं, MQNP में नहीं[span_130](start_span)[span_130](end_span)।" },
+      { id: 127, q: "भिन्न अक्षर समूह चुनें:", options: ["LRPV", "SYGM", "DBJH", "CNDV"], ans: 1, exp: "अंतर नियम से SYGM असंगत है[span_131](start_span)[span_131](end_span)।" },
+      { id: 128, q: "भिन्न अक्षर समूह चुनें:", options: ["DFA", "PRM", "IKF", "SUQ"], ans: 3, exp: "SUQ में अंतर नियम अलग है[span_132](start_span)[span_132](end_span)।" },
+      { id: 129, q: "तार्किक क्रम: 1. देश, 2. शहर, 3. नगर, 4. राज्य, 5. जिला", options: ["3, 5, 2, 4, 1", "3, 2, 4, 1, 5", "3, 2, 5, 4, 1", "3, 2, 4, 5, 1"], ans: 2, exp: "नगर -> शहर -> जिला -> राज्य -> देश[span_133](start_span)[span_133](end_span)।" },
+      { id: 130, q: "'FINGER' के अक्षरों को वर्णमाला क्रम में रखने पर कितनों का स्थान अपरिवर्तित रहेगा?", options: ["दो", "एक", "तीन", "चार"], ans: 1, exp: "केवल R का स्थान अपरिवर्तित रहता है[span_134](start_span)[span_134](end_span)।" },
+      { id: 131, q: "शब्दकोश के अनुसार व्यवस्थित करने पर चौथे स्थान पर कौन आएगा?", options: ["Unseen", "Unsay", "Unseam", "Unsound"], ans: 0, exp: "Unseen चौथे स्थान पर आता है[span_135](start_span)[span_135](end_span)।" },
+      { id: 132, q: "दी गई 3×3 आकृति में वर्गों की कुल संख्या ज्ञात कीजिए: (चित्र देखें)", options: ["10", "8", "14", "12"], ans: 2, exp: "3² + 2² + 1² = 9 + 4 + 1 = 14 वर्ग[span_136](start_span)[span_136](end_span)।" },
+      { id: 133, q: "दिए गए वेन आरेख में ऐसी बालिकाओं की संख्या चुनें जो खिलाड़ी के साथ नर्तकी भी हैं: (चित्र देखें)", options: ["6", "4", "8", "7"], ans: 3, exp: "तीनों वृत्तों के सर्वनिष्ठ क्षेत्र में 7 स्थित है[span_137](start_span)[span_137](end_span)।" },
+      { id: 134, q: "श्रृंखला पूर्ण करें: 3, 17, 83, 329, ?, 1961", options: ["983", "883", "880", "980"], ans: 0, exp: "329 × 3 - 4 = 983[span_138](start_span)[span_138](end_span)।" },
+      { id: 135, q: "300, 152, 80, 48, 40, 52, ?", options: ["60", "80", "90", "100"], ans: 1, exp: "श्रृंखला का अगला पद 80 है[span_139](start_span)[span_139](end_span)।" },
+      { id: 136, q: "30, 20, ?, 60, 140", options: ["30", "35", "40", "25"], ans: 0, exp: "20 × 1 + 10 = 30[span_140](start_span)[span_140](end_span)।" },
+      { id: 137, q: "214, 111, 179, 126, 144, 141, 109, 156, ?", options: ["61", "96", "89", "74"], ans: 3, exp: "109 - 35 = 74[span_141](start_span)[span_141](end_span)।" },
+      { id: 138, q: "कथन: सभी चाँदी सोना है। कोई सोना प्लैटिनम नहीं है।", options: ["कोई नहीं", "केवल II", "दोनों", "केवल निष्कर्ष I अनुसरण करता है"], ans: 3, exp: "कुछ सोना चाँदी है सत्य है, II असत्य है[span_142](start_span)[span_142](end_span)।" },
+      { id: 139, q: "बालक 90 मी पूर्व, 20 मी दायें, 30 मी दायें, फिर 100 मी उत्तर गया। आरंभ से दूरी:", options: ["80 मी", "100 मी", "260 मी", "140 मी"], ans: 1, exp: "√(60² + 80²) = 100 मीटर[span_143](start_span)[span_143](end_span)।" },
+      { id: 140, q: "दी गई आकृति का लंबवत दर्पण (Mirror AB) प्रतिबिंब क्या होगा? (नीचे चित्र देखें)", options: ["आकृति (1)", "आकृति (2)", "आकृति (3)", "आकृति (4)"], ans: 1, exp: "पार्श्व परिवर्तन के बाद आकृति (2) सही प्रतिबिंब है[span_144](start_span)[span_144](end_span)।" },
+      { id: 141, q: "उत्तर आकृतियों में से उपयुक्त आकृति चुनें जो (?) का स्थान ले सके: (घूर्णन चित्र देखें)", options: ["1", "2", "3", "4"], ans: 2, exp: "90° दक्षिणावर्त घूर्णन से आकृति (3) आएगी[span_145](start_span)[span_145](end_span)।" },
+      { id: 142, q: "उस विकल्प को चुनें जो अन्य तीन विकल्पों से भिन्न है: (नीचे चारों विकल्पों की बनावट देखें)", options: ["(1)", "(2)", "(3)", "(4)"], ans: 0, exp: "आकृति (1) में आंतरिक विभाजन रेखा विषम/असममित है जबकि अन्य सममित ज्यामितीय बहुभुज हैं[span_146](start_span)[span_146](end_span)।" },
+      { id: 143, q: "निर्देश: कौन-सी उत्तर आकृति दी गई प्रश्न आकृति के पैटर्न को पूरा करेगी? (नीचे चित्र देखें)", options: ["आकृति (1)", "आकृति (2)", "आकृति (3)", "आकृति (4)"], ans: 0, exp: "विकल्प (1) की रेखा चतुर्थांश को सममित रूप से पूरा करती है[span_147](start_span)[span_147](end_span)।" },
+      { id: 144, q: "कागज़ के टुकड़े को मोड़ा और पंच किया गया है। खोलने पर यह कैसा दिखाई देगा? (नीचे चित्र देखें)", options: ["आकृति (1)", "आकृति (2)", "आकृति (3)", "आकृति (4)"], ans: 2, exp: "चारों चतुर्थांशों में कट सममित रूप से फैलकर आकृति (3) बनाएंगे[span_148](start_span)[span_148](end_span)।" },
+      { id: 145, q: "लकड़ी के 3D ब्लॉक को सामने की तरफ नीचे 90° झुकाने पर कौन-सी स्थिति प्राप्त होगी? (नीचे चित्र देखें)", options: ["आकृति (1)", "आकृति (2)", "आकृति (3)", "आकृति (4)"], ans: 1, exp: "ब्लॉक को सामने की तरफ पलटने पर शीर्ष सतह सामने की ओर झुक जाती है, जो स्थिति (2) दर्शाती है[span_149](start_span)[span_149](end_span)।" },
+      { id: 146, q: "चार उत्तर आकृतियों में से कौन-सी आकृति प्रश्न आकृति के कटे हुए 4 टुकड़ों से बनाई जा सकती है? (नीचे चित्र देखें)", options: ["आकृति (1)", "आकृति (2)", "आकृति (3)", "आकृति (4)"], ans: 1, exp: "दो त्रिभुज, आयत और समलम्ब टुकड़ों को मिलाकर आकृति (2) का निर्माण होता है[span_150](start_span)[span_150](end_span)।" },
+      { id: 147, q: "दी गई 9 आकृतियों को तीन वर्गों में समूहित कीजिए: (नीचे दी गई 9 आकृतियों का चार्ट देखें)", options: ["(1,4,7; 2,5,8; 3,6,9)", "(1,2,3; 4,5,6; 7,8,9)", "(1,5,9; 2,6,7; 3,4,8)", "(1,3,7; 2,4,8; 5,6,9)"], ans: 0, exp: "त्रिभुज आकृतियाँ (1,4,7), वृत्ताकार आकृतियाँ (2,5,8) और चतुर्भुज/क्रॉस रेखाएं (3,6,9) के तीन वर्ग बनते हैं[span_151](start_span)[span_151](end_span)।" },
+      { id: 148, q: "दी गई प्रश्न आकृति किस उत्तर आकृति में छिपी / अंतर्निहित है? (नीचे चित्र देखें)", options: ["आकृति (1)", "आकृति (2)", "आकृति (3)", "आकृति (4)"], ans: 2, exp: "Z-कट का रेखाचित्र उत्तर आकृति (3) में पूर्णतः सन्निहित है[span_152](start_span)[span_152](end_span)।" },
+      { id: 149, q: "दी गई छवि को 135° वामावर्त (Anticlockwise) घुमाने पर कौन-सी छवि प्राप्त होगी? (नीचे चित्र देखें)", options: ["(A)", "(B)", "(C)", "(D)"], ans: 1, exp: "उत्तर की ओर इंगित तीर को 135° वामावर्त घुमाने पर वह दक्षिण-पश्चिम दिशा (B) में आ जाता है[span_153](start_span)[span_153](end_span)।" },
+      { id: 150, q: "आव्यूह-I और आव्यूह-II के अनुसार शब्द 'DARE' के लिए सही संख्या-समूह पहचानें: (मैट्रिक्स देखें)", options: ["33, 78, 40, 58", "21, 55, 13, 99", "44, 85, 34, 65", "12, 67, 22, 87"], ans: 1, exp: "D = 21, A = 55, R = 13, E = 99; अतः सही समूह (21, 55, 13, 99) है[span_154](start_span)[span_154](end_span)।" }
     ];
 
-    // ----------------------------------------------------
-    // TEST MASTER DATA (All Sets)
-    // ----------------------------------------------------
-    const testSeries = [
-      {
-        id: 0,
-        title: "BSSC स्नातक स्तरीय प्रारंभिक परीक्षा (प्रैक्टिस सेट - 01)",
-        isPremium: false,
-        questions: [
-          {
-            id: 1,
-            text: "परम भागवत की उपाधि ग्रहण करने वाला पहला गुप्त शासक था?",
-            options: ["(A) चंद्रगुप्त प्रथम", "(B) समुद्रगुप्त", "(C) चंद्रगुप्त द्वितीय", "(D) स्कन्दगुप्त"],
-            ans: 1,
-            exp: "समुद्रगुप्त ने 'परम भागवत' की उपाधि धारण की थी। गया एवं नालंदा ताम्रपत्रों में इसका प्रमाण मिलता है।"
-          },
-          {
-            id: 2,
-            text: "निम्न कथनों में से कौन से कथन सही हैं?<br>I. हड़प्पा का उत्खनन 1921 में किया गया था।<br>II. वर्तमान में, हड़प्पा पाकिस्तान में है।<br>III. हड़प्पा व्यास नदी के किनारे था।<br>IV. हड़प्पा के उत्खननकर्ता आर. डी. बनर्जी थे।<br>V. छत्र वाला ताम्र-रथ हड़प्पा से मिला है।",
-            options: ["(A) केवल I और II", "(B) केवल I, II और V", "(C) केवल II और IV", "(D) केवल I, II, III और IV"],
-            ans: 0,
-            exp: "हड़प्पा की खोज 1921 में दयाराम साहनी ने की थी। यह रावी नदी के तट पर पाकिस्तान के पंजाब प्रांत में स्थित है।"
-          },
-          {
-            id: 3,
-            text: "हड़प्पा संस्कृति के ह्रास के लिये विभिन्न कारण सुझाए गए हैं। नीचे दिये गए कारणों में से क्षीणतम (Weakest) कारण को इंगित कीजिये:",
-            options: ["(A) लगातार प्राकृतिक रूप से बाढ़ आने की घटनाएँ होती रहीं।", "(B) मृदा में लवणता की वृद्धि से उर्वरता घटती गई।", "(C) भूकंप के कारण सिंधु के मार्ग में परिवर्तन हुआ जिससे आप्लावन हुआ।", "(D) आर्यों ने आक्रमण कर हड़प्पा संस्कृति को नष्ट कर दिया।"],
-            ans: 3,
-            exp: "आधुनिक इतिहासकार आर्य आक्रमण के सिद्धांत को हड़प्पा सभ्यता के पतन का सबसे क्षीणतम कारण मानते हैं।"
-          },
-          {
-            id: 4,
-            text: "'उलुक' तथा 'दावा' व्यवस्था का संबंध तुगलक काल में निम्नलिखित में से किससे था?",
-            options: ["(A) शिल्प से", "(B) डाक व्यवस्था से", "(C) लंबी दूरी के व्यापार से", "(D) समाज में नैतिकता बनाए रखने के नियमों से"],
-            ans: 1,
-            exp: "इब्नबतूता के अनुसार उलुक (अश्व डाक व्यवस्था) तथा दावा (पैदल डाक व्यवस्था) डाक संचार प्रणाली थी।"
-          },
-          {
-            id: 5,
-            text: "शेरशाह की 'प्रशासनिक व्यवस्था' के संदर्भ में निम्नलिखित कथनों पर विचार कीजिये:<br>1. परगना, शिकदार के अधिकार में था।<br>2. मुंसिफ, भूराजस्व की वसूली की देख-रेख करता था।<br>3. शेरशाह ने सोने, चांदी और तांबे के सिक्के चलवाए।",
-            options: ["(A) केवल 1", "(B) केवल 2", "(C) केवल 1 और 3", "(D) इनमें से सभी"],
-            ans: 3,
-            exp: "शेरशाह के समय परगने का प्रमुख शिकदार था, मुंसिफ राजस्व देखता था और उसने दाम, रुपया व मोहर चलाए।"
-          },
-          {
-            id: 6,
-            text: "निम्नलिखित में से कौन-सी एक विशिष्टता 'इक्ता व्यवस्था' की नहीं है?",
-            options: ["(A) इक्ता एक राजस्व एकत्रित करने की व्यवस्था थी", "(B) सियासतनामा इक्ता व्यवस्था की जानकारी का स्रोत था", "(C) इक्ता से एकत्रित राजस्व सीधा सुल्तान के खाते में जाता था", "(D) मुक्ती को इक्ता से एकत्रित राजस्व से सैनिक रखने पड़ते थे"],
-            ans: 2,
-            exp: "इक्ता से प्राप्त राजस्व सीधा सुल्तान के कोष में नहीं जाता था, इक्तेदार अपने खर्च काटकर शेष रकम (फवाजिल) भेजते थे।"
-          },
-          {
-            id: 7,
-            text: "औरंगजेब के संदर्भ में निम्नलिखित कथनों पर विचार कीजिये:<br>1. उसने कश्मीर से लेकर जिंजी तथा हिंदुकुश से लेकर चटगाँव तक साम्राज्य का विस्तार किया।<br>2. उसे 'जिंदा पीर' कहा जाता था।<br>3. उसने 'टनफी' कानून को अपनाया था।",
-            options: ["(A) केवल 1 और 2", "(B) केवल 2 और 3", "(C) केवल 3", "(D) इनमें से सभी"],
-            ans: 0,
-            exp: "औरंगजेब का साम्राज्य विस्तार अत्यंत विस्तृत था तथा सादे जीवन के कारण उसे 'जिंदा पीर' कहा जाता था।"
-          },
-          {
-            id: 8,
-            text: "'डचों' के संदर्भ में निम्नलिखित कथनों पर विचार कीजिये:<br>1. इन्होंने गोलकुंडा के शासक से फरमान प्राप्त कर मछलीपट्टनम में पहली कोठी बनाई।<br>2. इन्होंने दक्षिण-पूर्व एशिया में मसालों के द्वीपों पर वर्चस्व स्थापित किया।<br>3. इन्होंने कोरोमंडल के स्थानीय शासक से पुलीकट हासिल कर लिया था।<br>4. इन्होंने सूरत में अपनी पहली फैक्ट्री बनाई।",
-            options: ["(A) केवल 1 और 2", "(B) केवल 1 और 4", "(C) केवल 1, 2 और 3", "(D) इनमें से सभी"],
-            ans: 2,
-            exp: "डचों ने अपनी पहली फैक्ट्री 1605 में मसूलीपट्टनम में स्थापित की थी, सूरत में नहीं।"
-          },
-          {
-            id: 9,
-            text: "1857 की क्रांति के धार्मिक कारणों के संबंध में नीचे दिये गए कथनों पर विचार कीजिये:<br>1. ईसाई मिशनरियों द्वारा हिंदू तथा इस्लाम धर्म पर तीखा प्रहार करना।<br>2. मंदिर और मस्जिदों की ज़मीनों पर कर लगाना।<br>3. ब्रिटिश सरकार द्वारा भारतीय समाज सुधारकों की सलाह पर सामाजिक कुरीतियों के विरुद्ध कानून बनाना।",
-            options: ["(A) केवल 1 और 2", "(B) केवल 2 और 3", "(C) केवल 3", "(D) 1, 2 और 3"],
-            ans: 3,
-            exp: "ये तीनों ही कारक 1857 के विद्रोह के धार्मिक व सामाजिक असंतोष के प्रमुख कारण थे।"
-          },
-          {
-            id: 10,
-            text: "निम्नलिखित में से कौन ब्रिटिश नीतियों के कारण भारत के वि-औद्योगीकरण (De-industrialization) के लिये उत्तरदायी था?<br>1. 'गुमास्ता' के माध्यम से ब्रिटिश कंपनी का हस्तक्षेप।<br>2. देशी राजाओं तथा राजघरानों का पतन।<br>3. भारतीय व्यापारियों के विरुद्ध भेदभावपूर्ण नीतियाँ।",
-            options: ["(A) केवल 1 और 2", "(B) केवल 2 और 3", "(C) 1, 2 और 3", "(D) केवल 1 और 3"],
-            ans: 2,
-            exp: "उपर्युक्त सभी कारक भारत के पारंपरिक हस्तशिल्प और वस्त्र उद्योग के पतन के लिए जिम्मेदार थे।"
-          },
-          {
-            id: 96,
-            text: "दी गई आकृति में यदि $BD \\perp AC$, $\\angle CAE = 30^\\circ$ तथा $\\angle CBD = 40^\\circ$ हो, तो $\\angle AEB$ का मान क्या होगा?",
-            svg: `<svg viewBox="0 0 260 150" class="w-64 h-36">
-              <polygon points="30,120 200,120 110,20" fill="none" stroke="#1e293b" stroke-width="2"/>
-              <line x1="200" y1="120" x2="65" y2="70" stroke="#2563eb" stroke-width="2"/>
-              <line x1="110" y1="20" x2="150" y2="120" stroke="#dc2626" stroke-width="2"/>
-              <text x="18" y="130" font-size="12" font-weight="bold">A</text>
-              <text x="105" y="15" font-size="12" font-weight="bold">B</text>
-              <text x="205" y="130" font-size="12" font-weight="bold">C</text>
-              <text x="55" y="65" font-size="12" font-weight="bold">D</text>
-              <text x="150" y="135" font-size="12" font-weight="bold">E</text>
-              <text x="45" y="115" font-size="10" fill="#2563eb">30°</text>
-              <text x="105" y="45" font-size="10" fill="#dc2626">40°</text>
-            </svg>`,
-            options: ["(A) 50°", "(B) 60°", "(C) 70°", "(D) 80°"],
-            ans: 3,
-            exp: "$\\triangle BDC$ समकोण है, जहाँ $\\angle BDC = 90^\\circ$ और $\\angle CBD = 40^\\circ \\implies \\angle C = 50^\\circ$। $\\triangle AEC$ में, बाह्य कोण $\\angle AEB = \\angle CAE + \\angle C = 30^\\circ + 50^\\circ = 80^\\circ$।"
-          },
-          {
-            id: 97,
-            text: "दिये गए पाई-चार्ट का अध्ययन करें:<br>यदि निजी सेवा में लगे व्यक्तियों की संख्या 2160 हो, तो परिवहन में लगे व्यक्तियों की संख्या कितनी है?",
-            svg: `<svg viewBox="0 0 200 200" class="w-52 h-52">
-              <circle cx="100" cy="100" r="85" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-              <path d="M100,100 L100,15 A85,85 0 0,1 157,37 Z" fill="#93c5fd" stroke="#334155"/>
-              <path d="M100,100 L157,37 A85,85 0 0,1 184,115 Z" fill="#fed7aa" stroke="#334155"/>
-              <path d="M100,100 L184,115 A85,85 0 0,1 100,185 Z" fill="#bbf7d0" stroke="#334155"/>
-              <path d="M100,100 L100,185 A85,85 0 0,1 45,165 Z" fill="#fef08a" stroke="#334155"/>
-              <path d="M100,100 L45,165 A85,85 0 0,1 16,115 Z" fill="#ddd6fe" stroke="#334155"/>
-              <path d="M100,100 L16,115 A85,85 0 0,1 100,15 Z" fill="#fbcfe8" stroke="#334155"/>
-              <text x="108" y="45" font-size="8" font-weight="bold">प्रोफे. 35°</text>
-              <text x="135" y="85" font-size="8" font-weight="bold">अन्य 60°</text>
-              <text x="115" y="145" font-size="8" font-weight="bold">विनिर्माण 85°</text>
-              <text x="50" y="170" font-size="8" font-weight="bold" fill="#b45309">निजी 25°</text>
-              <text x="25" y="125" font-size="8" font-weight="bold" fill="#6d28d9">परिवहन 40°</text>
-              <text x="35" y="65" font-size="8" font-weight="bold">वाणिज्य 115°</text>
-            </svg>`,
-            options: ["(A) 3456", "(B) 5448", "(C) 5648", "(D) 2486"],
-            ans: 0,
-            exp: "25° = 2160 => 1° = 2160 / 25। परिवहन = 40° = (2160 / 25) × 40 = 3456।"
-          },
-          {
-            id: 111,
-            text: "दिए गए पैटर्न में प्रश्नवाचक चिह्न (?) के स्थान पर क्या आएगा?",
-            table: `<div class="border border-slate-400 font-bold text-center inline-block bg-white shadow-sm my-2">
-              <div class="grid grid-cols-3 border-b border-slate-300 px-4 py-1.5"><span class="w-12">6</span><span class="w-16">216</span><span class="w-16">180</span></div>
-              <div class="grid grid-cols-3 border-b border-slate-300 px-4 py-1.5"><span class="w-12">8</span><span class="w-16">512</span><span class="w-16">448</span></div>
-              <div class="grid grid-cols-3 px-4 py-1.5 bg-indigo-50"><span class="w-12">10</span><span class="w-16">1000</span><span class="w-16 text-rose-600 font-black">?</span></div>
-            </div>`,
-            options: ["(A) 800", "(B) 1100", "(C) 900", "(D) 1300"],
-            ans: 2,
-            exp: "पैटर्न: $n^3 - n^2$। $10^3 - 10^2 = 1000 - 100 = 900$।"
-          },
-          {
-            id: 112,
-            text: "यदि नीचे दी गई शीट को मोड़कर एक घन (Cube) बनाया जाए, तो 'VI' के विपरीत फलक पर कौन-सी रोमन संख्या होगी?",
-            svg: `<svg viewBox="0 0 160 190" class="w-36 h-44">
-              <rect x="50" y="10" width="35" height="35" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-              <text x="62" y="32" font-size="12" font-weight="bold">V</text>
-              <rect x="50" y="45" width="35" height="35" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-              <text x="60" y="67" font-size="12" font-weight="bold">VI</text>
-              <rect x="15" y="45" width="35" height="35" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-              <text x="24" y="67" font-size="12" font-weight="bold">IX</text>
-              <rect x="85" y="45" width="35" height="35" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-              <text x="92" y="67" font-size="12" font-weight="bold">VII</text>
-              <rect x="50" y="80" width="35" height="35" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-              <text x="58" y="102" font-size="12" font-weight="bold">VIII</text>
-              <rect x="50" y="115" width="35" height="35" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-              <text x="62" y="137" font-size="12" font-weight="bold">X</text>
-            </svg>`,
-            options: ["(A) VII", "(B) IX", "(C) X", "(D) VIII"],
-            ans: 2,
-            exp: "खुले पासे में एकान्तर फलक विपरीत होते हैं। VI के विपरीत X होगा।"
-          },
-          {
-            id: 113,
-            text: "एक पासे के फलकों पर Q, Z, V, T, L, A अंकित हैं। 'Q' के विपरीत फलक का अक्षर ज्ञात कीजिए:",
-            svg: `<svg viewBox="0 0 240 100" class="w-56 h-24">
-              <g transform="translate(20,5)">
-                <polygon points="35,10 65,22 65,58 35,45" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
-                <polygon points="5,22 35,10 35,45 5,58" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
-                <polygon points="5,22 35,10 65,22 35,35" fill="#cbd5e1" stroke="#334155" stroke-width="1.5"/>
-                <text x="31" y="25" font-size="11" font-weight="bold">T</text>
-                <text x="16" y="45" font-size="11" font-weight="bold">V</text>
-                <text x="45" y="45" font-size="11" font-weight="bold">Z</text>
-              </g>
-              <g transform="translate(130,5)">
-                <polygon points="35,10 65,22 65,58 35,45" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
-                <polygon points="5,22 35,10 35,45 5,58" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
-                <polygon points="5,22 35,10 65,22 35,35" fill="#cbd5e1" stroke="#334155" stroke-width="1.5"/>
-                <text x="31" y="25" font-size="11" font-weight="bold">Z</text>
-                <text x="16" y="45" font-size="11" font-weight="bold">L</text>
-                <text x="45" y="45" font-size="11" font-weight="bold">A</text>
-              </g>
-            </svg>`,
-            options: ["(A) T", "(B) V", "(C) Z", "(D) A"],
-            ans: 2,
-            exp: "दोनों में Z कॉमन है जिसके निकट T, V, L, A हैं। अतः Q के विपरीत Z होगा।"
-          }
-        ]
-      },
-      {
-        id: 1,
-        title: "BSSC स्नातक स्तरीय स्पेशल सिलेक्टेड टेस्ट - सेट 02",
-        isPremium: true,
-        questions: [
-          {
-            id: 1,
-            text: "भारतीय संविधान के किस अनुच्छेद के तहत वित्तीय आपातकाल की घोषणा की जाती है?",
-            options: ["(A) अनुच्छेद 352", "(B) अनुच्छेद 356", "(C) अनुच्छेद 360", "(D) अनुच्छेद 365"],
-            ans: 2,
-            exp: "अनुच्छेद 360 राष्ट्रपति को वित्तीय आपातकाल घोषित करने का अधिकार देता है।"
-          },
-          {
-            id: 2,
-            text: "बक्सर का युद्ध किस वर्ष लड़ा गया था?",
-            options: ["(A) 1757", "(B) 1764", "(C) 1761", "(D) 1765"],
-            ans: 1,
-            exp: "22 अक्टूबर 1764 को हेक्टर मुनरो के नेतृत्व में ईस्ट इंडिया कंपनी और संयुक्त भारतीय सेनाओं के बीच बक्सर का युद्ध हुआ।"
-          }
-        ]
-      }
-    ];
-
-    // ----------------------------------------------------
-    // APP STATE & CONTROLLER
-    // ----------------------------------------------------
-    let currentTestIdx = 0;
-    let currentQIdx = 0;
-    let userAnswers = {};
-    let reviewStatus = {};
-    let visited = {};
-    let timerInterval = null;
+    let currentQ = 0;
+    let userAnswers = new Array(150).fill(null);
+    let qStatus = new Array(150).fill('not-visited');
     let timeLeft = 120 * 60;
-    let pendingPremiumTestIdx = null;
+    let timerInterval = null;
 
-    function showHomeScreen() {
-      clearInterval(timerInterval);
-      document.getElementById('portalHomeScreen').classList.remove('hidden');
-      document.getElementById('examScreen').classList.add('hidden');
-      document.getElementById('resultScreen').classList.add('hidden');
-      document.getElementById('timerContainer').classList.add('hidden');
-      document.getElementById('headerTitle').innerText = "BSSC ऑनलाइन परीक्षा पोर्टल";
-    }
-
-    function openPremiumPrompt(testIdx) {
-      pendingPremiumTestIdx = testIdx;
-      // Check if already unlocked on this device
-      const unlockedKey = localStorage.getItem(`unlocked_test_${testIdx}`);
-      if (unlockedKey && authorizedKeys.includes(unlockedKey)) {
-        startSpecificTest(testIdx);
-        return;
-      }
-      document.getElementById('accessKeyInput').value = '';
-      document.getElementById('keyError').classList.add('hidden');
-      document.getElementById('premiumModal').classList.remove('hidden');
-    }
-
-    function closePremiumPrompt() {
-      document.getElementById('premiumModal').classList.add('hidden');
-    }
-
-    function verifyAndUnlock() {
-      const input = document.getElementById('accessKeyInput').value.trim().toUpperCase();
-      const err = document.getElementById('keyError');
-
-      if (authorizedKeys.includes(input)) {
-        // Save access key to device local storage
-        localStorage.setItem(`unlocked_test_${pendingPremiumTestIdx}`, input);
-        closePremiumPrompt();
-        startSpecificTest(pendingPremiumTestIdx);
-      } else {
-        err.innerText = "अमान्य Access Key! सही की दर्ज करें।";
-        err.classList.remove('hidden');
-      }
-    }
-
-    function startSpecificTest(testIdx) {
-      currentTestIdx = testIdx;
-      const test = testSeries[testIdx];
-      
-      currentQIdx = 0;
-      userAnswers = {};
-      reviewStatus = {};
-      visited = {};
-      timeLeft = 120 * 60;
-
-      document.getElementById('portalHomeScreen').classList.add('hidden');
-      document.getElementById('resultScreen').classList.add('hidden');
-      document.getElementById('examScreen').classList.remove('hidden');
-      document.getElementById('timerContainer').classList.remove('hidden');
-      document.getElementById('headerTitle').innerText = test.title;
-      document.getElementById('totalQNum').innerText = test.questions.length;
-
+    function startTest() {
+      document.getElementById('instructions-screen').classList.add('hidden');
+      document.getElementById('cbt-screen').classList.remove('hidden');
+      document.getElementById('cbt-screen').classList.add('flex');
       initPalette();
       loadQuestion(0);
       startTimer();
+      toggleFullScreen();
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else if (document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      }
     }
 
     function startTimer() {
-      clearInterval(timerInterval);
       timerInterval = setInterval(() => {
         if (timeLeft <= 0) {
           clearInterval(timerInterval);
@@ -543,223 +804,189 @@
           return;
         }
         timeLeft--;
-        let mins = Math.floor(timeLeft / 60);
-        let secs = timeLeft % 60;
-        document.getElementById('timeDisplay').innerText = 
-          `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        const m = Math.floor(timeLeft / 60);
+        const s = timeLeft % 60;
+        document.getElementById('timer').innerText = 
+          `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
       }, 1000);
     }
 
     function initPalette() {
-      const grid = document.getElementById('paletteGrid');
-      grid.innerHTML = '';
-      const qs = testSeries[currentTestIdx].questions;
-
-      qs.forEach((_, idx) => {
+      const container = document.getElementById('palette-container');
+      container.innerHTML = '';
+      for (let i = 0; i < 150; i++) {
         const btn = document.createElement('button');
-        btn.id = `palette-btn-${idx}`;
-        btn.innerText = idx + 1;
-        btn.className = "palette-btn rounded bg-slate-200 text-slate-700 hover:bg-slate-300 transition flex items-center justify-center";
-        btn.onclick = () => loadQuestion(idx);
-        grid.appendChild(btn);
-      });
+        btn.id = `pal-${i}`;
+        btn.innerText = i + 1;
+        btn.className = 'palette-btn status-not-visited';
+        btn.onclick = () => jumpToQuestion(i);
+        container.appendChild(btn);
+      }
     }
 
-    function loadQuestion(idx) {
-      currentQIdx = idx;
-      visited[idx] = true;
-      const qs = testSeries[currentTestIdx].questions;
-      const q = qs[idx];
+    function updatePalette(index) {
+      const btn = document.getElementById(`pal-${index}`);
+      if (!btn) return;
+      btn.className = `palette-btn status-${qStatus[index]}`;
+    }
 
-      document.getElementById('currentQNum').innerText = idx + 1;
-      document.getElementById('qText').innerHTML = `<b>प्र. ${idx + 1}:</b> ${q.text}`;
+    function loadQuestion(index) {
+      if (qStatus[index] === 'not-visited') {
+        qStatus[index] = 'not-answered';
+      }
+      currentQ = index;
+      updatePalette(index);
 
-      // Render Visual Diagram (SVG or Matrix Table)
-      const diagBox = document.getElementById('diagramContainer');
-      if (q.svg) {
-        diagBox.innerHTML = q.svg;
-        diagBox.classList.remove('hidden');
-      } else if (q.table) {
-        diagBox.innerHTML = q.table;
-        diagBox.classList.remove('hidden');
+      document.getElementById('q-no-display').innerText = index + 1;
+      const data = questionsData[index];
+      document.getElementById('q-text').innerHTML = data.q;
+
+      // Render Visual Figures
+      const figContainer = document.getElementById('q-figure');
+      if (visualFigures[data.id]) {
+        figContainer.innerHTML = visualFigures[data.id];
+        figContainer.classList.remove('hidden');
       } else {
-        diagBox.innerHTML = '';
-        diagBox.classList.add('hidden');
+        figContainer.innerHTML = '';
+        figContainer.classList.add('hidden');
       }
 
-      // Render Options
-      const optList = document.getElementById('optionsList');
-      optList.innerHTML = '';
-      q.options.forEach((opt, optIdx) => {
-        const isChecked = userAnswers[idx] === optIdx;
-        const div = document.createElement('label');
-        div.className = `flex items-center gap-3 p-3.5 rounded-lg border cursor-pointer transition ${isChecked ? 'bg-indigo-50 border-indigo-500 font-bold text-indigo-900 shadow-sm' : 'bg-white border-slate-200 hover:bg-slate-50'}`;
-        div.innerHTML = `
-          <input type="radio" name="optSelect" value="${optIdx}" ${isChecked ? 'checked' : ''} onchange="selectOption(${optIdx})" class="w-4 h-4 text-indigo-600">
-          <span class="text-sm md:text-base leading-normal">${opt}</span>
+      // Render Options (Clean & Unselected)
+      const optContainer = document.getElementById('q-options');
+      optContainer.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+      data.options.forEach((opt, oIdx) => {
+        const isSelected = userAnswers[index] === oIdx;
+        const optDiv = document.createElement('label');
+        optDiv.className = `flex items-center p-3.5 border rounded-xl cursor-pointer transition ${
+          isSelected ? 'bg-blue-50 border-blue-500 ring-2 ring-blue-200' : 'bg-white border-slate-200 hover:bg-slate-50'
+        }`;
+        optDiv.innerHTML = `
+          <input type="radio" name="opt" value="${oIdx}" ${isSelected ? 'checked' : ''} onchange="selectOption(${oIdx})" class="w-4 h-4 text-blue-600 border-slate-300">
+          <span class="ml-3 text-sm md:text-base font-medium text-slate-700">(${letters[oIdx]}) ${opt}</span>
         `;
-        optList.appendChild(div);
+        optContainer.appendChild(optDiv);
       });
-
-      updatePaletteUI();
-      document.getElementById('btnPrev').disabled = idx === 0;
     }
 
-    function selectOption(optIdx) {
-      userAnswers[currentQIdx] = optIdx;
-      updatePaletteUI();
-      updateAnsweredCount();
+    function selectOption(oIdx) {
+      userAnswers[currentQ] = oIdx;
+      loadQuestion(currentQ);
     }
 
-    function clearResponse() {
-      delete userAnswers[currentQIdx];
-      loadQuestion(currentQIdx);
-      updatePaletteUI();
-      updateAnsweredCount();
-    }
-
-    function markForReview() {
-      reviewStatus[currentQIdx] = !reviewStatus[currentQIdx];
-      updatePaletteUI();
-    }
-
-    function nextQuestion() {
-      const qs = testSeries[currentTestIdx].questions;
-      if (currentQIdx < qs.length - 1) {
-        loadQuestion(currentQIdx + 1);
+    function saveAndNext() {
+      if (userAnswers[currentQ] !== null) {
+        qStatus[currentQ] = 'answered';
+      } else {
+        qStatus[currentQ] = 'not-answered';
       }
+      updatePalette(currentQ);
+      if (currentQ < 149) loadQuestion(currentQ + 1);
     }
 
     function prevQuestion() {
-      if (currentQIdx > 0) {
-        loadQuestion(currentQIdx - 1);
+      if (currentQ > 0) loadQuestion(currentQ - 1);
+    }
+
+    function markForReview() {
+      if (userAnswers[currentQ] !== null) {
+        qStatus[currentQ] = 'ans-review';
+      } else {
+        qStatus[currentQ] = 'review';
       }
+      updatePalette(currentQ);
+      if (currentQ < 149) loadQuestion(currentQ + 1);
     }
 
-    function updatePaletteUI() {
-      const qs = testSeries[currentTestIdx].questions;
-      qs.forEach((_, i) => {
-        const btn = document.getElementById(`palette-btn-${i}`);
-        if (!btn) return;
-        
-        btn.className = "palette-btn rounded transition flex items-center justify-center font-bold ";
-        if (i === currentQIdx) {
-          btn.className += "ring-2 ring-indigo-600 ring-offset-1 ";
-        }
-
-        if (reviewStatus[i]) {
-          btn.className += "bg-amber-400 text-slate-900";
-        } else if (userAnswers[i] !== undefined) {
-          btn.className += "bg-emerald-600 text-white";
-        } else if (visited[i]) {
-          btn.className += "bg-rose-500 text-white";
-        } else {
-          btn.className += "bg-slate-200 text-slate-700";
-        }
-      });
+    function clearResponse() {
+      userAnswers[currentQ] = null;
+      qStatus[currentQ] = 'not-answered';
+      updatePalette(currentQ);
+      loadQuestion(currentQ);
     }
 
-    function updateAnsweredCount() {
-      const count = Object.keys(userAnswers).length;
-      const total = testSeries[currentTestIdx].questions.length;
-      document.getElementById('answeredCounter').innerText = `${count}/${total} हल`;
+    function jumpToQuestion(idx) {
+      loadQuestion(idx);
     }
 
-    function confirmSubmit() {
-      const total = testSeries[currentTestIdx].questions.length;
-      const count = Object.keys(userAnswers).length;
-      if (confirm(`आपने कुल ${total} में से ${count} प्रश्नों के उत्तर दिए हैं। क्या आप टेस्ट सबमिट करना चाहते हैं?`)) {
+    function confirmSubmitTest() {
+      const answeredCount = userAnswers.filter(a => a !== null).length;
+      if (confirm(`आप 150 में से ${answeredCount} प्रश्नों के उत्तर दे चुके हैं।\nक्या आप वाकई टेस्ट सबमिट करना चाहते हैं?`)) {
         submitExam();
       }
     }
 
     function submitExam() {
       clearInterval(timerInterval);
-      document.getElementById('examScreen').classList.add('hidden');
-      document.getElementById('timerContainer').classList.add('hidden');
-      document.getElementById('resultScreen').classList.remove('hidden');
+      document.getElementById('cbt-screen').classList.add('hidden');
+      document.getElementById('cbt-screen').classList.remove('flex');
+      document.getElementById('result-screen').classList.remove('hidden');
 
-      const qs = testSeries[currentTestIdx].questions;
       let correct = 0;
       let wrong = 0;
       let unattempted = 0;
 
-      qs.forEach((q, idx) => {
-        const ans = userAnswers[idx];
-        if (ans === undefined) {
+      questionsData.forEach((q, i) => {
+        if (userAnswers[i] === null) {
           unattempted++;
-        } else if (ans === q.ans) {
+        } else if (userAnswers[i] === q.ans) {
           correct++;
         } else {
           wrong++;
         }
       });
 
-      // BSSC Marking: +4 Correct, -1 Wrong
-      let totalMarks = (correct * 4) - (wrong * 1);
-      let maxMarks = qs.length * 4;
-
-      document.getElementById('resExamSubtitle').innerText = testSeries[currentTestIdx].title;
-      document.getElementById('resTotalMarks').innerText = `${totalMarks} / ${maxMarks}`;
-      document.getElementById('resCorrect').innerText = correct;
-      document.getElementById('resWrong').innerText = wrong;
-      document.getElementById('resUnattempted').innerText = unattempted;
+      const totalScore = (correct * 4) - (wrong * 1);
+      document.getElementById('score-total').innerText = `${totalScore} / 600`;
+      document.getElementById('score-correct').innerText = correct;
+      document.getElementById('score-wrong').innerText = wrong;
+      document.getElementById('score-unattempted').innerText = unattempted;
 
       renderSolutions();
     }
 
-    function toggleSolutions() {
-      const sol = document.getElementById('solutionContainer');
-      sol.classList.toggle('hidden');
-      if (!sol.classList.contains('hidden')) {
-        sol.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-
     function renderSolutions() {
-      const container = document.getElementById('solutionList');
-      container.innerHTML = '';
-      const qs = testSeries[currentTestIdx].questions;
+      const list = document.getElementById('solutions-list');
+      list.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
 
-      qs.forEach((q, idx) => {
-        const userA = userAnswers[idx];
-        const isCorrect = userA === q.ans;
-        const isSkipped = userA === undefined;
+      questionsData.forEach((q, i) => {
+        const uAns = userAnswers[i];
+        const isCorrect = uAns === q.ans;
+        const isSkipped = uAns === null;
 
-        const card = document.createElement('div');
-        card.className = `p-4 rounded-xl border ${isSkipped ? 'bg-slate-50 border-slate-200' : isCorrect ? 'bg-emerald-50/50 border-emerald-300' : 'bg-rose-50/50 border-rose-300'}`;
-        
-        let statusBadge = isSkipped ? 
-          `<span class="text-xs bg-slate-200 text-slate-700 px-2 py-0.5 rounded font-bold">Unattempted</span>` :
-          isCorrect ?
-          `<span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">✓ सही (+4)</span>` :
-          `<span class="text-xs bg-rose-100 text-rose-800 px-2 py-0.5 rounded font-bold">✗ गलत (-1)</span>`;
+        let badge = '';
+        if (isSkipped) {
+          badge = '<span class="px-2.5 py-0.5 rounded text-xs font-bold bg-slate-100 text-slate-600 border border-slate-300">छोड़ा गया</span>';
+        } else if (isCorrect) {
+          badge = '<span class="px-2.5 py-0.5 rounded text-xs font-bold bg-emerald-100 text-emerald-700 border border-emerald-300">सही (+4)</span>';
+        } else {
+          badge = '<span class="px-2.5 py-0.5 rounded text-xs font-bold bg-rose-100 text-rose-700 border border-rose-300">गलत (-1)</span>';
+        }
 
-        card.innerHTML = `
-          <div class="flex justify-between items-start gap-2 mb-2">
-            <h4 class="font-bold text-slate-800 text-sm md:text-base">Q.${idx + 1}: ${q.text}</h4>
-            ${statusBadge}
+        const div = document.createElement('div');
+        div.className = 'p-5 border rounded-xl bg-slate-50 space-y-3';
+        div.innerHTML = `
+          <div class="flex items-center justify-between border-b pb-2">
+            <span class="font-bold text-slate-700">प्रश्न ${i + 1}</span>
+            ${badge}
           </div>
-          ${q.svg ? `<div class="my-3 flex justify-center bg-white p-2 rounded border border-slate-200 max-w-xs mx-auto">${q.svg}</div>` : ''}
-          ${q.table ? `<div class="my-3 flex justify-center">${q.table}</div>` : ''}
-          <div class="text-xs md:text-sm space-y-1 mb-3">
-            <p class="text-slate-600">आपका उत्तर: <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-600'}">${userA !== undefined ? q.options[userA] : 'छोड़ दिया'}</span></p>
-            <p class="text-emerald-800 font-bold">सही उत्तर: ${q.options[q.ans]}</p>
+          <div class="text-slate-800 font-medium">${q.q}</div>
+          ${visualFigures[q.id] ? `<div class="my-2 flex justify-center">${visualFigures[q.id]}</div>` : ''}
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+            ${q.options.map((opt, oIdx) => {
+              let optStyle = 'bg-white border-slate-200 text-slate-700';
+              if (oIdx === q.ans) optStyle = 'bg-emerald-50 border-emerald-500 font-bold text-emerald-800';
+              if (uAns === oIdx && !isCorrect) optStyle = 'bg-rose-50 border-rose-500 font-bold text-rose-800';
+              return `<div class="p-2.5 border rounded-lg ${optStyle}">(${letters[oIdx]})${opt}</div>`;
+            }).join('')}
           </div>
-          <div class="p-3 bg-white rounded-lg border border-slate-200 text-xs text-slate-600">
-            <b class="text-indigo-900 block mb-1">व्याख्या (Solution):</b> ${q.exp}
+          <div class="bg-blue-50 border border-blue-200 p-3 rounded-lg text-sm text-blue-900 leading-relaxed">
+            <strong class="text-blue-950">व्याख्या / Solution:</strong> ${q.exp}
           </div>
         `;
-        container.appendChild(card);
+        list.appendChild(div);
       });
-    }
-
-    function toggleFullScreen() {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(() => {});
-      } else if (document.exitFullscreen) {
-        document.exitFullscreen();
-      }
     }
   </script>
 </body>
