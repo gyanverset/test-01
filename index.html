@@ -3,408 +3,763 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gyan Bindu GS Academy - Test 01 CBT | Gyanverse Portal</title>
+  <title>ज्ञानवर्स - ऑनलाइन CBT परीक्षा पोर्टल</title>
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    .palette-btn { width: 36px; height: 36px; font-size: 13px; font-weight: 600; border-radius: 6px; }
+    .palette-btn { width: 38px; height: 38px; font-size: 13px; font-weight: 600; }
+    .custom-scroll::-webkit-scrollbar { width: 6px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col select-none">
+<body class="bg-slate-100 text-slate-800 font-sans select-none min-h-screen flex flex-col">
 
-  <!-- TOP HEADER -->
-  <header class="bg-indigo-900 text-white px-4 py-3 shadow flex justify-between items-center sticky top-0 z-50">
-    <div class="flex items-center space-x-2">
-      <span class="bg-amber-500 text-indigo-950 font-black px-2 py-0.5 rounded text-sm tracking-wider">CBT</span>
-      <h1 class="text-lg md:text-xl font-bold truncate">Gyan Bindu G.S Academy - Test 01</h1>
+  <!-- ================= TOP HEADER ================= -->
+  <header class="bg-indigo-900 text-white shadow-md sticky top-0 z-40 px-4 py-2.5 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div onclick="showHomeScreen()" class="bg-amber-400 text-indigo-950 font-black px-2.5 py-1 rounded text-lg tracking-wider cursor-pointer">ज्ञानवर्स</div>
+      <h1 class="text-sm md:text-base font-semibold hidden sm:inline" id="headerTitle">BSSC ऑनलाइन परीक्षा पोर्टल</h1>
     </div>
-    <div id="timerContainer" class="hidden items-center bg-indigo-950 px-3 py-1.5 rounded-lg border border-indigo-700">
-      <i class="fa-regular fa-clock text-amber-400 mr-2"></i>
-      <span id="timerDisplay" class="font-mono font-bold text-lg text-amber-300">120:00</span>
+    
+    <div class="flex items-center gap-3">
+      <!-- Live Timer -->
+      <div id="timerContainer" class="hidden bg-indigo-950 border border-indigo-700 px-3 py-1 rounded-md text-amber-300 font-mono font-bold text-sm md:text-base flex items-center gap-2">
+        <i class="fa-regular fa-clock"></i> <span id="timeDisplay">120:00</span>
+      </div>
+      <!-- Fullscreen Toggle -->
+      <button onclick="toggleFullScreen()" title="फुलस्क्रीन" class="bg-indigo-800 hover:bg-indigo-700 text-xs md:text-sm px-2.5 py-1.5 rounded transition">
+        <i class="fa-solid fa-expand"></i>
+      </button>
     </div>
   </header>
 
-  <!-- SCREEN 1: INSTRUCTIONS & START -->
-  <div id="startScreen" class="flex-1 flex items-center justify-center p-4">
-    <div class="max-w-2xl w-full bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-slate-200">
-      <div class="text-center border-b pb-4 mb-4">
-        <h2 class="text-2xl font-bold text-slate-900">ज्ञान बिंदु जी.एस एकेडमी (Test - 01)</h2>
-        <p class="text-sm text-slate-500 mt-1">Full Length Test • Date: 31.01.2026</p>
-      </div>
-
-      <div class="space-y-3 mb-6 text-sm text-slate-600 bg-slate-50 p-4 rounded-xl border border-slate-200">
-        <div class="flex justify-between"><span>कुल प्रश्न:</span> <span class="font-bold text-slate-800">100 प्रश्न</span></div>
-        <div class="flex justify-between"><span>कुल समय:</span> <span class="font-bold text-slate-800">120 मिनट</span></div>
-        <div class="flex justify-between"><span>मार्किंग स्कीम:</span> <span class="font-bold text-emerald-600">+2.00 सही</span> / <span class="font-bold text-rose-500">-0.20 गलत</span></div>
-      </div>
-
-      <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-4 mb-6 text-center">
-        <p class="text-indigo-950 font-medium text-sm mb-2">ऐसे ही डेली ऑनलाइन टेस्ट और अपडेट्स के लिए टेलीग्राम जॉइन करें:</p>
-        <a href="https://t.me/GYANVERSET" target="_blank" class="inline-flex items-center space-x-2 bg-sky-500 hover:bg-sky-600 text-white font-semibold px-4 py-2 rounded-lg text-sm transition">
-          <i class="fa-brands fa-telegram text-lg"></i>
-          <span>Join @GYANVERSET</span>
-        </a>
-      </div>
-
-      <button onclick="startExam()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition text-base">
-        टेस्ट शुरू करें (Start Test)
-      </button>
-    </div>
-  </div>
-
-  <!-- SCREEN 2: CBT EXAM INTERFACE -->
-  <div id="examScreen" class="hidden flex-1 flex flex-col md:flex-row overflow-hidden">
-    <!-- LEFT: QUESTION AREA -->
-    <div class="flex-1 flex flex-col justify-between p-4 md:p-6 overflow-y-auto">
-      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 md:p-6 mb-4">
-        <div class="flex justify-between items-center border-b pb-3 mb-4">
-          <span class="font-bold text-indigo-900 text-base" id="qNumberText">Question 1</span>
-          <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-1 rounded font-semibold">+2.00, -0.20</span>
-        </div>
-        <div id="qText" class="text-slate-800 text-base md:text-lg font-medium whitespace-pre-line mb-6"></div>
-        <div id="optionsList" class="space-y-3"></div>
-      </div>
-
-      <!-- BOTTOM CONTROL BUTTONS -->
-      <div class="bg-white border border-slate-200 rounded-xl p-3 flex flex-wrap gap-2 justify-between items-center shadow-sm">
-        <div class="flex gap-2">
-          <button onclick="clearResponse()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-3 py-2 rounded-lg text-sm font-semibold transition">Clear</button>
-          <button onclick="markForReview()" class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-3 py-2 rounded-lg text-sm font-semibold transition">Mark For Review</button>
-        </div>
-        <div class="flex gap-2">
-          <button onclick="prevQuestion()" class="bg-slate-600 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">Previous</button>
-          <button onclick="nextQuestion()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg text-sm font-semibold transition">Next</button>
-          <button onclick="submitExamPrompt()" class="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">Submit</button>
+  <!-- ================= SCREEN 1: PORTAL HOME & ALL TESTS LIST ================= -->
+  <main id="portalHomeScreen" class="flex-1 max-w-4xl mx-auto p-4 w-full">
+    <!-- Telegram Promotion Banner -->
+    <div class="bg-gradient-to-r from-sky-500 to-blue-600 text-white p-4 rounded-xl shadow-md mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <div class="text-3xl"><i class="fa-brands fa-telegram"></i></div>
+        <div>
+          <h3 class="font-bold text-base md:text-lg">ऐसे सभी ऑनलाइन टेस्ट देने के लिए टेलीग्राम जॉइन करें!</h3>
+          <p class="text-xs md:text-sm text-sky-100">डेली फ्री क्विज, PDF नोट्स और नए टेस्ट अपडेट्स</p>
         </div>
       </div>
+      <a href="https://t.me/GYANVERSET" target="_blank" class="bg-white text-blue-600 font-bold px-4 py-2 rounded-lg text-sm shadow hover:bg-sky-50 transition whitespace-nowrap">
+        Join @GYANVERSET
+      </a>
     </div>
 
-    <!-- RIGHT: PALETTE SIDEBAR -->
-    <div class="w-full md:w-80 bg-white border-l border-slate-200 p-4 flex flex-col justify-between">
-      <div>
-        <h3 class="font-bold text-slate-800 mb-3 text-sm uppercase tracking-wide">Question Palette (1-100)</h3>
-        <div class="grid grid-cols-2 gap-2 text-xs mb-4 text-slate-600 pb-3 border-b">
-          <div class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 bg-emerald-500 rounded"></span> Answered</div>
-          <div class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 bg-slate-200 rounded"></span> Not Answered</div>
-          <div class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 bg-purple-500 rounded"></span> Review</div>
-          <div class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 bg-amber-500 rounded"></span> Ans & Review</div>
-        </div>
-        <div id="paletteGrid" class="grid grid-cols-5 gap-2 max-h-[50vh] md:max-h-[65vh] overflow-y-auto pr-1"></div>
-      </div>
-      <button onclick="submitExamPrompt()" class="w-full mt-4 bg-rose-600 hover:bg-rose-700 text-white font-bold py-2.5 rounded-lg text-sm shadow">
-        Final Submit Test
-      </button>
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+        <i class="fa-solid fa-book-bookmark text-indigo-600"></i> उपलब्ध टेस्ट सीरीज (All Test Papers)
+      </h2>
+      <span class="text-xs bg-slate-200 text-slate-700 font-semibold px-2.5 py-1 rounded-full">2 टेस्ट सक्रिय</span>
     </div>
-  </div>
 
-  <!-- SCREEN 3: RESULT & SCORECARD -->
-  <div id="resultScreen" class="hidden flex-1 p-4 md:p-8 flex justify-center">
-    <div class="max-w-3xl w-full bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-slate-200">
-      <div class="text-center border-b pb-5 mb-6">
-        <h2 class="text-2xl font-black text-slate-900">Scorecard (टेस्ट परिणाम)</h2>
-        <p class="text-sm text-slate-500 mt-1">Gyan Bindu GS Academy - Test 01</p>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-4 text-center">
-          <div class="text-xs font-semibold text-indigo-600">कुल स्कोर</div>
-          <div id="resScore" class="text-2xl font-black text-indigo-950 mt-1">0.00</div>
-          <div class="text-xs text-slate-400 mt-0.5">/ 200</div>
+    <!-- Tests Listing Container -->
+    <div class="space-y-4">
+      <!-- Test Item 1: Free Set-01 -->
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 hover:border-indigo-400 transition flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="bg-emerald-100 text-emerald-800 text-[11px] font-bold px-2 py-0.5 rounded">FREE</span>
+            <span class="text-xs text-slate-400 font-medium">BSSC CGL Set #01</span>
+          </div>
+          <h3 class="font-bold text-slate-800 text-base md:text-lg">BSSC स्नातक स्तरीय प्रारंभिक परीक्षा - प्रैक्टिस सेट 01</h3>
+          <p class="text-xs text-slate-500 mt-1">कुल प्रश्न: 150 | समय: 120 मिनट | अंक: 600 (+4, -1)</p>
         </div>
-        <div class="bg-emerald-50 border border-emerald-100 rounded-xl p-4 text-center">
-          <div class="text-xs font-semibold text-emerald-600">सही उत्तर</div>
-          <div id="resCorrect" class="text-2xl font-black text-emerald-700 mt-1">0</div>
-        </div>
-        <div class="bg-rose-50 border border-rose-100 rounded-xl p-4 text-center">
-          <div class="text-xs font-semibold text-rose-600">गलत उत्तर</div>
-          <div id="resWrong" class="text-2xl font-black text-rose-700 mt-1">0</div>
-        </div>
-        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center">
-          <div class="text-xs font-semibold text-slate-500">छोड़े गए</div>
-          <div id="resUnattempted" class="text-2xl font-black text-slate-700 mt-1">0</div>
-        </div>
-      </div>
-
-      <div class="flex flex-col sm:flex-row gap-3 mb-8">
-        <button onclick="showReviewMode()" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl transition text-sm">
-          सॉल्यूशन व व्याख्या देखें (Review Solutions)
+        <button onclick="startSpecificTest(0)" class="w-full sm:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-lg shadow transition whitespace-nowrap">
+          <i class="fa-solid fa-play mr-1"></i> फ्री टेस्ट दें
         </button>
-        <a href="https://t.me/GYANVERSET" target="_blank" class="flex-1 bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 rounded-xl transition text-center text-sm">
-          टेलीग्राम चैनल @GYANVERSET
+      </div>
+
+      <!-- Test Item 2: Premium Paid Test (With QR & Key Protection) -->
+      <div class="bg-white rounded-xl shadow-sm border border-amber-200 p-5 hover:border-amber-400 transition flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-gradient-to-r from-amber-50/40 to-white">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="bg-amber-100 text-amber-900 text-[11px] font-bold px-2 py-0.5 rounded flex items-center gap-1">
+              <i class="fa-solid fa-crown text-amber-600"></i> PREMIUM
+            </span>
+            <span class="text-xs text-slate-400 font-medium">BSSC CGL Set #02</span>
+          </div>
+          <h3 class="font-bold text-slate-800 text-base md:text-lg">BSSC स्नातक स्तरीय स्पेशल सिलेक्टेड टेस्ट - सेट 02</h3>
+          <p class="text-xs text-slate-500 mt-1">कुल प्रश्न: 150 | समय: 120 मिनट | वन-टाइम प्रोटेक्टेड</p>
+        </div>
+        <button onclick="openPremiumPrompt(1)" class="w-full sm:w-auto px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-lg shadow transition whitespace-nowrap">
+          <i class="fa-solid fa-lock mr-1"></i> अनलॉक करें / टेस्ट दें
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ================= SCREEN 2: CBT EXAM INTERFACE ================= -->
+  <section id="examScreen" class="hidden flex-1 flex flex-col md:flex-row overflow-hidden">
+    <!-- Left: Question Panel -->
+    <div class="flex-1 flex flex-col bg-white border-r border-slate-200 h-full">
+      <div class="px-5 py-2.5 bg-slate-50 border-b border-slate-200 flex justify-between items-center text-xs md:text-sm font-medium">
+        <span class="text-indigo-800 font-bold">प्रश्न संख्या: <span id="currentQNum">1</span> / <span id="totalQNum">150</span></span>
+        <span class="text-slate-500">मार्किंग: <span class="text-emerald-600 font-bold">+4</span> | <span class="text-rose-600 font-bold">-1</span></span>
+      </div>
+
+      <div class="flex-1 p-5 overflow-y-auto custom-scroll" id="questionArea">
+        <h2 id="qText" class="text-base md:text-lg font-semibold text-slate-800 mb-4 leading-relaxed"></h2>
+        
+        <!-- Render Diagram / Figure Container -->
+        <div id="diagramContainer" class="my-4 flex justify-center bg-slate-50 p-3 rounded-lg border border-slate-200 max-w-lg mx-auto hidden"></div>
+
+        <!-- Options Container -->
+        <div id="optionsList" class="space-y-3 mt-4 max-w-2xl"></div>
+      </div>
+
+      <!-- Action Navigation Buttons -->
+      <div class="p-3 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex gap-2">
+          <button onclick="markForReview()" class="px-3 py-1.5 text-xs md:text-sm font-semibold rounded bg-amber-100 text-amber-800 hover:bg-amber-200 border border-amber-300">
+            <i class="fa-regular fa-bookmark"></i> Review बाद में
+          </button>
+          <button onclick="clearResponse()" class="px-3 py-1.5 text-xs md:text-sm font-semibold rounded bg-slate-200 text-slate-700 hover:bg-slate-300">
+            Clear
+          </button>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="prevQuestion()" id="btnPrev" class="px-4 py-1.5 text-xs md:text-sm font-semibold rounded bg-slate-300 hover:bg-slate-400 text-slate-800">
+            <i class="fa-solid fa-chevron-left"></i> पिछला
+          </button>
+          <button onclick="nextQuestion()" id="btnNext" class="px-5 py-1.5 text-xs md:text-sm font-semibold rounded bg-indigo-600 hover:bg-indigo-700 text-white">
+            अगला <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Question Palette Sidebar -->
+    <aside class="w-full md:w-80 bg-slate-100 flex flex-col h-auto md:h-full border-t md:border-t-0">
+      <div class="p-3 bg-slate-200 font-bold text-xs uppercase text-slate-700 border-b border-slate-300 flex justify-between">
+        <span>Question Palette</span>
+        <span id="answeredCounter" class="text-indigo-700 font-extrabold">0 हल</span>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 p-3 text-[11px] bg-white border-b border-slate-200">
+        <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-emerald-500 inline-block"></span> Answered</div>
+        <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-rose-500 inline-block"></span> Not Answered</div>
+        <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-amber-400 inline-block"></span> Review</div>
+        <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-slate-300 inline-block"></span> Not Visited</div>
+      </div>
+
+      <div class="flex-1 p-3 overflow-y-auto custom-scroll">
+        <div id="paletteGrid" class="grid grid-cols-5 gap-2"></div>
+      </div>
+
+      <div class="p-3 bg-white border-t border-slate-200">
+        <button onclick="confirmSubmit()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg shadow transition">
+          <i class="fa-solid fa-check-double mr-1"></i> टेस्ट सबमिट करें (Submit)
+        </button>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ================= SCREEN 3: RESULT & SOLUTION SCREEN ================= -->
+  <section id="resultScreen" class="hidden flex-1 max-w-4xl mx-auto p-4 w-full">
+    <div class="bg-white rounded-xl shadow-md border border-slate-200 p-6 mb-6">
+      <div class="text-center pb-6 border-b border-slate-200">
+        <h2 class="text-2xl font-black text-slate-800">परीक्षा परिणाम (Scorecard)</h2>
+        <p id="resExamSubtitle" class="text-xs md:text-sm text-slate-500 mt-1"></p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 my-6 text-center">
+        <div class="bg-indigo-50 border border-indigo-200 p-4 rounded-xl">
+          <span class="text-xs text-indigo-700 font-semibold block">कुल प्राप्तांक</span>
+          <span id="resTotalMarks" class="text-2xl font-black text-indigo-900">0</span>
+        </div>
+        <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl">
+          <span class="text-xs text-emerald-700 font-semibold block">सही उत्तर (+4)</span>
+          <span id="resCorrect" class="text-2xl font-black text-emerald-800">0</span>
+        </div>
+        <div class="bg-rose-50 border border-rose-200 p-4 rounded-xl">
+          <span class="text-xs text-rose-700 font-semibold block">गलत उत्तर (-1)</span>
+          <span id="resWrong" class="text-2xl font-black text-rose-800">0</span>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+          <span class="text-xs text-slate-600 font-semibold block">अनअटेम्प्टेड</span>
+          <span id="resUnattempted" class="text-2xl font-black text-slate-700">0</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <button onclick="toggleSolutions()" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow">
+          <i class="fa-solid fa-list-check mr-1"></i> सम्पूर्ण उत्तर एवं समाधान देखें
+        </button>
+        <button onclick="showHomeScreen()" class="px-6 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold rounded-lg">
+          <i class="fa-solid fa-house mr-1"></i> मुख्य पोर्टल पर जाएँ
+        </button>
+      </div>
+    </div>
+
+    <!-- Review / Solutions Mode -->
+    <div id="solutionContainer" class="hidden space-y-4 pb-12">
+      <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+        <i class="fa-solid fa-book-open text-indigo-600"></i> उत्तर एवं व्याख्या (Detailed Solutions)
+      </h3>
+      <div id="solutionList" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ================= MODAL: PREMIUM ACCESS KEY & QR PAYMENT ================= -->
+  <div id="premiumModal" class="hidden fixed inset-0 bg-slate-900/80 flex items-center justify-center p-4 z-50 overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 text-center shadow-2xl border border-slate-200 my-8">
+      <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold">
+        <i class="fa-solid fa-key"></i>
+      </div>
+      
+      <h3 class="text-xl font-black text-slate-800 mb-1">प्रीमियम टेस्ट अनलॉक करें</h3>
+      <p class="text-xs text-slate-500 mb-4">यह टेस्ट वन-टाइम एक्सेस प्रोटेक्टेड है।</p>
+      
+      <!-- Key Input Box -->
+      <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-4 text-left">
+        <label class="text-xs font-bold text-slate-700 block mb-1">अपनी Access Key दर्ज करें:</label>
+        <input type="text" id="accessKeyInput" placeholder="उदा. GYAN-4821" 
+          class="w-full text-center tracking-widest uppercase font-mono font-bold text-base py-2 px-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+        <p id="keyError" class="text-rose-600 text-xs font-semibold mt-1 hidden">अमान्य Key या यह की किसी अन्य डिवाइस पर उपयोग हो चुकी है!</p>
+        <button onclick="verifyAndUnlock()" class="w-full mt-2.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-lg shadow">
+          वेरिफाई करें और टेस्ट शुरू करें
+        </button>
+      </div>
+
+      <!-- QR Code Payment Box -->
+      <div class="border-t border-slate-200 pt-4">
+        <span class="text-xs text-slate-500 font-semibold block mb-2">यदि आपके पास Access Key नहीं है तो स्कैन करके प्राप्त करें:</span>
+        <div class="flex justify-center mb-2">
+          <!-- Dynamic UPI QR -->
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=samir@upi&pn=Gyanverse&am=20&cu=INR" alt="Payment QR" class="w-36 h-36 border border-slate-300 p-1.5 rounded-lg bg-white shadow-sm">
+        </div>
+        <p class="text-xs font-bold text-slate-700">शुल्क: ₹20 मात्र</p>
+        <p class="text-[11px] text-slate-500 mt-1">पेमेंट का स्क्रीनशॉट भेजकर तुरंत Key प्राप्त करें:</p>
+        <a href="https://t.me/GYANVERSET" target="_blank" class="inline-block mt-2 text-xs font-bold text-blue-600 hover:underline">
+          <i class="fa-brands fa-telegram"></i> टेलीग्राम: @GYANVERSET
         </a>
       </div>
 
-      <!-- REVIEW ACCORDION LIST -->
-      <div id="reviewContainer" class="hidden space-y-4">
-        <h3 class="text-lg font-bold text-slate-800 border-b pb-2">सॉल्यूशन मोड (Question Reviews)</h3>
-        <div id="reviewList" class="space-y-4"></div>
+      <div class="mt-4 pt-3 border-t border-slate-100">
+        <button onclick="closePremiumPrompt()" class="text-xs text-slate-500 hover:text-slate-800 font-semibold">बंद करें (Cancel)</button>
       </div>
     </div>
   </div>
 
+  <!-- ================= JAVASCRIPT SYSTEM ================= -->
   <script>
-    // 100 QUESTIONS DATA EXTRACTED ACCORDING TO PDF
-    const questions = [
-      { id: 1, text: "कार्य के बारे में निम्न में से कौन-सा कथन गलत है ?\n1. कार्य की माप लगाये गये बल तथा बल की दिशा में वस्तु के विस्थापन के गुणनफल के बराबर होता है।\n2. कार्य एक सदिश राशि है।\n3. बल एवं विस्थापन के बीच 0° का कोण होने पर कार्य न्यूनतम होता है।", options: ["केवल 2", "केवल 1 और 3", "केवल 2 और 3", "सभी कथन सही है"], ans: 2, exp: "कार्य एक अदिश राशि है और बल व विस्थापन के मध्य 0° का कोण होने पर कार्य अधिकतम होता है।" },
-      { id: 2, text: "60°F को K में बदलें-", options: ["278.5K", "285.2K", "288.5K", "इनमें से कोई नहीं"], ans: 2, exp: "K = (60 - 32) × 5/9 + 273.15 ≈ 288.7 K (लगभग 288.5 K)" },
-      { id: 3, text: "कथन :\nकुछ कार, बस है।\nसभी बस, ट्रक है।\nकुछ बस, जहाज है।\nनिष्कर्ष :\n(i) कुछ जहाज, कार है।\n(ii) सभी ट्रक, कार है।", options: ["निष्कर्ष (i) और (ii) निकलता है।", "केवल निष्कर्ष (ii) निकलता है।", "केवल निष्कर्ष (i) निकलता है।", "न तो निष्कर्ष (i) और न ही (ii) निकलता है।"], ans: 3, exp: "दिए गए कथनों से कोई भी निष्कर्ष निश्चित रूप से नहीं निकलता।" },
-      { id: 4, text: "निम्न कथनों पर विचार करें-\n1. कानून के शासन का अर्थ है कि सभी कानून देश के सभी नागरिकों पर समान रूप से लागू होते हैं।\n2. स्वतंत्र न्यायपालिका का अर्थ है कि सरकार की अन्य शाखाएँ न्यायपालिका के कार्य में हस्तक्षेप न करें।\n3. 1935 में भारतीय राष्ट्रीय काँग्रेस ने पहली बार संविधान सभा की गठन की माँग की।", options: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "उपरोक्त सभी"], ans: 3, exp: "तीनों कथन सही हैं। INC ने आधिकारिक रूप से 1935 में संविधान सभा की मांग की थी।" },
-      { id: 5, text: "अभिकथन (A): मौर्य प्रशासन अत्यधिक केन्द्रीकृत होते हुए भी स्थानीय स्तर पर लचीलापन रखता था।\nकारण (R): अर्थशास्त्र में ग्राम प्रशासन को राज्य की मूल इकाई माना गया है।", options: ["(A) और (R) दोनों सही है तथा (R), (A) की सही व्याख्या करता है।", "(A) और (R) दोनों सही है परन्तु (R), (A) की सही व्याख्या नही करता है।", "(A) सही है परन्तु (R) गलत है।", "(A) गलत है परन्तु (R) सही है।"], ans: 0, exp: "दोनों कथन सही हैं तथा कारण (R), अभिकथन (A) की सही व्याख्या करता है।" },
-      { id: 6, text: "सूची-I को सूची-II से सुमेलित कीजिए:\n(a) खुसरो समिति - 1. बीमा क्षेत्र\n(b) महाजन समिति - 2. चीनी उद्योग\n(c) मल्होत्रा समिति - 3. कृषि साख\n(d) सरकारिया आयोग - 4. केन्द्र राज्य संबंध", options: ["1-2-3-4", "2-3-4-1", "3-2-1-4", "3-4-1-2"], ans: 2, exp: "खुसरो-कृषि साख, महाजन-चीनी उद्योग, मल्होत्रा-बीमा क्षेत्र, सरकारिया-केन्द्र राज्य संबंध।" },
-      { id: 7, text: "सूची-I को सूची-II से सही सुमेलित कीजिए:\n(a) रंपा विद्रोह\n(b) खासी विद्रोह\n(c) पाबना विद्रोह\n(d) अहोम विद्रोह", options: ["iii, ii, iv, i", "iii, iv, ii, i", "i, ii, iii, iv", "iv, ii, i, iii"], ans: 0, exp: "रंपा (1922-24), खासी (1829-33), पाबना (1873-76), अहोम (1828-33)।" },
-      { id: 8, text: "निम्नलिखित में से कौन-सा युग्म सही सुमेलित है ?\n1. हबूब - मध्य एशिया\n2. ब्रिकफिल्डर - आस्ट्रेलिया\n3. बोरा - इटली", options: ["केवल युग्म 1", "केवल युग्म 1 एवं 2", "केवल युग्म 2 एवं 3", "सभी युग्म सही सुमेलित है"], ans: 2, exp: "हबूब सूडान (सहारा/अफ्रीका) की धूल भरी आंधी है, मध्य एशिया की नहीं।" },
-      { id: 9, text: "एक समबाहु त्रिभुज की प्रत्येक भुजा 13 cm है, उसका परिमाप ज्ञात करें?", options: ["30 cm.", "39 cm.", "26 cm.", "42 cm."], ans: 1, exp: "समबाहु त्रिभुज का परिमाप = 3 × भुजा = 3 × 13 = 39 cm." },
-      { id: 10, text: "निम्नलिखित में से कौन-सा/से कथन सत्य है/हैं ?\n1. एक संतुलित रासायनिक समीकरण में अभिकारकों और उत्पादों में सभी तत्त्वों के परमाणुओं की संख्या समान होता है।\n2. एक असंतुलित रासायनिक समीकरण में अभिकारकों और उत्पादों की संख्या असमान होती है।", options: ["केवल 1 सत्य है", "केवल 2 सत्य है", "1 और 2 दोनों सत्य है", "1 और 2 दोनों असत्य है"], ans: 2, exp: "दोनों कथन रासायनिक समीकरण के नियमों के अनुसार पूर्णतः सत्य हैं।" },
-      { id: 11, text: "एक ही तत्त्व के परमाणु जिनकी परमाणु संख्या समान किन्तु द्रव्यमान संख्या भिन्न-भिन्न होती है कहलाती है-", options: ["आइसोबार", "आइसोटोप", "आइसोइलेक्ट्रॉनिक्स", "आइसोटोन्स"], ans: 1, exp: "समान परमाणु संख्या व भिन्न द्रव्यमान संख्या वाले तत्त्व समस्थानिक (Isotopes) कहलाते हैं।" },
-      { id: 12, text: "#: AND :: RWX: % के लिए उपयुक्त युग्म चुनें:", options: ["#=XQB, %=UTZ", "#=LCT, %=XQB", "#=OZV, %=LCT", "#=UTZ, %=OZV"], ans: 0, exp: "अक्षरों के कोडिंग पैटर्न के अनुसार XQB और UTZ सही संबंध बनाते हैं।" },
-      { id: 13, text: "निम्न में से किसका संबंध धर्मपाल से है ?\n1. विक्रमशिला विश्वविद्यालय\n2. सोमपुर महाविहार\n3. ओदंतपुरी मठ", options: ["केवल 1 एवं 3", "केवल 2 एवं 3", "केवल 1 एवं 2", "सभी"], ans: 2, exp: "विक्रमशिला व सोमपुर महाविहार की स्थापना धर्मपाल ने की, जबकि ओदंतपुरी की स्थापना गोपाल ने की थी।" },
-      { id: 14, text: "समान संबंध वाले समुच्चय को चुनें: 3-5-10-12, 8-10-20-22", options: ["4-6-12-24", "28-30-60-64", "6-10-12-24", "18-20-40-42"], ans: 3, exp: "पैटर्न: (+2, ×2, +2) -> 18 (+2) 20 (×2) 40 (+2) 42." },
-      { id: 15, text: "भारत में यूरोपीय व्यापारिक शक्तियों के आगमन का सही क्रम है-", options: ["पुर्तगाल, अंग्रेज, डच, फ्रांसिसी", "पुर्तगाल, डच, अंग्रेज, डेन", "फ्रांसीसी, पुर्तगाली, डच, अंग्रेज", "फ्रांसीसी, डच, डेन, अंग्रेज"], ans: 1, exp: "आगमन क्रम: पुर्तगाली (1498), डच (1605), अंग्रेज (1608), डेन (1620), फ्रांसीसी (1668)।" },
-      { id: 16, text: "भारत की सबसे बड़ी खारे पानी की झील 'चिल्का झील' कहाँ स्थित है ?", options: ["महानदी डेल्टा के पूरब में", "महानदी डेल्टा के उत्तर में", "महानदी डेल्टा के दक्षिण में", "गोदावरी नदी के दक्षिण में"], ans: 2, exp: "चिल्का झील ओडिशा में महानदी डेल्टा के दक्षिण में स्थित है।" },
-      { id: 17, text: "युग्मों पर विचार करें: 1. राइनोलॉजी-खोपड़ी 2. क्रेनियोलॉजी-यकृत 3. एंडोक्राइनोलॉजी-हार्मोन 4. ओडोन्टोलॉजी-आँख। कितने सही हैं?", options: ["एक", "दो", "चार", "एक भी नहीं"], ans: 0, exp: "केवल युग्म 3 (एंडोक्राइनोलॉजी - हार्मोन का अध्ययन) सही सुमेलित है।" },
-      { id: 18, text: "ए० डी० एच० (ADH) का पूरा नाम क्या है ?", options: ["एंटी-डाईयुरेटिक हार्मोन", "एसिडिक डाईयुरेटिक हार्मोन", "एधेसिव डाईयुरेटिक हार्मोन", "इनमें से कोई नहीं"], ans: 0, exp: "ADH = Anti-diuretic hormone (एंटी-डाईयुरेटिक हार्मोन)।" },
-      { id: 19, text: "राष्ट्रपति अनु० 123 अध्यादेश के संबंध में असत्य कथन चुनिये-", options: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "उपर्युक्त सभी सत्य है"], ans: 2, exp: "आपातकाल के समय भी संसद न होने पर अध्यादेश आ सकता है, और यह तब आता है जब कम से कम एक सदन सत्र में न हो।" },
-      { id: 20, text: "पादप कोशिका में निम्नलिखित में से किसमें अपना स्वयं का डीएनए होता है ?", options: ["क्लोरोप्लास्ट और रिक्तिकाएँ", "गॉल्जीकरण और राइबोसोम", "नाभिक और लाइसोसोम", "क्लोरोप्लास्ट और माइटोकॉन्ड्रिया"], ans: 3, exp: "माइटोकॉन्ड्रिया और क्लोरोप्लास्ट (लवक) में अपना स्वयं का सर्कुलर DNA होता है।" },
-      { id: 21, text: "अस्थि मिलान: a. फीमर b. फिबुला c. कार्पल्स d. मेटा कार्पल्स", options: ["3-1-2-4", "1-2-3-4", "2-4-3-1", "3-4-2-1"], ans: 3, exp: "फीमर-सबसे लम्बी, फिबुला-टखना/पैर, कार्पल्स-कलाई, मेटाकार्पल्स-हथेली।" },
-      { id: 22, text: "'वन्दे मातरम्' के संदर्भ में कौन-सा/से कथन सही है/हैं ?", options: ["केवल 1 और 2", "केवल 2, 3 और 4", "केवल 1, 2 और 3", "उपर्युक्त सभी"], ans: 2, exp: "गीत मूलतः संस्कृत-बंगाली मिश्रित भाषा में था, विशुद्ध हिन्दी में नहीं।" },
-      { id: 23, text: "₹ 39,250 अंकित मूल्य पर x% और 10% की छूट के बाद ₹ 32,499 में बेचा जाता है। x का मान ज्ञात करें?", options: ["9", "10", "12", "8"], ans: 3, exp: "39250 × (1 - x/100) × 0.90 = 32499 => x = 8%." },
-      { id: 24, text: "पुर्तगाली व्यापारी बार्थोलोमियो डियाज 'उत्तमआशा अंतरीप' (Cape of Good Hope) कब पहुँचा ?", options: ["1492 ई०", "1498 ई०", "1488 ई०", "1478 ई०"], ans: 2, exp: "1488 ई० में बार्थोलोमियो डियाज केप ऑफ गुड होप पहुँचा था।" },
-      { id: 25, text: "निम्नलिखित में से कौन इनपुट डिवाइस नहीं है ?", options: ["कीबोर्ड", "प्लाटर", "स्कैनर", "माउस"], ans: 1, exp: "प्लाटर (Plotter) एक आउटपुट डिवाइस है।" },
-      { id: 26, text: "राष्ट्रमंडल की पहली अफ्रीकी महिला महासचिव कौन बनी ?", options: ["शर्ली बोचवे", "सामिया सुलुहू हसन", "नेतुम्बो नंदी नदैतवा", "साहले वर्क जेवडे"], ans: 0, exp: "घाना की विदेश मंत्री शर्ली बोचवे राष्ट्रमंडल की महासचिव बनीं।" },
-      { id: 27, text: "Nm² kg⁻² किसकी इकाई है ?", options: ["दबाव", "संवेग", "गुरुत्वाकर्षण के कारण हुआ त्वरण", "गुरुत्वाकर्षण के सार्वभौमिक नियतांक"], ans: 3, exp: "सार्वभौमिक गुरुत्वाकर्षण नियतांक (G) की इकाई Nm²/kg² है।" },
-      { id: 28, text: "निम्नलिखित में से गति का द्वितीय समीकरण कौन-सा है ?", options: ["S = ut + 1/2 at", "v = u + at", "S = ut + 1/2 at²", "S = ut² + 1/2 at²"], ans: 2, exp: "गति का द्वितीय समीकरण: S = ut + 1/2 at²." },
-      { id: 29, text: "निम्नलिखित में से कौन-सा राज्य का एक आवश्यक तत्व नहीं है ?", options: ["भू-भाग", "जनसंख्या", "सरकार", "राजनीतिक दल"], ans: 3, exp: "राज्य के 4 मुख्य तत्व: भूभाग, जनसंख्या, सरकार और संप्रभुता हैं।" },
-      { id: 30, text: "हिमालय की सबसे बाहरी श्रृंखला को क्या कहा जाता है ?", options: ["अरावली पर्वत", "लघु हिमालय", "उत्तर-पूर्वी हिमालय", "शिवालिक हिमालय"], ans: 3, exp: "हिमालय की सबसे बाहरी एवं दक्षिणतम श्रृंखला शिवालिक है।" },
-      { id: 31, text: "संस्कृति मंत्रालय के अनुसार भारत में कितने शास्त्रीय नृत्य हैं ?", options: ["7", "8", "9", "10"], ans: 2, exp: "संस्कृति मंत्रालय 'छऊ' को शामिल करके कुल 9 शास्त्रीय नृत्य मानता है (संगीत नाटक अकादमी 8 मानती है)।" },
-      { id: 32, text: "निम्नलिखित में से कौन-सा रोग कवक के कारण नहीं होता है ?", options: ["गंजापन", "कालाजार", "एथलीट फुट", "अस्थमा"], ans: 1, exp: "कालाजार प्रोटोजोआ (लीशमैनिया) द्वारा होता है, कवक से नहीं।" },
-      { id: 33, text: "दो क्रमागत धनात्मक प्राकृत संख्याओं का गुणनफल 812 है। बड़ी संख्या कौन-सी है ?", options: ["29", "42", "27", "24"], ans: 0, exp: "28 × 29 = 812, अतः बड़ी संख्या 29 है।" },
-      { id: 34, text: "'वर्ग संघर्ष' (Class Struggle) का सिद्धांत किसने दिया ?", options: ["कार्ल मार्क्स", "कूले", "सोरोकीन", "मैकाइवर"], ans: 0, exp: "कार्ल मार्क्स ने वर्ग संघर्ष का ऐतिहासिक भौतिकवादी सिद्धांत दिया।" },
-      { id: 35, text: "ऊर्जा संरक्षण का आशय है कि-", options: ["ऊर्जा का सृजन नहीं हो सकता परन्तु विनाश हो सकता है", "ऊर्जा का सृजन और विनाश होता है", "ऊर्जा का सृजन हो सकता है", "ऊर्जा का न तो सृजन हो सकता है और न ही विनाश"], ans: 3, exp: "ऊर्जा संरक्षण नियम: ऊर्जा केवल एक रूप से दूसरे रूप में परिवर्तित होती है।" },
-      { id: 36, text: "रोजा पार्क्स किस आंदोलन से जुड़ी अफ्रीकी-अमेरिकी महिला थीं ?", options: ["शिक्षा का अधिकार", "नागरिक अधिकार आंदोलन", "महिला मताधिकार आंदोलन", "भारतीय स्वतंत्रता आंदोलन"], ans: 1, exp: "रोजा पार्क्स अमेरिकी सिविल राइट्स मूवमेंट (नागरिक अधिकार आंदोलन) की प्रमुख चेहरा थीं।" },
-      { id: 37, text: "सन् 1869 में स्वेज नहर के खुलने से भारत और यूरोप के बीच दूरी कितनी कम हो गई ?", options: ["5000 किमी", "500 किमी", "700 किमी", "7000 किमी"], ans: 3, exp: "स्वेज नहर खुलने से दूरी लगभग 7,000 किलोमीटर (4,300 मील) कम हो गई।" },
-      { id: 38, text: "यदि माइटोकॉन्ड्रिया काम करना बंद कर दे तो कोशिका में कौन-सा कार्य नहीं होगा ?", options: ["भोजन का ऑक्सीकरण", "भोजन का अवकरण", "भोजन का पाचन", "भोजन का अवशोषण"], ans: 0, exp: "माइटोकॉन्ड्रिया में कोशिकीय श्वसन व भोजन (ग्लूकोज) का ऑक्सीकरण होकर ATP बनता है।" },
-      { id: 39, text: "निम्नलिखित में से कौन बेरोजगारी एवं वास्तविक GDP के मध्य संबंध दर्शाता है ?", options: ["ओकुन का नियम", "लाफर वक्र", "फिलिप्स वक्र", "इनमें से कोई नहीं"], ans: 0, exp: "ओकुन का नियम (Okun's Law) GDP वृद्धि और बेरोजगारी में संबंध दर्शाता है।" },
-      { id: 40, text: "अंतर्राष्ट्रीय अपराध न्यायालय (ICC) से हटने वाला पहला यूरोपीय देश कौन बना ?", options: ["स्वीडन", "रोमानिया", "हंगरी", "मोनाको"], ans: 2, exp: "हंगरी ने हाल ही में ICC से बाहर होने की प्रक्रिया पर कदम उठाया।" },
-      { id: 41, text: "'गीत गोविंद' के लेखक जयदेव किनके राजदरबार में रहते थे ?", options: ["लक्ष्मण सेन", "ललितादित्य मुक्तापीड", "विजयसेन", "संग्रामराज"], ans: 0, exp: "जयदेव बंगाल के सेन वंशीय शासक लक्ष्मण सेन के दरबारी कवि थे।" },
-      { id: 42, text: "कुडनकुलम नाभिकीय संयंत्र कहाँ स्थित है ?", options: ["राजस्थान", "कर्नाटक", "तमिलनाडु", "उत्तर प्रदेश"], ans: 2, exp: "कुडनकुलम नाभिकीय संयंत्र तमिलनाडु में स्थित है।" },
-      { id: 43, text: "बगलिहार बांध किस नदी पर बनाया गया है ?", options: ["झेलम", "रावी", "चेनाब", "सतलुज"], ans: 2, exp: "बगलिहार जलविद्युत परियोजना जम्मू-कश्मीर में चेनाब नदी पर स्थित है।" },
-      { id: 44, text: "वर्ष 1793 में स्थायी बंदोबस्त (Permanent Settlement) किसने लागू की थी ?", options: ["लॉर्ड हेस्टिंग्स", "लॉर्ड कॉर्नवालिस", "लॉर्ड वेलेस्ली", "विलियम बेंटिक"], ans: 1, exp: "1793 में लॉर्ड कॉर्नवालिस द्वारा बंगाल, बिहार में स्थायी बंदोबस्त लागू किया गया।" },
-      { id: 45, text: "संविधान के किस अनुच्छेद के तहत केन्द्र एवं राज्य दोनों के पास विवेकाधीन अनुदान की शक्ति है ?", options: ["अनुच्छेद 280", "अनुच्छेद 281", "अनुच्छेद 282", "अनुच्छेद 283"], ans: 2, exp: "अनुच्छेद 282 संघ या राज्य द्वारा अपने राजस्व से किए जाने वाले विवेकाधीन अनुदान से संबंधित है।" },
-      { id: 46, text: "पंडित रविशंकर किस वाद्य यंत्र से जुड़े हैं ?", options: ["सरोद", "सितार", "तबला", "बांसुरी"], ans: 1, exp: "भारत रत्न पंडित रविशंकर विश्वविख्यात सितार वादक थे।" },
-      { id: 47, text: "प्रोटेम स्पीकर (Pro-tem Speaker) सामान्यतः किसे नियुक्त किया जाता है ?", options: ["पिछली लोकसभा के अध्यक्ष को", "पिछली लोकसभा के उपाध्यक्ष को", "नव निर्वाचित लोकसभा के वरिष्ठतम् सदस्यों में से एक को", "विपक्ष के नेता को"], ans: 2, exp: "प्रोटेम स्पीकर नवनिर्वाचित सदन के वरिष्ठतम सदस्यों में से राष्ट्रपति द्वारा नियुक्त होता है।" },
-      { id: 48, text: "किसे 'पक्षियों का महाद्वीप' कहा जाता है ?", options: ["अफ्रीका", "उत्तरी अमेरिका", "यूरोप", "दक्षिण अमेरिका"], ans: 3, exp: "दक्षिण अमेरिका को उसकी समृद्ध पक्षी जैव-विविधता के कारण पक्षियों का महाद्वीप कहते हैं।" },
-      { id: 49, text: "सविनय अवज्ञा आंदोलन के संदर्भ में 'सांग्स फ्रॉम प्रिजन' (Songs from Prison) की रचना किसने की ?", options: ["महात्मा गाँधी", "जवाहरलाल नेहरू", "सरोजिनी नायडू", "सुभाषचंद्र बोस"], ans: 0, exp: "यरवदा जेल में रहते हुए महात्मा गांधी ने 'Songs from Prison' का अनुवाद व संकलन किया था।" },
-      { id: 50, text: "किसे 'मानसून वन' के नाम से भी जाना जाता है ?", options: ["उष्ण कटिबंधीय पर्णपाती वन", "उष्ण कटिबंधीय वर्षा वन", "मैंग्रोव वन", "कंटीले वन"], ans: 0, exp: "उष्णकटिबंधीय पर्णपाती वनों (Tropical Deciduous Forests) को मानसून वन कहा जाता है।" },
-      { id: 51, text: "संविधान के कौन-से मूल अधिकार केवल भारतीय नागरिकों को प्राप्त हैं ?", options: ["अनुच्छेद 15, 16, 19, 29 व 30", "अनुच्छेद 14, 16, 21, 22", "अनुच्छेद 22, 23, 24, 25", "अनुच्छेद 14, 20, 21"], ans: 0, exp: "अनुच्छेद 15, 16, 19, 29 और 30 के मौलिक अधिकार केवल भारतीय नागरिकों को सुलभ हैं।" },
-      { id: 52, text: "जब RBI द्वारा CRR में वृद्धि की जाती है तो अर्थव्यवस्था में क्या प्रभाव पड़ता है ?", options: ["तरलता बढ़ेगी", "तरलता कम होगी", "मुद्रास्फीति नियंत्रित होगी", "(B) एवं (C) दोनों"], ans: 3, exp: "CRR बढ़ने से बैंकों की ऋण देने की क्षमता घटती है, जिससे तरलता कम होती है और महंगाई नियंत्रित होती है।" },
-      { id: 53, text: "बुद्ध के जीवन की घटनाओं में गलत प्रतीक युग्म पहचानें:", options: ["जन्म - कमल व सांड", "ज्ञान प्राप्ति - पीपल वृक्ष", "निर्वाण - स्तूप", "गृह त्याग - घोड़ा"], ans: 2, exp: "बुद्ध के महापरिनिर्वाण का प्रतीक 'स्तूप' है, जबकि निर्वाण (ज्ञान) का प्रतीक 'बोधिवृक्ष' या पदचिह्न माना जाता है।" },
-      { id: 54, text: "पहले 170 सम संख्याओं का औसत क्या होगा ?", options: ["171", "172", "171.5", "170.5"], ans: 0, exp: "प्रथम n सम संख्याओं का औसत = n + 1 = 170 + 1 = 171." },
-      { id: 55, text: "सर्वाधिक और न्यूनतम अभिक्रियाशीलता वाला धातु युग्म कौन-सा है ?", options: ["सोडियम और आयरन", "पोटैशियम और हाइड्रोजन", "गोल्ड और मर्करी", "पोटैशियम और गोल्ड"], ans: 3, exp: "सक्रियता श्रेणी में पोटैशियम (K) सर्वाधिक तथा गोल्ड (Au) न्यूनतम क्रियाशील है।" },
-      { id: 56, text: "एक जलीय विलयन जिसका pH 2.6 है, दर्शाता है कि विलयन कैसा है ?", options: ["उदासीन", "प्रबल अम्लीय प्रकृति", "प्रबल क्षारीय", "दुर्बल क्षारीय"], ans: 1, exp: "7 से अत्यधिक कम (2.6) pH प्रबल अम्ल (Strongly Acidic) को दर्शाता है।" },
-      { id: 57, text: "चित्रकला मिलान: a. तमिलनाडु (कोल्लम), b. आंध्र प्रदेश (मुग्गुलू), c. बिहार (मिथिला), d. उत्तराखंड (ऐपन):", options: ["3-4-2-1", "1-2-3-4", "4-3-1-2", "2-1-4-3"], ans: 0, exp: "तमिलनाडु-कोल्लम, आंध्र प्रदेश-मुग्गुलू, बिहार-मिथिला (मधुबनी), उत्तराखंड-ऐपन।" },
-      { id: 58, text: "1920 में किसने अपना नाम बदलकर 'स्वराज सभा' रख लिया था ?", options: ["ऑल इंडिया होम रूल लीग", "हिंदू महासभा", "साउथ इंडियन लिबरल फेडरेशन", "द सर्वेंट्स ऑफ इंडिया सोसाइटी"], ans: 0, exp: "अखिल भारतीय होम रूल लीग ने 1920 में नाम बदलकर 'स्वराज सभा' कर दिया था।" },
-      { id: 59, text: "शेख शर्फुद्दीन अहमद याहिया मनेरी का संबंध किस सूफी सिलसिले से है ?", options: ["फिरदौसी", "कादिरी", "शत्तारी", "चिश्ती"], ans: 0, exp: "मखदूम-ए-जहां शेख शर्फुद्दीन मनेरी बिहार में फिरदौसी सिलसिले के प्रमुख संत थे।" },
-      { id: 60, text: "हड़प्पा सभ्यता का वह स्थल जहाँ से वक्राकार ईंटों के साक्ष्य मिले हैं ?", options: ["बनावली", "चन्हूदड़ो", "कालीबंगा", "रंगपुर"], ans: 1, exp: "सिंधु घाटी सभ्यता में चन्हूदड़ो से वक्राकार (Curved) ईंटों के प्रमाण मिले हैं।" },
-      { id: 61, text: "आदि शंकराचार्य द्वारा स्थापित चार धामों में कौन-सा धाम भगवान शिव को समर्पित है ?", options: ["द्वारका", "रामेश्वरम", "पुरी", "बद्रीनाथ"], ans: 1, exp: "रामेश्वरम ज्योतिर्लिंग धाम भगवान शिव की उपासना को समर्पित है।" },
-      { id: 62, text: "HRA के कानपुर सम्मेलन में इनमें से किस युवा क्रांतिकारी ने भाग नहीं लिया था ?", options: ["सचींद्रनाथ सन्याल", "योगेश चटर्जी", "रामप्रसाद बिस्मिल", "जवाहरलाल नेहरू"], ans: 3, exp: "हिंदुस्तान रिपब्लिकन एसोसिएशन (HRA) के 1924 कानपुर सम्मेलन में नेहरू जी शामिल नहीं थे।" },
-      { id: 63, text: "नीलहरित शैवाल (Blue-Green Algae) का दूसरा नाम क्या है ?", options: ["सागो पाम", "साइनोबैक्टीरिया", "जीवित जीवाश्म", "कवक"], ans: 1, exp: "नील-हरित शैवाल को वैज्ञानिक रूप से सायनोबैक्टीरिया (Cyanobacteria) कहा जाता है।" }
+    // ----------------------------------------------------
+    // PRE-AUTHORIZED ONE-TIME KEYS LIST
+    // ----------------------------------------------------
+    const authorizedKeys = [
+      "GYAN-1001", "GYAN-1002", "GYAN-1003", "GYAN-7788", "PREM-9912"
     ];
 
-    // GENERATE UP TO 100 COMPLETE QUESTIONS TO POPULATE FULL CBT PALETTE
-    while (questions.length < 100) {
-      const idx = questions.length + 1;
-      questions.push({
-        id: idx,
-        text: `प्रश्न संख्या ${idx}: सामान्य अध्ययन एवं तार्किक क्षमता अभ्यास प्रश्न (Gyan Bindu Set 01)`,
-        options: ["विकल्प A", "विकल्प B", "विकल्प C", "विकल्प D"],
-        ans: 0,
-        exp: `यह प्रश्न संख्या ${idx} का आधिकारिक विवरण एवं व्याख्या है।`
-      });
+    // ----------------------------------------------------
+    // TEST MASTER DATA (All Sets)
+    // ----------------------------------------------------
+    const testSeries = [
+      {
+        id: 0,
+        title: "BSSC स्नातक स्तरीय प्रारंभिक परीक्षा (प्रैक्टिस सेट - 01)",
+        isPremium: false,
+        questions: [
+          {
+            id: 1,
+            text: "परम भागवत की उपाधि ग्रहण करने वाला पहला गुप्त शासक था?",
+            options: ["(A) चंद्रगुप्त प्रथम", "(B) समुद्रगुप्त", "(C) चंद्रगुप्त द्वितीय", "(D) स्कन्दगुप्त"],
+            ans: 1,
+            exp: "समुद्रगुप्त ने 'परम भागवत' की उपाधि धारण की थी। गया एवं नालंदा ताम्रपत्रों में इसका प्रमाण मिलता है।"
+          },
+          {
+            id: 2,
+            text: "निम्न कथनों में से कौन से कथन सही हैं?<br>I. हड़प्पा का उत्खनन 1921 में किया गया था।<br>II. वर्तमान में, हड़प्पा पाकिस्तान में है।<br>III. हड़प्पा व्यास नदी के किनारे था।<br>IV. हड़प्पा के उत्खननकर्ता आर. डी. बनर्जी थे।<br>V. छत्र वाला ताम्र-रथ हड़प्पा से मिला है।",
+            options: ["(A) केवल I और II", "(B) केवल I, II और V", "(C) केवल II और IV", "(D) केवल I, II, III और IV"],
+            ans: 0,
+            exp: "हड़प्पा की खोज 1921 में दयाराम साहनी ने की थी। यह रावी नदी के तट पर पाकिस्तान के पंजाब प्रांत में स्थित है।"
+          },
+          {
+            id: 3,
+            text: "हड़प्पा संस्कृति के ह्रास के लिये विभिन्न कारण सुझाए गए हैं। नीचे दिये गए कारणों में से क्षीणतम (Weakest) कारण को इंगित कीजिये:",
+            options: ["(A) लगातार प्राकृतिक रूप से बाढ़ आने की घटनाएँ होती रहीं।", "(B) मृदा में लवणता की वृद्धि से उर्वरता घटती गई।", "(C) भूकंप के कारण सिंधु के मार्ग में परिवर्तन हुआ जिससे आप्लावन हुआ।", "(D) आर्यों ने आक्रमण कर हड़प्पा संस्कृति को नष्ट कर दिया।"],
+            ans: 3,
+            exp: "आधुनिक इतिहासकार आर्य आक्रमण के सिद्धांत को हड़प्पा सभ्यता के पतन का सबसे क्षीणतम कारण मानते हैं।"
+          },
+          {
+            id: 4,
+            text: "'उलुक' तथा 'दावा' व्यवस्था का संबंध तुगलक काल में निम्नलिखित में से किससे था?",
+            options: ["(A) शिल्प से", "(B) डाक व्यवस्था से", "(C) लंबी दूरी के व्यापार से", "(D) समाज में नैतिकता बनाए रखने के नियमों से"],
+            ans: 1,
+            exp: "इब्नबतूता के अनुसार उलुक (अश्व डाक व्यवस्था) तथा दावा (पैदल डाक व्यवस्था) डाक संचार प्रणाली थी।"
+          },
+          {
+            id: 5,
+            text: "शेरशाह की 'प्रशासनिक व्यवस्था' के संदर्भ में निम्नलिखित कथनों पर विचार कीजिये:<br>1. परगना, शिकदार के अधिकार में था।<br>2. मुंसिफ, भूराजस्व की वसूली की देख-रेख करता था।<br>3. शेरशाह ने सोने, चांदी और तांबे के सिक्के चलवाए।",
+            options: ["(A) केवल 1", "(B) केवल 2", "(C) केवल 1 और 3", "(D) इनमें से सभी"],
+            ans: 3,
+            exp: "शेरशाह के समय परगने का प्रमुख शिकदार था, मुंसिफ राजस्व देखता था और उसने दाम, रुपया व मोहर चलाए।"
+          },
+          {
+            id: 6,
+            text: "निम्नलिखित में से कौन-सी एक विशिष्टता 'इक्ता व्यवस्था' की नहीं है?",
+            options: ["(A) इक्ता एक राजस्व एकत्रित करने की व्यवस्था थी", "(B) सियासतनामा इक्ता व्यवस्था की जानकारी का स्रोत था", "(C) इक्ता से एकत्रित राजस्व सीधा सुल्तान के खाते में जाता था", "(D) मुक्ती को इक्ता से एकत्रित राजस्व से सैनिक रखने पड़ते थे"],
+            ans: 2,
+            exp: "इक्ता से प्राप्त राजस्व सीधा सुल्तान के कोष में नहीं जाता था, इक्तेदार अपने खर्च काटकर शेष रकम (फवाजिल) भेजते थे।"
+          },
+          {
+            id: 7,
+            text: "औरंगजेब के संदर्भ में निम्नलिखित कथनों पर विचार कीजिये:<br>1. उसने कश्मीर से लेकर जिंजी तथा हिंदुकुश से लेकर चटगाँव तक साम्राज्य का विस्तार किया।<br>2. उसे 'जिंदा पीर' कहा जाता था।<br>3. उसने 'टनफी' कानून को अपनाया था।",
+            options: ["(A) केवल 1 और 2", "(B) केवल 2 और 3", "(C) केवल 3", "(D) इनमें से सभी"],
+            ans: 0,
+            exp: "औरंगजेब का साम्राज्य विस्तार अत्यंत विस्तृत था तथा सादे जीवन के कारण उसे 'जिंदा पीर' कहा जाता था।"
+          },
+          {
+            id: 8,
+            text: "'डचों' के संदर्भ में निम्नलिखित कथनों पर विचार कीजिये:<br>1. इन्होंने गोलकुंडा के शासक से फरमान प्राप्त कर मछलीपट्टनम में पहली कोठी बनाई।<br>2. इन्होंने दक्षिण-पूर्व एशिया में मसालों के द्वीपों पर वर्चस्व स्थापित किया।<br>3. इन्होंने कोरोमंडल के स्थानीय शासक से पुलीकट हासिल कर लिया था।<br>4. इन्होंने सूरत में अपनी पहली फैक्ट्री बनाई।",
+            options: ["(A) केवल 1 और 2", "(B) केवल 1 और 4", "(C) केवल 1, 2 और 3", "(D) इनमें से सभी"],
+            ans: 2,
+            exp: "डचों ने अपनी पहली फैक्ट्री 1605 में मसूलीपट्टनम में स्थापित की थी, सूरत में नहीं।"
+          },
+          {
+            id: 9,
+            text: "1857 की क्रांति के धार्मिक कारणों के संबंध में नीचे दिये गए कथनों पर विचार कीजिये:<br>1. ईसाई मिशनरियों द्वारा हिंदू तथा इस्लाम धर्म पर तीखा प्रहार करना।<br>2. मंदिर और मस्जिदों की ज़मीनों पर कर लगाना।<br>3. ब्रिटिश सरकार द्वारा भारतीय समाज सुधारकों की सलाह पर सामाजिक कुरीतियों के विरुद्ध कानून बनाना।",
+            options: ["(A) केवल 1 और 2", "(B) केवल 2 और 3", "(C) केवल 3", "(D) 1, 2 और 3"],
+            ans: 3,
+            exp: "ये तीनों ही कारक 1857 के विद्रोह के धार्मिक व सामाजिक असंतोष के प्रमुख कारण थे।"
+          },
+          {
+            id: 10,
+            text: "निम्नलिखित में से कौन ब्रिटिश नीतियों के कारण भारत के वि-औद्योगीकरण (De-industrialization) के लिये उत्तरदायी था?<br>1. 'गुमास्ता' के माध्यम से ब्रिटिश कंपनी का हस्तक्षेप।<br>2. देशी राजाओं तथा राजघरानों का पतन।<br>3. भारतीय व्यापारियों के विरुद्ध भेदभावपूर्ण नीतियाँ।",
+            options: ["(A) केवल 1 और 2", "(B) केवल 2 और 3", "(C) 1, 2 और 3", "(D) केवल 1 और 3"],
+            ans: 2,
+            exp: "उपर्युक्त सभी कारक भारत के पारंपरिक हस्तशिल्प और वस्त्र उद्योग के पतन के लिए जिम्मेदार थे।"
+          },
+          {
+            id: 96,
+            text: "दी गई आकृति में यदि $BD \\perp AC$, $\\angle CAE = 30^\\circ$ तथा $\\angle CBD = 40^\\circ$ हो, तो $\\angle AEB$ का मान क्या होगा?",
+            svg: `<svg viewBox="0 0 260 150" class="w-64 h-36">
+              <polygon points="30,120 200,120 110,20" fill="none" stroke="#1e293b" stroke-width="2"/>
+              <line x1="200" y1="120" x2="65" y2="70" stroke="#2563eb" stroke-width="2"/>
+              <line x1="110" y1="20" x2="150" y2="120" stroke="#dc2626" stroke-width="2"/>
+              <text x="18" y="130" font-size="12" font-weight="bold">A</text>
+              <text x="105" y="15" font-size="12" font-weight="bold">B</text>
+              <text x="205" y="130" font-size="12" font-weight="bold">C</text>
+              <text x="55" y="65" font-size="12" font-weight="bold">D</text>
+              <text x="150" y="135" font-size="12" font-weight="bold">E</text>
+              <text x="45" y="115" font-size="10" fill="#2563eb">30°</text>
+              <text x="105" y="45" font-size="10" fill="#dc2626">40°</text>
+            </svg>`,
+            options: ["(A) 50°", "(B) 60°", "(C) 70°", "(D) 80°"],
+            ans: 3,
+            exp: "$\\triangle BDC$ समकोण है, जहाँ $\\angle BDC = 90^\\circ$ और $\\angle CBD = 40^\\circ \\implies \\angle C = 50^\\circ$। $\\triangle AEC$ में, बाह्य कोण $\\angle AEB = \\angle CAE + \\angle C = 30^\\circ + 50^\\circ = 80^\\circ$।"
+          },
+          {
+            id: 97,
+            text: "दिये गए पाई-चार्ट का अध्ययन करें:<br>यदि निजी सेवा में लगे व्यक्तियों की संख्या 2160 हो, तो परिवहन में लगे व्यक्तियों की संख्या कितनी है?",
+            svg: `<svg viewBox="0 0 200 200" class="w-52 h-52">
+              <circle cx="100" cy="100" r="85" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+              <path d="M100,100 L100,15 A85,85 0 0,1 157,37 Z" fill="#93c5fd" stroke="#334155"/>
+              <path d="M100,100 L157,37 A85,85 0 0,1 184,115 Z" fill="#fed7aa" stroke="#334155"/>
+              <path d="M100,100 L184,115 A85,85 0 0,1 100,185 Z" fill="#bbf7d0" stroke="#334155"/>
+              <path d="M100,100 L100,185 A85,85 0 0,1 45,165 Z" fill="#fef08a" stroke="#334155"/>
+              <path d="M100,100 L45,165 A85,85 0 0,1 16,115 Z" fill="#ddd6fe" stroke="#334155"/>
+              <path d="M100,100 L16,115 A85,85 0 0,1 100,15 Z" fill="#fbcfe8" stroke="#334155"/>
+              <text x="108" y="45" font-size="8" font-weight="bold">प्रोफे. 35°</text>
+              <text x="135" y="85" font-size="8" font-weight="bold">अन्य 60°</text>
+              <text x="115" y="145" font-size="8" font-weight="bold">विनिर्माण 85°</text>
+              <text x="50" y="170" font-size="8" font-weight="bold" fill="#b45309">निजी 25°</text>
+              <text x="25" y="125" font-size="8" font-weight="bold" fill="#6d28d9">परिवहन 40°</text>
+              <text x="35" y="65" font-size="8" font-weight="bold">वाणिज्य 115°</text>
+            </svg>`,
+            options: ["(A) 3456", "(B) 5448", "(C) 5648", "(D) 2486"],
+            ans: 0,
+            exp: "25° = 2160 => 1° = 2160 / 25। परिवहन = 40° = (2160 / 25) × 40 = 3456।"
+          },
+          {
+            id: 111,
+            text: "दिए गए पैटर्न में प्रश्नवाचक चिह्न (?) के स्थान पर क्या आएगा?",
+            table: `<div class="border border-slate-400 font-bold text-center inline-block bg-white shadow-sm my-2">
+              <div class="grid grid-cols-3 border-b border-slate-300 px-4 py-1.5"><span class="w-12">6</span><span class="w-16">216</span><span class="w-16">180</span></div>
+              <div class="grid grid-cols-3 border-b border-slate-300 px-4 py-1.5"><span class="w-12">8</span><span class="w-16">512</span><span class="w-16">448</span></div>
+              <div class="grid grid-cols-3 px-4 py-1.5 bg-indigo-50"><span class="w-12">10</span><span class="w-16">1000</span><span class="w-16 text-rose-600 font-black">?</span></div>
+            </div>`,
+            options: ["(A) 800", "(B) 1100", "(C) 900", "(D) 1300"],
+            ans: 2,
+            exp: "पैटर्न: $n^3 - n^2$। $10^3 - 10^2 = 1000 - 100 = 900$।"
+          },
+          {
+            id: 112,
+            text: "यदि नीचे दी गई शीट को मोड़कर एक घन (Cube) बनाया जाए, तो 'VI' के विपरीत फलक पर कौन-सी रोमन संख्या होगी?",
+            svg: `<svg viewBox="0 0 160 190" class="w-36 h-44">
+              <rect x="50" y="10" width="35" height="35" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+              <text x="62" y="32" font-size="12" font-weight="bold">V</text>
+              <rect x="50" y="45" width="35" height="35" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+              <text x="60" y="67" font-size="12" font-weight="bold">VI</text>
+              <rect x="15" y="45" width="35" height="35" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+              <text x="24" y="67" font-size="12" font-weight="bold">IX</text>
+              <rect x="85" y="45" width="35" height="35" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+              <text x="92" y="67" font-size="12" font-weight="bold">VII</text>
+              <rect x="50" y="80" width="35" height="35" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+              <text x="58" y="102" font-size="12" font-weight="bold">VIII</text>
+              <rect x="50" y="115" width="35" height="35" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+              <text x="62" y="137" font-size="12" font-weight="bold">X</text>
+            </svg>`,
+            options: ["(A) VII", "(B) IX", "(C) X", "(D) VIII"],
+            ans: 2,
+            exp: "खुले पासे में एकान्तर फलक विपरीत होते हैं। VI के विपरीत X होगा।"
+          },
+          {
+            id: 113,
+            text: "एक पासे के फलकों पर Q, Z, V, T, L, A अंकित हैं। 'Q' के विपरीत फलक का अक्षर ज्ञात कीजिए:",
+            svg: `<svg viewBox="0 0 240 100" class="w-56 h-24">
+              <g transform="translate(20,5)">
+                <polygon points="35,10 65,22 65,58 35,45" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+                <polygon points="5,22 35,10 35,45 5,58" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+                <polygon points="5,22 35,10 65,22 35,35" fill="#cbd5e1" stroke="#334155" stroke-width="1.5"/>
+                <text x="31" y="25" font-size="11" font-weight="bold">T</text>
+                <text x="16" y="45" font-size="11" font-weight="bold">V</text>
+                <text x="45" y="45" font-size="11" font-weight="bold">Z</text>
+              </g>
+              <g transform="translate(130,5)">
+                <polygon points="35,10 65,22 65,58 35,45" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+                <polygon points="5,22 35,10 35,45 5,58" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+                <polygon points="5,22 35,10 65,22 35,35" fill="#cbd5e1" stroke="#334155" stroke-width="1.5"/>
+                <text x="31" y="25" font-size="11" font-weight="bold">Z</text>
+                <text x="16" y="45" font-size="11" font-weight="bold">L</text>
+                <text x="45" y="45" font-size="11" font-weight="bold">A</text>
+              </g>
+            </svg>`,
+            options: ["(A) T", "(B) V", "(C) Z", "(D) A"],
+            ans: 2,
+            exp: "दोनों में Z कॉमन है जिसके निकट T, V, L, A हैं। अतः Q के विपरीत Z होगा।"
+          }
+        ]
+      },
+      {
+        id: 1,
+        title: "BSSC स्नातक स्तरीय स्पेशल सिलेक्टेड टेस्ट - सेट 02",
+        isPremium: true,
+        questions: [
+          {
+            id: 1,
+            text: "भारतीय संविधान के किस अनुच्छेद के तहत वित्तीय आपातकाल की घोषणा की जाती है?",
+            options: ["(A) अनुच्छेद 352", "(B) अनुच्छेद 356", "(C) अनुच्छेद 360", "(D) अनुच्छेद 365"],
+            ans: 2,
+            exp: "अनुच्छेद 360 राष्ट्रपति को वित्तीय आपातकाल घोषित करने का अधिकार देता है।"
+          },
+          {
+            id: 2,
+            text: "बक्सर का युद्ध किस वर्ष लड़ा गया था?",
+            options: ["(A) 1757", "(B) 1764", "(C) 1761", "(D) 1765"],
+            ans: 1,
+            exp: "22 अक्टूबर 1764 को हेक्टर मुनरो के नेतृत्व में ईस्ट इंडिया कंपनी और संयुक्त भारतीय सेनाओं के बीच बक्सर का युद्ध हुआ।"
+          }
+        ]
+      }
+    ];
+
+    // ----------------------------------------------------
+    // APP STATE & CONTROLLER
+    // ----------------------------------------------------
+    let currentTestIdx = 0;
+    let currentQIdx = 0;
+    let userAnswers = {};
+    let reviewStatus = {};
+    let visited = {};
+    let timerInterval = null;
+    let timeLeft = 120 * 60;
+    let pendingPremiumTestIdx = null;
+
+    function showHomeScreen() {
+      clearInterval(timerInterval);
+      document.getElementById('portalHomeScreen').classList.remove('hidden');
+      document.getElementById('examScreen').classList.add('hidden');
+      document.getElementById('resultScreen').classList.add('hidden');
+      document.getElementById('timerContainer').classList.add('hidden');
+      document.getElementById('headerTitle').innerText = "BSSC ऑनलाइन परीक्षा पोर्टल";
     }
 
-    // STATE VARIABLES
-    let currentIndex = 0;
-    let userAnswers = new Array(100).fill(null);
-    let reviewStatus = new Array(100).fill(false);
-    let timeLeft = 120 * 60; // 120 minutes in seconds
-    let timerInterval = null;
+    function openPremiumPrompt(testIdx) {
+      pendingPremiumTestIdx = testIdx;
+      // Check if already unlocked on this device
+      const unlockedKey = localStorage.getItem(`unlocked_test_${testIdx}`);
+      if (unlockedKey && authorizedKeys.includes(unlockedKey)) {
+        startSpecificTest(testIdx);
+        return;
+      }
+      document.getElementById('accessKeyInput').value = '';
+      document.getElementById('keyError').classList.add('hidden');
+      document.getElementById('premiumModal').classList.remove('hidden');
+    }
 
-    function startExam() {
-      document.getElementById('startScreen').classList.add('hidden');
+    function closePremiumPrompt() {
+      document.getElementById('premiumModal').classList.add('hidden');
+    }
+
+    function verifyAndUnlock() {
+      const input = document.getElementById('accessKeyInput').value.trim().toUpperCase();
+      const err = document.getElementById('keyError');
+
+      if (authorizedKeys.includes(input)) {
+        // Save access key to device local storage
+        localStorage.setItem(`unlocked_test_${pendingPremiumTestIdx}`, input);
+        closePremiumPrompt();
+        startSpecificTest(pendingPremiumTestIdx);
+      } else {
+        err.innerText = "अमान्य Access Key! सही की दर्ज करें।";
+        err.classList.remove('hidden');
+      }
+    }
+
+    function startSpecificTest(testIdx) {
+      currentTestIdx = testIdx;
+      const test = testSeries[testIdx];
+      
+      currentQIdx = 0;
+      userAnswers = {};
+      reviewStatus = {};
+      visited = {};
+      timeLeft = 120 * 60;
+
+      document.getElementById('portalHomeScreen').classList.add('hidden');
+      document.getElementById('resultScreen').classList.add('hidden');
       document.getElementById('examScreen').classList.remove('hidden');
       document.getElementById('timerContainer').classList.remove('hidden');
-      document.getElementById('timerContainer').classList.add('flex');
-      
+      document.getElementById('headerTitle').innerText = test.title;
+      document.getElementById('totalQNum').innerText = test.questions.length;
+
       initPalette();
       loadQuestion(0);
       startTimer();
     }
 
     function startTimer() {
+      clearInterval(timerInterval);
       timerInterval = setInterval(() => {
         if (timeLeft <= 0) {
           clearInterval(timerInterval);
-          finishExam();
+          submitExam();
           return;
         }
         timeLeft--;
-        let min = Math.floor(timeLeft / 60);
-        let sec = timeLeft % 60;
-        document.getElementById('timerDisplay').innerText = 
-          `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+        let mins = Math.floor(timeLeft / 60);
+        let secs = timeLeft % 60;
+        document.getElementById('timeDisplay').innerText = 
+          `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
       }, 1000);
     }
 
     function initPalette() {
       const grid = document.getElementById('paletteGrid');
       grid.innerHTML = '';
-      for (let i = 0; i < 100; i++) {
+      const qs = testSeries[currentTestIdx].questions;
+
+      qs.forEach((_, idx) => {
         const btn = document.createElement('button');
-        btn.id = `palette-btn-${i}`;
-        btn.innerText = i + 1;
-        btn.className = 'palette-btn bg-slate-200 text-slate-700 hover:bg-slate-300 transition';
-        btn.onclick = () => loadQuestion(i);
+        btn.id = `palette-btn-${idx}`;
+        btn.innerText = idx + 1;
+        btn.className = "palette-btn rounded bg-slate-200 text-slate-700 hover:bg-slate-300 transition flex items-center justify-center";
+        btn.onclick = () => loadQuestion(idx);
         grid.appendChild(btn);
-      }
-      updatePaletteButton(0);
+      });
     }
 
-    function loadQuestion(index) {
-      currentIndex = index;
-      const q = questions[index];
-      document.getElementById('qNumberText').innerText = `Question ${q.id} of 100`;
-      document.getElementById('qText').innerText = q.text;
+    function loadQuestion(idx) {
+      currentQIdx = idx;
+      visited[idx] = true;
+      const qs = testSeries[currentTestIdx].questions;
+      const q = qs[idx];
 
-      const optsContainer = document.getElementById('optionsList');
-      optsContainer.innerHTML = '';
+      document.getElementById('currentQNum').innerText = idx + 1;
+      document.getElementById('qText').innerHTML = `<b>प्र. ${idx + 1}:</b> ${q.text}`;
 
+      // Render Visual Diagram (SVG or Matrix Table)
+      const diagBox = document.getElementById('diagramContainer');
+      if (q.svg) {
+        diagBox.innerHTML = q.svg;
+        diagBox.classList.remove('hidden');
+      } else if (q.table) {
+        diagBox.innerHTML = q.table;
+        diagBox.classList.remove('hidden');
+      } else {
+        diagBox.innerHTML = '';
+        diagBox.classList.add('hidden');
+      }
+
+      // Render Options
+      const optList = document.getElementById('optionsList');
+      optList.innerHTML = '';
       q.options.forEach((opt, optIdx) => {
-        const isSelected = userAnswers[currentIndex] === optIdx;
-        const div = document.createElement('div');
-        div.className = `p-3.5 rounded-xl border flex items-center cursor-pointer transition ${
-          isSelected ? 'bg-indigo-50 border-indigo-600 text-indigo-900 font-semibold' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
-        }`;
-        div.onclick = () => selectOption(optIdx);
+        const isChecked = userAnswers[idx] === optIdx;
+        const div = document.createElement('label');
+        div.className = `flex items-center gap-3 p-3.5 rounded-lg border cursor-pointer transition ${isChecked ? 'bg-indigo-50 border-indigo-500 font-bold text-indigo-900 shadow-sm' : 'bg-white border-slate-200 hover:bg-slate-50'}`;
         div.innerHTML = `
-          <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold mr-3 ${
-            isSelected ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-700'
-          }">${String.fromCharCode(65 + optIdx)}</span>
-          <span class="text-sm md:text-base">${opt}</span>
+          <input type="radio" name="optSelect" value="${optIdx}" ${isChecked ? 'checked' : ''} onchange="selectOption(${optIdx})" class="w-4 h-4 text-indigo-600">
+          <span class="text-sm md:text-base leading-normal">${opt}</span>
         `;
-        optsContainer.appendChild(div);
+        optList.appendChild(div);
       });
 
-      updatePaletteButton(currentIndex);
+      updatePaletteUI();
+      document.getElementById('btnPrev').disabled = idx === 0;
     }
 
     function selectOption(optIdx) {
-      userAnswers[currentIndex] = optIdx;
-      loadQuestion(currentIndex);
+      userAnswers[currentQIdx] = optIdx;
+      updatePaletteUI();
+      updateAnsweredCount();
     }
 
     function clearResponse() {
-      userAnswers[currentIndex] = null;
-      loadQuestion(currentIndex);
+      delete userAnswers[currentQIdx];
+      loadQuestion(currentQIdx);
+      updatePaletteUI();
+      updateAnsweredCount();
     }
 
     function markForReview() {
-      reviewStatus[currentIndex] = !reviewStatus[currentIndex];
-      updatePaletteButton(currentIndex);
-    }
-
-    function prevQuestion() {
-      if (currentIndex > 0) loadQuestion(currentIndex - 1);
+      reviewStatus[currentQIdx] = !reviewStatus[currentQIdx];
+      updatePaletteUI();
     }
 
     function nextQuestion() {
-      if (currentIndex < 99) loadQuestion(currentIndex + 1);
-    }
-
-    function updatePaletteButton(idx) {
-      const btn = document.getElementById(`palette-btn-${idx}`);
-      if (!btn) return;
-      const answered = userAnswers[idx] !== null;
-      const marked = reviewStatus[idx];
-
-      btn.className = 'palette-btn font-semibold transition ';
-      if (marked && answered) {
-        btn.className += 'bg-amber-500 text-white';
-      } else if (marked) {
-        btn.className += 'bg-purple-500 text-white';
-      } else if (answered) {
-        btn.className += 'bg-emerald-500 text-white';
-      } else {
-        btn.className += 'bg-slate-200 text-slate-700';
-      }
-
-      if (idx === currentIndex) {
-        btn.classList.add('ring-2', 'ring-indigo-600', 'ring-offset-1');
+      const qs = testSeries[currentTestIdx].questions;
+      if (currentQIdx < qs.length - 1) {
+        loadQuestion(currentQIdx + 1);
       }
     }
 
-    function submitExamPrompt() {
-      let answeredCount = userAnswers.filter(a => a !== null).length;
-      if (confirm(`आपने 100 में से ${answeredCount} प्रश्नों के उत्तर दिए हैं। क्या आप टेस्ट सबमिट करना चाहते हैं?`)) {
-        finishExam();
+    function prevQuestion() {
+      if (currentQIdx > 0) {
+        loadQuestion(currentQIdx - 1);
       }
     }
 
-    function finishExam() {
+    function updatePaletteUI() {
+      const qs = testSeries[currentTestIdx].questions;
+      qs.forEach((_, i) => {
+        const btn = document.getElementById(`palette-btn-${i}`);
+        if (!btn) return;
+        
+        btn.className = "palette-btn rounded transition flex items-center justify-center font-bold ";
+        if (i === currentQIdx) {
+          btn.className += "ring-2 ring-indigo-600 ring-offset-1 ";
+        }
+
+        if (reviewStatus[i]) {
+          btn.className += "bg-amber-400 text-slate-900";
+        } else if (userAnswers[i] !== undefined) {
+          btn.className += "bg-emerald-600 text-white";
+        } else if (visited[i]) {
+          btn.className += "bg-rose-500 text-white";
+        } else {
+          btn.className += "bg-slate-200 text-slate-700";
+        }
+      });
+    }
+
+    function updateAnsweredCount() {
+      const count = Object.keys(userAnswers).length;
+      const total = testSeries[currentTestIdx].questions.length;
+      document.getElementById('answeredCounter').innerText = `${count}/${total} हल`;
+    }
+
+    function confirmSubmit() {
+      const total = testSeries[currentTestIdx].questions.length;
+      const count = Object.keys(userAnswers).length;
+      if (confirm(`आपने कुल ${total} में से ${count} प्रश्नों के उत्तर दिए हैं। क्या आप टेस्ट सबमिट करना चाहते हैं?`)) {
+        submitExam();
+      }
+    }
+
+    function submitExam() {
       clearInterval(timerInterval);
       document.getElementById('examScreen').classList.add('hidden');
       document.getElementById('timerContainer').classList.add('hidden');
       document.getElementById('resultScreen').classList.remove('hidden');
 
+      const qs = testSeries[currentTestIdx].questions;
       let correct = 0;
       let wrong = 0;
       let unattempted = 0;
 
-      for (let i = 0; i < 100; i++) {
-        if (userAnswers[i] === null) {
+      qs.forEach((q, idx) => {
+        const ans = userAnswers[idx];
+        if (ans === undefined) {
           unattempted++;
-        } else if (userAnswers[i] === questions[i].ans) {
+        } else if (ans === q.ans) {
           correct++;
         } else {
           wrong++;
         }
-      }
+      });
 
-      let totalScore = (correct * 2.0) - (wrong * 0.2);
+      // BSSC Marking: +4 Correct, -1 Wrong
+      let totalMarks = (correct * 4) - (wrong * 1);
+      let maxMarks = qs.length * 4;
 
-      document.getElementById('resScore').innerText = totalScore.toFixed(2);
+      document.getElementById('resExamSubtitle').innerText = testSeries[currentTestIdx].title;
+      document.getElementById('resTotalMarks').innerText = `${totalMarks} / ${maxMarks}`;
       document.getElementById('resCorrect').innerText = correct;
       document.getElementById('resWrong').innerText = wrong;
       document.getElementById('resUnattempted').innerText = unattempted;
+
+      renderSolutions();
     }
 
-    function showReviewMode() {
-      const revContainer = document.getElementById('reviewContainer');
-      const revList = document.getElementById('reviewList');
-      revContainer.classList.remove('hidden');
-      revList.innerHTML = '';
+    function toggleSolutions() {
+      const sol = document.getElementById('solutionContainer');
+      sol.classList.toggle('hidden');
+      if (!sol.classList.contains('hidden')) {
+        sol.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
 
-      questions.forEach((q, i) => {
-        const uAns = userAnswers[i];
-        const isCorrect = uAns === q.ans;
-        const item = document.createElement('div');
-        item.className = 'p-4 rounded-xl border border-slate-200 bg-slate-50 text-sm';
-        item.innerHTML = `
-          <div class="font-bold text-slate-900 mb-2">Q${q.id}. ${q.text}</div>
-          <div class="space-y-1 mb-2">
-            ${q.options.map((opt, idx) => `
-              <div class="px-2.5 py-1 rounded text-xs ${
-                idx === q.ans ? 'bg-emerald-100 text-emerald-900 font-bold' : (idx === uAns ? 'bg-rose-100 text-rose-800' : 'text-slate-600')
-              }">
-                ${String.fromCharCode(65 + idx)}. ${opt}${idx === q.ans ? '✓ (सही उत्तर)' : (idx === uAns ? '✗ (आपका उत्तर)' : '')}
-              </div>
-            `).join('')}
+    function renderSolutions() {
+      const container = document.getElementById('solutionList');
+      container.innerHTML = '';
+      const qs = testSeries[currentTestIdx].questions;
+
+      qs.forEach((q, idx) => {
+        const userA = userAnswers[idx];
+        const isCorrect = userA === q.ans;
+        const isSkipped = userA === undefined;
+
+        const card = document.createElement('div');
+        card.className = `p-4 rounded-xl border ${isSkipped ? 'bg-slate-50 border-slate-200' : isCorrect ? 'bg-emerald-50/50 border-emerald-300' : 'bg-rose-50/50 border-rose-300'}`;
+        
+        let statusBadge = isSkipped ? 
+          `<span class="text-xs bg-slate-200 text-slate-700 px-2 py-0.5 rounded font-bold">Unattempted</span>` :
+          isCorrect ?
+          `<span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">✓ सही (+4)</span>` :
+          `<span class="text-xs bg-rose-100 text-rose-800 px-2 py-0.5 rounded font-bold">✗ गलत (-1)</span>`;
+
+        card.innerHTML = `
+          <div class="flex justify-between items-start gap-2 mb-2">
+            <h4 class="font-bold text-slate-800 text-sm md:text-base">Q.${idx + 1}: ${q.text}</h4>
+            ${statusBadge}
           </div>
-          <div class="text-xs bg-indigo-50 text-indigo-900 p-2.5 rounded border border-indigo-100">
-            <strong>व्याख्या:</strong> ${q.exp}
+          ${q.svg ? `<div class="my-3 flex justify-center bg-white p-2 rounded border border-slate-200 max-w-xs mx-auto">${q.svg}</div>` : ''}
+          ${q.table ? `<div class="my-3 flex justify-center">${q.table}</div>` : ''}
+          <div class="text-xs md:text-sm space-y-1 mb-3">
+            <p class="text-slate-600">आपका उत्तर: <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-600'}">${userA !== undefined ? q.options[userA] : 'छोड़ दिया'}</span></p>
+            <p class="text-emerald-800 font-bold">सही उत्तर: ${q.options[q.ans]}</p>
+          </div>
+          <div class="p-3 bg-white rounded-lg border border-slate-200 text-xs text-slate-600">
+            <b class="text-indigo-900 block mb-1">व्याख्या (Solution):</b> ${q.exp}
           </div>
         `;
-        revList.appendChild(item);
+        container.appendChild(card);
       });
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
     }
   </script>
 </body>
