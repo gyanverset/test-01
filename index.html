@@ -3,1170 +3,1215 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ज्ञानवर्स पोर्टल - Bihar SI TCS CBT Mock Test 02</title>
+  <title>ज्ञानवर्स CBT पोर्टल - Daily Editorial & Current Affairs Mock Test</title>
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome Pro Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
-    .tcs-btn {
-      width: 36px;
-      height: 32px;
-      font-size: 12px;
-      font-weight: 700;
-      clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%);
+    body {
+      font-family: 'Noto Sans Devanagari', 'Outfit', sans-serif;
     }
-
-    /* Print & PDF Export Styling */
+    .font-heading {
+      font-family: 'Outfit', 'Noto Sans Devanagari', sans-serif;
+    }
+    .custom-scroll::-webkit-scrollbar { width: 6px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    
     @media print {
-      body {
-        background: #ffffff !important;
-        color: #000000 !important;
-      }
-      header, #intro-screen, #test-screen, .no-print {
-        display: none !important;
-      }
-      #result-screen {
-        display: block !important;
-        max-width: 100% !important;
+      body { background-color: #ffffff !important; padding: 0 !important; }
+      body * { visibility: hidden; }
+      #solutionSection, #solutionSection * { visibility: visible; }
+      #solutionSection { 
+        position: absolute; 
+        left: 0; 
+        top: 0; 
+        width: 100%; 
+        padding: 0 10mm !important;
         margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
-        box-shadow: none !important;
+        display: block !important; 
       }
-      .page-break {
-        page-break-inside: avoid;
-      }
-      @page {
-        margin: 18mm 12mm 18mm 12mm;
-        @top-center {
-          content: "ज्ञानवर्स पोर्टल - बिहार दरोगा टेस्ट 02 | Telegram: https://t.me/GYANVERSET";
-          font-size: 9pt;
-          font-weight: bold;
-          color: #2563eb;
-        }
-        @bottom-center {
-          content: "ऐसे ही सभी टेस्ट व PDF के लिए Telegram जॉइन करें: @GYANVERSET";
-          font-size: 8pt;
-          color: #475569;
-        }
-      }
-      .print-watermark-bar {
-        display: block !important;
-      }
+      .no-print { display: none !important; }
+      .page-break-card { page-break-inside: avoid; margin-bottom: 24px; box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
     }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-800 flex flex-col min-h-screen select-none font-sans">
+<body class="bg-slate-100 text-slate-800 antialiased select-none">
 
-  <!-- TCS TOP HEADER -->
-  <header class="bg-[#2b3e50] text-white border-b-2 border-amber-500 px-4 py-2 flex justify-between items-center shadow sticky top-0 z-50">
-    <div class="flex items-center space-x-3">
-      <div class="bg-amber-500 text-slate-900 font-extrabold px-2.5 py-1 text-sm rounded">ज्ञानवर्स</div>
-      <div>
-        <h1 class="text-sm md:text-base font-bold leading-tight">BPSSC बिहार पुलिस अवर निरीक्षक (SI) - CBT Mock 02</h1>
-        <p class="text-[11px] text-slate-300">TCS iON Examination Mode | 70 Statement GS + 30 Math & Reasoning</p>
-      </div>
-    </div>
-    <div class="flex items-center space-x-3">
-      <a href="https://t.me/GYANVERSET" target="_blank" class="hidden sm:inline-flex items-center text-xs bg-sky-600 hover:bg-sky-500 text-white px-3 py-1 rounded font-medium transition shadow-sm">
-        <i class="fab fa-telegram-plane mr-1.5"></i> Telegram (@GYANVERSET)
-      </a>
-      <button onclick="toggleFullScreen()" class="text-xs bg-slate-700 hover:bg-slate-600 px-2.5 py-1 rounded border border-slate-500">
-        <i class="fas fa-expand mr-1"></i> Fullscreen
-      </button>
-    </div>
-  </header>
-
-  <!-- INTRO SCREEN -->
-  <div id="intro-screen" class="max-w-4xl mx-auto my-6 p-6 bg-white rounded shadow border border-slate-300 flex-1 flex flex-col justify-between">
-    <div>
-      <div class="border-b pb-3 mb-4 flex justify-between items-center">
-        <div>
-          <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी दिशा-निर्देश (Candidate Instructions)</h2>
-          <p class="text-xs text-slate-500">बिहार दरोगा प्रारंभिक परीक्षा 2026 - संयुक्त मानक टेस्ट 02</p>
+  <!-- ================= 1. INSTRUCTIONS / START SCREEN ================= -->
+  <div id="startScreen" class="min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-3xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200/80">
+      <div class="bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800 p-8 text-white text-center relative overflow-hidden">
+        <div class="absolute -right-12 -top-12 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+        <div class="inline-flex items-center space-x-2 bg-white/15 px-3 py-1 rounded-full text-xs font-semibold mb-3 tracking-wider backdrop-blur-md">
+          <i class="fas fa-shield-alt text-amber-300"></i>
+          <span>OFFICIAL TCS CBT EXAMINATION ENGINE</span>
         </div>
-        <span class="bg-indigo-100 text-indigo-900 text-xs font-semibold px-2.5 py-1 rounded">70 GS + 30 Math/Reasoning</span>
+        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight font-heading">ज्ञानवर्स (GYANVERSE) पोर्टल</h1>
+        <p class="text-blue-100 text-sm md:text-base mt-2 font-medium">Daily Editorial & In-Depth Current Affairs Special Mock Test</p>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
-        <div class="p-3 bg-slate-50 border rounded text-center">
-          <p class="text-[11px] text-slate-500 uppercase font-semibold">कुल प्रश्न</p>
-          <p class="text-xl font-bold text-slate-800">100</p>
-        </div>
-        <div class="p-3 bg-slate-50 border rounded text-center">
-          <p class="text-[11px] text-slate-500 uppercase font-semibold">पूर्णांक</p>
-          <p class="text-xl font-bold text-slate-800">200</p>
-        </div>
-        <div class="p-3 bg-slate-50 border rounded text-center">
-          <p class="text-[11px] text-slate-500 uppercase font-semibold">समय अवधि</p>
-          <p class="text-xl font-bold text-slate-800">120 मिनट</p>
-        </div>
-        <div class="p-3 bg-slate-50 border rounded text-center">
-          <p class="text-[11px] text-slate-500 uppercase font-semibold">नेगेटिव मार्किंग</p>
-          <p class="text-xl font-bold text-rose-600">-0.20 अंक</p>
-        </div>
-      </div>
-
-      <div class="bg-slate-50 border border-slate-200 p-4 rounded text-xs sm:text-sm text-slate-700 space-y-2 mb-6">
-        <p class="font-bold text-slate-900 text-sm border-b pb-1">परीक्षा प्रणाली एवं मुख्य निर्देश:</p>
-        <p>1. <strong>प्रश्न 1 से 70:</strong> सामान्य अध्ययन के विश्लेषणात्मक कथन-आधारित, सत्य/असत्य तथा कूट मिलान प्रश्न हैं। विकल्पों में 'सभी सही' का पूर्वग्रह न रखें, हर कथन को सावधानीपूर्वक पढ़ें।</p>
-        <p>2. <strong>प्रश्न 71 से 100:</strong> गणित (Mathematics) एवं तर्कशक्ति (Reasoning) के सटीक गणना व तार्किक प्रश्न हैं।</p>
-        <p>3. प्रत्येक सही उत्तर के लिए <strong>+2 अंक</strong> तथा प्रत्येक गलत उत्तर पर <strong>0.20 अंक</strong> काटे जाएंगे।</p>
-        <p>4. टेस्ट सबमिट करने के तुरंत बाद <strong>Solution PDF डाउनलोड</strong> करने का विकल्प उपलब्ध होगा।</p>
-      </div>
-
-      <div class="bg-sky-50 border border-sky-200 p-3.5 rounded text-center mb-4">
-        <span class="text-xs text-sky-900 font-semibold block">ऐसे सभी प्रामाणिक टेस्ट और PDF के लिए हमारे ऑफिशियल टेलीग्राम चैनल से जुड़ें:</span>
-        <a href="https://t.me/GYANVERSET" target="_blank" class="inline-flex items-center text-xs bg-sky-600 hover:bg-sky-700 text-white font-bold px-4 py-2 mt-2 rounded transition">
-          <i class="fab fa-telegram-plane mr-1.5 text-sm"></i> Telegram चैनल जॉइन करें (@GYANVERSET)
-        </a>
-      </div>
-    </div>
-
-    <div class="text-center pt-2">
-      <button onclick="startTest()" class="w-full sm:w-80 py-3 bg-[#2b3e50] hover:bg-[#1f2d3a] text-white font-bold text-base rounded shadow transition uppercase tracking-wider">
-        I am ready to begin <i class="fas fa-arrow-right ml-2"></i>
-      </button>
-    </div>
-  </div>
-
-  <!-- CBT TEST SCREEN -->
-  <div id="test-screen" class="hidden flex-1 flex flex-col h-[calc(100vh-56px)] bg-[#f4f6f9]">
-    <!-- SUB-BAR -->
-    <div class="bg-white border-b px-4 py-2 flex justify-between items-center text-xs sm:text-sm shadow-sm">
-      <div class="font-bold text-slate-800 flex items-center space-x-2">
-        <span id="section-badge" class="bg-indigo-100 text-indigo-900 px-2 py-0.5 rounded text-xs">Section: GS Statements</span>
-        <span id="section-desc" class="hidden sm:inline text-xs text-slate-500">Q1-70 GS High-Yield | Q71-100 Quant & Reasoning</span>
-      </div>
-      <div class="flex items-center space-x-2 font-mono font-bold bg-amber-50 border border-amber-300 text-amber-900 px-3 py-1 rounded">
-        <span>Time Left:</span>
-        <span id="timer-display" class="text-sm sm:text-base">02:00:00</span>
-      </div>
-    </div>
-
-    <!-- MAIN BODY -->
-    <div class="flex-1 flex flex-col md:flex-row overflow-hidden">
-      <!-- QUESTION SECTION -->
-      <div class="flex-1 flex flex-col justify-between bg-white p-4 md:p-6 overflow-y-auto border-r border-slate-200">
-        <div>
-          <div class="flex justify-between items-center text-xs text-slate-500 border-b pb-2 mb-4">
-            <span class="font-bold text-slate-800 text-sm">Question No. <span id="current-q-num" class="text-indigo-600 text-base">1</span></span>
-            <span>Marks: <strong class="text-emerald-600">+2.00</strong> | Negative: <strong class="text-rose-600">-0.20</strong></span>
-          </div>
-
-          <div id="question-text" class="text-sm sm:text-base text-slate-900 leading-relaxed font-medium mb-6">
-            <!-- Dynamic Question -->
-          </div>
-
-          <div id="options-container" class="space-y-3 pl-1">
-            <!-- Dynamic Options -->
-          </div>
-        </div>
-
-        <!-- ACTION BUTTONS -->
-        <div class="border-t pt-4 mt-6 flex flex-wrap gap-2 justify-between items-center bg-white sticky bottom-0">
-          <div class="flex space-x-2">
-            <button onclick="markForReview()" class="px-3 py-1.5 text-xs font-semibold bg-[#e0a800] hover:bg-[#c69500] text-white rounded shadow-sm">
-              Mark for Review & Next
-            </button>
-            <button onclick="clearResponse()" class="px-3 py-1.5 text-xs font-semibold border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 rounded shadow-sm">
-              Clear Response
-            </button>
-          </div>
-          <div class="flex space-x-2">
-            <button onclick="prevQuestion()" id="btn-prev" class="px-3 py-1.5 text-xs font-semibold bg-slate-200 hover:bg-slate-300 text-slate-700 rounded shadow-sm">
-              Previous
-            </button>
-            <button onclick="saveAndNext()" id="btn-next" class="px-4 py-1.5 text-xs font-semibold bg-[#28a745] hover:bg-[#218838] text-white rounded shadow-sm">
-              Save & Next
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- TCS PALETTE & USER PANEL -->
-      <div class="w-full md:w-80 bg-[#fbfbfb] flex flex-col justify-between border-t md:border-t-0 shadow-inner">
-        <div>
-          <!-- CANDIDATE INFO -->
-          <div class="p-3 border-b bg-slate-100 flex items-center space-x-3">
-            <div class="w-9 h-9 rounded-full bg-slate-300 flex items-center justify-center text-slate-600">
-              <i class="fas fa-user-shield text-base"></i>
+      <div class="p-6 md:p-8 space-y-6">
+        <!-- Telegram Channel Card -->
+        <div class="bg-gradient-to-r from-sky-500/10 via-blue-500/5 to-transparent border-l-4 border-sky-500 p-4 rounded-2xl flex items-center justify-between gap-4">
+          <div class="flex items-center space-x-3.5">
+            <div class="w-12 h-12 rounded-xl bg-sky-500 text-white flex items-center justify-center shadow-lg shadow-sky-500/30 text-2xl flex-shrink-0">
+              <i class="fab fa-telegram-plane"></i>
             </div>
-            <div class="text-xs">
-              <p class="font-bold text-slate-800">Bihar SI Candidate</p>
-              <p class="text-[10px] text-slate-500">Roll: 2026-BPSSC-002</p>
+            <div>
+              <p class="font-bold text-slate-800 text-sm md:text-base">दैनिक ऐसे ऑनलाइन टेस्ट व PDF नोट्स के लिए टेलीग्राम जॉइन करें</p>
+              <p class="text-xs text-slate-500 mt-0.5">निशुल्क क्विज़, साप्ताहिक करंट अफेयर्स और विस्तृत विश्लेषण</p>
             </div>
           </div>
+          <a href="https://t.me/GYANVERSET" target="_blank" class="flex-shrink-0 bg-sky-500 hover:bg-sky-600 text-white text-xs md:text-sm font-bold py-2.5 px-5 rounded-xl shadow-md transition-all hover:scale-105">
+            Join @GYANVERSET
+          </a>
+        </div>
 
-          <!-- TCS STATUS SUMMARY -->
-          <div class="p-3 border-b text-[11px] grid grid-cols-2 gap-2 bg-white text-slate-600">
-            <div class="flex items-center space-x-1.5">
-              <span id="stat-ans" class="w-5 h-4 bg-[#28a745] text-white text-[10px] flex items-center justify-center font-bold">0</span>
-              <span>Answered</span>
+        <div class="border border-slate-200 rounded-2xl p-5 bg-slate-50/70 space-y-3">
+          <h2 class="text-base font-bold text-slate-800 border-b border-slate-200 pb-2.5 flex items-center">
+            <i class="fas fa-file-signature text-indigo-600 mr-2"></i> परीक्षा निर्देश एवं संरचना (Examination Guidelines)
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm text-slate-600 pt-1">
+            <div class="flex items-start space-x-2 bg-white p-3 rounded-xl border border-slate-100">
+              <i class="fas fa-check-circle text-emerald-500 mt-0.5"></i>
+              <span><strong>कुल प्रश्न:</strong> 14 उच्च स्तरीय प्रश्न (प्रत्येक एडिटोरियल लिंक से 1 प्रश्न)</span>
             </div>
-            <div class="flex items-center space-x-1.5">
-              <span id="stat-notans" class="w-5 h-4 bg-[#dc3545] text-white text-[10px] flex items-center justify-center font-bold">0</span>
-              <span>Not Answered</span>
+            <div class="flex items-start space-x-2 bg-white p-3 rounded-xl border border-slate-100">
+              <i class="fas fa-clock text-indigo-500 mt-0.5"></i>
+              <span><strong>समय सीमा:</strong> 120 मिनट (2 घंटे का आधिकारिक TCS टाइमर)</span>
             </div>
-            <div class="flex items-center space-x-1.5">
-              <span id="stat-review" class="w-5 h-4 bg-[#6f42c1] text-white text-[10px] flex items-center justify-center font-bold">0</span>
-              <span>Marked for Review</span>
+            <div class="flex items-start space-x-2 bg-white p-3 rounded-xl border border-slate-100">
+              <i class="fas fa-plus-circle text-emerald-600 mt-0.5"></i>
+              <span><strong>सकारात्मक अंक:</strong> प्रत्येक सही उत्तर पर <strong class="text-emerald-600">+2.00 अंक</strong></span>
             </div>
-            <div class="flex items-center space-x-1.5">
-              <span id="stat-notvis" class="w-5 h-4 bg-slate-200 text-slate-700 text-[10px] flex items-center justify-center font-bold">100</span>
-              <span>Not Visited</span>
+            <div class="flex items-start space-x-2 bg-white p-3 rounded-xl border border-slate-100">
+              <i class="fas fa-minus-circle text-rose-500 mt-0.5"></i>
+              <span><strong>नकारात्मक मार्किंग:</strong> प्रत्येक गलत उत्तर पर <strong class="text-rose-600">-0.20 अंक</strong></span>
             </div>
-          </div>
-
-          <!-- PALETTE GRID -->
-          <div class="p-2 border-b bg-slate-200 text-[11px] font-bold text-slate-700 flex justify-between">
-            <span>Question Palette (100)</span>
-            <span class="text-[10px] text-slate-500">1-70 GS | 71-100 Apt</span>
-          </div>
-          <div id="palette-grid" class="p-3 max-h-[calc(100vh-380px)] overflow-y-auto grid grid-cols-5 gap-2 content-start">
-            <!-- Palette buttons injected by JS -->
           </div>
         </div>
 
-        <!-- TCS SUBMIT BUTTON -->
-        <div class="p-3 bg-white border-t">
-          <button onclick="submitTestPrompt()" class="w-full py-2 bg-[#007bff] hover:bg-[#0069d9] text-white font-bold text-xs rounded uppercase tracking-wider shadow">
-            Submit Test Paper
+        <div class="text-center pt-2">
+          <button onclick="startExam()" class="w-full sm:w-auto inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base px-10 py-3.5 rounded-2xl shadow-xl shadow-indigo-600/30 hover:scale-[1.02] transition-all">
+            <i class="fas fa-laptop-code mr-2.5"></i> टेस्ट शुरू करें (Start Test Mode)
           </button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- RESULT & SOLUTION SCREEN -->
-  <div id="result-screen" class="hidden max-w-4xl mx-auto my-6 p-6 bg-white rounded shadow border border-slate-300 flex-1">
-    
-    <!-- PRINT WATERMARK HEADER -->
-    <div class="hidden print-watermark-bar border-b-2 border-indigo-600 pb-2 mb-4 text-center">
-      <h2 class="text-xl font-bold text-indigo-900">ज्ञानवर्स ऑनलाइन टेस्ट पोर्टल</h2>
-      <p class="text-xs text-slate-600">बिहार दरोगा (BPSSC SI) टेस्ट 02 - संपूर्ण हल सहित उत्तर कुंजी</p>
-      <p class="text-xs font-bold text-sky-700 mt-1">टेलीग्राम चैनल: https://t.me/GYANVERSET (@GYANVERSET)</p>
-    </div>
+  <!-- ================= 2. TCS CBT EXAM INTERFACE ================= -->
+  <div id="cbtInterface" class="hidden min-h-screen flex flex-col bg-slate-100">
+    <!-- Top Nav Header -->
+    <header class="bg-slate-900 text-white px-5 py-2.5 flex justify-between items-center shadow-lg border-b border-slate-800">
+      <div class="flex items-center space-x-3">
+        <span class="bg-gradient-to-r from-indigo-500 to-purple-600 px-3 py-1 rounded-md text-xs font-black tracking-widest uppercase">GYANVERSE CBT</span>
+        <span class="text-slate-400 text-sm hidden md:inline">|</span>
+        <h1 class="text-sm font-semibold text-slate-200 hidden sm:inline">Daily Editorial & CA Mock Exam</h1>
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="bg-slate-800/90 px-3.5 py-1.5 rounded-xl border border-slate-700 flex items-center space-x-2.5">
+          <i class="fas fa-hourglass-half text-amber-400 text-sm animate-pulse"></i>
+          <span class="text-xs text-slate-400">समय शेष:</span>
+          <span id="timerDisplay" class="font-mono text-base font-bold text-amber-300">120:00</span>
+        </div>
+        <button onclick="toggleFullScreen()" title="Full Screen" class="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg">
+          <i class="fas fa-expand"></i>
+        </button>
+      </div>
+    </header>
 
-    <!-- SCORECARD -->
-    <div class="text-center border-b pb-5 mb-6">
-      <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-0.5 rounded-full uppercase">CBT Scorecard Generated</span>
-      <h2 class="text-2xl font-black text-slate-900 mt-2">परीक्षा परिणाम एवं विस्तृत समाधान</h2>
-      <p class="text-xs text-slate-500">BPSSC Bihar Police SI Mock 02 (TCS Balanced Standard)</p>
+    <!-- Main CBT Body -->
+    <div class="flex-1 flex flex-col lg:flex-row overflow-hidden">
+      <!-- Left: Question Panel -->
+      <div class="flex-1 flex flex-col justify-between bg-white m-3 rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <!-- Q Header -->
+        <div class="border-b border-slate-200 px-6 py-3.5 bg-slate-50/80 flex justify-between items-center">
+          <span class="font-bold text-slate-800 text-sm md:text-base flex items-center" id="qHeaderNumber">
+            <span class="w-2.5 h-2.5 rounded-full bg-indigo-600 mr-2"></span> प्रश्न संख्या: 1
+          </span>
+          <div class="text-xs space-x-2">
+            <span class="bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-md">+2.00</span>
+            <span class="bg-rose-100 text-rose-800 font-bold px-2.5 py-1 rounded-md">-0.20</span>
+          </div>
+        </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5">
-        <div class="p-3 bg-slate-50 rounded border">
-          <p class="text-xs text-slate-500 font-semibold">प्राप्त कुल अंक</p>
-          <p id="res-score" class="text-2xl font-black text-indigo-900">0.00</p>
-          <p class="text-[10px] text-slate-400">पूर्णांक: 200</p>
+        <!-- Q Content -->
+        <div class="p-6 md:p-8 overflow-y-auto custom-scroll flex-1" id="questionContentArea">
+          <!-- Dynamic Question Data -->
         </div>
-        <div class="p-3 bg-slate-50 rounded border">
-          <p class="text-xs text-slate-500 font-semibold">सटीकता (Accuracy)</p>
-          <p id="res-accuracy" class="text-2xl font-black text-blue-900">0%</p>
-          <p class="text-[10px] text-slate-400">परिशुद्धता</p>
-        </div>
-        <div class="p-3 bg-emerald-50 rounded border border-emerald-200">
-          <p class="text-xs text-emerald-700 font-semibold">सही उत्तर (Correct)</p>
-          <p id="res-correct" class="text-2xl font-black text-emerald-700">0</p>
-          <p class="text-[10px] text-slate-400">+2.0 अंक प्रति प्रश्न</p>
-        </div>
-        <div class="p-3 bg-rose-50 rounded border border-rose-200">
-          <p class="text-xs text-rose-700 font-semibold">गलत उत्तर (Incorrect)</p>
-          <p id="res-wrong" class="text-2xl font-black text-rose-700">0</p>
-          <p class="text-[10px] text-slate-400">-0.20 अंक प्रति प्रश्न</p>
+
+        <!-- Footer Control Buttons -->
+        <div class="border-t border-slate-200 px-6 py-3.5 bg-slate-50 flex flex-wrap justify-between items-center gap-2">
+          <div class="flex gap-2">
+            <button onclick="markForReview()" class="px-4 py-2 border border-purple-500 text-purple-700 hover:bg-purple-50 rounded-xl text-xs md:text-sm font-semibold transition">
+              <i class="fas fa-tag mr-1.5"></i> Mark for Review
+            </button>
+            <button onclick="clearResponse()" class="px-4 py-2 border border-slate-300 text-slate-600 hover:bg-slate-100 rounded-xl text-xs md:text-sm font-semibold transition">
+              Clear Response
+            </button>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="navigateQuestion(-1)" id="prevBtn" class="px-5 py-2 bg-slate-200 text-slate-700 hover:bg-slate-300 rounded-xl text-xs md:text-sm font-semibold transition">
+              <i class="fas fa-chevron-left mr-1"></i> Previous
+            </button>
+            <button onclick="saveAndNext()" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs md:text-sm font-semibold shadow-md transition">
+              Save & Next <i class="fas fa-chevron-right ml-1"></i>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- ACTION BUTTONS: DOWNLOAD PDF & TELEGRAM -->
-    <div class="no-print flex flex-col sm:flex-row gap-3 justify-center mb-6">
-      <button onclick="downloadPDF()" class="flex items-center justify-center px-6 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-sm rounded shadow transition">
-        <i class="fas fa-file-pdf mr-2 text-base"></i> Solution PDF Download करें
-      </button>
-      <a href="https://t.me/GYANVERSET" target="_blank" class="flex items-center justify-center px-6 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm rounded shadow transition">
-        <i class="fab fa-telegram-plane mr-2 text-base"></i> Telegram Channel (@GYANVERSET)
-      </a>
-    </div>
+      <!-- Right: TCS Palette -->
+      <div class="w-full lg:w-80 bg-white m-3 lg:ml-0 rounded-2xl border border-slate-200 shadow-sm p-4 flex flex-col justify-between">
+        <div>
+          <!-- Candidate Badge -->
+          <div class="flex items-center space-x-3 pb-3 border-b border-slate-200 mb-3.5">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 text-white flex items-center justify-center font-bold shadow">
+              GV
+            </div>
+            <div>
+              <p class="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">CBT Candidate</p>
+              <p class="font-bold text-sm text-slate-800">ज्ञानवर्स प्रतिभागी</p>
+            </div>
+          </div>
 
-    <!-- PROMO BANNER -->
-    <div class="no-print bg-gradient-to-r from-[#2b3e50] to-[#1a252f] rounded p-4 text-white flex flex-col sm:flex-row justify-between items-center mb-6 gap-3">
-      <div>
-        <h4 class="font-bold text-sm">बिहार दरोगा परीक्षा की सटीक तैयारी के लिए जुड़ें</h4>
-        <p class="text-xs text-slate-300">प्रतिदिन 100 प्रश्नों के नए टेस्ट व PDF के लिए ज्ञानवर्स टेलीग्राम चैनल अवश्य जॉइन करें।</p>
+          <!-- Color Legends -->
+          <div class="grid grid-cols-2 gap-2 text-xs mb-4 p-2.5 bg-slate-50 rounded-xl border border-slate-200">
+            <div class="flex items-center space-x-2">
+              <span class="w-5 h-5 rounded-md bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold" id="legendAnswered">0</span>
+              <span class="text-slate-600 font-medium">Answered</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="w-5 h-5 rounded-md bg-rose-500 text-white flex items-center justify-center text-[10px] font-bold" id="legendNotAnswered">0</span>
+              <span class="text-slate-600 font-medium">Not Answered</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="w-5 h-5 rounded-md bg-slate-200 text-slate-700 flex items-center justify-center text-[10px] font-bold" id="legendNotVisited">14</span>
+              <span class="text-slate-600 font-medium">Not Visited</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="w-5 h-5 rounded-md bg-purple-600 text-white flex items-center justify-center text-[10px] font-bold" id="legendReview">0</span>
+              <span class="text-slate-600 font-medium">Marked Review</span>
+            </div>
+          </div>
+
+          <!-- Numbers Grid -->
+          <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2.5">Question Palette</h3>
+          <div class="grid grid-cols-4 sm:grid-cols-5 gap-2 max-h-56 overflow-y-auto p-1 custom-scroll" id="paletteGrid">
+            <!-- Palette Buttons -->
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-200 mt-4">
+          <button onclick="confirmSubmitTest()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-bold text-sm shadow-lg shadow-emerald-600/20 transition flex items-center justify-center">
+            <i class="fas fa-check-double mr-2"></i> सबमिट टेस्ट (Submit Exam)
+          </button>
+        </div>
       </div>
-      <a href="https://t.me/GYANVERSET" target="_blank" class="px-4 py-2 bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold text-xs rounded transition whitespace-nowrap">
-        <i class="fab fa-telegram-plane mr-1"></i> Telegram जॉइन करें (@GYANVERSET)
-      </a>
-    </div>
-
-    <!-- SOLUTIONS LIST -->
-    <h3 class="text-base font-bold text-slate-800 mb-4 flex items-center border-b pb-2">
-      <i class="fas fa-check-circle text-emerald-600 mr-2"></i> 1 से 100 प्रश्नों की आधिकारिक उत्तर कुंजी एवं व्याख्या
-    </h3>
-    <div id="solution-container" class="space-y-4">
-      <!-- Injected by JS -->
-    </div>
-
-    <!-- PRINT FOOTER BAR -->
-    <div class="hidden print-watermark-bar text-center border-t mt-6 pt-3 text-xs text-slate-500">
-      <p>ज्ञानवर्स पोर्टल - सर्वाधिकार सुरक्षित | ऐसे ही सभी टेस्ट व PDF पाने के लिए Telegram जॉइन करें: <strong>https://t.me/GYANVERSET</strong></p>
-    </div>
-
-    <div class="no-print mt-8 text-center">
-      <button onclick="location.reload()" class="px-6 py-2 bg-[#2b3e50] hover:bg-[#1a252f] text-white rounded font-semibold text-xs tracking-wider uppercase">
-        <i class="fas fa-redo mr-1.5"></i> Retake Test
-      </button>
     </div>
   </div>
 
-  <script>
-    // 100 BALANCED QUESTIONS: 70 STATEMENT/CONCEPTUAL GS + 30 MATHEMATICS & REASONING (TRAPS & DIVERSE ANSWER KEYS)
-    const questions = [
-      // --- SECTION 1: 70 STATEMENT & TRUE/FALSE GS QUESTIONS ---
-      {
-        q: "1. <strong>संसद के संयुक्त अधिवेशन (Joint Sitting) के संदर्भ में निम्नलिखित कथनों पर विचार कीजिए:</strong><br>1. अनुच्छेद 108 के तहत राष्ट्रपति संयुक्त बैठक बुलाते हैं।<br>2. संयुक्त बैठक की अध्यक्षता राज्यसभा के पदेन सभापति (उपराष्ट्रपति) करते हैं।<br>3. धन विधेयक और संविधान संशोधन विधेयक दोनों के लिए संयुक्त बैठक का कोई प्रावधान नहीं है।<br><br>उपर्युक्त में से कौन-सा/से कथन सत्य है/हैं?",
-        options: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "1, 2 और 3 सभी"],
-        ans: 2, // (C)
-        exp: "कथन 2 असत्य है क्योंकि अनुच्छेद 118(4) के अनुसार संयुक्त बैठक की अध्यक्षता लोकसभा अध्यक्ष (Speaker) करते हैं, उपराष्ट्रपति नहीं। धन विधेयक और अनुच्छेद 368 पर संयुक्त बैठक नहीं बुलाई जा सकती।"
-      },
-      {
-        q: "2. <strong>कथन एवं कारण:</strong><br><strong>कथन (A):</strong> प्रकाश वर्ष दूरी का मात्रक है, समय का नहीं।<br><strong>कारण (R):</strong> प्रकाश द्वारा निर्वात में 1 वर्ष में तय की गई कुल दूरी को एक प्रकाश वर्ष कहा जाता है।<br><br>सही कूट का चयन कीजिए:",
-        options: ["(A) और (R) दोनों सही हैं तथा (R), (A) की सही व्याख्या है", "(A) और (R) दोनों सही हैं लेकिन (R), (A) की सही व्याख्या नहीं है", "(A) सही है परंतु (R) गलत है", "(A) गलत है परंतु (R) सही है"],
-        ans: 0, // (A)
-        exp: "प्रकाश वर्ष खगोलीय दूरी मापने का मात्रक है। प्रकाश 3 × 10⁸ मी./से. की चाल से 1 वर्ष में 9.46 × 10¹⁵ मीटर की दूरी तय करता है। दोनों कथन सही हैं और व्याख्या भी सही है।"
-      },
-      {
-        q: "3. <strong>मौर्यकालीन प्रशासनिक व्यवस्था के संदर्भ में निम्नलिखित में से कौन-सा युग्म 'सही सुमेलित नहीं' है?</strong>",
-        options: ["समाहर्ता - राजस्व संग्रह का मुख्य अधिकारी", "सन्निधाता - राजकीय कोषाध्यक्ष एवं भंडारगृह प्रमुख", "व्यावहारिक - दीवानी न्यायालय का प्रमुख न्यायाधीश", "कर्मांतिक - सेना का सर्वोच्च सेनापति"],
-        ans: 3, // (D)
-        exp: "विकल्प (D) सही सुमेलित नहीं है। कर्मांतिक उद्योगों व कारखानों का निरीक्षक था, जबकि सेना का प्रधान अधिकारी 'सेनापति' कहलाता था।"
-      },
-      {
-        q: "4. <strong>बिहार के भौतिक भूगोल के संदर्भ में निम्नलिखित कथनों में से कौन-सा कथन 'असत्य' है?</strong>",
-        options: ["बिहार का क्षेत्रफल भारत के कुल भौगोलिक क्षेत्रफल का लगभग 2.86% है।", "गंगा नदी बिहार के बक्सर जिले में चौसा के निकट प्रवेश करती है।", "बिहार की सबसे ऊंची पहाड़ी चोटी सोमेश्वर श्रेणी (880 मीटर) रोहतास जिले में स्थित है।", "धारवाड़ क्रम की चट्टानें मुंगेर, जमुई और गया जिले में पाई जाती हैं।"],
-        ans: 2, // (C)
-        exp: "कथन (C) असत्य है। सोमेश्वर श्रेणी पश्चिमी चंपारण जिले के शिवालिक तराई क्षेत्र में स्थित है, न कि रोहतास में। रोहतास में विंध्यन क्रम की चट्टानें हैं।"
-      },
-      {
-        q: "5. <strong>पारिस्थितिकी तंत्र में पोषक स्तर और ऊर्जा प्रवाह के संदर्भ में:</strong><br>I. लिंडमैन के नियम के अनुसार एक स्तर से दूसरे स्तर में केवल 10% ऊर्जा का स्थानांतरण होता है।<br>II. ऊर्जा का पिरामिड जलीय पारिस्थितिकी तंत्र में उल्टा (Inverted) हो सकता है।<br><br>सत्य कथन का चयन करें:",
-        options: ["केवल कथन I सत्य है", "केवल कथन II सत्य है", "कथन I और II दोनों सत्य हैं", "कथन I और II दोनों असत्य हैं"],
-        ans: 0, // (A)
-        exp: "कथन II असत्य है क्योंकि ऊर्जा का प्रवाह सदैव एकदिशीय होता है, अतः किसी भी पारिस्थितिकी तंत्र में ऊर्जा का पिरामिड कभी उल्टा नहीं हो सकता (सदैव सीधा रहता है)।"
-      },
-      {
-        q: "6. <strong>1857 के विद्रोह के दौरान बिहार में घटित घटनाओं पर विचार कीजिए:</strong><br>1. पटना में 3 जुलाई 1857 को पुस्तक विक्रेता पीर अली ने विद्रोह का नेतृत्व किया।<br>2. दानापुर छावनी के सैनिकों ने 25 जुलाई 1857 को विद्रोह किया।<br>3. जगदीशपुर के बाबू कुंवर सिंह ने पटना के कमिश्नर विलियम टेलर को युद्ध में मार डाला था।<br><br>उपर्युक्त में से कौन-सा/से कथन सत्य है/हैं?",
-        options: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "1, 2 और 3 सभी"],
-        ans: 0, // (A)
-        exp: "कथन 3 असत्य है। कुंवर सिंह ने कैप्टन ली ग्रांड को पराजित किया था, विलियम टेलर मारा नहीं गया था बल्कि उसने पटना के विद्रोह को कुचला था।"
-      },
-      {
-        q: "7. <strong>भारतीय रिज़र्व बैंक (RBI) द्वारा अपनाए जाने वाले साख नियंत्रण उपकरणों में से कौन-सा 'गुणात्मक (Qualitative)' उपाय है?</strong>",
-        options: ["बैंक दर (Bank Rate)", "खुले बाजार की क्रियाएं (OMO)", "सीमांत आवश्यकता (Margin Requirement)", "वैधानिक तरलता अनुपात (SLR)"],
-        ans: 2, // (C)
-        exp: "सीमांत आवश्यकता, नैतिक दबाव और साख की राशनिंग गुणात्मक उपकरण हैं। बैंक दर, OMO और SLR मात्रात्मक (Quantitative) उपाय हैं।"
-      },
-      {
-        q: "8. <strong>मानव शरीर क्रिया विज्ञान (Human Physiology) के संदर्भ में निम्नलिखित में से कौन-सा कथन सत्य है?</strong>",
-        options: ["यकृत द्वारा स्रावित पित्त रस में वसा पाचक एंजाइम ट्रिप्सिन उपस्थित होता है।", "पित्त रस में कोई पाचक एंजाइम नहीं होता, यह केवल वसा का पायसीकरण (Emulsification) करता है।", "प्रोटीन का पाचन मुख्य रूप से मुखगुहा से प्रारंभ होता है।", "अग्न्याशय केवल एक बहिःस्रावी ग्रंथि है।"],
-        ans: 1, // (B)
-        exp: "पित्त रस में कोई एंजाइम नहीं होता, यह केवल वसा को छोटी बूंदों में तोड़ता है (पायसीकरण)। प्रोटीन का पाचन आमाशय से शुरू होता है।"
-      },
-      {
-        q: "9. <strong>निम्नलिखित ऐतिहासिक घटनाओं को उनके सही कालक्रमानुसार व्यवस्थित कीजिए:</strong><br>1. प्रथम गोलमेज सम्मेलन<br>2. गांधी-इरविन समझौता<br>3. भगत सिंह को फांसी<br>4. पूना पैक्ट<br><br>सही कूट का चयन कीजिए:",
-        options: ["1 - 2 - 3 - 4", "2 - 1 - 3 - 4", "1 - 3 - 2 - 4", "3 - 2 - 1 - 4"],
-        ans: 0, // (A)
-        exp: "प्रथम गोलमेज: नवंबर 1930; गांधी-इरविन: 5 मार्च 1931; भगत सिंह को फांसी: 23 मार्च 1931; पूना पैक्ट: सितंबर 1932। सही क्रम 1 - 2 - 3 - 4 है।"
-      },
-      {
-        q: "10. <strong>महासागरीय जलधाराओं के संदर्भ में निम्नलिखित में से कौन-सी एक 'गर्म' (Warm) जलधारा नहीं है?</strong>",
-        options: ["गल्फ स्ट्रीम", "क्यूरोशियो धारा", "बेंगुएला धारा", "ब्राजील धारा"],
-        ans: 2, // (C)
-        exp: "बेंगुएला धारा दक्षिण अटलांटिक महासागर में अफ्रीका के पश्चिमी तट के सहारे प्रवाहित होने वाली 'ठंडी' जलधारा है। शेष तीनों गर्म जलधाराएं हैं।"
-      },
-      {
-        q: "11. <strong>कथन I:</strong> 42वें संविधान संशोधन अधिनियम 1976 द्वारा प्रस्तावना में 'समाजवादी', 'पंथनिरपेक्ष' और 'अखंडता' शब्द जोड़े गए।<br><strong>कथन II:</strong> केशवानंद भारती वाद (1973) में सर्वोच्च न्यायालय ने माना कि प्रस्तावना संविधान का भाग नहीं है अतः इसमें संशोधन नहीं हो सकता।<br><br>सत्य विकल्प चुनें:",
-        options: ["केवल कथन I सत्य है", "केवल कथन II सत्य है", "कथन I और II दोनों सत्य हैं", "कथन I और II दोनों असत्य हैं"],
-        ans: 0, // (A)
-        exp: "कथन II असत्य है क्योंकि केशवानंद भारती वाद में न्यायालय ने बेरूबारी वाद के निर्णय को पलटते हुए कहा था कि प्रस्तावना संविधान का अभिन्न अंग है और इसमें संशोधन किया जा सकता है।"
-      },
-      {
-        q: "12. <strong>कथन एवं कारण:</strong><br><strong>कथन (A):</strong> लोहे की एक छोटी कील पानी में डूब जाती है जबकि लोहे से बना बड़ा जहाज पानी पर तैरता है।<br><strong>कारण (R):</strong> जहाज द्वारा विस्थापित जल का भार जहाज के कुल भार के बराबर होता है।<br><br>सही कूट चुनें:",
-        options: ["(A) और (R) दोनों सही हैं तथा (R), (A) की सही व्याख्या है", "(A) और (R) दोनों सही हैं लेकिन (R), (A) की सही व्याख्या नहीं है", "(A) सही है परंतु (R) गलत है", "(A) गलत है परंतु (R) सही है"],
-        ans: 0, // (A)
-        exp: "आर्किमिडीज के सिद्धांत के अनुसार तैरने वाली वस्तु अपने भार के बराबर द्रव विस्थापित करती है। जहाज का खोखला आकार उसे ऐसा करने में सक्षम बनाता है।"
-      },
-      {
-        q: "13. <strong>शेरशाह सूरी के संदर्भ में निम्नलिखित कथनों पर विचार कीजिए:</strong><br>1. शेरशाह ने चांदी का शुद्ध 'रुपया' (178 ग्रेन) और तांबे का 'दाम' चलाया।<br>2. उसने भूमि माप के लिए 'सिकंदरी गज' का प्रयोग किया।<br>3. शेरशाह का मकबरा दिल्ली के लाल किले में स्थित है।<br><br>उपर्युक्त में से कौन-सा/से कथन सत्य है/हैं?",
-        options: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "1, 2 और 3 सभी"],
-        ans: 0, // (A)
-        exp: "कथन 3 असत्य है क्योंकि शेरशाह सूरी का मकबरा बिहार के सासाराम (रोहतास) में एक कृत्रिम झील के बीच बना हुआ है।"
-      },
-      {
-        q: "14. <strong>भारतीय संविधान के भाग-III (मौलिक अधिकार) के संदर्भ में निम्नलिखित में से कौन-सा कथन 'असत्य' है?</strong>",
-        options: ["अनुच्छेद 20 और 21 को राष्ट्रीय आपातकाल के दौरान भी निलंबित नहीं किया जा सकता।", "अनुच्छेद 19 में दी गई स्वतंत्रताएं केवल भारतीय नागरिकों को प्राप्त हैं।", "संपत्ति का अधिकार मूल संविधान में कभी भी मौलिक अधिकार के रूप में शामिल नहीं था।", "अनुच्छेद 32 को डॉ. बी. आर. आंबेडकर ने 'संविधान की आत्मा' कहा था।"],
-        ans: 2, // (C)
-        exp: "कथन (C) असत्य है क्योंकि संपत्ति का अधिकार मूल संविधान के अनुच्छेद 31 में मौलिक अधिकार था। इसे 44वें संशोधन 1978 द्वारा अनुच्छेद 300A में कानूनी अधिकार बनाया गया।"
-      },
-      {
-        q: "15. <strong>पर्यावरण संरक्षण संधियों के संदर्भ में निम्नलिखित युग्मों पर विचार कीजिए:</strong><br>1. मॉन्ट्रियल प्रोटोकॉल (1987) - ओजोन परत का क्षरण रोकने हेतु<br>2. क्योटो प्रोटोकॉल (1997) - खतरनाक रसायनों के समुद्र में डंपिंग पर रोक<br>3. रामसर कन्वेंशन (1971) - आर्द्रभूमियों (Wetlands) का संरक्षण<br><br>उपर्युक्त में से कौन-सा/से युग्म सही सुमेलित है/हैं?",
-        options: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "1, 2 और 3 सभी"],
-        ans: 2, // (C)
-        exp: "युग्म 2 असत्य है क्योंकि क्योटो प्रोटोकॉल का संबंध ग्रीनहाउस गैसों के उत्सर्जन में कटौती (जलवायु परिवर्तन) से है, न कि समुद्र में डंपिंग से।"
-      },
-      {
-        q: "16. <strong>कथन I:</strong> धोने का सोडा (Washing Soda) का रासायनिक नाम सोडियम कार्बोनेट डेकाहाइड्रेट है।<br><strong>कथन II:</strong> बेकिंग सोडा का रासायनिक सूत्र Na₂CO₃ होता है।<br><br>सही विकल्प चुनें:",
-        options: ["केवल कथन I सत्य है", "केवल कथन II सत्य है", "कथन I और II दोनों सत्य हैं", "कथन I और II दोनों असत्य हैं"],
-        ans: 0, // (A)
-        exp: "कथन II असत्य है क्योंकि बेकिंग सोडा का रासायनिक सूत्र सोडियम बाईकार्बोनेट (NaHCO₃) होता है, जबकि Na₂CO₃ धोने का सोडा (निर्जल सोडा ऐश) है।"
-      },
-      {
-        q: "17. <strong>गांधीजी के 'चंपारण सत्याग्रह' (1917) के संदर्भ में:</strong><br>1. गांधीजी को चंपारण आने का निमंत्रण राजकुमार शुक्ल ने दिया था।<br>2. यह आंदोलन तिनकठिया प्रथा (3/20 भाग पर नील की खेती) के विरुद्ध था।<br>3. आंदोलन के बाद बागान मालिक अवैध वसूली का 100% धन वापस करने को तैयार हुए थे।<br><br>सत्य कथन चुनें:",
-        options: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "1, 2 और 3 सभी"],
-        ans: 0, // (A)
-        exp: "कथन 3 असत्य है क्योंकि जांच समिति के बाद बागान मालिक अवैध वसूली का केवल 25% हिस्सा वापस करने पर सहमत हुए थे, 100% नहीं।"
-      },
-      {
-        q: "18. <strong>भारत के निर्वाचन आयोग (ECI) के संदर्भ में निम्नलिखित कथनों में से कौन-सा कथन सत्य है?</strong>",
-        options: ["मुख्य चुनाव आयुक्त का कार्यकाल 5 वर्ष या 62 वर्ष की आयु तक होता है।", "मुख्य चुनाव आयुक्त को संसद द्वारा सर्वोच्च न्यायालय के न्यायाधीश के समान प्रक्रिया से ही हटाया जा सकता है।", "संविधान में हमेशा से ही तीन सदस्यीय चुनाव आयोग का प्रावधान रहा है।", "चुनाव आयुक्तों के वेतन भत्तों का निर्धारण संबंधित राज्य के राज्यपाल करते हैं।"],
-        ans: 1, // (B)
-        exp: "मुख्य चुनाव आयुक्त को हटाने की प्रक्रिया उच्चतम न्यायालय के न्यायाधीश के समान (महाभियोग जैसी विशेष बहुमत प्रक्रिया) है। कार्यकाल 6 वर्ष/65 वर्ष होता है।"
-      },
-      {
-        q: "19. <strong>प्रकाश के प्रकीर्णन (Scattering) के संदर्भ में:</strong><br>I. रैले के नियमानुसार प्रकीर्णन की तीव्रता प्रकाश की तरंगदैर्ध्य के चतुर्थ घात के व्युत्क्रमानुपाती होती है।<br>II. लाल रंग की तरंगदैर्ध्य सबसे कम होने के कारण इसका प्रकीर्णन सबसे अधिक होता है।<br><br>सही विकल्प चुनें:",
-        options: ["केवल I सत्य है", "केवल II सत्य है", "I और II दोनों सत्य हैं", "दोनों असत्य हैं"],
-        ans: 0, // (A)
-        exp: "कथन II असत्य है क्योंकि दृश्य प्रकाश में लाल रंग की तरंगदैर्ध्य सबसे 'अधिक' होती है, जिससे इसका प्रकीर्णन सबसे 'कम' होता है।"
-      },
-      {
-        q: "20. <strong>2011 की जनगणना के अनुसार बिहार के साक्षरता आंकड़ों के संदर्भ में कौन-सा कथन असत्य है?</strong>",
-        options: ["बिहार की कुल साक्षरता दर लगभग 61.80% दर्ज की गई।", "बिहार में सर्वाधिक साक्षरता वाला जिला रोहतास (73.37%) है।", "बिहार में न्यूनतम साक्षरता दर वाला जिला किशनगंज है।", "बिहार में पुरुष साक्षरता दर महिला साक्षरता दर से अधिक है।"],
-        ans: 2, // (C)
-        exp: "कथन (C) असत्य है क्योंकि 2011 की जनगणना के अनुसार बिहार में न्यूनतम साक्षरता दर वाला जिला पूर्णिया (51.08%) है, किशनगंज नहीं।"
-      },
-      {
-        q: "21. <strong>दिल्ली सल्तनत के शासक बलबन के संदर्भ में निम्नलिखित कथनों पर विचार कीजिए:</strong><br>1. बलबन ने 'रक्त और लौह' (Blood and Iron) की नीति अपनाई थी।<br>2. उसने चालीसा दल (तुर्कान-ए-चिहलगानी) की शक्ति को पूरी तरह नष्ट कर दिया।<br>3. उसने भारत में नवरोज का त्योहार मनाने पर प्रतिबंध लगा दिया था।<br><br>सत्य कथन चुनें:",
-        options: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "1, 2 और 3 सभी"],
-        ans: 0, // (A)
-        exp: "कथन 3 असत्य है क्योंकि बलबन ने फारसी परंपरा पर आधारित नवरोज उत्सव को बड़े पैमाने पर 'प्रारंभ' किया था, न कि प्रतिबंधित किया था।"
-      },
-      {
-        q: "22. <strong>भारतीय संविधान के अनुच्छेद 32 के तहत जारी की जाने वाली 'परमादेश' (Mandamus) रिट के संदर्भ में:</strong><br>I. यह रिट किसी सार्वजनिक अधिकारी को अपने कानूनी कर्तव्य का पालन करने का आदेश देती है।<br>II. यह रिट भारत के राष्ट्रपति या राज्य के राज्यपाल के विरुद्ध उनके शासकीय कार्यों हेतु जारी नहीं की जा सकती।<br><br>सत्य कूट का चयन कीजिए:",
-        options: ["केवल कथन I सत्य है", "केवल कथन II सत्य है", "कथन I और II दोनों सत्य हैं", "कथन I और II दोनों असत्य हैं"],
-        ans: 2, // (C)
-        exp: "दोनों कथन सत्य हैं। परमादेश लोक कर्तव्य निभाने का आदेश है परंतु संवैधानिक प्रमुखों (राष्ट्रपति/राज्यपाल) के खिलाफ यह जारी नहीं हो सकती।"
-      },
-      {
-        q: "23. <strong>पादप प्रकाश संश्लेषण के संदर्भ में:</strong><br>I. प्रकाश अभिक्रिया (Light Reaction) क्लोरोप्लास्ट के स्ट्रोमा (Stroma) में होती है।<br>II. डार्क रिएक्शन (अप्रकाशिक अभिक्रिया) क्लोरोप्लास्ट के ग्रेना (Grana) में संपन्न होती है।<br><br>सही विकल्प का चयन कीजिए:",
-        options: ["केवल I सत्य है", "केवल II सत्य है", "I और II दोनों सत्य हैं", "कथन I और II दोनों असत्य हैं"],
-        ans: 3, // (D)
-        exp: "दोनों कथन उल्टे हैं और असत्य हैं। प्रकाश अभिक्रिया थाइलेकोइड/ग्रेना में होती है जबकि अप्रकाशिक (डार्क) अभिक्रिया स्ट्रोमा में संपन्न होती है।"
-      },
-      {
-        q: "24. <strong>प्रायद्वीपीय भारत की नदियों के संदर्भ में निम्नलिखित में से कौन-सी नदी अरब सागर में गिरती है और डेल्टा नहीं बनाती?</strong>",
-        options: ["गोदावरी", "महानदी", "ताप्ती (तापी)", "कृष्णा"],
-        ans: 2, // (C)
-        exp: "ताप्ती (और नर्मदा) भ्रंश घाटी से बहकर पश्चिम की ओर अरब सागर (खंभात की खाड़ी) में गिरती है और डेल्टा के बजाय ज्वारनदमुख (Estuary) बनाती है।"
-      },
-      {
-        q: "25. <strong>अर्थव्यवस्था में मुद्रास्फीति (Inflation) बढ़ने पर सर्वाधिक नुकसान किसे होता है?</strong>",
-        options: ["ऋण लेने वाले (Debtors) को", "निश्चित आय वर्ग और पेंशनभोगियों को", "व्यापारी वर्ग को", "शेयर बाजार के निवेशकों को"],
-        ans: 1, // (B)
-        exp: "मुद्रास्फीति से मुद्रा की क्रय शक्ति घटती है, जिससे निश्चित आय पाने वालों, बचतकर्ताओं और लेनदारों को भारी नुकसान होता है। ऋणियों को लाभ होता है।"
-      },
-      {
-        q: "26. <strong>बौद्ध धर्म की चतुर्थ संगीति के संदर्भ में निम्नलिखित कथनों पर विचार कीजिए:</strong><br>1. यह संगीति कुषाण शासक कनिष्क के शासनकाल में कश्मीर के कुंडलवन में हुई थी।<br>2. इस संगीति की अध्यक्षता वसुमित्र ने की थी तथा अश्वघोष इसके उपाध्यक्ष थे।<br>3. इस संगीति में बौद्ध धर्म का विभाजन श्वेतांबर और दिगंबर में हो गया।<br><br>सत्य कूट चुनिए:",
-        options: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "1, 2 और 3 सभी"],
-        ans: 0, // (A)
-        exp: "कथन 3 असत्य है क्योंकि चतुर्थ संगीति में बौद्ध धर्म 'हीनयान' और 'महायान' में विभाजित हुआ था। श्वेतांबर व दिगंबर जैन धर्म के संप्रदाय हैं।"
-      },
-      {
-        q: "27. <strong>भारत के नियंत्रक एवं महालेखा परीक्षक (CAG) के संदर्भ में कौन-सा कथन असत्य है?</strong>",
-        options: ["CAG की नियुक्ति राष्ट्रपति द्वारा अनुच्छेद 148 के तहत की जाती है।", "CAG को पद से संसद द्वारा उसी प्रक्रिया से हटाया जा सकता है जैसे सुप्रीम कोर्ट के जज को।", "CAG संसद की प्राक्कलन समिति (Estimates Committee) का मार्गदर्शन करता है।", "पद त्यागने के बाद CAG भारत सरकार या राज्य सरकार के अधीन कोई पद धारण नहीं कर सकता।"],
-        ans: 2, // (C)
-        exp: "कथन (C) असत्य है क्योंकि CAG 'लोक लेखा समिति' (Public Accounts Committee - PAC) का मित्र, दार्शनिक और मार्गदर्शक होता है, प्राक्कलन समिति का नहीं।"
-      },
-      {
-        q: "28. <strong>दृष्टि दोष के निवारण के संदर्भ में:</strong><br>I. निकट दृष्टि दोष (Myopia) के निवारण के लिए अवतल लेंस का चश्मा प्रयुक्त होता है।<br>II. जरा-दूरदर्शिता (Presbyopia) के निवारण के लिए द्विफोकसी (Bifocal) लेंस का उपयोग किया जाता है।<br><br>सत्य कथन चुनें:",
-        options: ["केवल कथन I सत्य है", "केवल कथन II सत्य है", "कथन I और II दोनों सत्य हैं", "कथन I और II दोनों असत्य हैं"],
-        ans: 2, // (C)
-        exp: "दोनों कथन सत्य हैं। निकट दृष्टि दोष में अवतल लेंस, दूर दृष्टि में उत्तल लेंस और बुढ़ापे में सिलियरी मांसपेशियों की कमजोरी से होने वाले जरा-दृष्टि में बाइफोकल लेंस लगता है।"
-      },
-      {
-        q: "29. <strong>बिहार में 1857 की क्रांति के अमर सेनानी बाबू वीर कुंवर सिंह का संबंध किस रियासत से था?</strong>",
-        options: ["दरभंगा", "जगदीशपुर (शाहाबाद/भोजपुर)", "डुमरांव", "टिकारी"],
-        ans: 1, // (B)
-        exp: "बाबू वीर कुंवर सिंह जगदीशपुर रियासत (वर्तमान भोजपुर जिला) के उज्जैनिया परमार राजपूत जमींदार थे।"
-      },
-      {
-        q: "30. <strong>कांग्रेस के ऐतिहासिक 'लाहौर अधिवेशन' (1929) के संदर्भ में:</strong><br>1. इस अधिवेशन की अध्यक्षता पं. जवाहरलाल नेहरू ने की थी।<br>2. इसमें 'पूर्ण स्वराज' को कांग्रेस का मुख्य लक्ष्य घोषित किया गया।<br>3. 26 जनवरी 1930 को प्रथम स्वतंत्रता दिवस के रूप में मनाने का निर्णय लिया गया।<br><br>सत्य कूट चुनिए:",
-        options: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "1, 2 और 3 सभी"],
-        ans: 3, // (D)
-        exp: "लाहौर अधिवेशन (1929) से संबंधित ये तीनों कथन ऐतिहासिक रूप से बिल्कुल सत्य हैं।"
-      },
-      {
-        q: "31. <strong>मानव रुधिर वर्ग में 'सर्वदाता' (Universal Donor) किसे कहा जाता है?</strong>",
-        options: ["AB⁺", "AB⁻", "O⁺", "O⁻"],
-        ans: 3, // (D)
-        exp: "रक्त समूह O⁻ (Rh नेगेटिव) को वास्तविक सर्वदाता कहा जाता है क्योंकि इसमें न तो A या B एंटीजन होते हैं और न ही Rh एंटीजन होता है।"
-      },
-      {
-        q: "32. <strong>संविधान के 73वें संशोधन अधिनियम 1992 द्वारा पंचायतों को कितने विषयों पर विधि बनाने की शक्ति दी गई है?</strong>",
-        options: ["18 विषय", "21 विषय", "29 विषय", "33 विषय"],
-        ans: 2, // (C)
-        exp: "11वीं अनुसूची में पंचायतों के कार्यक्षेत्र के लिए 29 विषय दिए गए हैं। नगरपालिकाओं (12वीं अनुसूची) में 18 विषय हैं।"
-      },
-      {
-        q: "33. <strong>कथन I:</strong> सूर्य में ऊर्जा का निरंतर निर्माण नाभिकीय विखंडन अभिक्रिया द्वारा होता है।<br><strong>कथन II:</strong> हाइड्रोजन बम नाभिकीय संलयन के सिद्धांत पर कार्य करता है।<br><br>सत्य विकल्प चुनें:",
-        options: ["केवल कथन I सत्य है", "केवल कथन II सत्य है", "कथन I और II दोनों सत्य हैं", "कथन I और II दोनों असत्य हैं"],
-        ans: 1, // (B)
-        exp: "कथन I असत्य है क्योंकि सूर्य में ऊर्जा का निर्माण 'नाभिकीय संलयन' (Nuclear Fusion) द्वारा होता है, विखंडन द्वारा नहीं।"
-      },
-      {
-        q: "34. <strong>काली मिट्टी के संदर्भ में निम्नलिखित कथनों में से कौन-सा कथन असत्य है?</strong>",
-        options: ["इसे स्थानीय भाषा में 'रेगुर मिट्टी' भी कहा जाता है।", "यह मिट्टी मुख्य रूप से दक्कन के लावा पठार में पाई जाती है।", "इस मिट्टी में नमी धारण करने की क्षमता अत्यंत कम होती है।", "यह कपास की खेती के लिए सर्वाधिक उपयुक्त मानी जाती है।"],
-        ans: 2, // (C)
-        exp: "कथन (C) असत्य है। काली मिट्टी में क्ले की मात्रा अधिक होने के कारण जल/नमी धारण करने की क्षमता 'अत्यधिक' होती है।"
-      },
-      {
-        q: "35. <strong>'आत्मीय सभा' (1815) और 'ब्रह्म समाज' (1828) की स्थापना निम्नलिखित में से किसके द्वारा की गई थी?</strong>",
-        options: ["स्वामी दयानंद सरस्वती", "राजा राममोहन राय", "ईश्वर चंद्र विद्यासागर", "केशव चंद्र सेन"],
-        ans: 1, // (B)
-        exp: "राजा राममोहन राय ने एकेश्वरवाद का प्रसार करने और सामाजिक कुरीतियों का विरोध करने हेतु आत्मीय सभा और ब्रह्म समाज की स्थापना की।"
-      },
-      {
-        q: "36. <strong>कथन एवं कारण:</strong><br><strong>कथन (A):</strong> गोताखोरों द्वारा प्रयुक्त श्वसन सिलेंडरों में ऑक्सीजन के साथ हीलियम मिलाई जाती है।<br><strong>कारण (R):</strong> हीलियम गैस ऑक्सीजन की तुलना में भारी होती है जिससे फेफड़ों पर दबाव बढ़ता है।<br><br>सही विकल्प चुनें:",
-        options: ["(A) और (R) दोनों सही हैं तथा (R), (A) की सही व्याख्या है", "(A) और (R) दोनों सही हैं लेकिन (R), (A) सही व्याख्या नहीं है", "(A) सही है परंतु (R) गलत है", "(A) गलत है परंतु (R) सही है"],
-        ans: 2, // (C)
-        exp: "कथन सही है परंतु कारण गलत है। हीलियम हल्की और अक्रिय होती है तथा उच्च दाब पर रक्त में बहुत कम घुलनशील होती है जिससे बेंड्स रोग नहीं होता।"
-      },
-      {
-        q: "37. <strong>जैन धर्म के 24वें तीर्थंकर भगवान महावीर का जन्म बिहार में कहाँ हुआ था?</strong>",
-        options: ["पावापुरी", "कुंडलपुर / कुंडग्राम (वैशाली)", "चंपापुरी (भागलपुर)", "राजगृह"],
-        ans: 1, // (B)
-        exp: "भगवान महावीर का जन्म वैशाली के निकट कुंडग्राम में ज्ञातृक कुल में हुआ था। पावापुरी में उनका निर्वाण (मृत्यु) हुआ था।"
-      },
-      {
-        q: "38. <strong>भारतीय संविधान के किस अनुच्छेद के तहत राज्यों में राष्ट्रपति शासन (President's Rule) लगाया जाता है?</strong>",
-        options: ["अनुच्छेद 352", "अनुच्छेद 356", "अनुच्छेद 360", "अनुच्छेद 365 केवल"],
-        ans: 1, // (B)
-        exp: "राज्य में संवैधानिक तंत्र विफल होने पर अनुच्छेद 356 (तथा केंद्र के निर्देशों का पालन न करने पर 365) के तहत राष्ट्रपति शासन लगाया जाता है।"
-      },
-      {
-        q: "39. <strong>काकोलत जलप्रपात बिहार के किस जिले में स्थित एक प्रसिद्ध पर्यटन स्थल है?</strong>",
-        options: ["कैमूर", "रोहतास", "नवादा", "गया"],
-        ans: 2, // (C)
-        exp: "काकोलत जलप्रपात बिहार के नवादा जिले में स्थित है।"
-      },
-      {
-        q: "40. <strong>कथन I:</strong> भारी जल (D₂O) का उपयोग नाभिकीय रिएक्टर में न्यूट्रॉनों की गति तेज करने के लिए किया जाता है।<br><strong>कथन II:</strong> बोरॉन और कैडमियम की छड़ें न्यूट्रॉनों को अवशोषित करने के लिए नियंत्रक छड़ के रूप में प्रयुक्त होती हैं।<br><br>सत्य विकल्प चुनें:",
-        options: ["केवल कथन I सत्य है", "केवल कथन II सत्य है", "कथन I और II दोनों सत्य हैं", "कथन I और II दोनों असत्य हैं"],
-        ans: 1, // (B)
-        exp: "कथन I असत्य है क्योंकि भारी जल (मंदक) न्यूट्रॉनों की गति को 'धीमा' (मन्द) करने के लिए प्रयुक्त होता है, तेज करने के लिए नहीं।"
-      },
-      {
-        q: "41. <strong>ओजोन परत वायुमंडल के किस संस्तर (Layer) में पाई जाती है?</strong>",
-        options: ["क्षोभमंडल (Troposphere)", "समतापमंडल (Stratosphere)", "मध्यमंडल (Mesosphere)", "तापमंडल (Thermosphere)"],
-        ans: 1, // (B)
-        exp: "ओजोन परत समतापमंडल (Stratosphere) के निचले भाग में 15 से 35 किमी की ऊंचाई पर पाई जाती है।"
-      },
-      {
-        q: "42. <strong>विजयनगर साम्राज्य के किस शासक के दरबार में 'अष्टदिग्गज' (आठ महान तेलुगु कवि) रहते थे?</strong>",
-        options: ["हरिहर प्रथम", "देवराय द्वितीय", "कृष्णदेव राय", "सदाशिव राय"],
-        ans: 2, // (C)
-        exp: "तुलुव वंश के प्रतापी राजा कृष्णदेव राय के दरबार में अष्टदिग्गज रहते थे जिनमें तेनालीराम और पेद्दना प्रमुख थे।"
-      },
-      {
-        q: "43. <strong>भारतीय संविधान का कौन-सा अनुच्छेद राज्य को 'ग्राम पंचायतों के गठन' का निर्देश देता है?</strong>",
-        options: ["अनुच्छेद 39A", "अनुच्छेद 40", "अनुच्छेद 44", "अनुच्छेद 48"],
-        ans: 1, // (B)
-        exp: "नीति निदेशक तत्वों के अंतर्गत अनुच्छेद 40 ग्राम पंचायतों के गठन और उन्हें स्वशासन की इकाइयों के रूप में शक्ति देने का निर्देश देता है।"
-      },
-      {
-        q: "44. <strong>कथन I:</strong> अम्लीय वर्षा का मुख्य कारण वातावरण में उपस्थित सल्फर डाइऑक्साइड (SO₂) और नाइट्रोजन के ऑक्साइड हैं।<br><strong>कथन II:</strong> जब वर्षा जल का pH मान 5.6 से कम हो जाता है तो उसे अम्लीय वर्षा कहा जाता है।<br><br>सत्य कूट चुनिए:",
-        options: ["केवल कथन I सत्य है", "केवल कथन II सत्य है", "कथन I और II दोनों सत्य हैं", "कथन I और II दोनों असत्य हैं"],
-        ans: 2, // (C)
-        exp: "दोनों कथन वैज्ञानिक रूप से सत्य हैं। SO₂ और NO₂ सल्फ्यूरिक और नाइट्रिक अम्ल बनाकर वर्षा जल को अम्लीय कर देते हैं।"
-      },
-      {
-        q: "45. <strong>मुगल सम्राट अकबर द्वारा 'जजिया कर' किस वर्ष समाप्त किया गया था?</strong>",
-        options: ["1562 ई.", "1564 ई.", "1575 ई.", "1582 ई."],
-        ans: 1, // (B)
-        exp: "अकबर ने 1562 में दास प्रथा, 1563 में तीर्थयात्रा कर तथा 1564 ई. में गैर-मुस्लिमों पर लगने वाले जजिया कर को समाप्त किया था।"
-      },
-      {
-        q: "46. <strong>ध्वनि की चाल के संदर्भ में निम्नलिखित में से कौन-सा कथन असत्य है?</strong>",
-        options: ["ध्वनि का वेग ठोस माध्यम में सबसे अधिक तथा गैस में सबसे कम होता है।", "तापमान बढ़ने पर वायु में ध्वनि की चाल बढ़ जाती है।", "वायुदाब में परिवर्तन करने पर ध्वनि की चाल तेजी से बदल जाती है।", "ध्वनि तरंगें निर्वात में गमन नहीं कर सकतीं।"],
-        ans: 2, // (C)
-        exp: "कथन (C) असत्य है। माध्यम के दाब में परिवर्तन होने पर ध्वनि की चाल पर कोई प्रभाव नहीं पड़ता (यदि तापमान नियत रहे)।"
-      },
-      {
-        q: "47. <strong>बिहार का एकमात्र राष्ट्रीय उद्यान 'वाल्मीकि राष्ट्रीय उद्यान' किस जिले में स्थित है?</strong>",
-        options: ["पूर्वी चंपारण", "पश्चिमी चंपारण", "गया", "कैमूर"],
-        ans: 1, // (B)
-        exp: "वाल्मीकि राष्ट्रीय उद्यान एवं टाइगर रिजर्व बिहार के पश्चिमी चंपारण जिले में भारत-नेपाल सीमा पर स्थित है।"
-      },
-      {
-        q: "48. <strong>उच्चतम न्यायालय द्वारा 'केशवानंद भारती वाद' (1973) में कौन-सा ऐतिहासिक सिद्धांत दिया गया था?</strong>",
-        options: ["संविधान के मूल ढांचे का सिद्धांत (Basic Structure)", "प्रिवी पर्स की बहाली", "कॉलेजियम प्रणाली की स्थापना", "समान नागरिक संहिता का निर्देश"],
-        ans: 0, // (A)
-        exp: "13 जजों की संविधान पीठ ने निर्णय दिया कि संसद संविधान के किसी भी हिस्से में संशोधन कर सकती है किंतु मूल ढांचे को नष्ट नहीं कर सकती।"
-      },
-      {
-        q: "49. <strong>निम्नलिखित में से कौन-सा पादप हार्मोन 'वृद्धि रोधक' (Growth Inhibitor) हार्मोन के रूप में जाना जाता है?</strong>",
-        options: ["ऑक्सिन", "जिबरेलिन", "साइटोकाइनिन", "एब्सिसिक अम्ल (ABA)"],
-        ans: 3, // (D)
-        exp: "एब्सिसिक अम्ल (ABA) और एथिलीन वृद्धि रोधक हैं। ऑक्सिन, जिबरेलिन व साइटोकाइनिन वृद्धि प्रवर्धक हार्मोन हैं।"
-      },
-      {
-        q: "50. <strong>'वेदों की ओर लौटो' का नारा 19वीं सदी के किस महान समाज सुधारक ने दिया था?</strong>",
-        options: ["स्वामी विवेकानंद", "स्वामी दयानंद सरस्वती", "राजा राममोहन राय", "केशव चंद्र सेन"],
-        ans: 1, // (B)
-        exp: "1875 में आर्य समाज के संस्थापक स्वामी दयानंद सरस्वती ने 'वेदों की ओर लौटो' का उद्घोष किया था।"
-      },
-      {
-        q: "51. <strong>भारतीय मानक समय (IST) की देशांतर रेखा (82°30' पूर्वी) निम्नलिखित में से किस राज्य से होकर नहीं गुजरती है?</strong>",
-        options: ["उत्तर प्रदेश", "मध्य प्रदेश", "ओडिशा", "बिहार"],
-        ans: 3, // (D)
-        exp: "82°30' पूर्वी देशांतर 5 राज्यों (UP, MP, छत्तीसगढ़, ओडिशा, आंध्र प्रदेश) से गुजरती है। यह बिहार से होकर नहीं गुजरती।"
-      },
-      {
-        q: "52. <strong>'वस्तु एवं सेवा कर' (GST) संविधान के किस संशोधन अधिनियम द्वारा लागू किया गया था?</strong>",
-        options: ["99वां संशोधन", "100वां संशोधन", "101वां संशोधन", "103वां संशोधन"],
-        ans: 2, // (C)
-        exp: "101वें संविधान संशोधन अधिनियम 2016 द्वारा 1 जुलाई 2017 से भारत में वस्तु एवं सेवा कर (GST) लागू किया गया।"
-      },
-      {
-        q: "53. <strong>लोहे को जंग (Rust) से बचाने के लिए उस पर जस्ते (Zinc) की परत चढ़ाने की विधि क्या कहलाती है?</strong>",
-        options: ["विद्युत अपघटन", "गैल्वनीकरण (यशदलेपन)", "प्रगलन", "तापानुशीतन"],
-        ans: 1, // (B)
-        exp: "लोहे या इस्पात पर पिघले हुए जस्ते (जिंक) की सुरक्षात्मक परत चढ़ाने को गैल्वनीकरण (Galvanization) कहते हैं।"
-      },
-      {
-        q: "54. <strong>बिहार में गंगा नदी की लंबाई लगभग कितनी है और यह कितने जिलों से होकर प्रवाहित होती है?</strong>",
-        options: ["लगभग 250 किमी (8 जिले)", "लगभग 445 किमी (12 जिले)", "लगभग 525 किमी (15 जिले)", "लगभग 350 किमी (10 जिले)"],
-        ans: 1, // (B)
-        exp: "गंगा नदी बिहार में लगभग 445 किमी की दूरी तय करती है और यह बिहार के 12 जिलों से होकर गुजरती है।"
-      },
-      {
-        q: "55. <strong>'आजाद दस्ता' का गठन 1942 के भारत छोड़ो आंदोलन के दौरान किसके द्वारा किया गया था?</strong>",
-        options: ["राममनोहर लोहिया", "जयप्रकाश नारायण", "सुभाष चंद्र बोस", "अरुणा आसफ अली"],
-        ans: 1, // (B)
-        exp: "हजारीबाग जेल से भागने के बाद जयप्रकाश नारायण ने नेपाल के राजविलास जंगल में भूमिगत छापामार दस्ते 'आजाद दस्ता' का गठन किया था।"
-      },
-      {
-        q: "56. <strong>मानव वृक्क (Kidney) में पथरी बनने के लिए मुख्य रूप से कौन-सा रासायनिक यौगिक उत्तरदायी होता है?</strong>",
-        options: ["कैल्शियम ऑक्सालेट", "सोडियम क्लोराइड", "मैग्नीशियम सल्फेट", "कैल्शियम कार्बोनेट"],
-        ans: 0, // (A)
-        exp: "गुर्दे की अधिकांश पथरियां कैल्शियम ऑक्सालेट (Calcium Oxalate) के क्रिस्टलों के जमाव के कारण बनती हैं।"
-      },
-      {
-        q: "57. <strong>संविधान सभा की प्रारूप समिति (Drafting Committee) के अध्यक्ष कौन थे?</strong>",
-        options: ["डॉ. राजेंद्र प्रसाद", "पं. जवाहरलाल नेहरू", "डॉ. बी. आर. आंबेडकर", "बी. एन. राव"],
-        ans: 2, // (C)
-        exp: "29 अगस्त 1947 को गठित 7 सदस्यीय प्रारूप समिति के अध्यक्ष डॉ. भीमराव आंबेडकर थे।"
-      },
-      {
-        q: "58. <strong>उत्तराखंड के चमोली में 1973 में प्रारंभ हुए 'चिपको आंदोलन' के प्रमुख नेता कौन थे?</strong>",
-        options: ["मेधा पाटकर", "सुंदरलाल बहुगुणा एवं चंडी प्रसाद भट्ट", "बाबा आम्टे", "डॉ. सलीम अली"],
-        ans: 1, // (B)
-        exp: "पेड़ों की कटाई रोकने के लिए महिलाओं द्वारा पेड़ों से चिपकने का यह आंदोलन सुंदरलाल बहुगुणा, चंडी प्रसाद भट्ट और गौरा देवी के नेतृत्व में हुआ।"
-      },
-      {
-        q: "59. <strong>अम्ल और क्षार की पहचान हेतु प्रयुक्त लिटमस पत्र मूलतः किससे प्राप्त किया जाता है?</strong>",
-        options: ["कवक (Fungus)", "लाइकेन (Lichen)", "शैवाल (Algae)", "जीवाणु (Bacteria)"],
-        ans: 1, // (B)
-        exp: "लिटमस एक प्राकृतिक सूचक है जिसे थैलोफाइटा समूह के रोसेला नामक लाइकेन (Lichen) पौधे से निष्कर्षित किया जाता है।"
-      },
-      {
-        q: "60. <strong>दिल्ली सल्तनत में सर्वाधिक नहरों का निर्माण करवाने वाला सुल्तान कौन था?</strong>",
-        options: ["गयासुद्दीन तुगलक", "मुहम्मद बिन तुगलक", "फिरोज शाह तुगलक", "सिकंदर लोदी"],
-        ans: 2, // (C)
-        exp: "नहर निर्माण शुरू गयासुद्दीन तुगलक ने किया था परंतु सबसे बड़ा और विस्तृत नहरों का जाल फिरोज शाह तुगलक ने बनवाया था।"
-      },
-      {
-        q: "61. <strong>विश्व में 'आर्द्रभूमि दिवस' (World Wetlands Day) किस तिथि को मनाया जाता है?</strong>",
-        options: ["2 फरवरी", "22 मार्च", "22 अप्रैल", "5 जून"],
-        ans: 0, // (A)
-        exp: "2 फरवरी 1971 को रामसर सम्मेलन पर हस्ताक्षर होने के उपलक्ष्य में प्रतिवर्ष 2 फरवरी को आर्द्रभूमि दिवस मनाया जाता है।"
-      },
-      {
-        q: "62. <strong>संविधान के किस अनुच्छेद के तहत राज्य में 'महाधिवक्ता' (Advocate General) की नियुक्ति राज्यपाल द्वारा की जाती है?</strong>",
-        options: ["अनुच्छेद 76", "अनुच्छेद 148", "अनुच्छेद 165", "अनुच्छेद 217"],
-        ans: 2, // (C)
-        exp: "अनुच्छेद 165 राज्य के महाधिवक्ता की नियुक्ति से संबंधित है। केंद्र में महान्यायवादी की नियुक्ति अनुच्छेद 76 के तहत होती है।"
-      },
-      {
-        q: "63. <strong>घरों में प्रयुक्त होने वाला 'फ्यूज तार' किन धातुओं की मिश्रधातु (Alloy) से बना होता है?</strong>",
-        options: ["तांबा और जिंक", "सीसा (Lead) और टिन (Tin)", "लोहा और कार्बन", "एल्यूमीनियम और निकेल"],
-        ans: 1, // (B)
-        exp: "फ्यूज तार टिन (63%) और सीसा (37%) की मिश्रधातु है जिसका गलनांक निम्न और प्रतिरोध अपेक्षाकृत उच्च होता है।"
-      },
-      {
-        q: "64. <strong>हर्षवर्धन के शासनकाल में भारत की यात्रा करने वाले प्रसिद्ध चीनी यात्री ह्वेनसांग की यात्रा वृत्तांत पुस्तक का क्या नाम है?</strong>",
-        options: ["फो-क्वो-की", "सी-यू-की", "किताब-उल-हिंद", "इंडिका"],
-        ans: 1, // (B)
-        exp: "ह्वेनसांग के यात्रा वृत्तांत को 'सी-यू-की' (पश्चिमी संसार का अभिलेख) के नाम से जाना जाता है।"
-      },
-      {
-        q: "65. <strong>ओजोन परत की मोटाई मापने के लिए किस मानक इकाई का प्रयोग किया जाता है?</strong>",
-        options: ["डेसिबल", "डॉबसन यूनिट (DU)", "पास्कल", "हर्ट्ज"],
-        ans: 1, // (B)
-        exp: "वायुमंडलीय ओजोन की सांद्रता और परत की मोटाई डॉबसन यूनिट (Dobson Unit) में मापी जाती है।"
-      },
-      {
-        q: "66. <strong>भारतीय संविधान में 'राज्य के नीति निदेशक तत्व' (DPSP) किस देश के संविधान से प्रेरित हैं?</strong>",
-        options: ["ब्रिटेन", "संयुक्त राज्य अमेरिका", "आयरलैंड", "ऑस्ट्रेलिया"],
-        ans: 2, // (C)
-        exp: "संविधान के भाग IV में शामिल नीति निदेशक तत्व आयरलैंड के 1937 के संविधान से गृहीत किए गए हैं।"
-      },
-      {
-        q: "67. <strong>विटामिन C का रासायनिक नाम क्या है और इसकी कमी से कौन-सा रोग होता है?</strong>",
-        options: ["थायमिन, बेरी-बेरी", "एस्कॉर्बिक एसिड, स्कर्वी", "कैल्सीफेरॉल, रिकेट्स", "टोकोफेरॉल, बांझपन"],
-        ans: 1, // (B)
-        exp: "विटामिन C का रासायनिक नाम एस्कॉर्बिक एसिड है। इसकी कमी से मसूड़ों से खून आना और स्कर्वी रोग होता है।"
-      },
-      {
-        q: "68. <strong>1882 में लॉर्ड रिपन द्वारा गठित 'हंटर आयोग' का मुख्य संबंध किससे था?</strong>",
-        options: ["न्यायिक सुधार", "प्राथमिक एवं माध्यमिक शिक्षा सुधार", "सैन्य पुनर्गठन", "भूमि बंदोबस्त"],
-        ans: 1, // (B)
-        exp: "डब्ल्यू. डब्ल्यू. हंटर की अध्यक्षता में गठित इस आयोग का मुख्य उद्देश्य भारत में प्राथमिक और माध्यमिक शिक्षा का विकास करना था।"
-      },
-      {
-        q: "69. <strong>1699 ई. में बैसाखी के दिन खालसा पंथ की स्थापना किस सिख गुरु ने की थी?</strong>",
-        options: ["गुरु नानक देव", "गुरु अर्जुन देव", "गुरु तेग बहादुर", "गुरु गोबिंद सिंह"],
-        ans: 3, // (D)
-        exp: "सिखों के दसवें गुरु, गुरु गोबिंद सिंह जी (जिनका जन्म 1666 में पटना साहिब में हुआ था) ने आनंदपुर साहिब में खालसा पंथ की स्थापना की।"
-      },
-      {
-        q: "70. <strong>यदि किसी देश की 'विदेशों से प्राप्त शुद्ध साधन आय' (NFIA) ऋणात्मक हो, तो क्या स्थिति होगी?</strong>",
-        options: ["GNP, GDP से अधिक होगा", "GNP, GDP से कम होगा", "GDP और GNP दोनों शून्य होंगे", "मुद्रास्फीति दर शून्य होगी"],
-        ans: 1, // (B)
-        exp: "सूत्र: GNP = GDP + NFIA। जब NFIA ऋणात्मक (-ve) होगा, तो निश्चित ही GNP का मान GDP से कम हो जाएगा।"
-      },
+  <!-- ================= 3. BEAUTIFIED DETAILED SOLUTION & SCORECARD ================= -->
+  <div id="solutionSection" class="hidden min-h-screen bg-slate-100 p-3 sm:p-6 md:p-10">
+    <div class="max-w-5xl mx-auto space-y-8">
 
-      // --- SECTION 2: 30 MATHEMATICS & REASONING (Q71 TO Q100) ---
+      <!-- Premium Result Header Card -->
+      <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-xl overflow-hidden relative">
+        <div class="absolute -right-16 -top-16 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-6 border-b border-slate-200 gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-1.5 bg-indigo-50 text-indigo-700 border border-indigo-200 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+              <i class="fas fa-award"></i>
+              <span>Official Performance Analytics</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-black text-slate-900 mt-2 font-heading">ज्ञानवर्स CBT परीक्षा स्कोरकार्ड</h2>
+            <p class="text-slate-500 text-xs md:text-sm mt-0.5">डेली एडिटोरियल व करेंट अफेयर्स स्पेशल - विस्तृत समाधान रिपोर्ट</p>
+          </div>
+
+          <div class="flex flex-wrap gap-2.5 no-print">
+            <button onclick="window.print()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs md:text-sm font-bold py-2.5 px-5 rounded-xl shadow-lg shadow-indigo-600/25 transition-all flex items-center">
+              <i class="fas fa-file-pdf mr-2"></i> डाउनलोड / प्रिंट PDF
+            </button>
+            <a href="https://t.me/GYANVERSET" target="_blank" class="bg-sky-500 hover:bg-sky-600 text-white text-xs md:text-sm font-bold py-2.5 px-4 rounded-xl shadow transition-all flex items-center">
+              <i class="fab fa-telegram-plane mr-1.5"></i> @GYANVERSET
+            </a>
+          </div>
+        </div>
+
+        <!-- 5-Metric Scoreboard -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-3.5 mt-6">
+          <div class="bg-gradient-to-br from-indigo-50 to-white p-4 rounded-2xl border border-indigo-100 shadow-sm text-center">
+            <span class="text-indigo-600 text-xs font-bold uppercase tracking-wider block">कुल स्कोर (Marks)</span>
+            <span class="text-2xl md:text-3xl font-black text-indigo-900 mt-1 block" id="resScore">0 / 28</span>
+            <span class="text-[10px] text-indigo-500 font-medium">14 प्रश्न (+2 / -0.2)</span>
+          </div>
+
+          <div class="bg-gradient-to-br from-emerald-50 to-white p-4 rounded-2xl border border-emerald-100 shadow-sm text-center">
+            <span class="text-emerald-700 text-xs font-bold uppercase tracking-wider block">सही उत्तर (Correct)</span>
+            <span class="text-2xl md:text-3xl font-black text-emerald-600 mt-1 block" id="resCorrect">0</span>
+            <span class="text-[10px] text-emerald-600 font-medium" id="resCorrectMarks">+0.00 Marks</span>
+          </div>
+
+          <div class="bg-gradient-to-br from-rose-50 to-white p-4 rounded-2xl border border-rose-100 shadow-sm text-center">
+            <span class="text-rose-700 text-xs font-bold uppercase tracking-wider block">गलत उत्तर (Incorrect)</span>
+            <span class="text-2xl md:text-3xl font-black text-rose-600 mt-1 block" id="resIncorrect">0</span>
+            <span class="text-[10px] text-rose-600 font-medium" id="resNegativeMarks">-0.00 Neg</span>
+          </div>
+
+          <div class="bg-gradient-to-br from-slate-50 to-white p-4 rounded-2xl border border-slate-200 shadow-sm text-center">
+            <span class="text-slate-600 text-xs font-bold uppercase tracking-wider block">अनुत्तरित (Skipped)</span>
+            <span class="text-2xl md:text-3xl font-black text-slate-700 mt-1 block" id="resSkipped">0</span>
+            <span class="text-[10px] text-slate-500 font-medium">कोई अंक कटौती नहीं</span>
+          </div>
+
+          <div class="bg-gradient-to-br from-amber-50 to-white p-4 rounded-2xl border border-amber-200 shadow-sm text-center col-span-2 md:col-span-1">
+            <span class="text-amber-800 text-xs font-bold uppercase tracking-wider block">सटीकता (Accuracy)</span>
+            <span class="text-2xl md:text-3xl font-black text-amber-600 mt-1 block" id="resAccuracy">0%</span>
+            <span class="text-[10px] text-amber-700 font-medium">कुल प्रयास दर</span>
+          </div>
+        </div>
+
+        <!-- Filter Pills Bar (no-print) -->
+        <div class="mt-6 pt-5 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 no-print">
+          <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">सॉल्यूशन फिल्टर करें:</div>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <button onclick="filterSolutions('all')" class="sol-filter-btn active bg-slate-900 text-white px-3.5 py-1.5 rounded-lg font-bold transition">All (14)</button>
+            <button onclick="filterSolutions('correct')" class="sol-filter-btn bg-slate-100 hover:bg-slate-200 text-emerald-700 px-3.5 py-1.5 rounded-lg font-bold transition">Correct Only</button>
+            <button onclick="filterSolutions('incorrect')" class="sol-filter-btn bg-slate-100 hover:bg-slate-200 text-rose-700 px-3.5 py-1.5 rounded-lg font-bold transition">Incorrect Only</button>
+            <button onclick="filterSolutions('skipped')" class="sol-filter-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-1.5 rounded-lg font-bold transition">Skipped Only</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Solutions Container -->
+      <div id="solutionsMasterContainer" class="space-y-8">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 4. JAVASCRIPT & EXAM DATA ================= -->
+  <script>
+    const examData = [
       {
-        q: "71. [गणित - प्रतिशत] एक परीक्षा में 70% अभ्यर्थी अंग्रेजी में उत्तीर्ण हुए, 65% अभ्यर्थी गणित में उत्तीर्ण हुए और 25% अभ्यर्थी दोनों विषयों में अनुत्तीर्ण रहे। यदि दोनों विषयों में कुल 3,000 अभ्यर्थी उत्तीर्ण हुए हों, तो परीक्षा में बैठने वाले कुल अभ्यर्थियों की संख्या कितनी थी?",
-        options: ["4,500", "5,000", "5,500", "6,000"],
-        ans: 1, // (B)
-        exp: "कुल अनुत्तीर्ण = 25% ⇒ कम से कम एक विषय में उत्तीर्ण = 75%।<br>दोनों में उत्तीर्ण % = (70% + 65%) - 75% = 60%।<br>कुल का 60% = 3,000 ⇒ कुल अभ्यर्थी = 3000 × (100 / 60) = 5,000।"
+        id: 1,
+        source: "Asian Games 2026 Day 9: India Medal Winners & Tally",
+        question: "20वें एशियाई खेल 2026 (20th Asian Games 2026) का आधिकारिक आयोजन किस देश और शहर में किया गया?",
+        options: [
+          "हांगझू, चीन",
+          "आईची-नागोया, जापान",
+          "दोहा, कतर",
+          "रियाद, सऊदी अरब"
+        ],
+        correct: 1,
+        explanation: {
+          currentFacts: [
+            "20वें एशियाई खेल 2026 का आयोजन जापान के आईची प्रांत और उसके प्रमुख शहर नागोया (Aichi-Nagoya) में किया गया।",
+            "9वें दिन तक भारतीय दल ने निशानेबाजी, स्क्वैश, एथलेटिक्स और तीरंदाजी में कई ऐतिहासिक पदक हासिल कर शीर्ष पदक तालिका में अपना स्थान मजबूत किया।",
+            "एशियाई खेलों में ई-स्पोर्ट्स और मिक्स्ड जेंडर टीम स्पर्धाओं को भी विशेष स्थान प्रदान किया गया।"
+          ],
+          staticGK: [
+            "<strong>प्रथम एशियाई खेल:</strong> वर्ष 1951 में नई दिल्ली (भारत) के नेशनल स्टेडियम में आयोजित हुए थे।",
+            "<strong>प्रतीक व आदर्श वाक्य:</strong> 'एवर ऑनवर्ड' (Ever Onward) तथा प्रतीक 'चमकता हुआ सूर्य' (Rising Sun with 16 rays)।",
+            "<strong>भारत की मेजबानी:</strong> भारत ने 1951 और 1982 (दोनों बार नई दिल्ली) में मेजबानी की है।",
+            "<strong>आगामी संस्करण:</strong> 21वां संस्करण 2030 (दोहा, कतर) तथा 22वां संस्करण 2034 (रियाद, सऊदी अरब) में निर्धारित है।"
+          ],
+          entityDetails: {
+            title: "जापान (मेजबान देश) - सम्पूर्ण राज्य/देश विवरण",
+            capital: "टोक्यो (Tokyo)",
+            currency: "जापानी येन (JPY ¥)",
+            pmPresident: "शिगेरू इशिबा (प्रधानमंत्री)",
+            keyHighlights: [
+              "<strong>भौगोलिक संरचना:</strong> 4 मुख्य द्वीप - होन्शू (सबसे बड़ा व राजधानी टोक्यो यहीं है), होक्काइडो, क्युशू और शिकोकू।",
+              "<strong>उपनाम:</strong> 'उगते सूर्य का देश' (Nippon) और 'पैसिफिक रिंग ऑफ फायर' पर स्थित अत्यधिक भूकंपीय क्षेत्र।",
+              "<strong>संसद का नाम:</strong> नेशनल डायट (National Diet)।"
+            ]
+          }
+        }
       },
       {
-        q: "72. [गणित - लाभ-हानि] एक व्यापारी किसी वस्तु के अंकित मूल्य पर 20% की छूट देने के बाद भी 25% का शुद्ध लाभ कमाता है। यदि वस्तु का क्रय मूल्य ₹480 हो, तो उसका अंकित मूल्य क्या होगा?",
-        options: ["₹680", "₹720", "₹750", "₹800"],
-        ans: 2, // (C)
-        exp: "SP = 480 × 1.25 = ₹600।<br>20% छूट के बाद SP = अंकित मूल्य (MP) का 80%।<br>MP = 600 / 0.80 = ₹750।"
+        id: 2,
+        source: "KAZIND-2026: India-Kazakhstan Joint Military Exercise",
+        question: "भारत और कजाकिस्तान के बीच संयुक्त सैन्य अभ्यास 'काजिंद-2026' (KAZIND-2026) का 9वां संस्करण कहाँ शुरू हुआ?",
+        options: [
+          "ओस्केमेन (Oskemen), कजाकिस्तान",
+          "उमरोई, मेघालय",
+          "अल्माटी, कजाकिस्तान",
+          "पिथौरागढ़, उत्तराखंड"
+        ],
+        correct: 0,
+        explanation: {
+          currentFacts: [
+            "भारत और कजाकिस्तान के बीच 9वां संयुक्त सैन्य अभ्यास 'KAZIND-2026' कजाकिस्तान के ओस्केमेन (Oskemen) में शुरू हुआ।",
+            "भारतीय दल में 120 कर्मी शामिल हैं, जिसका नेतृत्व मुख्यतः भारतीय सेना की गढ़वाल राइफल्स (Garhwal Rifles) और वायु सेना की टुकड़ी ने किया।",
+            "यह अभ्यास संयुक्त राष्ट्र (UN) चार्टर के तहत अर्ध-शहरी एवं पर्वतीय क्षेत्रों में काउंटर-टेररिज्म ऑपरेशन्स पर केंद्रित है।"
+          ],
+          staticGK: [
+            "<strong>इतिहास व नामकरण:</strong> इस अभ्यास की शुरुआत वर्ष 2016 में 'प्रबल दोस्तिक' (Prabal Dostyk) के नाम से हुई थी।",
+            "वर्ष 2018 में इसका नाम बदलकर 'KAZIND' (Kazakhstan-India) कर दिया गया तथा इसे द्विपक्षीय सैन्य स्तर तक उन्नत किया गया।",
+            "वायु सेना घटक को 2023 के 7वें संस्करण (ओटार, कजाकिस्तान) में पहली बार शामिल किया गया था।"
+          ],
+          entityDetails: {
+            title: "कजाकिस्तान (Kazakhstan) - स्टेटिक व भूगोलीय तथ्य",
+            capital: "अस्ताना (Astana - पूर्व नाम नूर-सुल्तान)",
+            currency: "कजाकिस्तानी तेंगे (KZT)",
+            pmPresident: "कासिम-जोमार्ट तोकायेव (राष्ट्रपति)",
+            keyHighlights: [
+              "<strong>विश्व रिकॉर्ड:</strong> दुनिया का सबसे बड़ा लैंडलॉक्ड (स्थल-रुद्ध देश) और दुनिया का 9वां सबसे बड़ा देश।",
+              "<strong>खनिज संपदा:</strong> विश्व में यूरेनियम का सबसे बड़ा उत्पादक और निर्यातक देश।",
+              "<strong>अंतरिक्ष केंद्र:</strong> प्रसिद्ध 'बैकोनूर कॉस्मोड्रोम' (Baikonur Cosmodrome) कजाकिस्तान में ही स्थित है जहाँ से स्पूतनिक और यूरी गागरिन ने उड़ान भरी थी।"
+            ]
+          }
+        }
       },
       {
-        q: "73. [गणित - चक्रवृद्धि ब्याज] कोई धनराशि वार्षिक चक्रवृद्धि ब्याज की निश्चित दर से 3 वर्षों में स्वयं की 8 गुनी हो जाती है। वही धनराशि उसी दर से कितने वर्षों में स्वयं की 64 गुनी हो जाएगी?",
-        options: ["6 वर्ष", "8 वर्ष", "9 वर्ष", "12 वर्ष"],
-        ans: 0, // (A)
-        exp: "3 वर्ष में 8¹ = 8 गुनी। 64 गुनी अर्थात 8² गुनी।<br>अतः समय = 3 × 2 = 6 वर्ष।"
+        id: 3,
+        source: "Cool Leaders Award 2026: Singapore, UAE and Dong Mingzhu",
+        question: "ग्लोबल कूलिंग प्लेज असेंबली 2026 में घोषित प्रथम 'कूल लीडर्स अवार्ड' (Cool Leaders Award 2026) में किन्हें सम्मानित किया गया?",
+        options: [
+          "सिंगापुर, संयुक्त अरब अमीरात और डोंग मिंगझू",
+          "भारत, फ्रांस और फातिहा बियारोल",
+          "जापान, दक्षिण कोरिया और ली कुन-ही",
+          "जर्मनी, नॉर्वे और ग्रेटा थुनबर्ग"
+        ],
+        correct: 0,
+        explanation: {
+          currentFacts: [
+            "सिंगापुर में आयोजित ग्लोबल कूलिंग प्लेज असेंबली के दौरान पहले 'Cool Leaders Award' के विजेताओं की घोषणा की गई।",
+            "विजेता: 1. सिंगापुर (अर्बन हीट रेजिलिएंस), 2. यूएई (डिस्ट्रिक्ट कूलिंग नेटवर्क विस्तार), 3. डोंग मिंगझू (चेयरपर्सन, Gree Electric Appliances - अल्ट्रा-लो कार्बन एसी तकनीक)।",
+            "चयनित चैंपियनों को 1 वर्ष के लिए वैश्विक स्तर पर कूलिंग समाधानों को गति देने के लिए राजदूत चुना गया।"
+          ],
+          staticGK: [
+            "<strong>ग्लोबल कूलिंग प्लेज:</strong> इसे COP28 (दुबई, 2023) में UNEP के कूल कोलिशन (Cool Coalition) द्वारा लॉन्च किया गया था।",
+            "<strong>लक्ष्य:</strong> वर्ष 2050 तक वैश्विक कूलिंग उत्सर्जन में 68% की भारी कमी करना और वर्ष 2030 तक एसी दक्षता में 50% सुधार करना।",
+            "ग्लोबल वार्मिंग में हाइड्रोफ्लोरोकार्बन (HFCs) को चरणबद्ध रूप से समाप्त करने के लिए प्रसिद्ध 'किगाली संशोधन 2016' (मॉन्ट्रियल प्रोटोकॉल) अत्यंत महत्वपूर्ण है।"
+          ],
+          entityDetails: {
+            title: "सिंगापुर एवं यूएई (UAE) - अंतर्राष्ट्रीय तथ्य",
+            capital: "सिंगापुर सिटी (सिंगापुर) / अबू धाबी (यूएई)",
+            currency: "सिंगापुर डॉलर (SGD) / यूएई दिरहम (AED)",
+            pmPresident: "लॉरेंस वोंग (सिंगापुर पीएम) / शेख मोहम्मद बिन जायद (यूएई राष्ट्रपति)",
+            keyHighlights: [
+              "<strong>सिंगापुर:</strong> मलक्का जलडमरूमध्य के रणनीतिक सिरे पर स्थित दुनिया के सबसे व्यस्त ट्रांसशिपमेंट बंदरगाहों में से एक।",
+              "<strong>यूएई:</strong> 7 अमीरातों (अबू धाबी, दुबई, शारजाह, अजमान, उम्म अल-कुवैन, रस अल-खैमाह, फुजैराह) का एक महासंघ है।"
+            ]
+          }
+        }
       },
       {
-        q: "74. [गणित - समय और कार्य] A किसी कार्य को 12 दिनों में तथा B उसी कार्य को 18 दिनों में समाप्त कर सकता है। दोनों एक साथ कार्य शुरू करते हैं किंतु 4 दिन बाद B कार्य छोड़ देता है। शेष कार्य को A अकेले कितने दिनों में पूरा करेगा?",
-        options: ["4 दिन", "5⅓ दिन", "6 दिन", "7½ दिन"],
-        ans: 1, // (B)
-        exp: "LCM (12, 18) = 36 इकाई। A = 3 इकाई/दिन, B = 2 इकाई/दिन।<br>4 दिन में दोनों का कार्य = 4 × 5 = 20 इकाई।<br>शेष कार्य = 16 इकाई। A का समय = 16 / 3 = 5⅓ दिन।"
+        id: 4,
+        source: "Exercise Tarang Shakti 2026: Jodhpur Air Force Station",
+        question: "भारतीय वायु सेना द्वारा आयोजित सबसे बड़े बहुराष्ट्रीय युद्धाभ्यास 'तरंग शक्ति 2026' का दूसरा चरण कहाँ शुरू हुआ?",
+        options: [
+          "जोधपुर वायु सेना स्टेशन (राजस्थान)",
+          "सुलूर वायु सेना स्टेशन (तमिलनाडु)",
+          "हिंडन एयर बेस (उत्तर प्रदेश)",
+          "अम्बाला एयर बेस (हरियाणा)"
+        ],
+        correct: 0,
+        explanation: {
+          currentFacts: [
+            "भारतीय वायु सेना (IAF) ने बहुराष्ट्रीय युद्धाभ्यास 'तरंग शक्ति 2026' के द्वितीय चरण का आयोजन वायु सेना स्टेशन जोधपुर (राजस्थान) में शुरू किया।",
+            "इसमें अमेरिका, ऑस्ट्रेलिया, ग्रीस, श्रीलंका, यूएई, सिंगापुर सहित 7 विदेशी मित्र वायु सेनाओं ने फाइटर जेट्स और अवाक्स (AWACS) के साथ भाग लिया।",
+            "इसका पहला चरण सुलूर (तमिलनाडु) में आयोजित किया गया था।"
+          ],
+          staticGK: [
+            "<strong>ऐतिहासिक तथ्य:</strong> तरंग शक्ति भारत की धरती पर आयोजित अब तक का सबसे बड़ा बहुराष्ट्रीय हवाई युद्धाभ्यास है।",
+            "<strong>भारतीय वायु सेना (IAF):</strong> स्थापना 8 अक्टूबर 1932। आदर्श वाक्य: 'नभः स्पृशं दीप्तम्' (Touch the Sky with Glory - भगवद्गीता के 11वें अध्याय से प्रेरित)।",
+            "<strong>प्रमुख ऐतिहासिक मिशन:</strong> ऑपरेशन मेघदूत (1984 - सियाचिन), ऑपरेशन कैक्टस (1988 - मालदीव), ऑपरेशन सफेद सागर (1999 - कारगिल)।"
+          ],
+          entityDetails: {
+            title: "राजस्थान (आयोजक राज्य) - सम्पूर्ण स्टेटिक प्रोफाइल",
+            capital: "जयपुर (गुलाबी नगरी - UNESCO विश्व धरोहर शहर)",
+            currency: "भारतीय रुपया (INR)",
+            pmPresident: "भजन लाल शर्मा (सीएम) / हरिभाऊ बागड़े (राज्यपाल)",
+            keyHighlights: [
+              "<strong>क्षेत्रफल:</strong> भारत का क्षेत्रफल की दृष्टि से सबसे बड़ा राज्य (3,42,239 वर्ग किमी)।",
+              "<strong>राष्ट्रीय उद्यान:</strong> रणथंभौर टाइगर रिजर्व, सरिस्का टाइगर रिजर्व, मुकुंदरा हिल्स, रामगढ़ विषधारी (52वां टाइगर रिजर्व) और केवलादेव घाना राष्ट्रीय उद्यान (रामसर व यूनेस्को स्थल)।",
+              "<strong>जोधपुर विशेष:</strong> 'ब्लू सिटी' और 'सन सिटी' के नाम से प्रसिद्ध; मेहरानगढ़ किला यहीं स्थित है।"
+            ]
+          }
+        }
       },
       {
-        q: "75. [गणित - चाल, समय व दूरी] 180 मीटर लंबी रेलगाड़ी 72 किमी/घंटा की गति से चल रही है। वह पटरी के पास खड़े एक टेलीग्राफ खंभे को पार करने में कितना समय लेगी?",
-        options: ["8 सेकंड", "9 सेकंड", "10 सेकंड", "12 सेकंड"],
-        ans: 1, // (B)
-        exp: "चाल = 72 × (5 / 18) = 20 मी./से।<br>समय = दूरी / चाल = 180 / 20 = 9 सेकंड।"
+        id: 5,
+        source: "Kandla Port: India's First Port-Based E-Methanol Facility",
+        question: "भारत की पहली पोर्ट-आधारित 'ई-मेथनॉल' (E-Methanol) उत्पादन सुविधा का विकास किस बंदरगाह पर शुरू किया गया है?",
+        options: [
+          "दीनदयाल पोर्ट ट्रस्ट, कांडला (गुजरात)",
+          "जवाहरलाल नेहरू पोर्ट ट्रस्ट (महाराष्ट्र)",
+          "पारादीप पोर्ट ट्रस्ट (ओडिशा)",
+          "वी.ओ. चिदंबरनार पोर्ट ट्रस्ट, तूतीकोरिन (तमिलनाडु)"
+        ],
+        correct: 0,
+        explanation: {
+          currentFacts: [
+            "गुजरात के कांडला स्थित दीनदयाल पोर्ट पर भारत की पहली पोर्ट-बेस्ड 'ई-मेथनॉल' उत्पादन सुविधा का विकास कार्य शुरू किया गया।",
+            "प्रस्तावित सुविधा की क्षमता 150 टन प्रतिदिन (TPD) है, जो ग्रीन मैरीटाइम फ्यूल सप्लाई के लिए एक मील का पत्थर है।",
+            "यह कदम अंतर्राष्ट्रीय समुद्री संगठन (IMO) के 2050 तक नेट-जीरो जीएचजी उत्सर्जन लक्ष्य के अनुरूप है।"
+          ],
+          staticGK: [
+            "<strong>ई-मेथनॉल क्या है?</strong> यह ग्रीन हाइड्रोजन (जल के इलेक्ट्रोलिसिस से नवीकरणीय ऊर्जा द्वारा उत्पादित) और कैप्चर की गई कार्बन डाइऑक्साइड (CO2) के सिंथेसिस से बनता है। यह शून्य-उत्सर्जन समुद्री ईंधन है।",
+            "<strong>राष्ट्रीय हरित हाइड्रोजन मिशन:</strong> जनवरी 2023 में ₹19,744 करोड़ के परिव्यय के साथ शुरू; 2030 तक सालाना 5 MMT उत्पादन का लक्ष्य।",
+            "<strong>कांडला पोर्ट इतिहास:</strong> विभाजन के बाद कराची बंदरगाह के विकल्प के रूप में 1950 के दशक में विकसित; भारत का पहला विशेष आर्थिक क्षेत्र (SEZ/EPZ) 1965 में कांडला में बना।"
+          ],
+          entityDetails: {
+            title: "गुजरात (गृह राज्य) - सम्पूर्ण स्टेटिक प्रोफाइल",
+            capital: "गांधीनगर",
+            currency: "भारतीय रुपया (INR)",
+            pmPresident: "भूपेंद्र पटेल (सीएम) / आचार्य देवव्रत (राज्यपाल)",
+            keyHighlights: [
+              "<strong>तटरेखा:</strong> भारत की सबसे लंबी समुद्री तटरेखा (लगभग 1,600 किमी)।",
+              "<strong>राष्ट्रीय उद्यान:</strong> गिर राष्ट्रीय उद्यान (एशियाई बब्बर शेरों का एकमात्र प्राकृतिक आवास), ब्लैकबक (वेलवादर) नेशनल पार्क, मरीन नेशनल पार्क (जामनगर)।",
+              "<strong>विश्व धरोहर:</strong> रानी की वाव (पाटन), धोलावीरा (हड़प्पा स्थल), चंपानेर-पावागढ़ और ऐतिहासिक अहमदाबाद शहर।"
+            ]
+          }
+        }
       },
       {
-        q: "76. [गणित - अनुपात] तीन संख्याओं का अनुपात 2 : 3 : 5 है और उनके वर्गों का योग 608 है। सबसे छोटी संख्या का मान क्या होगा?",
-        options: ["6", "8", "10", "12"],
-        ans: 1, // (B)
-        exp: "माना संख्याएं 2x, 3x, 5x हैं। (2x)² + (3x)² + (5x)² = 38x² = 608 ⇒ x² = 16 ⇒ x = 4।<br>सबसे छोटी संख्या = 2 × 4 = 8।"
+        id: 6,
+        source: "Asian Games 2026: Esha Singh Wins Silver in Women's 25m Pistol",
+        question: "ईशा सिंह (Esha Singh) ने एशियाई खेल 2026 में किस खेल स्पर्धा में भारत के लिए व्यक्तिगत रजत पदक हासिल किया?",
+        options: [
+          "महिला 25 मीटर पिस्टल निशानेबाजी",
+          "10 मीटर एयर राइफल निशानेबाजी",
+          "50 मीटर राइफल 3-पोजिशन",
+          "ट्रैप शूटिंग"
+        ],
+        correct: 0,
+        explanation: {
+          currentFacts: [
+            "भारतीय शीर्ष पिस्टल निशानेबाज ईशा सिंह ने एशियाई खेल 2026 में महिलाओं की 25 मीटर पिस्टल फाइनल में रजत पदक जीता।",
+            "उन्होंने कड़े मुकाबले में चीनी और कोरियाई निशानेबाजों को पछाड़कर 34/50 का शानदार स्कोर दर्ज किया।",
+            "ईशा सिंह पूर्व में विश्व चैंपियनशिप और एशियन चैंपियनशिप में भी कई स्वर्ण व पदक जीत चुकी हैं।"
+          ],
+          staticGK: [
+            "<strong>शूटिंग इतिहास (भारत):</strong> ओलंपिक में पहला व्यक्तिगत रजत राज्यवर्धन सिंह राठौर (एथेंस 2004, डबल ट्रैप) ने जीता था।",
+            "पहला व्यक्तिगत स्वर्ण अभिनव बिंद्रा ने बीजिंग 2008 में 10 मीटर एयर राइफल में जीता।",
+            "मनु भाकर पेरिस ओलंपिक 2024 में एक ही संस्करण में दो व्यक्तिगत पदक जीतने वाली स्वतंत्र भारत की पहली एथलीट बनीं।"
+          ],
+          entityDetails: {
+            title: "तेलंगाना (खिलाड़ी का गृह राज्य) - सम्पूर्ण प्रोफाइल",
+            capital: "हैदराबाद",
+            currency: "भारतीय रुपया (INR)",
+            pmPresident: "ए. रेवंत रेड्डी (सीएम) / जिष्णु देव वर्मा (राज्यपाल)",
+            keyHighlights: [
+              "<strong>राज्य गठन:</strong> 2 जून 2014 (आंध्र प्रदेश पुनर्गठन अधिनियम द्वारा 29वें राज्य के रूप में)।",
+              "<strong>राष्ट्रीय उद्यान:</strong> कासू ब्रह्मानंद रेड्डी (KBR), महावीर हरिणा वनस्थली और मृगवनी नेशनल पार्क।",
+              "<strong>धरोहर स्थल:</strong> काकतीय रुद्रेश्वर (रामप्पा) मंदिर - UNESCO विश्व धरोहर स्थल; हैदराबाद 'मोतियों का शहर' व IT हब।"
+            ]
+          }
+        }
       },
       {
-        q: "77. [गणित - औसत] 11 परिणामों का औसत 50 है। यदि प्रथम 6 परिणामों का औसत 49 हो तथा अंतिम 6 परिणामों का औसत 52 हो, तो छठा परिणाम क्या होगा?",
-        options: ["52", "54", "56", "58"],
-        ans: 2, // (C)
-        exp: "कुल योग = 11 × 50 = 550।<br>प्रथम 6 का योग = 294, अंतिम 6 का योग = 312।<br>छठा परिणाम = (294 + 312) - 550 = 606 - 550 = 56।"
+        id: 7,
+        source: "Tamil Nadu: Thaaimaman Thanga Mothiram Scheme",
+        question: "तमिलनाडु सरकार की 'थाईमामन थंगा मोथिरम' योजना के तहत सरकारी अस्पतालों में जन्मे प्रत्येक नवजात को क्या उपहार दिया जाता है?",
+        options: [
+          "1 ग्राम वजनी 22-कैरेट सोने की अंगूठी",
+          "₹10,000 की सावधि जमा (FD)",
+          "5 ग्राम का चांदी का सिक्का",
+          "निशुल्क पोषण किट और ₹5,000 नकद"
+        ],
+        correct: 0,
+        explanation: {
+          currentFacts: [
+            "तमिलनाडु के मुख्यमंत्री एम.के. स्टालिन ने सरकारी अस्पतालों में प्रसव कराने वाली माताओं के नवजातों के लिए 'थाईमामन थंगा मोथिरम' योजना लागू की।",
+            "इसके तहत सरकारी अस्पतालों में जन्म लेने वाले प्रत्येक बच्चे को 1 ग्राम की 22-कैरेट सोने की अंगूठी उपहार स्वरूप दी जाती है।",
+            "वार्षिक बजट लगभग ₹755.83 करोड़ है, जिसका मुख्य उद्देश्य सरकारी स्वास्थ्य प्रणाली में विश्वास बढ़ाना और मातृ-शिशु स्वास्थ्य सुरक्षा सुनिश्चित करना है।"
+          ],
+          staticGK: [
+            "<strong>सांस्कृतिक महत्व:</strong> 'थाईमामन' तमिल में मामा को कहते हैं; तमिल परंपरा में मामा द्वारा नवजात को पहली बार सोने की अंगूठी (सीर) पहनाने की रस्म होती है, जिसे सरकार ने राज्यव्यापी रूप दिया।",
+            "<strong>नीति आयोग स्वास्थ्य सूचकांक:</strong> तमिलनाडु लगातार बड़े राज्यों में केरल के बाद शीर्ष स्वास्थ्य प्रदर्शन करने वाले राज्यों में शामिल है।",
+            "तमिलनाडु में संस्थागत प्रसव दर 99.8% है, जिसमें से लगभग 53% प्रसव सरकारी पीएचसी और जिला अस्पतालों में होते हैं।"
+          ],
+          entityDetails: {
+            title: "तमिलनाडु (राज्य प्रोफाइल) - स्टेटिक व प्रशासनिक तथ्य",
+            capital: "चेन्नई (पूर्व नाम मद्रास - ऑटोमोबाइल कैपिटल ऑफ इंडिया)",
+            currency: "भारतीय रुपया (INR)",
+            pmPresident: "एम.के. स्टालिन (सीएम) / आर.एन. रवि (राज्यपाल)",
+            keyHighlights: [
+              "<strong>राष्ट्रीय उद्यान:</strong> मुदुमलाई, मुकुर्ती, अन्नामलाई (इंदिरा गांधी), गिंडी नेशनल पार्क और मन्नार की खाड़ी मरीन नेशनल पार्क।",
+              "<strong>शास्त्रीय नृत्य:</strong> भरतनाट्यम (भारत का सबसे प्राचीन शास्त्रीय नृत्य)।",
+              "<strong>द्रविड़ वास्तुकला:</strong> बृहदेश्वर मंदिर (तंजावुर - यूनेस्को), महाबलीपुरम के रथ मंदिर और मीनाक्षी मंदिर (मदुरै)।"
+            ]
+          }
+        }
       },
       {
-        q: "78. [गणित - आयु संबंध] पिता और पुत्र की वर्तमान आयु का अनुपात 7 : 2 है। 10 वर्ष बाद यह अनुपात 9 : 4 हो जाएगा। पिता की वर्तमान आयु क्या है?",
-        options: ["28 वर्ष", "35 वर्ष", "42 वर्ष", "49 वर्ष"],
-        ans: 1, // (B)
-        exp: "(7x + 10) / (2x + 10) = 9 / 4 ⇒ 28x + 40 = 18x + 90 ⇒ 10x = 50 ⇒ x = 5।<br>पिता की आयु = 7 × 5 = 35 वर्ष।"
+        id: 8,
+        source: "Livestock Insurance Portal 2026 Launched in New Delhi",
+        question: "पशुपालन एवं डेयरी विभाग (DAHD) द्वारा पशुधन बीमा दावों के पारदर्शी डिजिटलीकरण हेतु नई दिल्ली में कौन सा समर्पित पोर्टल लॉन्च किया गया?",
+        options: [
+          "पशुधन बीमा पोर्टल (Livestock Insurance Portal)",
+          "कामधेनु डिजिटल सेवा पोर्टल",
+          "ई-गोपाला 2.0 वेब पोर्टल",
+          "राष्ट्रीय पशु संजीवनी पोर्टल"
+        ],
+        correct: 0,
+        explanation: {
+          currentFacts: [
+            "केंद्रीय मत्स्य पालन, पशुपालन और डेयरी मंत्रालय के DAHD विभाग द्वारा 28 सितंबर 2026 को नई दिल्ली में आधिकारिक 'Livestock Insurance Portal' लॉन्च किया गया।",
+            "यह पोर्टल पशुपालकों के लिए पेपरलेस पॉलिसी जारी करने, क्लेम इंटिमेशन, पशु की डिजिटल टैगिंग और रियल-टाइम सेटलमेंट सुनिश्चित करता है।",
+            "इसे 'राष्ट्रीय पशुधन मिशन' (NLM) के बीमा घटक के तहत एकीकृत किया गया है।"
+          ],
+          staticGK: [
+            "<strong>पशुधन गणना:</strong> भारत में पहली पशुधन गणना 1919-1920 में हुई थी। यह प्रत्येक 5 वर्ष में एक बार आयोजित की जाती है।",
+            "<strong>दुग्ध उत्पादन:</strong> भारत दुनिया का सबसे बड़ा दूध उत्पादक देश है, जो वैश्विक उत्पादन में लगभग 24% का योगदान देता है।",
+            "<strong>ऑपरेशन फ्लड (श्वेत क्रांति):</strong> 1970 में राष्ट्रीय डेयरी विकास बोर्ड (NDDB) द्वारा शुरू की गई; इसके जनक डॉ. वर्गीज कुरियन थे।"
+          ],
+          entityDetails: {
+            title: "राष्ट्रीय राजधानी क्षेत्र (नई दिल्ली) - स्टेटिक तथ्य",
+            capital: "नई दिल्ली (भारत की राजधानी 1911 में कोलकाता से स्थानांतरित हुई)",
+            currency: "भारतीय रुपया (INR)",
+            pmPresident: "आतिशी (सीएम) / विनय कुमार सक्सेना (उपराज्यपाल)",
+            keyHighlights: [
+              "<strong>संवैधानिक प्रावधान:</strong> 69वें संविधान संशोधन अधिनियम, 1991 के तहत अनुच्छेद 239AA जोड़कर दिल्ली को राष्ट्रीय राजधानी क्षेत्र (NCT) बनाया गया।",
+              "<strong>प्रमुख संस्थान:</strong> ICAR (भारतीय कृषि अनुसंधान परिषद), पूसा संस्थान, सुप्रीम कोर्ट, राष्ट्रपति भवन (रायसीना हिल्स)।"
+            ]
+          }
+        }
       },
       {
-        q: "79. [गणित - क्षेत्रमिति] एक बेलन के आधार की त्रिज्या 7 सेमी और ऊंचाई 10 सेमी है। इसका वक्र पृष्ठीय क्षेत्रफल क्या होगा? [π = 22/7]",
-        options: ["220 सेमी²", "330 सेमी²", "440 सेमी²", "550 सेमी²"],
-        ans: 2, // (C)
-        exp: "वक्र पृष्ठ = 2πrh = 2 × (22 / 7) × 7 × 10 = 440 सेमी²।"
+        id: 9,
+        source: "WorldSkills Shanghai 2026: India Finishes 10th",
+        question: "शंघाई (चीन) में आयोजित 48वीं विश्व कौशल प्रतियोगिता (WorldSkills 2026) में भारत ने कुल कितने रजत पदक जीतकर 10वां स्थान हासिल किया?",
+        options: [
+          "6 रजत पदक",
+          "2 स्वर्ण और 4 रजत",
+          "10 रजत पदक",
+          "4 रजत और 8 कांस्य"
+        ],
+        correct: 0,
+        explanation: {
+          currentFacts: [
+            "वर्ल्डस्किल्स 2026 का 48वां संस्करण शंघाई (चीन) में आयोजित हुआ, जिसमें भारत ने 6 रजत पदक और कई मेडेलियन फॉर एक्सीलेंस जीतकर शीर्ष-10 में प्रवेश किया।",
+            "भारत ने 63 विभिन्न कौशलों में 70 प्रतिस्पर्धियों का अपना अब तक का सबसे बड़ा और सबसे विविध दल मैदान में उतारा।",
+            "पेस्ट्री और बेकरी वर्ग में शानदार रजत पदक जीतने वाली केरल की स्मृति नांबियार को 'बेस्ट ऑफ नेशन' का विशेष सम्मान मिला।"
+          ],
+          staticGK: [
+            "<strong>वर्ल्डस्किल्स इंटरनेशनल:</strong> 1950 में स्थापित, इसे 'कौशल का ओलंपिक' (Olympics of Skills) कहा जाता है। मुख्यालय: एम्स्टर्डम, नीदरलैंड्स।",
+            "यह प्रत्येक 2 वर्ष में एक बार आयोजित होने वाली वैश्विक व्यावसायिक कौशल प्रतियोगिता है।",
+            "<strong>भारत में नोडल एजेंसी:</strong> कौशल विकास और उद्यमिता मंत्रालय (MSDE) के तहत राष्ट्रीय कौशल विकास निगम (NSDC)।"
+          ],
+          entityDetails: {
+            title: "चीन (मेजबान देश) - स्टेटिक व आर्थिक प्रोफाइल",
+            capital: "बीजिंग (Beijing)",
+            currency: "रैनमिन्बी / युआन (CNY ¥)",
+            pmPresident: "शी जिनपिंग (राष्ट्रपति)",
+            keyHighlights: [
+              "<strong>शंघाई शहर:</strong> चीन का सबसे बड़ा नगर और वित्तीय राजधानी; यांग्त्ज़ी नदी के डेल्टा पर स्थित दुनिया का सबसे व्यस्त कंटेनर बंदरगाह।",
+              "<strong>भौगोलिक तथ्य:</strong> यांग्त्ज़ी नदी (6,300 किमी) एशिया की सबसे लंबी नदी है; थ्री गॉर्जेस डैम विश्व का सबसे बड़ा हाइड्रोइलेक्ट्रिक बांध है।"
+            ]
+          }
+        }
       },
       {
-        q: "80. [गणित - त्रिकोणमिति] यदि tan θ + cot θ = 2 हो (0° < θ < 90°), तो (sin² θ + cos² θ) और (tan¹⁰ θ + cot¹⁰ θ) के मान क्रमशः क्या होंगे?",
-        options: ["1 और 1", "1 और 2", "2 और 1", "2 और 2"],
-        ans: 1, // (B)
-        exp: "tan θ + cot θ = 2 केवल θ = 45° पर संभव है।<br>sin² 45° + cos² 45° = 1 और tan¹⁰(45°) + cot¹⁰(45°) = 1 + 1 = 2।"
+        id: 10,
+        source: "65th National Exhibition of Art: Lalit Kala Akademi Awards 2026",
+        question: "ललित कला अकादमी द्वारा आयोजित 65वीं राष्ट्रीय कला प्रदर्शनी में कुल कितने प्रख्यात कलाकारों को राष्ट्रीय पुरस्कार से सम्मानित किया गया?",
+        options: [
+          "20 कलाकार",
+          "15 कलाकार",
+          "25 कलाकार",
+          "10 कलाकार"
+        ],
+        correct: 0,
+        explanation: {
+          currentFacts: [
+            "ललित कला अकादमी (Lalit Kala Akademi) ने 65वीं राष्ट्रीय कला प्रदर्शनी (NEA 2026) के तहत 20 प्रख्यात कलाकारों को राष्ट्रीय पुरस्कार से अलंकृत किया।",
+            "प्रत्येक विजेता को ₹2,00,000 की नकद राशि, एक पट्टिका (Plaque) और अंगवस्त्रम भेंट किया गया।",
+            "इस ऐतिहासिक प्रदर्शनी में देश भर से आई 6,175 प्रविष्टियों में से चुनी गई 283 उत्कृष्ट कृतियों को प्रदर्शित किया गया।"
+          ],
+          staticGK: [
+            "<strong>ललित कला अकादमी:</strong> स्थापना 5 अगस्त 1954 को नई दिल्ली में तत्कालीन शिक्षा मंत्री मौलाना अबुल कलाम आजाद द्वारा की गई थी।",
+            "यह संस्कृति मंत्रालय, भारत सरकार के अंतर्गत दृश्य कलाओं (चित्रकला, मूर्तिकला, ग्राफिक्स, सिरेमिक) के संवर्धन हेतु सर्वोच्च स्वायत्त निकाय है।",
+            "<strong>तीन राष्ट्रीय अकादमियां:</strong> 1. संगीत नाटक अकादमी (1953), 2. ललित कला अकादमी (1954), 3. साहित्य अकादमी (1954)। तीनों का मुख्यालय रवींद्र भवन, कॉपरनिकस मार्ग, नई दिल्ली में है।"
+          ],
+          entityDetails: {
+            title: "भारत की प्रमुख सांस्कृतिक संस्थाएं एवं मंत्रालय",
+            capital: "संस्कृति मंत्रालय, भारत सरकार (नई दिल्ली)",
+            currency: "भारतीय रुपया (INR)",
+            pmPresident: "गजेंद्र सिंह शेखावत (केंद्रीय संस्कृति मंत्री)",
+            keyHighlights: [
+              "<strong>क्षेत्रीय केंद्र:</strong> ललित कला अकादमी के 5 क्षेत्रीय केंद्र हैं - चेन्नई, कोलकाता, लखनऊ, भुवनेश्वर और गढ़ी (नई दिल्ली)।",
+              "<strong>कालिदास सम्मान:</strong> मध्य प्रदेश सरकार द्वारा दृश्य व शास्त्रीय कलाओं के लिए दिया जाने वाला भारत का प्रतिष्ठित राष्ट्रीय पुरस्कार।"
+            ]
+          }
+        }
       },
       {
-        q: "81. [गणित - HCF एवं LCM] दो संख्याओं का महत्तम समापवर्तक (HCF) 12 तथा लघुत्तम समापवर्त्य (LCM) 240 है। यदि इनमें से एक संख्या 48 हो, तो दूसरी संख्या क्या होगी?",
-        options: ["50", "60", "72", "80"],
-        ans: 1, // (B)
-        exp: "पहली संख्या × दूसरी संख्या = HCF × LCM<br>48 × N = 12 × 240 ⇒ N = 2880 / 48 = 60।"
+        id: 11,
+        source: "Asian Games 2026 Squash: Anahat Singh and Abhay Singh Win Silver",
+        question: "एशियाई खेल 2026 में महिला एकल स्क्वैश में व्यक्तिगत रजत पदक जीतकर इतिहास रचने वाली पहली भारतीय महिला कौन बनीं?",
+        options: [
+          "अनाहत सिंह (Anahat Singh)",
+          "जोशना चिनप्पा",
+          "दीपिका पल्लीकल",
+          "तन्वी खन्ना"
+        ],
+        correct: 0,
+        explanation: {
+          currentFacts: [
+            "18 वर्षीय भारतीय स्क्वैश सनसनी अनाहत सिंह ने एशियाई खेलों के महिला एकल फाइनल में पहुंचकर 'रजत पदक' जीता और इतिहास रच दिया।",
+            "वह एशियाई खेलों में महिला एकल वर्ग में रजत पदक जीतने वाली पहली भारतीय महिला खिलाड़ी बनीं (पूर्व में केवल कांस्य आए थे)।",
+            "पुरुष एकल में भारत के अभय सिंह (Abhay Singh) ने भी असाधारण खेल दिखाते हुए रजत पदक अपने नाम किया।"
+          ],
+          staticGK: [
+            "<strong>भारतीय स्क्वैश दिग्गजों का रिकॉर्ड:</strong> दीपिका पल्लीकल और जोशना चिनप्पा ने एशियन गेम्स में व्यक्तिगत कांस्य जीते हैं।",
+            "पुरुष एकल में सौरव घोषाल ने 2014 इंचियोन और 2023 हांगझू में रजत पदक जीते थे।",
+            "<strong>ओलंपिक में स्क्वैश:</strong> अंतर्राष्ट्रीय ओलंपिक समिति (IOC) ने स्क्वैश को लॉस एंजेलिस ओलंपिक 2028 (LA 2028) में आधिकारिक रूप से शामिल किया है।"
+          ],
+          entityDetails: {
+            title: "अनाहत सिंह (एथलीट बायोग्राफी) एवं दिल्ली स्टेटिक",
+            capital: "नई दिल्ली (खिलाड़ी का निवास)",
+            currency: "भारतीय रुपया (INR)",
+            pmPresident: "स्क्वैश रैकेट्स फेडरेशन ऑफ इंडिया (SRFI - चेन्नई मुख्यालय)",
+            keyHighlights: [
+              "<strong>रिकॉर्ड:</strong> 2022 बर्मिंघम कॉमनवेल्थ गेम्स में अनाहत सिंह मात्र 14 वर्ष की उम्र में भारत की सबसे युवा एथलीट बनी थीं।",
+              "वह जूनियर स्तर पर ब्रिटिश जूनियर ओपन और यूएस जूनियर ओपन का खिताब जीतने वाली दुर्लभ भारतीय हैं।"
+            ]
+          }
+        }
       },
       {
-        q: "82. [गणित - साझेदारी] A और B ने मिलकर व्यापार शुरू किया। A ने ₹40,000 पूरे 12 महीने के लिए लगाए। B ने ₹50,000 लगाए किंतु 4 महीने बाद आधी पूंजी निकाल ली। वर्ष के अंत में ₹46,200 के लाभ में B का हिस्सा कितना होगा?",
-        options: ["₹19,000", "₹20,000", "₹21,000", "₹22,000"],
-        ans: 2, // (C)
-        exp: "A का भारित अनुपात = 40,000 × 12 = 4,80,000।<br>B का भारित अनुपात = (50,000 × 4) + (25,000 × 8) = 4,00,000।<br>अनुपात = 48 : 40 = 6 : 5। कुल भाग = 11।<br>B का लाभ = 46,200 × (5 / 11) = ₹21,000।"
+        id: 12,
+        source: "Chess Olympiad 2026: India Wins Silver Medal in Samarkand",
+        question: "समरकंद (उज्बेकिस्तान) में आयोजित 46वें शतरंज ओलंपियाड 2026 (Chess Olympiad 2026) के ओपन वर्ग में भारतीय टीम ने कौन सा पदक जीता?",
+        options: [
+          "रजत पदक (Silver Medal)",
+          "स्वर्ण पदक (Gold Medal)",
+          "कांस्य पदक (Bronze Medal)",
+          "चौथा स्थान (No Medal)"
+        ],
+        correct: 0,
+        explanation: {
+          currentFacts: [
+            "समरकंद (उज्बेकिस्तान) में संपन्न 46वें शतरंज ओलंपियाड में भारतीय पुरुष टीम ने 18 मैच अंक और 28.5 गेम अंकों के साथ 'रजत पदक' (Silver) जीता।",
+            "मेजबान उज्बेकिस्तान की टीम ने 20 मैच अंकों के साथ ऐतिहासिक स्वर्ण पदक जीता, जबकि जर्मनी ने टाई-ब्रेक में कांस्य पदक प्राप्त किया।",
+            "भारतीय टीम में डी. गुकेश, आर. प्रज्ञानानंदा, अर्जुन एरिगैसी और विदित गुजराती ने बेहतरीन खेल का प्रदर्शन किया।"
+          ],
+          staticGK: [
+            "<strong>FIDE:</strong> अंतर्राष्ट्रीय शतरंज महासंघ (FIDE) की स्थापना 20 जुलाई 1924 को पेरिस में हुई थी। मुख्यालय: लुसाने, स्विट्जरलैंड।",
+            "विश्व शतरंज दिवस प्रतिवर्ष 20 जुलाई को मनाया जाता है।",
+            "<strong>ऐतिहासिक स्वर्ण:</strong> भारत ने बुडापेस्ट 2024 शतरंज ओलंपियाड में ओपन और महिला दोनों श्रेणियों में स्वर्ण पदक जीतकर ऐतिहासिक दोहरा स्वर्ण जीता था।"
+          ],
+          entityDetails: {
+            title: "उज्बेकिस्तान (मेजबान देश) - स्टेटिक व ऐतिहासिक प्रोफाइल",
+            capital: "ताशकंद (Tashkent)",
+            currency: "उज्बेक सोम (UZS)",
+            pmPresident: "शवकत मिर्जियोयेव (राष्ट्रपति)",
+            keyHighlights: [
+              "<strong>डबल लैंडलॉक्ड देश:</strong> उज्बेकिस्तान विश्व के केवल दो 'डबल-लैंडलॉक्ड' देशों (ऐसे देश जो चारों ओर से केवल लैंडलॉक्ड देशों से घिरे हैं) में से एक है; दूसरा लिकटेंस्टीन है।",
+              "<strong>समरकंद व बुखारा:</strong> प्राचीन सिल्क रोड (रेशम मार्ग) के सबसे प्रमुख ऐतिहासिक सांस्कृतिक नगर।",
+              "<strong>भारतीय संबंध:</strong> भारत के दूसरे प्रधानमंत्री लाल बहादुर शास्त्री जी का 11 जनवरी 1966 को ताशकंद में ताशकंद समझौते के बाद निधन हुआ था।"
+            ]
+          }
+        }
       },
       {
-        q: "83. [गणित - BODMAS सरलीकरण] व्यंजक 15 + 4 × [ 12 - 2 × (5 - 2) ] ÷ 3 का सही मान क्या होगा?",
-        options: ["19", "21", "23", "27"],
-        ans: 2, // (C)
-        exp: "(5 - 2) = 3 ⇒ [ 12 - 2 × 3 ] = [ 12 - 6 ] = 6।<br>व्यंजक: 15 + 4 × 6 ÷ 3 ⇒ 15 + 4 × 2 ⇒ 15 + 8 = 23।"
+        id: 13,
+        source: "India's First LNG-Powered Train Flagged Off from Sabarmati",
+        question: "भारतीय रेलवे द्वारा पहली 'LNG-डीजल डुअल फ्यूल ट्रेन' (LNG-Powered Train) का परिचालन कहाँ से शुरू किया गया?",
+        options: [
+          "साबरमती से मेहसाणा जंक्शन (गुजरात)",
+          "वाराणसी से पंडित दीनदयाल उपाध्याय जंक्शन (उत्तर प्रदेश)",
+          "सिकंदराबाद से काजीपेट (तेलंगाना)",
+          "चेन्नई से काटपाडी (तमिलनाडु)"
+        ],
+        correct: 0,
+        explanation: {
+          currentFacts: [
+            "भारतीय रेलवे ने 27 सितंबर 2026 को गुजरात के साबरमती स्टेशन से देश की पहली एलएनजी-डीजल डुअल-फ्यूल 1400 HP DEMU ट्रेन को हरी झंडी दिखाई।",
+            "यह ट्रेन साबरमती से मेहसाणा के बीच नियमित रूप से संचालित होगी, जिससे कार्बन डाइऑक्साइड और पार्टिकुलेट मैटर उत्सर्जन में भारी कमी आएगी।",
+            "यह तकनीक डीजल की खपत में 40% तक की कटौती करती है, जिससे रेलवे को प्रति रैक सालाना लगभग ₹24 लाख की शुद्ध ईंधन बचत होगी।"
+          ],
+          staticGK: [
+            "<strong>LNG का वैज्ञानिक रूप:</strong> लिक्विफाइड नेचुरल गैस (LNG) मुख्य रूप से मीथेन (CH4) होती है, जिसे -162°C तापमान पर ठंडा करके तरल बनाया जाता है। तरल अवस्था में इसका आयतन गैसीय अवस्था से 600 गुना कम हो जाता है।",
+            "<strong>भारतीय रेल इतिहास:</strong> पहली ट्रेन 16 अप्रैल 1853 को बॉम्बे (बोरीबंदर) से ठाणे के बीच 34 किमी (लॉर्ड डलहौजी के काल में) चली थी।",
+            "<strong>रेलवे का नेट-ज़ीरो लक्ष्य:</strong> भारतीय रेलवे ने 2030 तक दुनिया का सबसे बड़ा 'नेट ज़ीरो कार्बन एमिटर' रेलवे नेटवर्क बनने का लक्ष्य रखा है।"
+          ],
+          entityDetails: {
+            title: "साबरमती एवं मेहसाणा (गुजरात) - स्टेटिक बिंदु",
+            capital: "गांधीनगर (गुजरात प्रशासनिक राजधानी)",
+            currency: "भारतीय रुपया (INR)",
+            pmPresident: "भूपेंद्र पटेल (मुख्यमंत्री) / अश्विनी वैष्णव (केंद्रीय रेल मंत्री)",
+            keyHighlights: [
+              "<strong>साबरमती आश्रम:</strong> 1917 में महात्मा गांधी द्वारा साबरमती नदी के तट पर स्थापित; 12 मार्च 1930 को यहीं से 241 मील की ऐतिहासिक 'दांडी यात्रा' शुरू हुई थी।",
+              "<strong>मोढेरा सूर्य मंदिर:</strong> मेहसाणा जिले के पुष्पावती नदी के तट पर स्थित 11वीं सदी का प्रसिद्ध सोलंकी-शैली का सूर्य मंदिर; मोढेरा भारत का पहला 24x7 सौर ऊर्जा संचालित गांव भी है।"
+            ]
+          }
+        }
       },
       {
-        q: "84. [गणित - नाव एवं धारा] एक नाव शांत जल में 10 किमी/घंटा की चाल से चलती है। यदि धारा का वेग 2 किमी/घंटा हो, तो नाव को धारा के अनुकूल 36 किमी जाने और लौटने में कुल कितना समय लगेगा?",
-        options: ["6 घंटे", "7.5 घंटे", "8 घंटे", "8.5 घंटे"],
-        ans: 1, // (B)
-        exp: "अनुकूल चाल = 10 + 2 = 12 किमी/घंटा ⇒ समय = 36 / 12 = 3 घंटे।<br>प्रतिकूल चाल = 10 - 2 = 8 किमी/घंटा ⇒ समय = 36 / 8 = 4.5 घंटे।<br>कुल समय = 3 + 4.5 = 7.5 घंटे (7 घंटे 30 मिनट)।"
-      },
-      {
-        q: "85. [गणित - पाइप और टंकी] नल A टंकी को 10 घंटे में तथा B उसे 15 घंटे में भर सकता है, जबकि निकासी नल C भरी टंकी को 20 घंटे में खाली कर सकता है। तीनों नलों को एक साथ खोलने पर टंकी कितने समय में भरेगी?",
-        options: ["6 घंटे", "7½ घंटे", "8⁴/₇ घंटे", "9 घंटे"],
-        ans: 2, // (C)
-        exp: "LCM (10, 15, 20) = 60 इकाई।<br>A = +6, B = +4, C = -3 ⇒ संयुक्त दर = 6 + 4 - 3 = 7 इकाई/घंटा।<br>समय = 60 / 7 = 8⁴/₇ घंटे।"
-      },
-      {
-        q: "86. [रीजनिंग - शृंखला] निम्नलिखित संख्या शृंखला में प्रश्नवाचक चिह्न (?) के स्थान पर क्या आएगा?<br>4, &nbsp; 11, &nbsp; 30, &nbsp; 85, &nbsp; 248, &nbsp; ?",
-        options: ["684", "735", "737", "744"],
-        ans: 1, // (B)
-        exp: "पैटर्न: (संख्या × 3) - क्रमिक विषम संख्याएँ (-1, -3, -5, -7, -9):<br>4×3 - 1 = 11, 11×3 - 3 = 30, 30×3 - 5 = 85, 85×3 - 7 = 248।<br>अगला पद = 248 × 3 - 9 = 744 - 9 = 735।"
-      },
-      {
-        q: "87. [रीजनिंग - कोडिंग] यदि 'POLICE' को 'SROLFH' लिखा जाता है, तो उसी कूट भाषा में 'DAROGA' को कैसे लिखा जाएगा?",
-        options: ["GDURJD", "GDUROD", "GDTQJD", "FCUQJD"],
-        ans: 0, // (A)
-        exp: "प्रत्येक अक्षर में +3 जुड़ा है: D(+3)=G, A(+3)=D, R(+3)=U, O(+3)=R, G(+3)=J, A(+3)=D ⇒ GDURJD।"
-      },
-      {
-        q: "88. [रीजनिंग - न्याय निगमन (Syllogism)]<br><strong>कथन:</strong><br>1. सभी दरोगा अधिकारी हैं।<br>2. कुछ अधिकारी कर्तव्यनिष्ठ हैं।<br><strong>निष्कर्ष:</strong><br>I. कुछ दरोगा कर्तव्यनिष्ठ हैं।<br>II. कोई भी दरोगा कर्तव्यनिष्ठ नहीं है।<br><br>सही विकल्प चुनें:",
-        options: ["केवल निष्कर्ष I निकलता है", "केवल निष्कर्ष II निकलता है", "या तो निष्कर्ष I या फिर II निकलता है (Either-Or)", "न तो I और न ही II निकलता है"],
-        ans: 2, // (C)
-        exp: "दरोगा और कर्तव्यनिष्ठ के बीच कोई सीधा संबंध नहीं है। चूंकि दोनों निष्कर्षों के चर समान हैं और एक Some तथा दूसरा No है, अतः यहाँ Either-Or (पूरक युग्म) बनेगा।"
-      },
-      {
-        q: "89. [रीजनिंग - रक्त संबंध] एक तस्वीर की ओर संकेत करते हुए एक पुरुष ने एक महिला से कहा: 'इसकी माता तुम्हारे पिता की इकलौती पुत्री है।' वह महिला उस तस्वीर वाले व्यक्ति से किस प्रकार संबंधित है?",
-        options: ["बहन", "माता", "मौसी / चाची", "दादी"],
-        ans: 1, // (B)
-        exp: "महिला के पिता की इकलौती पुत्री = वह महिला स्वयं। अतः तस्वीर वाले व्यक्ति की माता वह महिला स्वयं है।"
-      },
-      {
-        q: "90. [रीजनिंग - दिशा व दूरी] एक पुलिसकर्मी उत्तर दिशा में 15 मीटर चलता है, फिर दाएं मुड़कर 20 मीटर चलता है। इसके बाद पुनः दाएं मुड़कर 15 मीटर चलता है और अंत में बाएं मुड़कर 10 मीटर चलता है। वह प्रारंभिक बिंदु से किस दिशा में और कितनी दूरी पर है?",
-        options: ["पूर्व दिशा में, 30 मीटर", "पश्चिम दिशा में, 30 मीटर", "उत्तर दिशा में, 20 मीटर", "पूर्व दिशा में, 20 मीटर"],
-        ans: 0, // (A)
-        exp: "उत्तर 15 मी और दक्षिण 15 मी का विस्थापन शून्य हो गया। क्षैतिज विस्थापन = 20 मी पूर्व + 10 मी पूर्व = 30 मीटर पूर्व।"
-      },
-      {
-        q: "91. [रीजनिंग - बैठक व्यवस्था] छह मित्र A, B, C, D, E और F केंद्र की ओर मुख करके एक गोल मेज के चारों ओर बैठे हैं। E, D के ठीक बाएं बैठा है। C, A और B के बीच में बैठा है। F, E और A के मध्य बैठा है। B के ठीक दाएं कौन बैठा है?",
-        options: ["A", "C", "D", "F"],
-        ans: 2, // (C)
-        exp: "वृत्त में वामावर्त बैठने का क्रम D, E, F, A, C, B बनता है। सभी केंद्र की ओर देख रहे हैं, अतः B के ठीक दाएं D बैठा है।"
-      },
-      {
-        q: "92. [रीजनिंग - वर्णमाला परीक्षण] शब्द 'PATRIOTIC' में अक्षरों के ऐसे कितने युग्म हैं जिनके बीच शब्द में उतने ही अक्षर हैं जितने कि अंग्रेजी वर्णमाला में होते हैं?",
-        options: ["एक", "दो", "तीन", "चार"],
-        ans: 1, // (B)
-        exp: "दो युग्म हैं: 1. P और R (P Q R में 1 अक्षर); 2. R और T (R S T में 1 अक्षर)।"
-      },
-      {
-        q: "93. [रीजनिंग - घड़ी] ठीक 8 बजकर 20 मिनट पर घड़ी की दोनों सुइयों के मध्य कितने अंश (डिग्री) का कोण बनेगा?",
-        options: ["120°", "125°", "130°", "135°"],
-        ans: 2, // (C)
-        exp: "कोण = |30H - 5.5M| = |30×8 - 5.5×20| = |240 - 110| = 130°।"
-      },
-      {
-        q: "94. [रीजनिंग - कैलेंडर] यदि 15 अगस्त 2023 को मंगलवार था, तो 15 अगस्त 2024 को सप्ताह का कौन-सा दिन था?",
-        options: ["बुधवार", "गुरुवार", "शुक्रवार", "शनिवार"],
-        ans: 1, // (B)
-        exp: "वर्ष 2024 लीप वर्ष है और बीच में 29 फरवरी 2024 आती है, अतः 2 विषम दिन जुड़ेंगे। मंगलवार + 2 = गुरुवार।"
-      },
-      {
-        q: "95. [रीजनिंग - लुप्त संख्या] नीचे दिए गए आव्यूह में प्रश्नवाचक चिह्न (?) के स्थान पर संख्या ज्ञात कीजिए:<br>5 &nbsp;&nbsp;&nbsp; 4 &nbsp;&nbsp;&nbsp; 41<br>7 &nbsp;&nbsp;&nbsp; 3 &nbsp;&nbsp;&nbsp; 58<br>6 &nbsp;&nbsp;&nbsp; 5 &nbsp;&nbsp;&nbsp; ?",
-        options: ["55", "60", "61", "65"],
-        ans: 2, // (C)
-        exp: "पैटर्न: पहली का वर्ग + दूसरी का वर्ग = तीसरी संख्या।<br>5² + 4² = 41; 7² + 3² = 58; 6² + 5² = 36 + 25 = 61।"
-      },
-      {
-        q: "96. [रीजनिंग - वेन आरेख] 'न्यायाधीश', 'चोर' और 'अपराधी' के मध्य सही संबंध कौन दर्शाएगा?",
-        options: ["तीन अलग-अलग वृत्त", "एक बड़े वृत्त के अंदर दो संकेंद्रीय वृत्त", "अपराधी के अंदर चोर का वृत्त और न्यायाधीश अलग वृत्त", "तीनों एक-दूसरे को काटते हुए"],
-        ans: 2, // (C)
-        exp: "सभी 'चोर' 'अपराधी' होते हैं (अपराधी के अंदर चोर)। 'न्यायाधीश' न्यायपालिका का अंग हैं जो इन दोनों से पूर्णतः स्वतंत्र वृत्त हैं।"
-      },
-      {
-        q: "97. [रीजनिंग - सादृश्यता] 64 : 513 :: 144 : ?",
-        options: ["1727", "1728", "1729", "1730"],
-        ans: 2, // (C)
-        exp: "64 = 8² तथा 513 = 8³ + 1 = 512 + 1। उसी प्रकार 144 = 12² ⇒ 12³ + 1 = 1728 + 1 = 1729।"
-      },
-      {
-        q: "98. [रीजनिंग - पासा] यदि एक पासे की दो स्थितियों में फलक 1 और 2 दोनों उभयनिष्ठ (Common) हों, तथा पहली में 3 और दूसरी में 4 दिख रहा हो, तो 3 के विपरीत क्या होगा?",
-        options: ["4", "5", "6", "तय नहीं हो सकता"],
-        ans: 0, // (A)
-        exp: "पासे के नियम के अनुसार दो फलक समान होने पर शेष दोनों फलक एक-दूसरे के सीधे विपरीत होते हैं। अतः 3 के विपरीत 4 होगा।"
-      },
-      {
-        q: "99. [रीजनिंग - पूर्वधारणा]<br><strong>कथन:</strong> 'यातायात नियमों के उल्लंघन पर भारी जुर्माना लगाया जाए ताकि सड़क दुर्घटनाओं में कमी लाई जा सके।'<br><strong>पूर्वधारणाएं:</strong><br>I. जुर्माने के डर से लोग नियमों का पालन करेंगे।<br>II. नियमों का उल्लंघन दुर्घटनाओं का एक बड़ा कारण है।<br><br>सही विकल्प चुनें:",
-        options: ["केवल पूर्वधारणा I अंतर्निहित है", "केवल पूर्वधारणा II अंतर्निहित है", "न तो I और न ही II अंतर्निहित है", "I और II दोनों पूर्वधारणाएं अंतर्निहित हैं"],
-        ans: 3, // (D)
-        exp: "जुर्माना व्यवहार सुधारने के लिए लगाया जाता है (I सही) और नियम उल्लंघन से दुर्घटनाएं होती हैं तभी जुर्माना घटाने में मदद करेगा (II सही)। दोनों अंतर्निहित हैं।"
-      },
-      {
-        q: "100. [रीजनिंग - रैंकिंग] 40 छात्रों की कक्षा में राहुल का क्रमांक ऊपर से 12वां और रोहन का क्रमांक नीचे से 18वां है। दोनों के ठीक मध्य में कितने छात्र हैं?",
-        options: ["8", "10", "11", "12"],
-        ans: 1, // (B)
-        exp: "दोनों स्थानों का योग = 12 + 18 = 30। कुल छात्र (40) > 30।<br>मध्य में स्थित छात्र = 40 - 30 = 10 छात्र।"
+        id: 14,
+        source: "Bhagat Singh Birth Anniversary 2026 (September 28)",
+        question: "28 सितंबर 2026 को अमर शहीद भगत सिंह की कौन सी जयंती मनाई गई?",
+        options: [
+          "119वीं जयंती",
+          "115वीं जयंती",
+          "125वीं जयंती",
+          "110वीं जयंती"
+        ],
+        correct: 0,
+        explanation: {
+          currentFacts: [
+            "28 सितंबर 2026 को भारत माता के महान क्रांतिकारी शहीद-ए-आजम सरदार भगत सिंह की 119वीं जयंती मनाई गई।",
+            "उनका जन्म 28 सितंबर 1907 को पंजाब के लायलपुर जिले के बंगा गांव (वर्तमान फैसलाबाद, पाकिस्तान) में एक देशभक्त सिख परिवार में हुआ था।",
+            "पूरे देश में युवाओं द्वारा उनकी वैचारिक विरासत, किसान आंदोलन, धर्मनिरपेक्षता और वैज्ञानिक सोच पर विशेष संगोष्ठियों का आयोजन किया गया।"
+          ],
+          staticGK: [
+            "<strong>नौजवान भारत सभा:</strong> भगत सिंह ने मार्च 1926 में युवाओं में क्रांति की भावना जगाने हेतु इसकी स्थापना की।",
+            "<strong>HSRA:</strong> सितंबर 1928 में दिल्ली के फिरोजशाह कोटला मैदान में चंद्रशेखर आजाद के साथ 'हिंदुस्तान सोशलिस्ट रिपब्लिकन एसोसिएशन' की स्थापना की।",
+            "<strong>असेंबली बम कांड:</strong> 8 अप्रैल 1929 को बटुकेश्वर दत्त के साथ पब्लिक सेफ्टी बिल और ट्रेड डिस्प्यूट्स बिल के विरोध में खाली बेंचों पर पर्चे और गैर-घातक बम फेंके।",
+            "<strong>शहादत:</strong> लाहौर षड्यंत्र केस में 23 मार्च 1931 को भगत सिंह, सुखदेव और राजगुरु को फांसी दी गई (शहीद दिवस)। प्रसिद्ध निबंध: 'Why I am an Atheist' (मैं नास्तिक क्यों हूँ)।"
+          ],
+          entityDetails: {
+            title: "पंजाब (वीर भूमि) - स्टेटिक व ऐतिहासिक प्रोफाइल",
+            capital: "चंडीगढ़ (पंजाब व हरियाणा की संयुक्त राजधानी - ली कोर्बुज़िए द्वारा नियोजित)",
+            currency: "भारतीय रुपया (INR)",
+            pmPresident: "भगवंत मान (सीएम) / गुलाब चंद कटारिया (राज्यपाल)",
+            keyHighlights: [
+              "<strong>पांच नदियां:</strong> झेलम, चिनाब, रावी, ब्यास और सतलुज की भूमि।",
+              "<strong>जलियांवाला बाग:</strong> 13 अप्रैल 1919 (बैसाखी का दिन) को जनरल डायर के आदेश पर निहत्थे भारतीयों का नरसंहार हुआ।",
+              "<strong>हुसैनीवाला राष्ट्रीय शहीद स्मारक:</strong> फिरोजपुर जिले में भारत-पाक सीमा पर सतलुज के तट पर स्थित है जहाँ भगत सिंह, सुखदेव और राजगुरु का अंतिम संस्कार किया गया था।"
+            ]
+          }
+        }
       }
     ];
 
-    let currentQ = 0;
-    let userAnswers = new Array(100).fill(null);
-    let questionStatus = new Array(100).fill('not-visited');
-    let timerSeconds = 120 * 60;
+    // State Variables
+    let currentQuestionIndex = 0;
+    let userAnswers = {};
+    let markedForReviewSet = new Set();
+    let visitedSet = new Set([0]);
     let timerInterval = null;
+    let remainingTimeSeconds = 120 * 60; // 120 mins
 
-    function startTest() {
-      document.getElementById('intro-screen').classList.add('hidden');
-      document.getElementById('test-screen').classList.remove('hidden');
+    function startExam() {
+      document.getElementById('startScreen').classList.add('hidden');
+      document.getElementById('cbtInterface').classList.remove('hidden');
+      requestFullScreen();
       initPalette();
       loadQuestion(0);
       startTimer();
     }
 
-    function initPalette() {
-      const grid = document.getElementById('palette-grid');
-      grid.innerHTML = '';
-      for(let i = 0; i < 100; i++) {
-        const btn = document.createElement('button');
-        btn.id = `pal-${i}`;
-        btn.innerText = i + 1;
-        btn.className = 'tcs-btn bg-slate-200 text-slate-700 hover:bg-slate-300';
-        btn.onclick = () => loadQuestion(i);
-        grid.appendChild(btn);
-      }
-      updateStatusSummary();
-    }
-
-    function loadQuestion(index) {
-      currentQ = index;
-      document.getElementById('current-q-num').innerText = index + 1;
-
-      const badge = document.getElementById('section-badge');
-      if(index < 70) {
-        badge.innerText = "Section: 70 Statement GS";
-        badge.className = "bg-indigo-100 text-indigo-900 px-2 py-0.5 rounded text-xs";
-      } else {
-        badge.innerText = "Section: 30 Math & Reasoning";
-        badge.className = "bg-amber-100 text-amber-900 px-2 py-0.5 rounded text-xs";
-      }
-      
-      const q = questions[index];
-      document.getElementById('question-text').innerHTML = q.q;
-
-      const optsBox = document.getElementById('options-container');
-      optsBox.innerHTML = '';
-      q.options.forEach((opt, idx) => {
-        const isChecked = userAnswers[index] === idx;
-        const optEl = document.createElement('label');
-        optEl.className = `flex items-start p-3 border rounded cursor-pointer transition ${isChecked ? 'bg-indigo-50 border-indigo-600 text-indigo-950 font-medium' : 'hover:bg-slate-50 border-slate-200'}`;
-        optEl.innerHTML = `
-          <input type="radio" name="opt" value="${idx}" ${isChecked ? 'checked' : ''} onchange="selectOption(${idx})" class="mt-1 w-4 h-4 text-indigo-600 focus:ring-indigo-500">
-          <span class="ml-3 text-xs sm:text-sm leading-relaxed">${opt}</span>
-        `;
-        optsBox.appendChild(optEl);
-      });
-
-      if(questionStatus[index] === 'not-visited') {
-        questionStatus[index] = 'visited';
-      }
-      refreshPaletteAndStatus();
-      document.getElementById('btn-prev').disabled = (index === 0);
-    }
-
-    function selectOption(optIndex) {
-      userAnswers[currentQ] = optIndex;
-      questionStatus[currentQ] = 'answered';
-      refreshPaletteAndStatus();
-    }
-
-    function clearResponse() {
-      userAnswers[currentQ] = null;
-      questionStatus[currentQ] = 'visited';
-      refreshPaletteAndStatus();
-      loadQuestion(currentQ);
-    }
-
-    function markForReview() {
-      if(userAnswers[currentQ] !== null) {
-        questionStatus[currentQ] = 'answered-review';
-      } else {
-        questionStatus[currentQ] = 'review';
-      }
-      refreshPaletteAndStatus();
-      if(currentQ < 99) loadQuestion(currentQ + 1);
-    }
-
-    function saveAndNext() {
-      if(userAnswers[currentQ] !== null) {
-        questionStatus[currentQ] = 'answered';
-      } else {
-        questionStatus[currentQ] = 'visited';
-      }
-      refreshPaletteAndStatus();
-      if(currentQ < 99) loadQuestion(currentQ + 1);
-    }
-
-    function prevQuestion() {
-      if(currentQ > 0) loadQuestion(currentQ - 1);
-    }
-
-    function refreshPaletteAndStatus() {
-      for(let i = 0; i < 100; i++) {
-        const btn = document.getElementById(`pal-${i}`);
-        if(!btn) continue;
-        btn.className = 'tcs-btn font-bold text-xs';
-        const st = questionStatus[i];
-        if(st === 'answered') {
-          btn.classList.add('bg-[#28a745]', 'text-white');
-        } else if(st === 'review') {
-          btn.classList.add('bg-[#6f42c1]', 'text-white');
-        } else if(st === 'answered-review') {
-          btn.classList.add('bg-[#6f42c1]', 'text-white');
-        } else if(st === 'visited') {
-          btn.classList.add('bg-[#dc3545]', 'text-white');
-        } else {
-          btn.classList.add('bg-slate-200', 'text-slate-800');
-        }
-        if(i === currentQ) {
-          btn.classList.add('ring-2', 'ring-indigo-950', 'ring-offset-1');
-        }
-      }
-      updateStatusSummary();
-    }
-
-    function updateStatusSummary() {
-      let ans = 0, notans = 0, rev = 0, notvis = 0;
-      questionStatus.forEach(st => {
-        if(st === 'answered' || st === 'answered-review') ans++;
-        else if(st === 'visited') notans++;
-        else if(st === 'review') rev++;
-        else notvis++;
-      });
-      document.getElementById('stat-ans').innerText = ans;
-      document.getElementById('stat-notans').innerText = notans;
-      document.getElementById('stat-review').innerText = rev;
-      document.getElementById('stat-notvis').innerText = notvis;
-    }
-
-    function startTimer() {
-      timerInterval = setInterval(() => {
-        if(timerSeconds <= 0) {
-          clearInterval(timerInterval);
-          finishTest();
-          return;
-        }
-        timerSeconds--;
-        const hrs = String(Math.floor(timerSeconds / 3600)).padStart(2, '0');
-        const mins = String(Math.floor((timerSeconds % 3600) / 60)).padStart(2, '0');
-        const secs = String(timerSeconds % 60).padStart(2, '0');
-        document.getElementById('timer-display').innerText = `${hrs}:${mins}:${secs}`;
-      }, 1000);
-    }
-
-    function submitTestPrompt() {
-      const answeredCount = userAnswers.filter(a => a !== null).length;
-      if(confirm(`क्या आप टेस्ट सबमिट करना चाहते हैं?\n\nकुल प्रश्न: 100\nउत्तर दिए गए: ${answeredCount}\nशेष अनुत्तरित: ${100 - answeredCount}`)) {
-        finishTest();
-      }
-    }
-
-    function finishTest() {
-      clearInterval(timerInterval);
-      document.getElementById('test-screen').classList.add('hidden');
-      document.getElementById('result-screen').classList.remove('hidden');
-
-      let correct = 0;
-      let wrong = 0;
-
-      questions.forEach((q, idx) => {
-        const u = userAnswers[idx];
-        if(u !== null) {
-          if(u === q.ans) correct++;
-          else wrong++;
-        }
-      });
-
-      const score = (correct * 2) - (wrong * 0.2);
-      const totalAttempted = correct + wrong;
-      const accuracy = totalAttempted > 0 ? ((correct / totalAttempted) * 100).toFixed(1) : 0;
-
-      document.getElementById('res-score').innerText = score.toFixed(2);
-      document.getElementById('res-accuracy').innerText = `${accuracy}%`;
-      document.getElementById('res-correct').innerText = correct;
-      document.getElementById('res-wrong').innerText = wrong;
-
-      // Render Solutions
-      const solContainer = document.getElementById('solution-container');
-      solContainer.innerHTML = '';
-
-      questions.forEach((q, idx) => {
-        const u = userAnswers[idx];
-        let statusBadge = '';
-        let borderClass = 'border-slate-200';
-
-        if(u === null) {
-          statusBadge = '<span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-semibold">अनुत्तरित (Unattempted)</span>';
-        } else if(u === q.ans) {
-          statusBadge = '<span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-semibold">+2.0 अंक (सही)</span>';
-          borderClass = 'border-emerald-300';
-        } else {
-          statusBadge = '<span class="text-xs bg-rose-100 text-rose-800 px-2 py-0.5 rounded font-semibold">-0.20 अंक (गलत)</span>';
-          borderClass = 'border-rose-300';
-        }
-
-        const div = document.createElement('div');
-        div.className = `p-4 rounded border bg-white shadow-sm page-break ${borderClass}`;
-        div.innerHTML = `
-          <div class="flex justify-between items-start mb-2">
-            <div class="text-xs sm:text-sm font-medium text-slate-800">${q.q}</div>
-            <div class="ml-2 whitespace-nowrap">${statusBadge}</div>
-          </div>
-          <div class="space-y-1.5 text-xs sm:text-sm my-3">
-            ${q.options.map((opt, oIdx) => {
-              let optStyle = 'border-slate-200 bg-slate-50 text-slate-700';
-              if(oIdx === q.ans) optStyle = 'border-emerald-500 bg-emerald-50 text-emerald-950 font-bold';
-              else if(oIdx === u && u !== q.ans) optStyle = 'border-rose-500 bg-rose-50 text-rose-950 line-through';
-              return `<div class="p-2 border rounded ${optStyle}">${opt}</div>`;
-            }).join('')}
-          </div>
-          <div class="bg-amber-50 p-2.5 rounded border border-amber-200 text-xs text-amber-950 mt-2">
-            <span class="font-bold text-amber-900">प्रमाणित समाधान:</span> ${q.exp}
-          </div>
-          <div class="text-right text-[10px] text-sky-700 mt-1 font-semibold">
-            Telegram: @GYANVERSET
-          </div>
-        `;
-        solContainer.appendChild(div);
-      });
-    }
-
-    function downloadPDF() {
-      window.print();
+    function requestFullScreen() {
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) elem.requestFullscreen().catch(() => {});
     }
 
     function toggleFullScreen() {
       if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(() => {});
-      } else if (document.exitFullscreen) {
-        document.exitFullscreen();
+        requestFullScreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
       }
+    }
+
+    function startTimer() {
+      const display = document.getElementById('timerDisplay');
+      timerInterval = setInterval(() => {
+        if (remainingTimeSeconds <= 0) {
+          clearInterval(timerInterval);
+          submitExam();
+          return;
+        }
+        remainingTimeSeconds--;
+        const hours = Math.floor(remainingTimeSeconds / 3600);
+        const minutes = Math.floor((remainingTimeSeconds % 3600) / 60);
+        const seconds = remainingTimeSeconds % 60;
+        display.textContent = 
+          (hours > 0 ? (hours < 10 ? '0' : '') + hours + ':' : '') +
+          (minutes < 10 ? '0' : '') + minutes + ':' +
+          (seconds < 10 ? '0' : '') + seconds;
+      }, 1000);
+    }
+
+    function initPalette() {
+      const palette = document.getElementById('paletteGrid');
+      palette.innerHTML = '';
+      examData.forEach((_, idx) => {
+        const btn = document.createElement('button');
+        btn.id = `palette-btn-${idx}`;
+        btn.className = "w-9 h-9 rounded-xl font-bold text-xs flex items-center justify-center transition border border-slate-300 bg-slate-200 text-slate-700 hover:border-indigo-500";
+        btn.textContent = idx + 1;
+        btn.onclick = () => jumpToQuestion(idx);
+        palette.appendChild(btn);
+      });
+      updatePaletteCounts();
+    }
+
+    function loadQuestion(index) {
+      currentQuestionIndex = index;
+      visitedSet.add(index);
+      
+      const q = examData[index];
+      document.getElementById('qHeaderNumber').innerHTML = `
+        <span class="w-2.5 h-2.5 rounded-full bg-indigo-600 mr-2"></span> प्रश्न संख्या: ${index + 1} / ${examData.length}
+      `;
+      
+      document.getElementById('prevBtn').disabled = (index === 0);
+      document.getElementById('prevBtn').classList.toggle('opacity-50', index === 0);
+
+      const contentArea = document.getElementById('questionContentArea');
+      let optionsHtml = '';
+      
+      q.options.forEach((opt, optIdx) => {
+        const isChecked = userAnswers[index] === optIdx;
+        optionsHtml += `
+          <label class="flex items-center p-4 rounded-2xl border ${isChecked ? 'bg-indigo-50/70 border-indigo-600 shadow-sm' : 'border-slate-200 bg-white hover:bg-slate-50'} cursor-pointer transition">
+            <input type="radio" name="cbtOption" value="${optIdx}" onchange="selectOption(${index}, ${optIdx})" ${isChecked ? 'checked' : ''} class="w-4 h-4 text-indigo-600 focus:ring-indigo-500 border-slate-300 mr-3.5">
+            <span class="text-sm md:text-base ${isChecked ? 'font-bold text-indigo-950' : 'text-slate-800'}">(${String.fromCharCode(65 + optIdx)}) ${opt}</span>
+          </label>
+        `;
+      });
+
+      contentArea.innerHTML = `
+        <div class="space-y-4">
+          <div class="inline-flex items-center space-x-2 bg-indigo-50 text-indigo-800 px-3 py-1 rounded-lg text-xs font-semibold border border-indigo-100">
+            <i class="fas fa-layer-group text-indigo-600"></i>
+            <span>स्रोत विषय: ${q.source}</span>
+          </div>
+          <h2 class="text-base md:text-lg font-bold text-slate-900 leading-relaxed">${index + 1}. ${q.question}</h2>
+          <div class="space-y-3 pt-2">
+            ${optionsHtml}
+          </div>
+        </div>
+      `;
+
+      updatePaletteItem(index);
+      updatePaletteCounts();
+    }
+
+    function selectOption(qIdx, optIdx) {
+      userAnswers[qIdx] = optIdx;
+      updatePaletteItem(qIdx);
+      updatePaletteCounts();
+    }
+
+    function saveAndNext() {
+      if (currentQuestionIndex < examData.length - 1) {
+        loadQuestion(currentQuestionIndex + 1);
+      } else {
+        alert("यह अंतिम प्रश्न है। आप चाहें तो अपना टेस्ट सबमिट कर सकते हैं।");
+      }
+    }
+
+    function navigateQuestion(step) {
+      const newIdx = currentQuestionIndex + step;
+      if (newIdx >= 0 && newIdx < examData.length) {
+        loadQuestion(newIdx);
+      }
+    }
+
+    function jumpToQuestion(idx) {
+      loadQuestion(idx);
+    }
+
+    function markForReview() {
+      if (markedForReviewSet.has(currentQuestionIndex)) {
+        markedForReviewSet.delete(currentQuestionIndex);
+      } else {
+        markedForReviewSet.add(currentQuestionIndex);
+      }
+      updatePaletteItem(currentQuestionIndex);
+      updatePaletteCounts();
+      if (currentQuestionIndex < examData.length - 1) {
+        loadQuestion(currentQuestionIndex + 1);
+      }
+    }
+
+    function clearResponse() {
+      delete userAnswers[currentQuestionIndex];
+      loadQuestion(currentQuestionIndex);
+      updatePaletteItem(currentQuestionIndex);
+      updatePaletteCounts();
+    }
+
+    function updatePaletteItem(idx) {
+      const btn = document.getElementById(`palette-btn-${idx}`);
+      if (!btn) return;
+
+      const isAnswered = userAnswers.hasOwnProperty(idx);
+      const isMarked = markedForReviewSet.has(idx);
+      const isVisited = visitedSet.has(idx);
+
+      btn.className = "w-9 h-9 rounded-xl font-bold text-xs flex items-center justify-center transition border ";
+
+      if (isMarked) {
+        btn.className += "bg-purple-600 text-white border-purple-700 shadow-sm";
+      } else if (isAnswered) {
+        btn.className += "bg-emerald-600 text-white border-emerald-700 shadow-sm";
+      } else if (isVisited) {
+        btn.className += "bg-rose-500 text-white border-rose-600";
+      } else {
+        btn.className += "bg-slate-200 text-slate-700 border-slate-300";
+      }
+    }
+
+    function updatePaletteCounts() {
+      let answered = 0;
+      let notVisited = 0;
+      let notAnswered = 0;
+
+      for (let i = 0; i < examData.length; i++) {
+        const isAns = userAnswers.hasOwnProperty(i);
+        const isVis = visitedSet.has(i);
+        if (isAns) answered++;
+        else if (isVis) notAnswered++;
+        else notVisited++;
+      }
+
+      document.getElementById('legendAnswered').textContent = answered;
+      document.getElementById('legendNotAnswered').textContent = notAnswered;
+      document.getElementById('legendNotVisited').textContent = notVisited;
+      document.getElementById('legendReview').textContent = markedForReviewSet.size;
+    }
+
+    function confirmSubmitTest() {
+      const answeredCount = Object.keys(userAnswers).length;
+      if (confirm(`आपने 14 में से ${answeredCount} प्रश्नों के उत्तर दिए हैं। क्या आप टेस्ट सबमिट करना चाहते हैं?`)) {
+        submitExam();
+      }
+    }
+
+    function submitExam() {
+      clearInterval(timerInterval);
+      if (document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      }
+      document.getElementById('cbtInterface').classList.add('hidden');
+      document.getElementById('solutionSection').classList.remove('hidden');
+      renderAttractiveSolutions();
+    }
+
+    // ================= BEAUTIFUL SOLUTION RENDERER =================
+    function renderAttractiveSolutions() {
+      let correct = 0;
+      let incorrect = 0;
+      let skipped = 0;
+
+      examData.forEach((q, idx) => {
+        if (userAnswers.hasOwnProperty(idx)) {
+          if (userAnswers[idx] === q.correct) correct++;
+          else incorrect++;
+        } else {
+          skipped++;
+        }
+      });
+
+      const totalScore = (correct * 2) - (incorrect * 0.2);
+      const totalPossible = examData.length * 2;
+      const accuracy = (correct + incorrect) > 0 ? ((correct / (correct + incorrect)) * 100).toFixed(1) : 0;
+
+      document.getElementById('resScore').textContent = `${totalScore.toFixed(1)} / ${totalPossible}`;
+      document.getElementById('resCorrect').textContent = correct;
+      document.getElementById('resCorrectMarks').textContent = `+${(correct * 2).toFixed(1)} Marks`;
+      document.getElementById('resIncorrect').textContent = incorrect;
+      document.getElementById('resNegativeMarks').textContent = `-${(incorrect * 0.2).toFixed(1)} Neg`;
+      document.getElementById('resSkipped').textContent = skipped;
+      document.getElementById('resAccuracy').textContent = `${accuracy}%`;
+
+      const masterContainer = document.getElementById('solutionsMasterContainer');
+      masterContainer.innerHTML = '';
+
+      examData.forEach((q, idx) => {
+        const userChoice = userAnswers[idx];
+        const isAttempted = userAnswers.hasOwnProperty(idx);
+        const isCorrect = userChoice === q.correct;
+        const statusType = !isAttempted ? 'skipped' : (isCorrect ? 'correct' : 'incorrect');
+
+        let statusBadge = '';
+        if (statusType === 'skipped') {
+          statusBadge = '<span class="inline-flex items-center bg-slate-100 text-slate-700 border border-slate-200 px-3 py-1 rounded-full text-xs font-bold"><i class="fas fa-minus-circle mr-1.5 text-slate-400"></i> अनुत्तरित (Skipped)</span>';
+        } else if (statusType === 'correct') {
+          statusBadge = '<span class="inline-flex items-center bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-full text-xs font-bold"><i class="fas fa-check-circle mr-1.5 text-emerald-600"></i> सही उत्तर (+2.00)</span>';
+        } else {
+          statusBadge = '<span class="inline-flex items-center bg-rose-50 text-rose-700 border border-rose-200 px-3 py-1 rounded-full text-xs font-bold"><i class="fas fa-times-circle mr-1.5 text-rose-600"></i> गलत उत्तर (-0.20)</span>';
+        }
+
+        // Render Options
+        let optionsHtml = '';
+        q.options.forEach((opt, oIdx) => {
+          let boxClass = "border border-slate-200 bg-white text-slate-700";
+          let badge = `<span class="w-6 h-6 rounded-lg bg-slate-100 text-slate-600 text-xs font-bold flex items-center justify-center mr-3">${String.fromCharCode(65 + oIdx)}</span>`;
+          let rightIcon = '';
+
+          if (oIdx === q.correct) {
+            boxClass = "border-2 border-emerald-500 bg-emerald-50/70 text-emerald-950 font-bold shadow-sm";
+            badge = `<span class="w-6 h-6 rounded-lg bg-emerald-600 text-white text-xs font-bold flex items-center justify-center mr-3">✓</span>`;
+            rightIcon = `<span class="ml-auto text-xs font-extrabold bg-emerald-600 text-white px-2.5 py-0.5 rounded-full">सही विकल्प (Correct Answer)</span>`;
+          } else if (userChoice === oIdx && !isCorrect) {
+            boxClass = "border-2 border-rose-500 bg-rose-50/70 text-rose-950 font-medium";
+            badge = `<span class="w-6 h-6 rounded-lg bg-rose-600 text-white text-xs font-bold flex items-center justify-center mr-3">✕</span>`;
+            rightIcon = `<span class="ml-auto text-xs font-bold bg-rose-600 text-white px-2.5 py-0.5 rounded-full">आपका चयन (Your Choice)</span>`;
+          }
+
+          optionsHtml += `
+            <div class="flex items-center p-3.5 rounded-2xl ${boxClass} text-sm transition">
+              ${badge}
+              <span>${opt}</span>
+              ${rightIcon}
+            </div>
+          `;
+        });
+
+        // Current Facts Bullets
+        let currentFactsHtml = q.explanation.currentFacts.map(fact => `
+          <li class="flex items-start text-xs md:text-sm text-slate-700 leading-relaxed">
+            <i class="fas fa-caret-right text-indigo-600 mt-1 mr-2 text-sm flex-shrink-0"></i>
+            <span>${fact}</span>
+          </li>
+        `).join('');
+
+        // Static GK Bullets
+        let staticGkHtml = q.explanation.staticGK.map(item => `
+          <li class="flex items-start text-xs md:text-sm text-slate-700 leading-relaxed">
+            <i class="fas fa-shield-alt text-amber-500 mt-1 mr-2 text-xs flex-shrink-0"></i>
+            <span>${item}</span>
+          </li>
+        `).join('');
+
+        // State/Country Highlights
+        let stateHighlightsHtml = q.explanation.entityDetails.keyHighlights.map(h => `
+          <li class="flex items-start text-xs text-slate-700 leading-relaxed">
+            <i class="fas fa-check text-emerald-600 mt-1 mr-2 text-xs flex-shrink-0"></i>
+            <span>${h}</span>
+          </li>
+        `).join('');
+
+        const card = document.createElement('div');
+        card.className = `sol-card page-break-card bg-white rounded-3xl border border-slate-200/90 shadow-md p-6 md:p-8 space-y-6 transition-all`;
+        card.setAttribute('data-status', statusType);
+
+        card.innerHTML = `
+          <!-- Header Bar -->
+          <div class="flex flex-wrap items-center justify-between pb-4 border-b border-slate-200 gap-2">
+            <div class="flex items-center space-x-2">
+              <span class="w-8 h-8 rounded-xl bg-indigo-600 text-white font-black text-sm flex items-center justify-center font-heading">
+                ${idx + 1}
+              </span>
+              <div>
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Question ${idx + 1} of 14</span>
+                <span class="text-xs font-semibold text-indigo-700 flex items-center">
+                  <i class="fas fa-newspaper mr-1.5"></i> ${q.source}
+                </span>
+              </div>
+            </div>
+            ${statusBadge}
+          </div>
+
+          <!-- Question Text -->
+          <h3 class="text-base md:text-lg font-bold text-slate-900 leading-relaxed font-heading">
+            ${idx + 1}. ${q.question}
+          </h3>
+
+          <!-- Options Grid -->
+          <div class="space-y-2.5">
+            ${optionsHtml}
+          </div>
+
+          <!-- Beautified 3-Tier Explanation Layout -->
+          <div class="space-y-4 pt-2">
+            
+            <!-- Tier 1: Current Affairs Core Facts (Royal Indigo Theme) -->
+            <div class="bg-gradient-to-br from-indigo-50/80 to-white rounded-2xl border border-indigo-100 p-5 shadow-sm">
+              <div class="flex items-center space-x-2 pb-2.5 mb-3 border-b border-indigo-100/80">
+                <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-xs shadow-sm">
+                  <i class="fas fa-bolt"></i>
+                </span>
+                <h4 class="font-extrabold text-sm md:text-base text-indigo-950 font-heading">
+                  मुख्य करेंट अफेयर्स बिंदु (Core Current Affairs Facts)
+                </h4>
+              </div>
+              <ul class="space-y-2.5">
+                ${currentFactsHtml}
+              </ul>
+            </div>
+
+            <!-- Tier 2: Static GK & Background (Amber Theme) -->
+            <div class="bg-gradient-to-br from-amber-50/70 to-white rounded-2xl border border-amber-200/80 p-5 shadow-sm">
+              <div class="flex items-center space-x-2 pb-2.5 mb-3 border-b border-amber-200/60">
+                <span class="w-7 h-7 rounded-lg bg-amber-500 text-white flex items-center justify-center text-xs shadow-sm">
+                  <i class="fas fa-landmark"></i>
+                </span>
+                <h4 class="font-extrabold text-sm md:text-base text-amber-950 font-heading">
+                  संबंधित Static GK & ऐतिहासिक पृष्ठभूमि (Complete Static Background)
+                </h4>
+              </div>
+              <ul class="space-y-2.5">
+                ${staticGkHtml}
+              </ul>
+            </div>
+
+            <!-- Tier 3: State / Country Special (Emerald Theme) -->
+            <div class="bg-gradient-to-br from-emerald-50/70 to-white rounded-2xl border border-emerald-200/80 p-5 shadow-sm">
+              <div class="flex items-center space-x-2 pb-2.5 mb-3 border-b border-emerald-200/60">
+                <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs shadow-sm">
+                  <i class="fas fa-globe-asia"></i>
+                </span>
+                <h4 class="font-extrabold text-sm md:text-base text-emerald-950 font-heading">
+                  ${q.explanation.entityDetails.title}
+                </h4>
+              </div>
+
+              <!-- Quick Meta Table -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-3 bg-white p-3 rounded-xl border border-emerald-100 text-xs">
+                <div>
+                  <span class="text-slate-400 font-semibold block text-[10px] uppercase">राजधानी / मुख्यालय</span>
+                  <span class="font-bold text-slate-800">${q.explanation.entityDetails.capital}</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-semibold block text-[10px] uppercase">मुद्रा (Currency)</span>
+                  <span class="font-bold text-slate-800">${q.explanation.entityDetails.currency}</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-semibold block text-[10px] uppercase">प्रमुख नेतृत्व / CM</span>
+                  <span class="font-bold text-slate-800">${q.explanation.entityDetails.pmPresident}</span>
+                </div>
+              </div>
+
+              <!-- Extra Facts -->
+              <ul class="space-y-2 bg-emerald-50/40 p-3 rounded-xl border border-emerald-100">
+                ${stateHighlightsHtml}
+              </ul>
+            </div>
+
+          </div>
+        `;
+
+        masterContainer.appendChild(card);
+      });
+    }
+
+    // Filter Solutions
+    function filterSolutions(type) {
+      document.querySelectorAll('.sol-filter-btn').forEach(btn => {
+        btn.classList.remove('bg-slate-900', 'text-white');
+        btn.classList.add('bg-slate-100', 'text-slate-700');
+      });
+      event.target.classList.remove('bg-slate-100', 'text-slate-700');
+      event.target.classList.add('bg-slate-900', 'text-white');
+
+      const cards = document.querySelectorAll('.sol-card');
+      cards.forEach(card => {
+        if (type === 'all' || card.getAttribute('data-status') === type) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     }
   </script>
 </body>
