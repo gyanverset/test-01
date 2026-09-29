@@ -1,983 +1,1345 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GYANVERSE PORTAL | EDU TERIA BSSC CGL-4 Set-04 CBT</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gyan Bindu GS Academy - Double Star Test No. 2</title>
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; user-select: none; }
-    .palette-btn { width: 34px; height: 30px; font-size: 11px; font-weight: bold; display: flex; align-items: center; justify-content: center; border-radius: 3px; cursor: pointer; }
-    .status-not-visited { background: #e2e8f0; color: #334155; border: 1px solid #cbd5e1; }
-    .status-not-answered { background: #e53e3e; color: white; border-radius: 12px 12px 0 0; }
-    .status-answered { background: #2e7d32; color: white; border-radius: 0 0 12px 12px; }
-    .status-marked { background: #6b21a8; color: white; border-radius: 50%; }
-    .status-ans-marked { background: #6b21a8; color: white; border-radius: 50%; position: relative; }
-    .status-ans-marked::after { content: ''; position: absolute; bottom: 1px; right: 1px; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; border: 1px solid white; }
-    .svg-box svg { max-width: 100%; height: auto; }
+    @import url('https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Poppins:wght@400;600;700&display=swap');
+    body {
+      font-family: 'Hind', 'Poppins', sans-serif;
+      user-select: none;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
   </style>
 </head>
-<body class="bg-gray-100 h-screen flex flex-col overflow-hidden text-gray-800">
+<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col">
 
-  <!-- ================= 1. START / REGISTRATION SCREEN ================= -->
-  <div id="start-screen" class="fixed inset-0 bg-slate-900 bg-opacity-95 z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-lg shadow-2xl max-w-xl w-full p-6 text-center border-t-4 border-blue-700">
-      <div class="flex justify-center mb-2">
-        <span class="bg-blue-900 text-yellow-400 text-xs font-black tracking-widest px-3 py-1 rounded shadow">GYANVERSE PORTAL</span>
-      </div>
-      <h1 class="text-xl font-black text-gray-900 mt-1">EDU TERIA - BSSC CGL 4 (Volume 2)</h1>
-      <h2 class="text-sm font-semibold text-blue-700">प्रैक्टिस सेट 04 (Full 150 Qs TCS CBT Mode)</h2>
-
-      <div class="bg-blue-50 border border-blue-200 rounded p-4 text-left my-4 text-xs sm:text-sm text-gray-700 space-y-1.5 shadow-inner">
-        <p><strong>• कुल प्रश्न:</strong> 150 प्रश्न (GK/GS, Science, Maths, Reasoning)</p>
-        <p><strong>• कुल समय:</strong> 120 मिनट (2:00 घण्टे)</p>
-        <p><strong>• मार्किंग स्कीम:</strong> प्रत्येक सही उत्तर: <span class="text-green-700 font-bold">+2.00</span> | प्रत्येक गलत उत्तर: <span class="text-red-600 font-bold">-0.20</span></p>
-        <p><strong>• रैंकिंग सिस्टम:</strong> सबमिट करते ही डेटा Google Sheets Leaderboard में ट्रांसफर होगा।</p>
-      </div>
-
-      <a href="https://t.me/GYANVERSET" target="_blank" class="flex items-center justify-center gap-2 bg-[#229ED9] hover:bg-[#1e8bc0] text-white py-2 px-4 rounded-md font-semibold text-xs sm:text-sm mb-4 transition shadow">
-        <i class="fab fa-telegram-plane text-lg"></i>
-        ऐसे ऑनलाइन टेस्ट देने के लिए टेलीग्राम जॉइन करें (@GYANVERSET)
-      </a>
-
-      <div class="space-y-3 text-left">
-        <div>
-          <label class="block text-xs font-bold text-gray-600 uppercase">अभ्यर्थी का नाम (Candidate Name):</label>
-          <input type="text" id="candidate-name" placeholder="अपना नाम दर्ज करें" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none text-sm" required>
+  <!-- ================= START / INSTRUCTION SCREEN ================= -->
+  <div id="startScreen" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden border border-slate-200">
+      
+      <!-- Header Banner -->
+      <div class="bg-gradient-to-r from-red-700 via-rose-700 to-indigo-800 text-white p-6 text-center">
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/10 mb-2 border border-white/20">
+          <i class="fa-solid fa-award text-amber-300 text-2xl"></i>
         </div>
-        <div>
-          <label class="block text-xs font-bold text-gray-600 uppercase">रोल नंबर / मोबाइल नंबर:</label>
-          <input type="text" id="candidate-id" placeholder="रोल नंबर दर्ज करें" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none text-sm" required>
+        <h1 class="text-2xl font-bold tracking-wide">ज्ञान बिंदु जी.एस. एकेडमी - पटना</h1>
+        <p class="text-amber-200 font-semibold text-lg mt-0.5">⭐ Double Star Test No. 2 ⭐</p>
+        <span class="inline-block bg-white/20 text-xs px-3 py-1 rounded-full uppercase tracking-wider mt-2">
+          Sub Inspector (Mains) Exam Test Series
+        </span>
+      </div>
+
+      <!-- Telegram Promo Box -->
+      <div class="p-6 pb-2">
+        <div class="bg-gradient-to-r from-sky-50 to-blue-50 border-2 border-dashed border-sky-400 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-sky-500 rounded-full flex items-center justify-center text-white text-2xl shadow">
+              <i class="fa-brands fa-telegram"></i>
+            </div>
+            <div>
+              <p class="font-bold text-sky-900 text-base">ऐसे ऑनलाइन टेस्ट देने के लिए टेलीग्राम जॉइन करें</p>
+              <p class="text-xs text-sky-700 font-medium">Daily Free Mock Test & Study Material Updates</p>
+            </div>
+          </div>
+          <a href="https://t.me/GYANVERSET" target="_blank" class="w-full sm:w-auto text-center px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm rounded-lg shadow-md hover:shadow-lg transition">
+            Join Telegram <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
+          </a>
         </div>
       </div>
 
-      <button onclick="startExam()" class="mt-5 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded shadow text-sm transition flex items-center justify-center gap-2">
-        <i class="fas fa-desktop"></i> टेस्ट शुरू करें (Full Screen CBT)
-      </button>
+      <!-- Test Details & Instructions -->
+      <div class="p-6 pt-3 space-y-4">
+        <div class="grid grid-cols-3 gap-3 text-center">
+          <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+            <span class="block text-xs text-slate-500 font-medium">कुल प्रश्न</span>
+            <span class="text-lg font-bold text-slate-800">100 प्रश्न</span>
+          </div>
+          <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+            <span class="block text-xs text-slate-500 font-medium">समय सीमा</span>
+            <span class="text-lg font-bold text-slate-800">120 मिनट</span>
+          </div>
+          <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+            <span class="block text-xs text-slate-500 font-medium">पूर्णांक / नेगेटिव</span>
+            <span class="text-lg font-bold text-slate-800">200 / -0.2</span>
+          </div>
+        </div>
+
+        <div class="text-xs text-slate-600 space-y-1.5 bg-amber-50/70 p-3.5 rounded-lg border border-amber-200">
+          <p class="font-bold text-amber-900 flex items-center gap-1.5">
+            <i class="fa-solid fa-circle-exclamation text-amber-600"></i> महत्वपूर्ण निर्देश:
+          </p>
+          <ul class="list-disc list-inside space-y-1 pl-1">
+            <li>प्रत्येक सही उत्तर के लिए <b>+2 अंक</b> दिए जाएंगे।</li>
+            <li>प्रत्येक गलत उत्तर के लिए <b>0.2 अंक</b> की नकारात्मक कटौती होगी।</li>
+            <li>बेहतर अनुभव के लिए 'फुल स्क्रीन' मोड में टेस्ट शुरू होगा।</li>
+          </ul>
+        </div>
+
+        <button onclick="startTest()" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white text-lg font-bold rounded-xl shadow-lg hover:shadow-emerald-600/30 transition flex items-center justify-center gap-2">
+          <span>टेस्ट प्रारंभ करें (Start Test)</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+
     </div>
   </div>
 
-  <!-- ================= 2. TCS CBT HEADER ================= -->
-  <header class="bg-[#1e3a8a] text-white px-4 py-2 flex items-center justify-between shadow select-none">
-    <div class="flex items-center space-x-3">
-      <div class="bg-yellow-400 text-blue-900 font-black px-2 py-0.5 rounded text-xs tracking-wider">GYANVERSE</div>
-      <div class="text-xs sm:text-sm font-bold truncate">EDU TERIA Set-04: BSSC CGL CBT Mock Test</div>
-    </div>
-    <div class="flex items-center space-x-5">
-      <div class="text-right">
-        <span class="text-[10px] text-blue-200 block uppercase font-bold tracking-wider">Time Left</span>
-        <span id="timer-display" class="font-mono text-base sm:text-lg font-black text-yellow-300">120:00</span>
+  <!-- ================= TOP NAVIGATION BAR ================= -->
+  <header class="bg-slate-900 text-white shadow-md sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center font-bold text-sm">GB</span>
+        <div>
+          <h2 class="font-bold text-sm sm:text-base leading-tight">ज्ञान बिंदु: Double Star Test-2</h2>
+          <p class="text-xs text-slate-400 hidden sm:block">Full Length Mock Test</p>
+        </div>
       </div>
-      <button onclick="toggleFullScreen()" title="Full Screen" class="bg-blue-800 hover:bg-blue-700 text-xs px-2.5 py-1.5 rounded border border-blue-600">
-        <i class="fas fa-expand"></i>
-      </button>
+
+      <div class="flex items-center gap-3 sm:gap-6">
+        <!-- Timer -->
+        <div class="flex items-center gap-2 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
+          <i class="fa-solid fa-clock text-amber-400 animate-pulse text-sm"></i>
+          <span id="timerDisplay" class="font-mono font-bold text-sm sm:text-base text-amber-300">02:00:00</span>
+        </div>
+
+        <!-- Fullscreen Toggle -->
+        <button onclick="toggleFullScreen()" title="Full Screen Mode" class="p-2 text-slate-300 hover:text-white bg-slate-800 rounded-lg hover:bg-slate-700 transition">
+          <i class="fa-solid fa-expand"></i>
+        </button>
+
+        <!-- Telegram Quick Link -->
+        <a href="https://t.me/GYANVERSET" target="_blank" class="hidden md:inline-flex items-center gap-1.5 bg-sky-500/20 text-sky-300 border border-sky-400/30 px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-sky-500/30 transition">
+          <i class="fa-brands fa-telegram text-sm"></i> @GYANVERSET
+        </a>
+
+        <!-- Submit Test Button -->
+        <button onclick="confirmSubmit()" class="px-4 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-bold rounded-lg shadow transition">
+          Submit
+        </button>
+      </div>
     </div>
   </header>
 
-  <div class="bg-gray-200 border-b border-gray-300 px-4 py-1.5 flex items-center justify-between text-xs font-medium">
-    <div class="flex items-center space-x-2">
-      <span class="bg-white px-3 py-1 border border-gray-400 font-bold text-blue-900 rounded-t">Edu Teria Set-04: 150 Questions</span>
-    </div>
-    <div class="text-gray-700 text-[11px] sm:text-xs">
-      Right: <span class="text-green-700 font-bold">+2.00</span> | Wrong: <span class="text-red-600 font-bold">-0.20</span>
-    </div>
-  </div>
-
-  <!-- ================= 3. CBT WORKSPACE ================= -->
-  <div class="flex-1 flex overflow-hidden">
-    <div class="flex-1 flex flex-col bg-white border-r border-gray-300 overflow-hidden">
-      <div class="px-5 py-2 border-b border-gray-200 flex justify-between items-center bg-gray-50 text-xs font-semibold text-gray-700">
-        <span id="question-number-badge">Question No. 1</span>
-        <span class="text-gray-500">BSSC CGL Pattern (Single Choice)</span>
+  <!-- ================= MAIN TEST CONTAINER ================= -->
+  <main class="flex-1 max-w-7xl mx-auto w-full p-3 sm:p-4 grid grid-cols-1 lg:grid-cols-4 gap-4">
+    
+    <!-- Question Area -->
+    <section class="lg:col-span-3 bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col min-h-[550px]">
+      
+      <!-- Question Header -->
+      <div class="px-5 py-3 border-b border-slate-200 flex items-center justify-between bg-slate-50/70 rounded-t-xl">
+        <span class="inline-flex items-center gap-2 font-bold text-indigo-900 text-sm sm:text-base">
+          <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs" id="currentQNumBadge">1</span>
+          प्रश्न संख्या : <span id="displayQNum">1</span> / 100
+        </span>
+        <div class="flex items-center gap-2 text-xs font-semibold">
+          <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">+2.00</span>
+          <span class="text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">-0.20</span>
+        </div>
       </div>
 
-      <div id="question-container" class="flex-1 overflow-y-auto p-5 sm:p-6 text-sm text-gray-800"></div>
+      <!-- Question Text -->
+      <div class="p-5 sm:p-6 flex-1 overflow-y-auto custom-scrollbar">
+        <div id="questionContainer" class="text-base sm:text-lg font-medium text-slate-800 leading-relaxed whitespace-pre-line mb-6">
+          लोड हो रहा है...
+        </div>
 
-      <div class="p-3 bg-gray-100 border-t border-gray-300 flex flex-wrap items-center justify-between gap-2">
-        <div class="flex space-x-2">
-          <button onclick="markForReviewAndNext()" class="bg-purple-700 hover:bg-purple-800 text-white text-xs font-semibold px-3 py-2 rounded">
-            Mark for Review & Next
-          </button>
-          <button onclick="clearResponse()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 border border-gray-400 text-xs font-semibold px-3 py-2 rounded">
+        <!-- Options Container -->
+        <div id="optionsContainer" class="space-y-3"></div>
+      </div>
+
+      <!-- Action Buttons Footer -->
+      <div class="px-5 py-3.5 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 rounded-b-xl">
+        <div class="flex gap-2">
+          <button onclick="clearResponse()" class="px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 transition">
             Clear Response
           </button>
-        </div>
-        <div class="flex space-x-2">
-          <button onclick="previousQuestion()" id="prev-btn" class="bg-gray-600 hover:bg-gray-700 text-white text-xs font-semibold px-4 py-2 rounded">
-            &laquo; Previous
-          </button>
-          <button onclick="saveAndNext()" class="bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold px-5 py-2 rounded shadow">
-            Save & Next &raquo;
+          <button onclick="toggleMarkForReview()" id="markReviewBtn" class="px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-amber-700 bg-amber-50 border border-amber-300 rounded-lg hover:bg-amber-100 transition flex items-center gap-1.5">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Mark for Review</span>
           </button>
         </div>
-      </div>
-    </div>
 
-    <!-- Palette Sidebar -->
-    <div class="w-80 bg-slate-50 flex flex-col border-l border-gray-300 hidden md:flex">
-      <div class="p-3 border-b border-gray-200 flex items-center space-x-3 bg-white">
-        <div class="w-11 h-11 bg-blue-100 text-blue-800 rounded border border-blue-300 flex items-center justify-center font-bold text-lg">
-          <i class="fas fa-user-graduate"></i>
-        </div>
-        <div class="overflow-hidden">
-          <div id="display-name" class="font-bold text-xs sm:text-sm text-gray-800 truncate">Candidate Name</div>
-          <div id="display-id" class="text-xs text-gray-500 truncate">ID: 10001</div>
+        <div class="flex gap-2">
+          <button onclick="prevQuestion()" id="prevBtn" class="px-4 py-1.5 text-xs sm:text-sm font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 transition disabled:opacity-50">
+            <i class="fa-solid fa-chevron-left mr-1"></i> पिछला
+          </button>
+          <button onclick="nextQuestion()" id="nextBtn" class="px-5 py-1.5 text-xs sm:text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition shadow">
+            अगला <i class="fa-solid fa-chevron-right ml-1"></i>
+          </button>
         </div>
       </div>
 
-      <div class="p-2 border-b border-gray-200 bg-gray-50 text-[10px] grid grid-cols-2 gap-2 text-gray-700">
-        <div class="flex items-center gap-1.5"><span class="w-5 h-4 status-answered flex items-center justify-center font-bold text-white" id="count-ans">0</span> Answered</div>
-        <div class="flex items-center gap-1.5"><span class="w-5 h-4 status-not-answered flex items-center justify-center font-bold text-white" id="count-not-ans">0</span> Not Answered</div>
-        <div class="flex items-center gap-1.5"><span class="w-5 h-4 status-not-visited flex items-center justify-center font-bold text-gray-700" id="count-not-vis">150</span> Not Visited</div>
-        <div class="flex items-center gap-1.5"><span class="w-5 h-4 status-marked flex items-center justify-center font-bold text-white" id="count-marked">0</span> Marked for Review</div>
-        <div class="flex items-center gap-1.5 col-span-2"><span class="w-5 h-4 status-ans-marked flex items-center justify-center font-bold text-white" id="count-ans-marked">0</span> Ans & Marked for Review</div>
+    </section>
+
+    <!-- Question Palette Sidebar -->
+    <aside class="bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col h-full">
+      <div class="p-3 border-b border-slate-200 bg-slate-50/70 rounded-t-xl">
+        <h3 class="font-bold text-sm text-slate-700 flex items-center gap-1.5">
+          <i class="fa-solid fa-table-cells-large text-slate-500"></i> प्रश्न पैलेट (100)
+        </h3>
       </div>
 
-      <div class="px-3 py-1 bg-blue-900 text-white text-[11px] font-bold tracking-wider flex justify-between">
-        <span>QUESTION PALETTE</span>
-        <span>150 Questions</span>
+      <!-- Legend -->
+      <div class="p-3 border-b border-slate-100 grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-medium">
+        <div class="flex items-center gap-1.5">
+          <span class="w-3.5 h-3.5 rounded bg-emerald-600 inline-block"></span> उत्तर दिया (<span id="countAnswered">0</span>)
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="w-3.5 h-3.5 rounded bg-rose-500 inline-block"></span> नहीं दिया (<span id="countNotAnswered">100</span>)
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="w-3.5 h-3.5 rounded bg-amber-500 inline-block"></span> समीक्षा (<span id="countMarked">0</span>)
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="w-3.5 h-3.5 rounded bg-slate-200 inline-block"></span> विज़िट नहीं किया (<span id="countNotVisited">0</span>)
+        </div>
       </div>
 
-      <div id="palette-grid" class="flex-1 overflow-y-auto p-2.5 grid grid-cols-5 gap-1.5 content-start"></div>
+      <!-- Palette Grid -->
+      <div class="p-3 flex-1 overflow-y-auto max-h-[380px] lg:max-h-[460px] custom-scrollbar">
+        <div id="paletteGrid" class="grid grid-cols-5 gap-2 text-xs font-semibold"></div>
+      </div>
 
-      <div class="p-3 bg-gray-100 border-t border-gray-300">
-        <button onclick="confirmSubmit()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded shadow text-xs uppercase tracking-wider">
-          Submit Test
+      <!-- Quick Submit in Sidebar -->
+      <div class="p-3 border-t border-slate-200 bg-slate-50 rounded-b-xl">
+        <button onclick="confirmSubmit()" class="w-full py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold text-sm rounded-lg transition shadow">
+          अंतिम सबमिट (Finish)
+        </button>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- ================= SUBMIT CONFIRMATION MODAL ================= -->
+  <div id="confirmModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-md w-full p-6 shadow-2xl border border-slate-200">
+      <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 text-2xl mx-auto mb-3">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <h3 class="text-center font-bold text-lg text-slate-800">क्या आप टेस्ट सबमिट करना चाहते हैं?</h3>
+      <p class="text-center text-xs text-slate-500 mt-1 mb-4">सबमिट करने के बाद आप उत्तरों में बदलाव नहीं कर पाएंगे।</p>
+      
+      <div class="bg-slate-50 p-3 rounded-lg text-xs space-y-1 mb-5 border border-slate-200">
+        <div class="flex justify-between"><span>कुल प्रश्न:</span> <b>100</b></div>
+        <div class="flex justify-between text-emerald-700"><span>उत्तर दिए गए:</span> <b id="modalAnswered">0</b></div>
+        <div class="flex justify-between text-rose-600"><span>छोड़े गए:</span> <b id="modalUnanswered">100</b></div>
+        <div class="flex justify-between text-amber-600"><span>रिव्यू के लिए मार्क:</span> <b id="modalMarked">0</b></div>
+      </div>
+
+      <div class="flex gap-3">
+        <button onclick="closeModal()" class="flex-1 py-2 text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg">
+          रद्द करें (Cancel)
+        </button>
+        <button onclick="finalizeTest()" class="flex-1 py-2 text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg shadow">
+          हाँ, सबमिट करें
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ================= 4. SCORECARD SCREEN ================= -->
-  <div id="result-screen" class="fixed inset-0 bg-slate-900 bg-opacity-95 z-50 hidden overflow-y-auto p-4 flex items-center justify-center">
-    <div class="bg-white rounded-lg shadow-2xl max-w-4xl w-full p-6 my-6 border-t-4 border-emerald-600">
-      <div class="flex justify-between items-center border-b pb-3">
-        <div>
-          <span class="bg-blue-900 text-yellow-400 text-[10px] font-black px-2 py-0.5 rounded">GYANVERSE PORTAL</span>
-          <h2 class="text-xl sm:text-2xl font-black text-gray-800 mt-1">BSSC CGL 4 (Set 04) Scorecard</h2>
-        </div>
-        <a href="https://t.me/GYANVERSET" target="_blank" class="bg-[#229ED9] hover:bg-[#1e8bc0] text-white px-3 py-1.5 rounded text-xs font-semibold flex items-center gap-1.5 shadow">
-          <i class="fab fa-telegram-plane"></i> Join Telegram
-        </a>
+  <!-- ================= RESULT / SCORECARD MODAL ================= -->
+  <div id="resultModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-3xl w-full my-auto shadow-2xl overflow-hidden border border-slate-200">
+      
+      <!-- Result Banner -->
+      <div class="bg-gradient-to-r from-indigo-700 via-purple-700 to-rose-700 text-white p-6 text-center">
+        <h2 class="text-2xl font-bold">स्कोरकार्ड व विश्लेषण (Scorecard)</h2>
+        <p class="text-indigo-200 text-sm mt-0.5">ज्ञान बिंदु जी.एस. एकेडमी - Double Star Test-2</p>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-4 text-center">
-        <div class="bg-blue-50 border border-blue-200 p-3 rounded">
-          <div class="text-[11px] text-gray-500 font-bold uppercase">Total Score</div>
-          <div id="res-score" class="text-2xl font-black text-blue-700">0.00 / 300</div>
+      <div class="p-6 space-y-5">
+        <!-- Main Stats Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+          <div class="p-3 bg-indigo-50 border border-indigo-200 rounded-xl">
+            <span class="text-xs text-indigo-700 font-semibold block">कुल स्कोर</span>
+            <span id="scoreVal" class="text-2xl font-black text-indigo-900">0.00</span>
+            <span class="text-[10px] text-slate-500">/ 200 अंक</span>
+          </div>
+          <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
+            <span class="text-xs text-emerald-700 font-semibold block">सही प्रश्न</span>
+            <span id="correctVal" class="text-2xl font-black text-emerald-800">0</span>
+            <span class="text-[10px] text-emerald-600">+2.0 अंक प्रति</span>
+          </div>
+          <div class="p-3 bg-rose-50 border border-rose-200 rounded-xl">
+            <span class="text-xs text-rose-700 font-semibold block">गलत प्रश्न</span>
+            <span id="incorrectVal" class="text-2xl font-black text-rose-800">0</span>
+            <span class="text-[10px] text-rose-600">-0.2 अंक प्रति</span>
+          </div>
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl">
+            <span class="text-xs text-slate-600 font-semibold block">छोड़े गए</span>
+            <span id="unattemptedVal" class="text-2xl font-black text-slate-700">0</span>
+            <span class="text-[10px] text-slate-500">0 अंक</span>
+          </div>
         </div>
-        <div class="bg-emerald-50 border border-emerald-200 p-3 rounded">
-          <div class="text-[11px] text-gray-500 font-bold uppercase">Correct</div>
-          <div id="res-correct" class="text-2xl font-black text-emerald-600">0</div>
+
+        <!-- Accuracy & Percentage -->
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 grid grid-cols-2 gap-4 text-center">
+          <div>
+            <span class="text-xs text-slate-500 block">सटीकता (Accuracy)</span>
+            <span id="accuracyVal" class="text-xl font-bold text-slate-800">0%</span>
+          </div>
+          <div>
+            <span class="text-xs text-slate-500 block">प्रतिशत प्राप्तांक</span>
+            <span id="percentVal" class="text-xl font-bold text-slate-800">0%</span>
+          </div>
         </div>
-        <div class="bg-rose-50 border border-rose-200 p-3 rounded">
-          <div class="text-[11px] text-gray-500 font-bold uppercase">Incorrect</div>
-          <div id="res-incorrect" class="text-2xl font-black text-rose-600">0</div>
+
+        <!-- Telegram Callout in Result -->
+        <div class="bg-gradient-to-r from-sky-50 to-indigo-50 border border-sky-300 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+          <div class="flex items-center gap-3">
+            <i class="fa-brands fa-telegram text-sky-600 text-3xl"></i>
+            <div>
+              <p class="font-bold text-sky-900 text-sm">ऐसे और भी टेस्ट व पीडीएफ के लिए टेलीग्राम से जुड़ें</p>
+              <p class="text-xs text-sky-700">ज्ञानवर्सेट (GYANVERSET) परिवार</p>
+            </div>
+          </div>
+          <a href="https://t.me/GYANVERSET" target="_blank" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-lg shadow">
+            Join Telegram
+          </a>
         </div>
-        <div class="bg-amber-50 border border-amber-200 p-3 rounded">
-          <div class="text-[11px] text-gray-500 font-bold uppercase">Accuracy</div>
-          <div id="res-accuracy" class="text-2xl font-black text-amber-700">0%</div>
+
+        <!-- Actions -->
+        <div class="flex gap-3 pt-2">
+          <button onclick="reviewAnswers()" class="flex-1 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-xl transition shadow">
+            <i class="fa-solid fa-list-check mr-1.5"></i> उत्तरों की समीक्षा करें (Review Solutions)
+          </button>
+          <button onclick="location.reload()" class="px-5 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-sm rounded-xl transition">
+            पुनः प्रयास (Retest)
+          </button>
         </div>
+
       </div>
 
-      <div id="sheet-sync-status" class="text-xs text-center py-1.5 px-3 mb-4 rounded bg-gray-100 text-gray-600">
-        Google Sheet Sync: Initializing...
-      </div>
-
-      <div class="flex flex-wrap gap-2 justify-between border-t pt-4">
-        <button onclick="toggleReviewMode()" class="bg-blue-800 hover:bg-blue-900 text-white px-4 py-2 rounded text-xs font-semibold">
-          <i class="fas fa-list-check mr-1"></i> उत्तर एवं संपूर्ण व्याख्या देखें (Review Mode)
-        </button>
-        <button onclick="location.reload()" class="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded text-xs font-semibold">
-          <i class="fas fa-redo mr-1"></i> Re-Take Test
-        </button>
-      </div>
-
-      <div id="review-panel" class="mt-6 border-t pt-4 hidden max-h-96 overflow-y-auto space-y-4">
-        <h3 class="font-bold text-gray-800 text-base">प्रश्न व्याख्या एवं उत्तर कुंजी:</h3>
-        <div id="review-list" class="space-y-4 text-xs sm:text-sm"></div>
-      </div>
     </div>
   </div>
 
-  <!-- ================= 5. COMPLETE 150 QUESTIONS JAVASCRIPT ================= -->
   <script>
-    // Aapka Google Apps Script Web App URL yahan update kar diya gaya hai
-    const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxuCzyOyaLowIT_YCaaHxQ2sRAXiyUufbXNqLoyaR5lOilImRc9sKzmcWY9ms7X-w6u/exec";
-
-    const questions = [
-      { id: 1, question: "कलिंग के राजा खारवेल का संबंध निम्नलिखित में से किस वंश से था?", options: ["रथभोजक वंश", "चेदि वंश", "चेर वंश", "संगम वंश"], answer: 1, explanation: "खारवेल कलिंग के चेदि वंश (महामेघवाहन वंश) के प्रसिद्ध शासक थे। हाथीगुम्फा शिलालेख से इनकी जानकारी मिलती है।" },
-      { id: 2, question: "उत्तर-वैदिक काल के संदर्भ में निम्नलिखित कथनों में कौन-सा कथन असत्य है?", options: ["इस काल में मनुष्य का संपूर्ण जीवन चार आश्रमों में बाँटा था।", "इस काल के चारों वर्णों में समानता थी।", "इस काल में देवाराधना में मुख्य रूप से यज्ञ किये जाते थे।", "इस काल में गोत्र प्रथा स्थापित हुई थी।"], answer: 1, explanation: "उत्तर-वैदिक काल में चारों वर्णों में समानता नहीं थी। शूद्रों की दशा में गिरावट आई थी।" },
-      { id: 3, question: "अशोक की नीति के आर्थिक परिणामों के कारण ही मौर्य साम्राज्य का पतन अधिकांशतः उचित था। इस तथ्य में किसने विश्वास किया?", options: ["रोमिला थापर", "डी. एन. झा", "वी. ए. स्मिथ", "एच. सी. रायचौधरी"], answer: 0, explanation: "रोमिला थापर मौर्य साम्राज्य के पतन में आर्थिक कारणों को प्रमुख मानती हैं।" },
-      { id: 4, question: "फिरोजशाह तुगलक के संबंध में निम्नलिखित कथनों पर विचार कीजिये:\n1. उसने 'इक्ता' को वंशानुगत बनाया।\n2. उसने सेना में वंशानुगत सिद्धांत लागू किया।\n3. वह सिपाहियों को नगद वेतन देता था।\nउपर्युक्त कथनों में कौन-सा सही नहीं है?", options: ["केवल 1 तथा 2", "केवल 2 तथा 3", "केवल 3", "इनमें से सभी"], answer: 2, explanation: "फिरोजशाह तुगलक सैनिकों को नकद वेतन न देकर गांवों का राजस्व (इतलाक) सौंपता था।" },
-      { id: 5, question: "अलवार और नयनार के संबंध में कौन-सा कथन सही है?\n1. अलवार विष्णु भक्त थे, नयनार शिव भक्त थे।\n2. दोनों तमिल में भजन गाते थे।\n3. इनमें महिला भक्तों की उपस्थिति थी।", options: ["केवल 1", "केवल 2 और 3", "केवल 1 और 2", "इनमें से सभी"], answer: 3, explanation: "सभी कथन सत्य हैं। अंडाल अलवार और कराइक्काल अम्मैयार नयनार परंपरा से संबंधित थीं।" },
-      { id: 6, question: "किस मुगल शासक के समय में सर थॉमस रो भारत आया था?", options: ["बाबर", "अकबर", "जहाँगीर", "शाहजहाँ"], answer: 2, explanation: "सर थॉमस रो 1615-1619 के दौरान जहाँगीर के दरबार में उपस्थित रहा।" },
-      { id: 7, question: "अकबर के शासन में इलाहाबाद में चालीस स्तम्भयुक्त मंजिल के निर्माण में 5,000 से 20,000 लोगों ने 40 साल तक काम किया था - यह किसका कथन है?", options: ["मनुची", "टैवर्नियर", "विलियम फिंच", "अब्दुल हमीद लाहौरी"], answer: 2, explanation: "यह विवरण अंग्रेज यात्री विलियम फिंच (1608 ई.) ने दिया था।" },
-      { id: 8, question: "डचों ने अपना सबसे पहला कारखाना कहाँ स्थापित किया था?", options: ["सूरत", "कोचीन", "पुलिकट", "इनमें से कोई नहीं"], answer: 3, explanation: "डचों ने 1605 में अपनी पहली फैक्ट्री मसूलीपट्टनम में खोली थी।" },
-      { id: 9, question: "अंग्रेजों की भूमिका के बारे में कौन-सा कथन सही है?\n(A) लिटन ने आईसीएस आयु सीमा घटाकर 19 वर्ष की।\n(B) 1877 में अकाल के समय दिल्ली दरबार हुआ।\n(C) इल्बर्ट बिल आयु सीमा घटाने हेतु था।", options: ["केवल A तथा B", "केवल B तथा C", "केवल A तथा C", "इनमें से सभी"], answer: 0, explanation: "इल्बर्ट बिल भारतीय न्यायाधीशों के अधिकार क्षेत्र से संबंधित था, आयु सीमा से नहीं।" },
-      { id: 10, question: "ब्रिटिश इंडिया एसोसिएशन की स्थापना किन संगठनों के विलय से हुई?", options: ["भूस्वामी समाज", "बंगाल ब्रिटिश भारत समाज", "भारतीय राष्ट्रीय संघ", "A + B दोनों"], answer: 3, explanation: "1851 में लैंडहोल्डर्स सोसाइटी और बंगाल ब्रिटिश भारत समाज का विलय हुआ था।" },
-      { id: 11, question: "हिंदुस्तान रिपब्लिकन एसोसिएशन (HRA) की स्थापना किसने की थी?", options: ["सचिन्द्र नाथ सान्याल", "नरेंद्र मोहन सेन", "प्रतुल गांगुली", "इनमें से सभी"], answer: 3, explanation: "1924 में कानपुर में शचीन्द्रनाथ सान्याल, रामप्रसाद बिस्मिल आदि द्वारा HRA स्थापित हुआ।" },
-      { id: 12, question: "गांधी-इरविन समझौते पर हस्ताक्षर किस वर्ष किया गया था?", options: ["1931 ई०", "1932 ई०", "1933 ई०", "1930 ई०"], answer: 0, explanation: "5 मार्च 1931 को गांधी-इरविन समझौता हुआ था।" },
-      { id: 13, question: "क्रान्तिकारी गतिविधियों के साथ कौन-सी पत्रिका जुड़ी हुई नहीं थी?", options: ["सन्ध्या", "युगान्तर", "ग़दर", "यंग इण्डिया"], answer: 3, explanation: "यंग इंडिया पत्रिका महात्मा गांधी द्वारा संपादित अहिंसक पत्रिका थी।" },
-      { id: 14, question: "पवनों के कार्य व निर्मित स्थलरूपों के संबंध में कौन-सा कथन सही नहीं है?", options: ["पर्वतों के पाद पर मंद ढाल वाला तल पेडीमेंट है।", "मरुस्थल में निर्मित समप्राय मैदान पेडीप्लेन है।", "पवनों के निक्षेपणात्मक कार्य से अपवाहन गर्त बनता है।", "उपर्युक्त में से कोई नहीं"], answer: 2, explanation: "अपवाहन गर्त (Blowouts) पवन के अपरदनात्मक कार्य से निर्मित होता है।" },
-      { id: 15, question: "उष्ण कटिबंधीय सदाबहार वनों के संबंध में कौन-सा कथन सही नहीं है?", options: ["यह वन भूमध्य रेखा के पास पाए जाते हैं।", "ब्राजील के वन पृथ्वी के फेफड़े कहलाते हैं।", "ऐनाकोंडा उष्ण कटिबंधीय वर्षा वन में पाया जाता है।", "यहाँ के पेड़ों की पत्तियाँ वर्ष में एक बार पूरी तरह झड़ जाती हैं।"], answer: 3, explanation: "सदाबहार वनों की पत्तियां एक साथ कभी नहीं झड़ती हैं।" },
-      { id: 16, question: "दक्षिण अमेरिका की सबसे बड़ी नदी कौन-सी है?", options: ["नील", "अमेजन", "मिसीसीपी", "गंगा"], answer: 1, explanation: "अमेजन दक्षिण अमेरिका की सबसे लंबी और विश्व की सबसे विशाल नदी है।" },
-      { id: 17, question: "मणिपुर की मध्य घाटी में संकेन्द्रित गैर-अनुसूचित लोगों को क्या कहा जाता है?", options: ["मैतेई", "मिशिमी", "कुकी", "अपातानीस"], answer: 0, explanation: "मणिपुर घाटी में प्रमुख रूप से मैतेई (Meitei) समुदाय निवास करता है।" },
-      { id: 18, question: "ग्रेट विक्टोरियन मरुस्थल कहाँ स्थित है?", options: ["ऑस्ट्रेलिया", "भारत", "मिस्र", "उत्तर अफ्रीका"], answer: 0, explanation: "ग्रेट विक्टोरियन मरुस्थल पश्चिमी और दक्षिणी ऑस्ट्रेलिया में स्थित है।" },
-      { id: 19, question: "यूरोप की एक प्रमुख पर्वत श्रृंखला कौन-सी है?", options: ["आल्पस", "हिमालय", "एण्डीज", "रॉकी"], answer: 0, explanation: "आल्पस यूरोप में स्थित वलित पर्वत श्रृंखला है।" },
-      { id: 20, question: "चलवासी पशुचारण के संबंध में कौन-सा कथन सही नहीं है?", options: ["यह केवल यूरोप और एशिया के टुंड्रा में प्रचलित है।", "अफ्रीका में गाय-बैल और एंडीज में लामा पाले जाते हैं।", "सीमाओं के निर्धारण से इसमें कमी आई है।", "इनमें से सभी"], answer: 0, explanation: "चलवासी पशुचारण अफ्रीका, मध्य एशिया आदि के मरुस्थलों में भी प्रचलित है।" },
-      { id: 21, question: "लोकतांत्रिक व्यवस्था के विषय में निम्नलिखित में से कौन-सा कथन सही है?", options: ["कमजोर वर्ग के सभी भेदभाव समाप्त कर दिए।", "आर्थिक असमानताएं पूरी तरह समाप्त कर दीं।", "राजनीतिक गैर-बराबरी के विचार को समाप्त कर दिया।", "उपर्युक्त में से कोई नहीं"], answer: 2, explanation: "लोकतंत्र वयस्क मताधिकार से राजनीतिक समानता स्थापित करता है।" },
-      { id: 22, question: "लोकसभा के संदर्भ में सत्य कथन चुनिए:\n1. प्रत्यक्ष निर्वाचन\n2. सार्वभौमिक वयस्क मताधिकार\n3. प्रत्येक मत का समान मूल्य\n4. 5 वर्ष का कार्यकाल", options: ["केवल 1, 2 और 4", "केवल 3", "केवल 1, 2 और 3", "1, 2, 3 और 4"], answer: 3, explanation: "सभी चारों कथन लोकसभा के लिए सत्य हैं।" },
-      { id: 23, question: "निम्न में से कौन-सा अधिकार गैर-नागरिकों को प्राप्त नहीं है, केवल भारतीय नागरिक को प्राप्त है?", options: ["जीवन और स्वतंत्रता (अनुच्छेद 21)", "अल्पसंख्यकों के अधिकार (अनुच्छेद 29-30)", "विधि के समक्ष समता (अनुच्छेद 14)", "उपर्युक्त सभी"], answer: 1, explanation: "अनुच्छेद 15, 16, 19, 29 और 30 केवल भारतीय नागरिकों के लिए आरक्षित हैं।" },
-      { id: 24, question: "भारतीय संसद राज्य सूची के विषय पर कब कानून बना सकती है?", options: ["अंतर्राष्ट्रीय समझौतों को प्रभावी करने हेतु", "राज्यों की सहमति से", "राष्ट्रपति शासन लागू होने पर", "इनमें से सभी"], answer: 3, explanation: "संविधान के अनुच्छेद 249, 250, 252 व 253 के तहत संसद कानून बना सकती है।" },
-      { id: 25, question: "निम्न में से कौन-सा अधिकार मौलिक अधिकार भी है?", options: ["सूचना का अधिकार", "काम का अधिकार", "शिक्षा का अधिकार (21A)", "A + C दोनों"], answer: 2, explanation: "86वें संविधान संशोधन 2002 द्वारा अनुच्छेद 21-A जोड़ा गया।" },
-      { id: 26, question: "लोक लेखा समिति अपनी रिपोर्ट किसे प्रस्तुत करती है?", options: ["नियंत्रक एवं महालेखापरीक्षक को", "लोक सभा के स्पीकर को", "संसदीय कार्य मंत्री को", "राष्ट्रपति को"], answer: 1, explanation: "लोक लेखा समिति अपनी रिपोर्ट लोकसभा के अध्यक्ष को सौंपती है।" },
-      { id: 27, question: "अशोक मेहता समिति (1977) ने किस स्तर की सिफारिश की थी?", options: ["त्रि-स्तरीय सरकार", "द्वि-स्तरीय सरकार", "एकल-स्तरीय", "चार-स्तरीय"], answer: 1, explanation: "अशोक मेहता समिति ने द्वि-स्तरीय व्यवस्था की अनुशंसा की थी।" },
-      { id: 28, question: "उच्च न्यायालय का न्यायाधीश अपना त्यागपत्र किसे संबोधित करता है?", options: ["राष्ट्रपति को", "भारत के मुख्य न्यायाधीश को", "राज्यपाल को", "उच्च न्यायालय के मुख्य न्यायाधीश को"], answer: 0, explanation: "हाईकोर्ट के न्यायाधीश राष्ट्रपति को त्यागपत्र देते हैं।" },
-      { id: 29, question: "गरीबी रेखा निर्धारण हेतु उपभोक्ता व्यय सर्वेक्षण कौन करता है?", options: ["आर.बी.आई.", "एन.एस.एस.ओ. (NSSO / NSO)", "नीति आयोग", "वित्त मंत्रालय"], answer: 1, explanation: "NSSO द्वारा घरेलू उपभोग व्यय का सर्वेक्षण किया जाता है।" },
-      { id: 30, question: "कौन-सा कर केंद्र लगाता है पर राज्य एकत्र और आवंटित करते हैं?", options: ["स्टाम्प शुल्क", "यात्री एवं वस्तु कर", "संपदा शुल्क", "अखबारों पर कर"], answer: 0, explanation: "अनुच्छेद 268 के अनुसार स्टाम्प शुल्क राज्य वसूलते हैं।" },
-      { id: 31, question: "वैश्विक वित्तीय स्थिरता रिपोर्ट (GFSR) कौन जारी करता है?", options: ["यूरोपीय केंद्रीय बैंक", "अंतर्राष्ट्रीय मुद्रा कोष (IMF)", "विश्व बैंक", "OECD"], answer: 1, explanation: "GFSR को IMF द्वारा जारी किया जाता है।" },
-      { id: 32, question: "12वीं पंचवर्षीय योजना का मुख्य उद्देश्य क्या था?", options: ["तीव्रतर, अधिक समावेशी और धारणीय विकास", "कृषि विकास", "गरीबी हटाओ", "औद्योगिक विस्तार"], answer: 0, explanation: "थीम: 'Faster, Sustainable and More Inclusive Growth'।" },
-      { id: 33, question: "माइक्रोसॉफ्ट पावर प्वाइंट (MS PowerPoint) क्या है?", options: ["प्रेजेंटेशन प्रोग्राम", "स्प्रेडशीट प्रोग्राम", "डेटाबेस प्रोग्राम", "वर्ड प्रोसेसर"], answer: 0, explanation: "MS PowerPoint एक स्लाइड प्रेजेंटेशन सॉफ्टवेयर है।" },
-      { id: 34, question: "निम्न में से कौन सर्वर (Server) का मुख्य फंक्शन है?", options: ["डेटा संग्रहित करना", "डेटाबेस सेवाएं प्रदान करना", "ट्रैफिक प्रबंधित करना", "इनमें से सभी"], answer: 3, explanation: "सर्वर नेटवर्क रिसोर्सेज और डेटा ट्रैफिक को प्रबंधित करता है।" },
-      { id: 35, question: "चौधरी चरण सिंह अंतर्राष्ट्रीय हवाई अड्डा कहाँ है?", options: ["पटना", "वाराणसी", "लखनऊ (अमौसी)", "कोलकाता"], answer: 2, explanation: "यह हवाई अड्डा लखनऊ, उत्तर प्रदेश में स्थित है।" },
-      { id: 36, question: "भारतीय नौसेना दिवस कब मनाया जाता है?", options: ["15 जनवरी", "8 अक्टूबर", "4 दिसम्बर", "16 दिसम्बर"], answer: 2, explanation: "4 दिसंबर 1971 के 'ऑपरेशन ट्राइडेंट' की स्मृति में मनाया जाता है।" },
-      { id: 37, question: "भारत की पहली टेक्नीकलर फिल्म कौन-सी थी?", options: ["आलमआरा", "राजा हरिश्चन्द्र", "झाँसी की रानी (1953)", "माई डियर कुट्टीचाथन"], answer: 2, explanation: "सोहराब मोदी की 'झाँसी की रानी' पहली टेक्नीकलर फिल्म थी।" },
-      { id: 38, question: "वॉलीबॉल खेल में कोर्ट पर सक्रिय खिलाड़ियों की संख्या कितनी होती है?", options: ["4", "5", "6", "7"], answer: 2, explanation: "वॉलीबॉल के प्रत्येक पक्ष में 6 खिलाड़ी खेलते हैं।" },
-      { id: 39, question: "विश्व पर्यटन संगठन (UNWTO) का मुख्यालय कहाँ है?", options: ["मैड्रिड (स्पेन)", "रोम", "जिनेवा", "पेरिस"], answer: 0, explanation: "UNWTO का मुख्यालय मैड्रिड, स्पेन में है।" },
-      { id: 40, question: "घास स्थलीय पारिस्थितिकी तंत्र में खाद्य श्रृंखला का सही क्रम क्या है?", options: ["टिड्डा -> सर्प -> मेढ़क -> घास", "घास -> टिड्डा -> सर्प -> मेढ़क", "घास -> टिड्डा -> मेढ़क -> सर्प", "टिड्डा -> मेढ़क -> घास -> सर्प"], answer: 2, explanation: "घास (उत्पादक) -> टिड्डा -> मेंढक -> सर्प।" },
-      { id: 41, question: "बिहार आर्थिक सर्वेक्षण के अनुसार राज्य विकास दर की माप किस पर होती है?", options: ["चालू और स्थिर दोनों कीमतों पर", "केवल चालू कीमतों पर", "केवल स्थिर मूल्यों पर", "निर्यात वृद्धि पर"], answer: 0, explanation: "GSDP की माप स्थिर और चालू दोनों कीमतों पर की जाती है।" },
-      { id: 42, question: "अंतर्राष्ट्रीय सौर गठबंधन (ISA) का मुख्यालय कहाँ स्थित है?", options: ["गुरुग्राम (भारत)", "नई दिल्ली", "पेरिस", "जिनेवा"], answer: 0, explanation: "ISA का स्थायी सचिवालय गुरुग्राम, हरियाणा में है।" },
-      { id: 43, question: "पद्म पुरस्कारों की घोषणा प्रतिवर्ष किस अवसर पर की जाती है?", options: ["स्वतंत्रता दिवस", "गणतंत्र दिवस की पूर्व संध्या", "गांधी जयंती", "नव वर्ष"], answer: 1, explanation: "पद्म पुरस्कार 26 जनवरी की पूर्व संध्या पर घोषित होते हैं।" },
-      { id: 44, question: "'The God of Small Things' पुस्तक की लेखिका कौन हैं?", options: ["अरुंधति राय", "सलमान रुश्दी", "किरण देसाई", "झुम्पा लाहिड़ी"], answer: 0, explanation: "अरुंधति राय को इसके लिए 1997 में बुकर प्राइज मिला था।" },
-      { id: 45, question: "उत्तरी हिंद महासागर में चक्रवातों के नामकरण पैनल में कितने देश शामिल हैं?", options: ["8", "10", "13", "16"], answer: 2, explanation: "WMO/ESCAP पैनल में वर्तमान में 13 सदस्य देश हैं।" },
-      { id: 46, question: "खेलो इंडिया कार्यक्रम किस मंत्रालय की पहल है?", options: ["युवा कार्यक्रम एवं खेल मंत्रालय", "शिक्षा मंत्रालय", "गृह मंत्रालय", "संस्कृति मंत्रालय"], answer: 0, explanation: "यह युवा कार्यक्रम एवं खेल मंत्रालय द्वारा संचालित है।" },
-      { id: 47, question: "क्षेत्रफल की दृष्टि से भारत में सर्वाधिक वनावरण वाला राज्य कौन-सा है?", options: ["मिजोरम", "मध्य प्रदेश", "अरुणाचल प्रदेश", "छत्तीसगढ़"], answer: 1, explanation: "क्षेत्रफल के अनुसार मध्य प्रदेश में सर्वाधिक वन क्षेत्र है।" },
-      { id: 48, question: "भारतीय सेना दिवस 15 जनवरी को क्यों मनाया जाता है?", options: ["1971 की विजय", "के. एम. करियप्पा द्वारा कमान संभालने पर", "सेना स्थापना दिवस", "कारगिल विजय"], answer: 1, explanation: "15 जनवरी 1949 को जनरल करियप्पा ने सेना की कमान संभाली थी।" },
-      { id: 49, question: "केंद्रीय बजट में सरकार की आय का सबसे बड़ा स्रोत सामान्यतः क्या होता है?", options: ["उधार और अन्य देयताएं", "जीएसटी", "निगम कर", "आयकर"], answer: 0, explanation: "बजट प्राप्तियों में सबसे बड़ा हिस्सा उधारी और देनदारियों का होता है।" },
-      { id: 50, question: "सतत विकास लक्ष्य (SDG India Index) में कितने लक्ष्य शामिल हैं?", options: ["17", "10", "12", "15"], answer: 0, explanation: "संयुक्त राष्ट्र के 17 वैश्विक लक्ष्यों पर राज्यों का मूल्यांकन होता है।" },
-      { id: 51, question: "20 सेमी. फोकस दूरी के उत्तल लेंस पर सफेद घोड़े के प्रतिबिम्ब हेतु काली पट्टियाँ लगाई जाएं तो प्रतिबिम्ब कैसा होगा?", options: ["कम चमक वाला पूर्ण घोड़ा", "काली पट्टियों का जेबरा", "काली पट्टियों का घोड़ा", "अधिक चमक वाला"], answer: 0, explanation: "लेंस का खुला भाग पूरी छवि बनाता है, केवल प्रकाश की तीव्रता घट जाती है।" },
-      { id: 52, question: "यदि धरती की घूर्णन गति बढ़ा दी जाए, तो भूमध्यरेखा पर वस्तु का भार-", options: ["बढ़ जायेगा", "घट जायेगा", "अपरिवर्तित रहेगा", "दोगुना होगा"], answer: 1, explanation: "g' = g - ω²R cos²λ के अनुसार घूर्णन गति बढ़ने पर भूमध्य रेखा पर भार घटता है।" },
-      { id: 53, question: "प्रेशर कुकर में खाना जल्दी क्यों पक जाता है?", options: ["पानी निम्न ताप पर उबलता है", "उच्च दाब से पानी का क्वथनांक बढ़ जाता है", "कम दाब होता है", "वाष्प बाहर नहीं निकलती"], answer: 1, explanation: "उच्च दाब के कारण पानी का क्वथनांक 100°C से बढ़कर लगभग 120°C हो जाता है।" },
-      { id: 54, question: "अनुदैर्ध्य तरंगों (Longitudinal waves) का उदाहरण है-", options: ["रेडियो तरंग", "ध्वनि तरंग", "एक्स-किरण", "गामा किरण"], answer: 1, explanation: "ध्वनि तरंगें माध्यम के समानांतर संचरित अनुदैर्ध्य तरंगें हैं।" },
-      { id: 55, question: "वायुमंडलीय आर्द्रता किस उपकरण से मापी जाती है?", options: ["हाइड्रोमीटर", "हाइग्रोमीटर", "पायरोमीटर", "लैक्टोमीटर"], answer: 1, explanation: "हाइग्रोमीटर द्वारा हवा की नमी मापी जाती है।" },
-      { id: 56, question: "साबुन ग्रीज और तेल को किसके द्वारा हटाता है?", options: ["स्कन्दन द्वारा", "अधिशोषण द्वारा", "पायसीकरण (Emulsification) द्वारा", "परासरण द्वारा"], answer: 2, explanation: "साबुन मिसेल बनाकर ग्रीज का पायसीकरण करता है।" },
-      { id: 57, question: "फ्लोरोसेंट नली में श्वेत प्रकाश कैसे पैदा किया जाता है?", options: ["तार को गर्म करके", "तंतु को गर्म करके", "गैस/परमाणु को उत्तेजित करके", "अणुओं को दोलित करके"], answer: 2, explanation: "पारे की वाष्प के आयनीकरण से पराबैंगनी किरणें निकलती हैं जो लेप से दृश्य प्रकाश बनती हैं।" },
-      { id: 58, question: "ठंड में पानी की सतह जमने के बाद भी जलीय जीवन सुरक्षित रहने का कारण क्या है?", options: ["जल का 4°C पर असामान्य प्रसार/अधिकतम घनत्व", "बर्फ सुचालक है", "मछलियां बर्फ में सांस लेती हैं", "वाष्पीकरण"], answer: 0, explanation: "4°C पर जल का घनत्व अधिकतम होने से भारी जल नीचे बना रहता है।" },
-      { id: 59, question: "आसुत जल, अम्ल और क्षार में से किसमें लाल लिटमस नीला हो जाएगा?", options: ["आसुत जल", "अम्ल", "क्षार", "A + B"], answer: 2, explanation: "क्षार (Base) लाल लिटमस को नीला कर देता है।" },
-      { id: 60, question: "समान ताप और दाब पर गैसों के समान आयतन में अणुओं की संख्या समान होती है - यह नियम किसका है?", options: ["कॉरिऑलिस प्रभाव", "ग्राहम का नियम", "पास्कल का नियम", "आवोगाद्रो का नियम"], answer: 3, explanation: "यह आवोगाद्रो (Avogadro) का प्रसिद्ध परिकल्पना नियम है।" },
-      { id: 61, question: "पीतल (Brass) के प्रमुख घटक कौन-से हैं?", options: ["जस्ता एवं ताँबा", "लोहा एवं जस्ता", "ताँबा एवं निकेल", "लोहा एवं ताँबा"], answer: 0, explanation: "पीतल तांबा (Cu) और जस्ता (Zn) का मिश्रण होता है।" },
-      { id: 62, question: "नीलम (Ruby) का रासायनिक सूत्र क्या है?", options: ["Al2O3", "SiO2", "CaSO4", "Fe2O3"], answer: 0, explanation: "नीलम कोरंडम (एल्युमिनियम ऑक्साइड - Al2O3) का रूप है।" },
-      { id: 63, question: "प्राकृतिक रबर किसका बहुलक (Polymer) है?", options: ["आइसोप्रीन", "विनाइल ऐसीटेट", "स्टाइरीन", "प्रोपीन"], answer: 0, explanation: "प्राकृतिक रबर आइसोप्रीन का बहुलक है।" },
-      { id: 64, question: "निम्न में से कौन भौतिक परिवर्तन का उदाहरण है?", options: ["लोहे में जंग लगना", "पानी का उबलना", "लकड़ी का जलना", "दूध से दही बनना"], answer: 1, explanation: "पानी का उबलना और वाष्पीकरण एक भौतिक परिवर्तन है।" },
-      { id: 65, question: "किस परमाणु में कोई न्यूट्रॉन नहीं होता है?", options: ["ऑक्सीजन", "नाइट्रोजन", "हाइड्रोजन (प्रोटियम)", "ताँबा"], answer: 2, explanation: "साधारण हाइड्रोजन (1H1) में 1 प्रोटॉन और 0 न्यूट्रॉन होते हैं।" },
-      { id: 66, question: "पौधों के संबंध में कौन-सा मेल सही नहीं है?", options: ["पर्णवृंत: पत्ती को तने से जोड़ता है", "आधार के पास शाखाओं के साथ कठोर तना: पेड़", "कमजोर तना जो सीधा खड़ा न हो: लता", "इनमें से सभी"], answer: 1, explanation: "आधार के पास से घनी शाखाओं वाला पौधा झाड़ी (Shrub) कहलाता है।" },
-      { id: 67, question: "कौन-सा जोड़ा सही सुमेलित है?", options: ["स्कर्वी - थायमीन", "टीबी - एटीएस", "टिटनेस - बीसीजी", "मलेरिया - क्लोरोक्वीन"], answer: 3, explanation: "मलेरिया के उपचार में क्लोरोक्वीन दवा दी जाती है।" },
-      { id: 68, question: "खारे जल (लवणतायुक्त) में उगने वाले पौधों को क्या कहते हैं?", options: ["मरुद्भिद", "समोद्भिद", "ग्लाइकोफाइट", "लवणमृदोद्भिद (Halophytes)"], answer: 3, explanation: "उच्च लवणता में उगने वाले पादप हैलोफाइट्स कहलाते हैं।" },
-      { id: 69, question: "गर्भ में भ्रूण के विकास की जांच में किन तरंगों का उपयोग होता है?", options: ["एक्स-किरणें", "सूक्ष्म-तरंगें", "पराध्वनि तरंगें (Ultrasound)", "पराबैंगनी किरणें"], answer: 2, explanation: "सोनोग्राफी में 20 kHz से उच्च पराध्वनि तरंगें प्रयुक्त होती हैं।" },
-      { id: 70, question: "निमोनिया मानव शरीर के किस अंग का संक्रमण है?", options: ["तंत्रिका", "रक्त", "त्वचा", "फेफड़ों (Lungs)"], answer: 3, explanation: "निमोनिया में फेफड़ों के वायुकोशों में सूजन आ जाती है।" },
-      { id: 71, question: "हड्डियों का अध्ययन विज्ञान की किस शाखा में होता है?", options: ["जियोलॉजी", "सेरोलॉजी", "ओरोलॉजी", "ऑस्टियोलॉजी"], answer: 3, explanation: "अस्थियों के अध्ययन को ऑस्टियोलॉजी कहते हैं।" },
-      { id: 72, question: "कार्बनिक कृषि (Organic Farming) की प्रमुख विशेषता क्या है?", options: ["रसायनों का अधिकतम प्रयोग", "जैविक खादों व कम्पोस्ट का उपयोग", "जीएम बीजों पर निर्भरता", "एकल फसल"], answer: 1, explanation: "जैविक खेती में रसायनों को त्यागकर कम्पोस्ट और जैव-कारकों का प्रयोग होता है।" },
-      { id: 73, question: "ISRO का संक्षिप्त रूप क्या है?", options: ["Indian Satellite Research Organisation", "Indian Scientific Research Organisation", "Indian Space Research Organisation", "International Space Research Organisation"], answer: 2, explanation: "ISRO = Indian Space Research Organisation।" },
-      { id: 74, question: "किस युग्म का सुमेल सही नहीं है?", options: ["विटामिन B1 - संतरा", "विटामिन D - कॉड-यकृत तेल", "विटामिन E - गेहूं-अंकुर तेल", "विटामिन A - गाजर"], answer: 0, explanation: "संतरा मुख्य रूप से विटामिन C का समृद्ध स्रोत है।" },
-      { id: 75, question: "निम्नलिखित में से कौन प्रतिजैविक (Antibiotic) औषधि है?", options: ["क्वीनीन", "सल्फागुआनिडीन", "क्लोरेम्फेनिकॉल", "B + C"], answer: 2, explanation: "क्लोरेम्फेनिकॉल एक एंटीबायोटिक दवा है।" },
-      { id: 76, question: "दो संख्याओं के HCF व LCM का योग 680 है। यदि LCM, HCF का 84 गुना हो और एक संख्या 56 हो, तो दूसरी क्या होगी?", options: ["36", "84", "96", "112"], answer: 2, explanation: "H = 8, LCM = 672. दूसरी संख्या = (8 × 672) / 56 = 96." },
-      { id: 77, question: "दो संख्याओं का LCM 120 है। कौन-सी संख्या HCF नहीं हो सकती?", options: ["8", "12", "24", "35"], answer: 3, explanation: "120, 35 से पूर्णतः विभाजित नहीं होता।" },
-      { id: 78, question: "log(75/16) - 2·log(5/9) + log(32/243) का मान क्या होगा?", options: ["0", "1", "log 2", "-1"], answer: 2, explanation: "log[(75/16) × (81/25) × (32/243)] = log 2." },
-      { id: 79, question: "कुल धन का 3/8 एक को और शेष का 3/8 दूसरे को मिला। अंतर ₹36 हो तो कुल धन कितना था?", options: ["₹236", "₹272", "₹240", "₹256"], answer: 3, explanation: "अंतर = 9/64 भाग = 36 => कुल धन = (36 × 64)/9 = ₹256." },
-      { id: 80, question: "सुधीर ने A और B प्रकार के 100 किग्रा चावल ₹1100 में खरीदे। भाव ₹10 और ₹5 प्रति किग्रा था। अनुपात क्या था?", options: ["2 : 5", "3 : 2", "5 : 2", "2 : 3"], answer: 2, explanation: "मिश्रण अनुपात 5 : 2 प्राप्त होता है।" },
-      { id: 81, question: "विक्की तथा सुमी की आयु का अनुपात 2 : 3 है। 12 वर्ष बाद 11 : 15 होता है। सुमी की वर्तमान आयु कितनी है?", options: ["56 वर्ष", "32 वर्ष", "42 वर्ष", "48 वर्ष"], answer: 3, explanation: "(2x+12)/(3x+12) = 11/15 => x = 16. सुमी = 3 × 16 = 48 वर्ष।" },
-      { id: 82, question: "राजू काम 20 दिन में और राम 30 दिन में कर सकता है। दोनों मिलकर कितने दिन में करेंगे?", options: ["50 दिन", "25 दिन", "12 दिन", "10 दिन"], answer: 2, explanation: "1/20 + 1/30 = 5/60 = 1/12 => 12 दिन।" },
-      { id: 83, question: "सुधीर और श्याम मिलकर 12 दिन में, श्याम अकेले 30 दिन में। सुधीर अकेले कितने दिन में करेगा?", options: ["20 दिन", "18 दिन", "28 दिन", "30 दिन"], answer: 0, explanation: "1/12 - 1/30 = 3/60 = 1/20 => 20 दिन।" },
-      { id: 84, question: "1100 लड़के और 700 लड़कियाँ हैं। 42% लड़के व 36% लड़कियाँ पास हुईं। फेल प्रतिशत क्या है?", options: ["60⅓%", "58%", "64%", "78%"], answer: 0, explanation: "फेल = (638 + 448)/1800 × 100 = 60⅓%." },
-      { id: 85, question: "1100 लड़के और 900 लड़कियाँ हैं। 50% लड़के व 40% लड़कियाँ पास हुईं। अनुत्तीर्ण प्रतिशत क्या है?", options: ["45%", "45.5%", "54.5%", "50.2%"], answer: 2, explanation: "अनुत्तीर्ण = (550 + 540)/2000 × 100 = 54.5%." },
-      { id: 86, question: "38 की कक्षा में 3 अनुपस्थित थीं। शेष 35 का 20% गृहकार्य नहीं कर सका। कितनों ने काम पूरा किया?", options: ["25", "27", "28", "30"], answer: 2, explanation: "35 का 80% = 28 लड़कियां।" },
-      { id: 87, question: "दो व्यक्तियों की आयु का अनुपात 4 : 7 है। अंतर 30 वर्ष है। उनकी आयु का योग क्या होगा?", options: ["110 वर्ष", "100 वर्ष", "70 वर्ष", "40 वर्ष"], answer: 0, explanation: "3x = 30 => x = 10. योग = 11x = 110 वर्ष।" },
-      { id: 88, question: "13 वस्तुएं @₹70, 15 वस्तुएं @₹60, 12 वस्तुएं @₹65 खरीदीं। औसत मूल्य क्या है?", options: ["₹60.25", "₹64.75", "₹65.75", "₹62.25"], answer: 1, explanation: "कुल मूल्य = 2590. औसत = 2590 / 40 = ₹64.75." },
-      { id: 89, question: "₹1 में 3 के भाव से खरीदी गई। 50% लाभ के लिए ₹1 में कितनी टॉफियां बेचनी होंगी?", options: ["2 टॉफियां", "5 टॉफियां", "4 टॉफियां", "1 टॉफी"], answer: 0, explanation: "SP = (1/3) × 1.5 = 1/2 रु प्रति टॉफी => 1 रुपये में 2 टॉफियां।" },
-      { id: 90, question: "एक दुकानदार 1 किग्रा के स्थान पर 900 ग्राम बाट देता है। उसका लाभ प्रतिशत क्या है?", options: ["9%", "11 1/9%", "9 1/11%", "10%"], answer: 1, explanation: "(100 / 900) × 100 = 11 1/9%." },
-      { id: 91, question: "सरल कीजिए: [ (2.644)² - (2.356)² ] / 0.288", options: ["1", "4", "5", "6"], answer: 2, explanation: "a + b = 2.644 + 2.356 = 5." },
-      { id: 92, question: "दो संख्याओं का योग 42 व गुणनफल 437 है। उनका अंतर क्या होगा?", options: ["3", "4", "5", "7"], answer: 1, explanation: "(a - b)² = 42² - 4(437) = 16 => अंतर = 4." },
-      { id: 93, question: "दो संख्याओं के वर्गों का योग 100 तथा अंतर 28 है। संख्याओं का योग क्या होगा?", options: ["12", "13", "14", "15"], answer: 2, explanation: "संख्याएं 8 और 6 हैं। योग = 8 + 6 = 14." },
-      { id: 94, question: "(584 × 328 × 547 × 613) में इकाई अंक कितना है?", options: ["2", "3", "4", "5"], answer: 0, explanation: "4 × 8 = 32 (2); 2 × 7 = 14 (4); 4 × 3 = 12 => इकाई अंक 2." },
-      { id: 95, question: "(2137)^754 में इकाई का अंक क्या है?", options: ["1", "3", "7", "9"], answer: 3, explanation: "754 mod 4 = 2. 7² = 49 => इकाई अंक 9." },
+    /* ==========================================================
+       COMPLETE 100 QUESTIONS DATASET (GYAN BINDU DOUBLE STAR T-2)
+    ========================================================== */
+    const questionsData = [
+      {
+        id: 1,
+        q: "पेसा अधिनियम के संबंध में निम्नलिखित कथनों पर विचार करें-\n1. भूरिया समिति के सिफारिश पर, 1996 में पेसा अधिनियम पारित किया गया।\n2. पेसा अधिनियम 5वीं अनुसूची के 10 राज्यों में लागू है।\n3. इस अधिनियम का उद्देश्य जनजातीय समुदायों को स्वशासन प्रदान करना है।\n\nउपर्युक्त कथनों में से कौन-सा/से कथन असत्य है/हैं ?",
+        options: ["केवल 1", "केवल 2 और 3", "केवल 1 और 2", "इनमें से कोई नहीं"],
+        ans: 3
+      },
+      {
+        id: 2,
+        q: "कथन (A) : बर्फ का टुकड़ा पेय को ठंडा बना देता है।\nकारण (R) : बर्फ पिघलने के लिए पेय से गुप्त ऊष्मा लेता है, जिससे पेय ठंडा हो जाता है।\n\nनीचे दिए गए कूट से सही उत्तर का चयन कीजिए-",
+        options: [
+          "(A) तथा (R) दोनों सही है तथा (A) की सही व्याख्या (R) है।",
+          "(A) तथा (R) दोनों सही है किन्तु (A) की सही व्याख्या (R) नहीं है।",
+          "(A) सही है परन्तु (R) गलत है।",
+          "(A) गलत है परन्तु (R) सही है।"
+        ],
+        ans: 0
+      },
+      {
+        id: 3,
+        q: "चोल साम्राज्य का सर्वाधिक विस्तार किसके शासनकाल में हुआ था ?\n1. राजेन्द्र प्रथम\n2. राजराज प्रथम\n3. विजयालय\n\nनिम्न में से सही कूट का चयन करें-",
+        options: ["केवल 1", "केवल 2", "केवल 3", "तीनों"],
+        ans: 0
+      },
+      {
+        id: 4,
+        q: "यदि √3 tan A = 3 sin A है, तो (2√3 cosec A × tan A) का मान ज्ञात करें ?",
+        options: ["√3", "6", "2√3", "2"],
+        ans: 1
+      },
+      {
+        id: 5,
+        q: "आसियान के संदर्भ में निम्न कथनों पर विचार कीजिए-\n1. आसियान (ASEAN) की स्थापना 1967 में बैंकॉक घोषणा पत्र से हुई।\n2. इसका मुख्यालय जकार्ता (इंडोनेशिया) में है।\n3. वर्तमान में इसमें 11 सदस्य देश है।\n\nउपर्युक्त में से कौन-सा/से कथन सही है/हैं ?",
+        options: ["केवल 1", "केवल 2 एवं 3", "केवल 1 एवं 3", "उपर्युक्त सभी"],
+        ans: 3
+      },
+      {
+        id: 6,
+        q: "निम्नलिखित कथनों पर विचार कीजिए-\nकथन (A): दक्कन पठार का निर्माण बेसाल्ट चट्टान से हुआ है।\nकारण (R): दक्कन पठार से काली मृदा का विकास हुआ।\n\nनीचे दिए गए विकल्प से सही उत्तर चुनिए :",
+        options: [
+          "A और R दोनों सही है और R, A की सही व्याख्या है।",
+          "A और R दोनों सही है परन्तु R, A की सही व्याख्या नहीं है।",
+          "A सही है परन्तु R गलत है।",
+          "R सही है परन्तु A गलत है।"
+        ],
+        ans: 1
+      },
+      {
+        id: 7,
+        q: "पासे की विभिन्न स्थितियों के आधार पर बताएं कि पीले रंग के विपरीत कौन-सा रंग आएगा ?\n(स्थितियाँ: पीला-नारंगी-नीला | नारंगी-बैंगनी-नीला | नीला-लाल-पीला | लाल-जामुनी-बैंगनी)",
+        options: ["बैंगनी", "लाल", "जामुनी", "नीला"],
+        ans: 0
+      },
+      {
+        id: 8,
+        q: "राजकोषीय स्वास्थ्य सूचकांक 2025 में शीर्ष प्रदर्शनकर्ता राज्यों के सही क्रम को चुनिए :",
+        options: [
+          "ओडिशा > छत्तीसगढ़ > गोवा",
+          "महाराष्ट्र > ओडिशा > तेलंगाना",
+          "महाराष्ट्र > उत्तर प्रदेश > तेलंगाना",
+          "ओडिशा > महाराष्ट्र > छत्तीसगढ़"
+        ],
+        ans: 1
+      },
+      {
+        id: 9,
+        q: "फ्रांस के किस शासक के शासनकाल में अमेरिका के तेरह उपनिवेश ब्रिटेन से स्वतंत्र हो गए ?",
+        options: ["लुई 13वाँ", "लुई 14वाँ", "लुई 15वाँ", "लुई 16वाँ"],
+        ans: 3
+      },
+      {
+        id: 10,
+        q: "उस विकल्प का चयन कीजिए, जो अलैंगिक प्रजनन से संबंधित स्तम्भ-I और स्तम्भ-II के सुमेलित रूप को दर्शाता है:\n(a) लीशमैनिया - 2. द्वि-विखंडन\n(b) यीस्ट - 4. मुकुलन\n(c) प्लाज्मोडियम - 3. बहुखंडन\n(d) हाइड्रा - 1. पुनर्जनन",
+        options: [
+          "a-4, b-2, c-1, d-3",
+          "a-2, b-4, c-3, d-1",
+          "a-1, b-2, c-3, d-4",
+          "a-2, b-1, c-3, d-4"
+        ],
+        ans: 1
+      },
+      {
+        id: 11,
+        q: "निम्नलिखित में कौन-सी संख्या 81 से विभाज्य है ?",
+        options: ["5232", "5854", "5265", "4678"],
+        ans: 2
+      },
+      {
+        id: 12,
+        q: "सूची-I (गवर्नर जनरल/वायसराय) को सूची-II (संबंधित विषय) से सही सुमेलित करें:\n(a) लॉर्ड एलनबरो - (iii) भारत में दास प्रथा का अंत\n(b) लॉर्ड विलियम बेंटिक - (iv) विधि आयोग का गठन\n(c) लॉर्ड मेयो - (i) सांख्यिकी सर्वेक्षण विभाग का गठन\n(d) लॉर्ड लैंसडाउन - (ii) सम्मत आयु विवाह अधिनियम",
+        options: [
+          "a-iii, b-i, c-ii, d-iv",
+          "a-iv, b-iii, c-i, d-ii",
+          "a-ii, b-iv, c-iii, d-i",
+          "a-iii, b-iv, c-i, d-ii"
+        ],
+        ans: 3
+      },
+      {
+        id: 13,
+        q: "निम्नलिखित कथनों पर विचार कीजिए-\n1. दक्षिण गंगोत्री अंटार्कटिक में भारत का पहला शोध केन्द्र था, जिसे 1983-84 में स्थापित किया गया था और यह अब बर्फ में दब गया है।\n2. हिमाद्रि नॉर्वे के पास आर्कटिक क्षेत्र में स्थित है और यह भारत का आर्कटिक अनुसंधान केन्द्र है।\n3. केन्द्रीय नमक और समुद्री रासायनिक अनुसंधान संस्थान (CSMCRI) भावनगर (गुजरात) में स्थित है न कि महाराष्ट्र में।\n\nउपर्युक्त कथनों में से कौन-सा/से सही नहीं है/हैं ?",
+        options: ["केवल 1 और 3", "केवल 2", "1, 2 और 3", "उपर्युक्त में से कोई नहीं"],
+        ans: 0
+      },
+      {
+        id: 14,
+        q: "अनुच्छेद 368 के तहत संविधान संशोधन के संबंध में निम्नलिखित कथनों पर विचार करें-\n1. अनुच्छेद 368 दो प्रकार से संविधान संशोधन की व्यवस्था करता है।\n2. 24वाँ संविधान संशोधन अधिनियम 1971 ने राष्ट्रपति के लिए संविधान संशोधन विधेयक पर सहमति के लिए बाध्य बनाया।\n3. दोनों सदनों में गतिरोध होने पर दोनों सदनों की संयुक्त बैठक में संविधान संशोधन विधेयक को पास किया जाता है।\n\nउपर्युक्त कथनों में से असत्य कथन चुनिए-",
+        options: ["केवल 1 और 3", "केवल 2 और 3", "केवल 3", "इनमें से कोई नहीं"],
+        ans: 2
+      },
+      {
+        id: 15,
+        q: "निम्नलिखित कथनों पर विचार कीजिए-\n1. ह्वेनसांग भारत आने वाला प्रथम चीनी यात्री था, जो हर्ष के शासनकाल के दौरान आया था।\n2. सुलेमान अरबी लेखक था जो, अमोघवर्ष-1 के शासनकाल के दौरान भारत आया था।\n3. चीनी यात्री संयुगमन ने भारत की यात्रा 518 ई० में की थी।\n\nउपर्युक्त कथनों में से कौन-सा/से कथन सत्य है/हैं ?",
+        options: ["केवल 1", "1 और 3", "केवल 2", "1, 2 और 3"],
+        ans: 2
+      },
+      {
+        id: 16,
+        q: "सूची-I (खनिज) को सूची-II (शीर्ष भंडारण वाले राज्य) से सुमेलित कीजिए:\n(a) मैग्नेटाइट - (ii) कर्नाटक\n(b) सोना - (iii) बिहार\n(c) बॉक्साइट - (i) ओडिशा\n(d) ग्रेफाइट - (iv) अरुणाचल प्रदेश",
+        options: [
+          "a-i, b-ii, c-iii, d-iv",
+          "a-iv, b-ii, c-i, d-iii",
+          "a-ii, b-iii, c-i, d-iv",
+          "a-iv, b-ii, c-iii, d-i"
+        ],
+        ans: 2
+      },
+      {
+        id: 17,
+        q: "निम्नलिखित में कौन-सा आयनिक यौगिक नहीं है ?\n(i) KCl   (ii) HCl   (iii) CCl4   (iv) NaCl",
+        options: ["(i) तथा (ii)", "(ii) तथा (iii)", "(iii) तथा (iv)", "(i) तथा (iii)"],
+        ans: 1
+      },
+      {
+        id: 18,
+        q: "किस देश ने 28 अप्रैल को 'राष्ट्रीय शोक दिवस' घोषित किया है ?",
+        options: ["भारत", "ईरान", "पाकिस्तान", "बांग्लादेश"],
+        ans: 3
+      },
+      {
+        id: 19,
+        q: "भारतीय विश्वविद्यालय अधिनियम के संदर्भ में निम्नलिखित कथनों में से कौन-सा कथन सही नहीं है ?",
+        options: [
+          "1902 में 'टॉमस रैले' की अध्यक्षता में विश्वविद्यालय आयोग का गठन किया गया।",
+          "दादाभाई नौरोजी ने इसे 'राष्ट्रीय शिक्षा को पीछे की ओर ले जाने वाला अधिनियम' की संज्ञा दी।",
+          "इसके तहत प्राइवेट कॉलेजों पर सरकारी नियंत्रण कठोर हो गया।",
+          "1904 में भारतीय विश्वविद्यालय अधिनियम पारित किया गया।"
+        ],
+        ans: 1
+      },
+      {
+        id: 20,
+        q: "अग्न्याशय रस (Pancreatic Juice) का कार्य निम्नलिखित में से कौन-सा है ?",
+        options: [
+          "ट्रिप्सिन और लाइपेज वसाओं को पचा देते हैं।",
+          "ट्रिप्सिन प्रोटीन को पचा देता है और लाइपेज कार्बोहाइड्रेट को।",
+          "ट्रिप्सिन पायसीभूत वसाओं को पचा देता है और लाइपेज प्रोटीन को।",
+          "ट्रिप्सिन प्रोटीन को पचा देता है और लाइपेज पायसीभूत वसाओं को।"
+        ],
+        ans: 3
+      },
+      {
+        id: 21,
+        q: "विषम अक्षर समूह का चयन करें :",
+        options: ["RT-MO", "OQ-JM", "WY-RU", "UW-PS"],
+        ans: 1
+      },
+      {
+        id: 22,
+        q: "निम्न में से कौन-सा युग्म सही सुमेलित नहीं है ? (शेयर बाजार - संबंधित देश)",
+        options: [
+          "डोव जोंस - न्यूयॉर्क (USA)",
+          "हैंड सेंग - हॉन्गकॉन्ग",
+          "फ्रैंकफर्ट - ऑस्ट्रिया",
+          "वारसा - पोलैंड"
+        ],
+        ans: 2
+      },
+      {
+        id: 23,
+        q: "सदिश तथा अदिश राशियों के बारे में नीचे दिए गए कथनों पर विचार कीजिए-\n1. सदिश राशि में दिशा होती है परन्तु परिमाण नहीं होती है।\n2. अदिश राशि में दिशा और परिमाण दोनों होती है।\n3. विद्युत क्षेत्र सदिश राशि है जबकि विद्युत धारा अदिश राशि है।\n\nउपरोक्त में से कौन-सा/से कथन सत्य है/हैं ?",
+        options: ["केवल 2 और 3", "केवल 2", "केवल 3", "केवल 1 और 3"],
+        ans: 2
+      },
+      {
+        id: 24,
+        q: "'तारीख-उल-हिंद' (किताब-उल-हिंद) पुस्तक के रचयिता कौन थे ?",
+        options: ["अलबरूनी", "मिन्हाज-उस-सिराज", "जियाउद्दीन बरनी", "हसन निजामी"],
+        ans: 0
+      },
+      {
+        id: 25,
+        q: "निम्नलिखित में से किसे शांति का नोबेल पुरस्कार-2024 से सम्मानित किया गया ?",
+        options: ["निहोन हिडांक्यो (Nihon Hidankyo)", "हान कांग", "जेम्स रॉबिन्सन", "मारिया कोरिना मचाडो"],
+        ans: 0
+      },
+      {
+        id: 26,
+        q: "ऑक्सीकरण अभिक्रिया के बारे में इनमें से कौन-सा कथन सही है ?",
+        options: [
+          "ऑक्सीकरण, ऑक्सीजन का त्याग करने या हाइड्रोजन ग्रहण करने की प्रक्रिया है।",
+          "ऑक्सीकरण, ऑक्सीजन और हाइड्रोजन का त्याग करने की प्रक्रिया है।",
+          "ऑक्सीकरण, ऑक्सीजन और हाइड्रोजन ग्रहण करने की प्रक्रिया है।",
+          "ऑक्सीकरण, ऑक्सीजन ग्रहण करने या हाइड्रोजन का त्याग करने की प्रक्रिया है।"
+        ],
+        ans: 3
+      },
+      {
+        id: 27,
+        q: "भारतीय संविधान के अनुच्छेद 2 के तहत संसद को प्रदत्त शक्ति के संबंध में निम्नलिखित में से कौन-सा कथन असत्य है ?",
+        options: [
+          "संसद भारत संघ में नए राज्यों को शामिल कर सकती है।",
+          "संसद नए राज्यों की स्थापना कर सकती है।",
+          "संसद द्वारा बनाये गये नवनिर्मित राज्य संबंधित कानून को संविधान के अनुच्छेद 368 के तहत संवैधानिक संशोधन नहीं माना जाएगा।",
+          "संसद किसी नए राज्य के गठन के लिए केन्द्रशासित प्रदेश (UT) को भी शामिल कर सकती है।"
+        ],
+        ans: 2
+      },
+      {
+        id: 28,
+        q: "\"गाँव एक लघु गणराज्य है।\" किसने कहा ?",
+        options: ["चार्ल्स मेटकॉफ", "ए. आर. देसाई", "कार्ल मार्क्स", "महात्मा गाँधी"],
+        ans: 0
+      },
+      {
+        id: 29,
+        q: "निश्चित कूट में VR 27 से संबंधित है और MI 09 से संबंधित है, PL 14 से संबंधित है तो GC 13 किससे संबंधित है ?",
+        options: ["MP 18", "JF 18", "JK 16", "JK 18"],
+        ans: 1
+      },
+      {
+        id: 30,
+        q: "कम्प्यूटर में RAM का मुख्य कार्य क्या है ?",
+        options: [
+          "इंटरनेट एक्सेस देना",
+          "डेटा स्थायी रूप से स्टोर करना",
+          "ऑपरेटिंग सिस्टम चलाना",
+          "अस्थायी रूप से डेटा और प्रोग्राम को स्टोर करना"
+        ],
+        ans: 3
+      },
+      {
+        id: 31,
+        q: "अनॉक्सी श्वसन (Anaerobic Respiration) का अंतिम उत्पाद होता है-",
+        options: ["CO2 तथा जल", "पाइरुविक अम्ल", "लैक्टिक अम्ल / इथाइल अल्कोहल", "O2 तथा जल"],
+        ans: 2
+      },
+      {
+        id: 32,
+        q: "भारत में 'हरित क्रांति का जनक' किसे कहा जाता है ?",
+        options: ["एम. एस. स्वामीनाथन", "नॉर्मन बोरलॉग", "वर्गीज कुरियन", "(A) और (B) दोनों"],
+        ans: 0
+      },
+      {
+        id: 33,
+        q: "निम्नलिखित कथनों पर विचार कीजिए-\n1. प्रथम गोलमेज सम्मेलन का सभापतित्व ब्रिटिश प्रधानमंत्री रैमजे मैकडोनाल्ड ने की।\n2. 'दिल्ली वार्ता' (गांधी-इरविन समझौता) मार्च, 1931 में हुई।\n3. 'पूना पैक्ट' समझौते पर गाँधीजी की ओर से मदन मोहन मालवीय ने हस्ताक्षर किए थे।\n\nउपर्युक्त में से असत्य कथन का चयन कीजिए-",
+        options: ["केवल 1", "केवल 1 और 2", "केवल 2 और 3", "केवल 2"],
+        ans: 2
+      },
+      {
+        id: 34,
+        q: "निम्नलिखित में से किस देश में प्रत्यक्ष लोकतंत्र (Direct Democracy) की व्यवस्था है ?",
+        options: ["स्विट्जरलैंड", "अमेरिका", "भारत", "ब्रिटेन"],
+        ans: 0
+      },
+      {
+        id: 35,
+        q: "पाँच ठोस घन, जिनमें से प्रत्येक का आयतन 10941048 cm³ है, को एक साथ जोड़कर एक घनाभ बनाया जाता है। घनाभ का पार्श्व पृष्ठीय क्षेत्रफल (Lateral Surface Area, cm²) क्या है ?",
+        options: ["591663", "591310", "591312", "591408"],
+        ans: 3
+      },
+      {
+        id: 36,
+        q: "भारत का कौन-सा राष्ट्रीय उद्यान सबसे छोटा होने का खिताब रखता है ?",
+        options: ["हेमिस राष्ट्रीय उद्यान", "महात्मा गांधी समुद्री उद्यान", "साउथ बटन आइलैंड नेशनल पार्क", "फूलों की घाटी राष्ट्रीय उद्यान"],
+        ans: 2
+      },
+      {
+        id: 37,
+        q: "\"एक सामाजिक वर्ग उन व्यक्तियों का योग है जिनकी आवश्यक रूप से एक समाज विशेष में एक-सी सामाजिक स्थिति हो।\" यह परिभाषा किसने दी है ?",
+        options: ["जॉनसन ने", "रिजले ने", "ऑगबर्न व निमकॉफ ने", "मैकाइवर ने"],
+        ans: 2
+      },
+      {
+        id: 38,
+        q: "निम्न में से कौन-सा घर्षण बल के बारे में सही नहीं है ?",
+        options: [
+          "वह घर्षण बल जो किसी सतह पर चलने (फिसलने) का कार्य करता है, स्लाइडिंग घर्षण कहलाता है।",
+          "घर्षण वह बल है जो सम्पर्क में दो सतहों के सापेक्ष गति का विरोध करता है।",
+          "मशीनों में घर्षण, ऊर्जा का अपव्यय और टूट-फूट का कारण है।",
+          "रोलिंग घर्षण, स्लाइडिंग घर्षण की तुलना में अधिक होता है तथा मशीनों में बॉल बेयरिंग से घर्षण कम होता है।"
+        ],
+        ans: 3
+      },
+      {
+        id: 39,
+        q: "निम्न में से कौन-सा युग्म असत्य है ? (राजवंश - संबंधित शासक)",
+        options: [
+          "गुप्त वंश - महेंद्रादित्य (कुमारगुप्त)",
+          "पाल वंश - महिपाल-I",
+          "चौहान वंश - यशोवर्मन",
+          "सेन वंश - लक्ष्मण सेन"
+        ],
+        ans: 2
+      },
+      {
+        id: 40,
+        q: "कल्पना और सुधा ने एक ही परीक्षा में क्रमशः 621 और 522 अंक प्राप्त किए हैं। यदि कल्पना ने 69% अंक प्राप्त किए हैं तो सुधा द्वारा प्राप्त अंकों का प्रतिशत क्या है ?",
+        options: ["59%", "55%", "60%", "58%"],
+        ans: 3
+      },
+      {
+        id: 41,
+        q: "निम्नलिखित में से असत्य युग्म का चयन कीजिए : (बहुउद्देशीय परियोजना - नदी)",
+        options: [
+          "पोचंपाद परियोजना - गोदावरी नदी",
+          "बाणसागर परियोजना - सोन नदी",
+          "तुलबुल परियोजना - झेलम नदी",
+          "श्रीसैलम परियोजना - तुंगभद्रा नदी"
+        ],
+        ans: 3
+      },
+      {
+        id: 42,
+        q: "एक अंतरिक्ष यात्री पृथ्वी के बराबर आयाम किन्तु उसके द्रव्यमान का 3 गुणा द्रव्यमान वाले एक ग्रह पर जाता है। यदि पृथ्वी पर उसका भार 60 N है तो उस ग्रह पर उसका वजन क्या होगा ?",
+        options: ["60 N", "20 N", "100 N", "180 N"],
+        ans: 3
+      },
+      {
+        id: 43,
+        q: "मांग के नियम के अनुसार वस्तु की कीमत और उसकी मांग के बीच कैसा संबंध होता है ?",
+        options: ["विपरीत (व्युत्क्रमानुपाती)", "सीधा (समानुपाती)", "विपरीत और सीधा दोनों", "इनमें से कोई नहीं"],
+        ans: 0
+      },
+      {
+        id: 44,
+        q: "भारत में न्यायिक पुनरीक्षण (Judicial Review) का निम्न में से कौन सटीक अर्थ है ?",
+        options: [
+          "सर्वोच्च न्यायालय राष्ट्रपति के खिलाफ दोषारोपण कर सकता है।",
+          "सर्वोच्च न्यायालय उस कानून को अवैध घोषित कर सकता है जो संविधान सम्मत नहीं होता है।",
+          "सर्वोच्च न्यायालय को समान या भिन्न वादों में पूर्व में दिये गये स्वयं के निर्णयों के पुनरीक्षण का अधिकार है।",
+          "सर्वोच्च न्यायालय राज्यसभा के सभापति की जाँच कर सकता है।"
+        ],
+        ans: 1
+      },
+      {
+        id: 45,
+        q: "निम्नलिखित कथनों पर विचार कीजिए-\nI. कर्नाट वंश के शासनकाल को मिथिला का स्वर्णयुग कहा जाता है।\nII. बिहार में तुर्क सत्ता का वास्तविक संस्थापक की उपमा बख्तियार खिलजी को प्राप्त है।\nIII. इल्तुतमिश द्वारा मलिक जानी को बिहार के प्रथम सूबेदार के रूप में नियुक्त किया गया था।\nIV. तिब्बती यात्री 'धर्मस्वामीन' का बिहार आगमन पाल वंश के समय हुआ।\n\nउपर्युक्त में से कौन-सा/से कथन सत्य है/हैं ?",
+        options: ["केवल I एवं II", "केवल II एवं III", "केवल I, II एवं III", "उपर्युक्त सभी"],
+        ans: 2
+      },
+      {
+        id: 46,
+        q: "शहर J, शहर M के पश्चिम में है। शहर N, शहर M के दक्षिण में है। शहर K, शहर N के पश्चिम में है। शहर L, शहर N के दक्षिण में है। शहर K के सापेक्ष शहर L की स्थिति क्या है ?",
+        options: ["उत्तर-पूर्व", "दक्षिण-पश्चिम", "उत्तर-पश्चिम", "दक्षिण-पूर्व"],
+        ans: 3
+      },
+      {
+        id: 47,
+        q: "फूलों में स्त्रीकेसर (Carpel/Pistil) के शीर्ष भाग को क्या कहा जाता है ?",
+        options: ["बीजांड", "पुंकेसर", "पराग", "वर्तिकाग्र (Stigma)"],
+        ans: 3
+      },
+      {
+        id: 48,
+        q: "निम्नलिखित में से कौन-सा युग्म सही सुमेलित नहीं है ? (1857 विद्रोह केन्द्र - ब्रिटिश दमनकर्त्ता)",
+        options: [
+          "लखनऊ - कैंपबेल",
+          "इलाहाबाद - ब्रिगेडियर जनरल-नील",
+          "बरेली - हेनरी लॉरेंस",
+          "दिल्ली - हडसन"
+        ],
+        ans: 2
+      },
+      {
+        id: 49,
+        q: "यदि a : b :: b : c, c = 4a और b = 18 है, तो c का धनात्मक मान ज्ञात करें ?",
+        options: ["31", "34", "38", "36"],
+        ans: 3
+      },
+      {
+        id: 50,
+        q: "'पीएम सूर्य घर : मुफ्त बिजली योजना' का अन्य नाम क्या है ?",
+        options: [
+          "प्रधानमंत्री सूर्योदय योजना",
+          "सौभाग्य योजना",
+          "प्रधानमंत्री सहज बिजली हर घर योजना",
+          "A और B दोनों"
+        ],
+        ans: 0
+      },
+      {
+        id: 51,
+        q: "निम्नलिखित में से कौन सा हिल स्टेशन है जहाँ पर्यटक सर्दियों में इग्लू (Igloo) का अनुभव कर सकते हैं ?",
+        options: ["पहलगाम", "औली", "मनाली", "कसौली"],
+        ans: 2
+      },
+      {
+        id: 52,
+        q: "सुमेलित कीजिए:\n(a) भूकम्प - 2. सीस्मोग्राफ\n(b) ऊँचाई - 3. अल्टीमीटर\n(c) विद्युत धारा - 1. ए-मीटर\n(d) प्रतिरोध - 4. ओम",
+        options: [
+          "a-2, b-3, c-4, d-1",
+          "a-2, b-3, c-1, d-4",
+          "a-3, b-2, c-4, d-1",
+          "a-1, b-3, c-4, d-2"
+        ],
+        ans: 1
+      },
+      {
+        id: 53,
+        q: "भारतीय संविधान में कौन-सा अनुच्छेद सहकारी समितियों के उन्नयन से संबंधित है ?",
+        options: ["अनुच्छेद 43", "अनुच्छेद 43 (क)", "अनुच्छेद 43 (ख)", "अनुच्छेद 47"],
+        ans: 2
+      },
+      {
+        id: 54,
+        q: "महेश एक बैंक से ₹3100 निकालता है। उसे ₹50 और ₹100 के मूल्यवर्ग के कुल 34 नोट मिलते हैं। उसे मिले ₹50 के नोटों की संख्या थी-",
+        options: ["6", "13", "16", "4"],
+        ans: 0
+      },
+      {
+        id: 55,
+        q: "काली मृदा के संबंध में असत्य कथन को चुनें ?",
+        options: [
+          "इसे 'रेगुर मृदा' भी कहते हैं।",
+          "यह मुख्यतः दक्कन पठार के उत्तर पश्चिमी भाग में पायी जाती है।",
+          "इसकी नमी धारण करने की क्षमता कम होती है।",
+          "ये मृदाएँ कैल्शियम कार्बोनेट, मैग्नीशियम, पोटाश और चूने से परिपूर्ण होती हैं।"
+        ],
+        ans: 2
+      },
+      {
+        id: 56,
+        q: "किरातार्जुनीयम के लेखक 'भारवि' किसके दरबार में रहते थे ?",
+        options: ["सिंहविष्णु", "महेन्द्रवर्मन", "नरसिंह वर्मन प्रथम", "नरसिंहवर्मन-II"],
+        ans: 0
+      },
+      {
+        id: 57,
+        q: "निम्न में से कौन-सा युग्म गलत है ?",
+        options: [
+          "राजस्व घाटा = राजस्व व्यय - राजस्व प्राप्तियाँ",
+          "प्रभावी राजस्व घाटा = राजस्व घाटा - पूंजीगत परिसंपत्तियों के सृजन हेतु अनुदान",
+          "राजकोषीय घाटा = कुल सार्वजनिक व्यय + कुल सार्वजनिक आय (उधार छोड़कर)",
+          "प्राथमिक घाटा = राजकोषीय घाटा - ब्याज भुगतान"
+        ],
+        ans: 2
+      },
+      {
+        id: 58,
+        q: "दी गई पाँच, तीन अंकीय संख्याओं:\n384, 673, 543, 236, 741\nयदि प्रत्येक संख्या के पहले अंक में 2 जोड़ा जाए तो कितनी संख्याओं में पहला अंक दूसरे अंक से पूरी तरह से विभाज्य होगा ?",
+        options: ["2", "0", "3", "1"],
+        ans: 3
+      },
+      {
+        id: 59,
+        q: "अभिलाक्षणिक गैस समीकरण pv = nRT किस गैस के लिए सही प्रकार से लागू होता है ?",
+        options: ["द्विपरमाणुक गैस", "एक परमाण्विक गैस", "आदर्श गैस", "वास्तविक गैस"],
+        ans: 2
+      },
+      {
+        id: 60,
+        q: "सूची-I (उपनाम) को सूची-II (खिलाड़ी) से सही सुमेलित करें:\na. द सिक्किमी स्नाइपर - 3. बाइचुंग भूटिया\nb. ब्लैक पर्ल - 4. पेले\nc. सुपर कैट - 2. क्लाइव लॉयड\nd. 360 डिग्री - 1. ए.बी. डिविलियर्स",
+        options: [
+          "a-3, b-4, c-2, d-1",
+          "a-3, b-2, c-4, d-1",
+          "a-4, b-2, c-1, d-3",
+          "a-1, b-2, c-3, d-4"
+        ],
+        ans: 0
+      },
+      {
+        id: 61,
+        q: "भारतीय संविधान के उपबंधों के अनुसार निम्नलिखित में से कौन-सा कथन सही है ?",
+        options: [
+          "समवर्ती सूची पर विधि बनाने की शक्ति केवल संसद को है।",
+          "अवशिष्ट सूची पर विधि बनाने की शक्ति संसद एवं राज्य विधायिका दोनों को है।",
+          "संसद को राज्य सूची पर विधान बनाने की शक्ति सामान्यतः नहीं होती।",
+          "समवर्ती सूची पर विधि बनाने की शक्ति संसद एवं राज्य विधायिका दोनों को है।"
+        ],
+        ans: 3
+      },
+      {
+        id: 62,
+        q: "एक फ्यूज तार में मुख्य रूप से क्या होना चाहिए ?",
+        options: [
+          "उच्च गलनांक, उच्च प्रतिरोध",
+          "अल्प गलनांक, उच्च प्रतिरोध",
+          "उच्च गलनांक, अल्प प्रतिरोध",
+          "अल्प गलनांक, अल्प प्रतिरोध"
+        ],
+        ans: 1
+      },
+      {
+        id: 63,
+        q: "यदि a + b = 24 और (a - b)² = 268 है, तो a और b के गुणनफल का मान ज्ञात करें ?",
+        options: ["140", "77", "110", "68"],
+        ans: 1
+      },
+      {
+        id: 64,
+        q: "निम्नलिखित में से कौन-सा मौर्यकालीन स्थापत्य स्थल बिहार में नहीं है ?",
+        options: ["लौरिया नंदनगढ़", "लौरिया अरेराज", "बसाढ़", "शाहबाजगढ़ी"],
+        ans: 3
+      },
+      {
+        id: 65,
+        q: "जिस पदार्थ में बड़ी संख्या में मुक्त इलेक्ट्रॉन्स होते हैं और कम प्रतिरोध दर्शाता है, कहलाता है-",
+        options: ["अर्द्धचालक", "कुचालक", "चालक", "प्रेरक"],
+        ans: 2
+      },
+      {
+        id: 66,
+        q: "बामियान के विशालकाय बुद्ध प्रतिमाओं में किस भारतीय कला शैली का प्रभाव था ?",
+        options: ["अमरावती शैली", "मथुरा शैली", "सारनाथ शैली", "गांधार शैली"],
+        ans: 3
+      },
+      {
+        id: 67,
+        q: "∆ABC में, DE // AC है, जहाँ D और E क्रमशः भुजाओं AB और BC पर स्थित हैं। यदि BD = 12 cm और AD = 11 cm है, तो ∆BDE का क्षेत्रफल समलंब चतुर्भुज ADEC के क्षेत्रफल से अनुपात क्या है ?",
+        options: ["623 : 199", "385 : 144", "144 : 385", "390 : 413"],
+        ans: 2
+      },
+      {
+        id: 68,
+        q: "वॉलीबॉल की एक टीम में कितने खिलाड़ी होते हैं ?",
+        options: ["11", "9", "6", "7"],
+        ans: 2
+      },
+      {
+        id: 69,
+        q: "आर्कियोप्टेरिक्स क्या है ?",
+        options: [
+          "जुरैसिक युग का सर्वपुरातन पक्षी",
+          "जुरैसिक काल का सरीसृप",
+          "ट्राइएसिक काल का सरीसृप",
+          "ट्राइएसिक तथा जुरैसिक दोनों कालों का सरीसृप"
+        ],
+        ans: 0
+      },
+      {
+        id: 70,
+        q: "महाद्वीपीय विस्थापन का सिद्धांत (Continental Drift Theory) किसने प्रस्तुत किया ?",
+        options: ["अल्फ्रेड वेगनर", "एफ० बी० टेलर", "हैरी हेस", "आर्थर होम्स"],
+        ans: 0
+      },
+      {
+        id: 71,
+        q: "प्राचीन काल के जानवरों, पौधों एवं अन्य जीवों के संरक्षित अवशेषों या चिह्नों के अध्ययन का विज्ञान क्या कहलाता है ?",
+        options: [
+          "नृविज्ञान (एंथ्रोपोलॉजी)",
+          "पुरातत्व विज्ञान (आर्कियोलॉजी)",
+          "जीवाश्म विज्ञान (पैलिओंटोलॉजी)",
+          "औषध विज्ञान (फार्माकोलॉजी)"
+        ],
+        ans: 2
+      },
+      {
+        id: 72,
+        q: "भारतीय शाही नौसेना के विद्रोहियों द्वारा गठित \"नौसेना केन्द्रीय हड़ताल समिति\" का अध्यक्ष किसे चुना गया था ?",
+        options: ["मदन सिंह", "बी० सी० दत्त", "एम० एस० खान", "सरदार पटेल"],
+        ans: 2
+      },
+      {
+        id: 73,
+        q: "निम्नलिखित युग्म में से कौन सही सुमेलित नहीं है ? (अनुच्छेद - प्रावधान)",
+        options: [
+          "अनु० 120 - संसद में प्रयोग की जाने वाली भाषा",
+          "अनु० 210 - विधानमंडल में प्रयोग की जाने वाली भाषा",
+          "अनु० 348 - सर्वोच्च एवं उच्च न्यायालय में प्रयोग की जाने वाली भाषा",
+          "अनु० 350 (क) - भाषाई अल्पसंख्यकों के लिए विशेष पदाधिकारी"
+        ],
+        ans: 3
+      },
+      {
+        id: 74,
+        q: "धातु के बारे में निम्नलिखित कथनों पर विचार कीजिए-\n1. धातु इलेक्ट्रॉन त्याग करके धनायन बनाने की प्रवृत्ति रखते हैं।\n2. सबसे भारी धातु लिथियम (Li) है।\n3. मानव शरीर में सर्वाधिक मात्रा में पायी जाने वाली धातु मैग्नेशियम (Mg) है।\n4. द्रव अवस्था में पायी जाने वाली धातु पारा (Hg) है।\n\nउपरोक्त दिए गए कथन में से कौन-सा/से सही नहीं है/हैं ?",
+        options: ["केवल 1, 3 और 4", "केवल 2 और 3", "केवल 1, 2 और 3", "1, 2, 3 और 4"],
+        ans: 1
+      },
+      {
+        id: 75,
+        q: "182 km की दूरी तय करने में, सलज केबिन से 4 घंटे ज्यादा लेता है। अगर सलज अपनी गति दोगुनी कर दे, तो उसे केबिन से 7 घंटे कम लगेंगे। सलज की गति है-",
+        options: ["7 km/hr", "13 km/hr", "11 km/hr", "3 km/hr"],
+        ans: 1
+      },
+      {
+        id: 76,
+        q: "केन्द्रीय सतर्कता आयोग (CVC) के अध्यक्ष एवं सदस्यों का कार्यकाल कितना होता है ?",
+        options: ["4 वर्ष या 65 वर्ष", "3 वर्ष या 65 वर्ष", "4 वर्ष या 62 वर्ष", "6 वर्ष या 65 वर्ष"],
+        ans: 0
+      },
+      {
+        id: 77,
+        q: "सरल करें : ((4/2)x² - 21x + 15) - 4(x² + 5x - 15) में x का गुणांक और अचर पद से समीकरण सरल रूप क्या होगा ?",
+        options: ["-62x - 90", "-2x² - 41x + 75", "-62x + 90", "62x - 90"],
+        ans: 1
+      },
+      {
+        id: 78,
+        q: "नाभिकीय रिएक्टर और परमाणु बम में यह मुख्य अंतर है कि-",
+        options: [
+          "नाभिकीय रिएक्टर में कोई श्रृंखला अभिक्रिया नहीं होती है, जबकि परमाणु बम में होती है।",
+          "नाभिकीय रिएक्टर में श्रृंखला अभिक्रिया नियंत्रित होती है।",
+          "नाभिकीय रिएक्टर में श्रृंखला अभिक्रिया नियंत्रित नहीं होती है।",
+          "परमाणु बम में कोई श्रृंखला अभिक्रिया नहीं होती जबकि नाभिकीय रिएक्टर में होती है।"
+        ],
+        ans: 1
+      },
+      {
+        id: 79,
+        q: "भारत में जैविक कृषि को बढ़ावा देने हेतु 'राष्ट्रीय जैविक खेती परियोजना' कब प्रारंभ हुई ?",
+        options: ["2001", "2002", "2004", "2006"],
+        ans: 2
+      },
+      {
+        id: 80,
+        q: "आर्थिक क्रियाकलाप के अंतर्गत तृतीयक क्षेत्र (Tertiary Sector) में सम्मिलित है-\n1. बैंकिंग\n2. शिक्षा\n3. स्वास्थ्य\n4. संचार\n\nकूट :",
+        options: ["केवल 1, 3 और 4", "केवल 2, 3 और 4", "केवल 1 तथा 3", "1, 2, 3 और 4"],
+        ans: 3
+      },
+      {
+        id: 81,
+        q: "हरी घास, पत्तियाँ आदि में कौन-सा अम्ल पाया जाता है ?",
+        options: ["बेन्जोइक अम्ल", "ऑक्जेलिक अम्ल", "कार्बोनिक अम्ल", "ग्लूटामिक अम्ल"],
+        ans: 0
+      },
+      {
+        id: 82,
+        q: "उस समुच्चय का चयन करें जिसमें संख्याएँ उसी प्रकार संबंधित हैं जैसे दिए गए समुच्चयों में हैं:\n(75, 62, 49) [-13, -13]\n(61, 48, 35) [-13, -13]",
+        options: ["(73, 60, 53)", "(48, 24, 12)", "(92, 79, 66)", "(66, 52, 41)"],
+        ans: 2
+      },
+      {
+        id: 83,
+        q: "सूची-I (संशोधन) को सूची-II से सही सुमेलित कीजिए:\n(1) 101वाँ संशोधन 2016 - (b) वस्तु एवं सेवा कर (GST)\n(2) 102वाँ संशोधन 2018 - (c) राष्ट्रीय पिछड़ा वर्ग आयोग संवैधानिक दर्जा\n(3) 103वाँ संशोधन 2019 - (d) आर्थिक रूप से पिछड़े वर्ग (EWS) आरक्षण\n(4) 106वाँ संशोधन 2023 - (a) विधायिका में महिलाओं को 1/3 आरक्षण",
+        options: [
+          "1-d, 2-a, 3-b, 4-c",
+          "1-b, 2-c, 3-d, 4-a",
+          "1-b, 2-d, 3-c, 4-a",
+          "1-a, 2-b, 3-d, 4-c"
+        ],
+        ans: 1
+      },
+      {
+        id: 84,
+        q: "इनमें से कौन-सा कार्य राइबोसोम का नहीं है ?\n1. यह प्रोटीन अणुओं के निर्माण में सहायता करता है।\n2. यह एंजाइमों के निर्माण में सहायता करता है।\n3. यह सभी हार्मोनों के निर्माण में सहायता करता है।\n4. यह मंड (स्टार्च) अणुओं के निर्माण में सहायता करता है।\n\nकूट :",
+        options: ["1 और 2", "2 और 3", "3 और 4", "1 और 4"],
+        ans: 2
+      },
+      {
+        id: 85,
+        q: "एक वस्तु को उसके वास्तविक विक्रय मूल्य के 2/5 पर बेचने पर 24% की हानि होती है। यदि वह उसे वास्तविक विक्रय मूल्य के 88% पर बेचता है, तो लाभ प्रतिशत क्या होगा ?",
+        options: ["67.2%", "67.3%", "67.9%", "69.4%"],
+        ans: 0
+      },
+      {
+        id: 86,
+        q: "ज्वालामुखी उद्गार की प्रक्रिया में निकले चट्टानों के बड़े-बड़े टुकड़ों को क्या कहा जाता है ?",
+        options: ["मैग्मा", "ज्वालामुखी बम (Volcanic Bomb)", "प्यूमिस", "लैपिली"],
+        ans: 1
+      },
+      {
+        id: 87,
+        q: "निम्नलिखित में से कौन एक नीतिगत कटौती प्रस्ताव (Policy Cut Motion) का मुख्य उद्देश्य होता है ?",
+        options: [
+          "बजट माँगों को पूरी तरह स्वीकार करना।",
+          "सरकार की किसी विशेष नीति के प्रति अपनी असहमति व्यक्त करना।",
+          "बजट पर चर्चा का समय बढ़ाना।",
+          "बजट में माँग राशि को बढ़ाना।"
+        ],
+        ans: 1
+      },
+      {
+        id: 88,
+        q: "'ब्लू वाटर पॉलिसी' अथवा 'शांत जल की नीति' किसने शुरू की थी ?",
+        options: ["वास्कोडिगामा", "नीनो-डी-कुन्हा", "अल्फांसो-डी-अल्बुकर्क", "फ्रांसिस्को-डी-अल्मीडा"],
+        ans: 3
+      },
+      {
+        id: 89,
+        q: "निम्नलिखित में से कौन-सा युग्म सही सुमेलित नहीं है ? (जैवमंडल आरक्षित क्षेत्र - राज्य)",
+        options: [
+          "पंचमढ़ी - छत्तीसगढ़",
+          "मन्नार की खाड़ी - तमिलनाडु",
+          "नोकरेक - मेघालय",
+          "शीत मरुस्थल - हिमाचल प्रदेश"
+        ],
+        ans: 0
+      },
+      {
+        id: 90,
+        q: "सूची-I (कुषाण शासक) को सूची-II (विशेषता) से सुमेलित कीजिए:\na. कुजुल कडफिसेस - 2. कुषाण वंश की स्थापना\nb. विम कडफिसेस - 3. स्वर्ण मुद्रा प्रचलन\nc. कनिष्क - 1. बौद्ध धर्म का संरक्षण\nd. हुविष्क - 4. हुष्कपुर नगर की स्थापना",
+        options: [
+          "a-2, b-3, c-1, d-4",
+          "a-2, b-1, c-3, d-4",
+          "a-1, b-2, c-3, d-4",
+          "a-1, b-3, c-2, d-4"
+        ],
+        ans: 0
+      },
+      {
+        id: 91,
+        q: "विश्व की सबसे बड़ी भ्रंश घाटी (Great Rift Valley) कौन-सी है ?",
+        options: ["नील नदी की घाटी", "अफ्रीका की महान भ्रंश घाटी", "मृत घाटी", "राइन नदी घाटी"],
+        ans: 1
+      },
+      {
+        id: 92,
+        q: "निम्नलिखित कथनों पर विचार कीजिए-\nकथन (A): प्रथम आंग्ल-सिख युद्ध 'लाहौर की संधि' के साथ सम्पन्न हुआ।\nकारण (R): प्रथम आंग्ल-सिख युद्ध के पश्चात् डलहौजी ने पंजाब को अंग्रेजी राज्य में विलय कर लिया।\n\nनीचे दिए गए विकल्पों से सही उत्तर चुनिए :",
+        options: [
+          "A तथा R दोनों सही है तथा R, A की सही व्याख्या करता है।",
+          "A तथा R दोनों सही है तथा R, A की सही व्याख्या नहीं है।",
+          "A गलत है तथा R सही है।",
+          "A सही है तथा R गलत है।"
+        ],
+        ans: 3
+      },
+      {
+        id: 93,
+        q: "यदि '+' और '-' आपस में बदल दिया जाए तथा '×' तथा '÷' को आपस में बदल दिया जाए तो प्रश्न चिह्न (?) के स्थान पर क्या आएगा ?\n25 ÷ 6 - 8 + 20 × 4 = ?",
+        options: ["152", "153", "154", "151"],
+        ans: 1
+      },
+      {
+        id: 94,
+        q: "सूची-I में दिए गए रासायनिक पदार्थों का सुमेलन सूची-II में दिए गए अनुप्रयोगों से कीजिए:\n(a) ब्लीचिंग पाउडर - 3. विरंजन\n(b) बेकिंग सोडा - 4. प्रति अम्ल (Antacid)\n(c) धावन सोडा - 1. काँच का विरचन\n(d) सोडियम क्लोराइड - 2. H2 तथा Cl2 का उत्पादन",
+        options: [
+          "a-2, b-4, c-1, d-3",
+          "a-3, b-4, c-1, d-2",
+          "a-2, b-1, c-4, d-3",
+          "a-3, b-2, c-4, d-1"
+        ],
+        ans: 1
+      },
+      {
+        id: 95,
+        q: "यदि sin θ = 1/2 है, तो 13 × cosec²θ - 3 × cot²θ - 15 बराबर है-",
+        options: ["68", "56", "26", "28"],
+        ans: 3
+      },
       {
         id: 96,
-        question: "दी गई आकृति में ∠x का मान ज्ञात कीजिए:\n" +
-          "<div class='svg-box my-3 flex justify-center'>" +
-          "<svg width='280' height='110' viewBox='0 0 280 110' class='border bg-white rounded shadow-sm'>" +
-          "<line x1='20' y1='20' x2='260' y2='20' stroke='#334155' stroke-width='2'/>" +
-          "<line x1='20' y1='90' x2='260' y2='90' stroke='#334155' stroke-width='2'/>" +
-          "<line x1='70' y1='20' x2='130' y2='55' stroke='#2563eb' stroke-width='2'/>" +
-          "<line x1='130' y1='55' x2='80' y2='90' stroke='#2563eb' stroke-width='2'/>" +
-          "<text x='85' y='35' font-size='11' fill='#d97706' font-weight='bold'>130°</text>" +
-          "<text x='95' y='82' font-size='11' fill='#d97706' font-weight='bold'>110°</text>" +
-          "<text x='140' y='60' font-size='13' fill='#dc2626' font-weight='bold'>x = ?</text>" +
-          "</svg></div>",
-        options: ["130°", "120°", "110°", "100°"],
-        answer: 1,
-        explanation: "(180° - 130°) + (180° - 110°) = 50° + 70° = 120°."
-      },
-      { id: 97, question: "किसी संख्या के आधे की 100 से कमी उतनी है जितना 100 से अधिक का आधा। संख्या क्या है?", options: ["115", "120", "150", "180"], answer: 1, explanation: "संख्या 120 है।" },
-      { id: 98, question: "कार 5/7 चाल से 42 किमी की दूरी 1 घंटा 40 मिनट 48 सेकंड में तय करती है। वास्तविक चाल क्या है?", options: ["17 5/7 किमी/घंटा", "25 किमी/घंटा", "30 किमी/घंटा", "35 किमी/घंटा"], answer: 3, explanation: "घटी चाल = 25 किमी/घंटा। वास्तविक चाल = 25 × 7/5 = 35 किमी/घंटा।" },
-      { id: 99, question: "₹40 में 45 आम बेचने से 20% हानि होती है। ₹24 में कितने बेचे कि 20% लाभ हो?", options: ["18", "20", "24", "32"], answer: 0, explanation: "1 आम का विक्रय मूल्य = 4/3 रु => 24 रु में 18 आम।" },
-      { id: 100, question: "4 वर्षों में 7% की दर से ₹2210 के ऋण चुकता करने हेतु वार्षिक किस्त क्या होगी?", options: ["₹500", "₹505", "₹552", "₹600"], answer: 0, explanation: "किस्त = (100 × 2210) / 442 = ₹500." },
-      { id: 101, question: "समान समुच्चय चुनिए: (3, 34, 5) और (10, 136, 6)", options: ["(9, 115, 6)", "(11, 125, 4)", "(7, 113, 8)", "(5, 60, 6)"], answer: 2, explanation: "7² + 8² = 49 + 64 = 113." },
-      { id: 102, question: "समान समुच्चय चुनिए: (11, 8, 352) और (15, 6, 360)", options: ["(17, 6, 102)", "(8, 9, 352)", "(16, 5, 320)", "(11, 7, 231)"], answer: 2, explanation: "16 × 5 × 4 = 320." },
-      { id: 103, question: "समान समुच्चय चुनिए: (12, 132, 11) और (13, 104, 8)", options: ["(7, 105, 15)", "(9, 128, 14)", "(16, 146, 9)", "(18, 132, 7)"], answer: 0, explanation: "7 × 15 = 105." },
-      { id: 104, question: "कथन: कोई कप बुक नहीं है। एप्पल कप है।\nनिष्कर्ष: I. एप्पल बुक नहीं है। II. एप्पल बुक हो सकती है।", options: ["न तो I न II", "केवल II", "दोनों", "केवल I अनुसरण करता है"], answer: 3, explanation: "चूँकि एप्पल कप में है और कप बुक नहीं है, अतः एप्पल बुक नहीं हो सकता।" },
-      { id: 105, question: "कथन: सभी कागज स्टेशनरी हैं। कुछ कागज पुस्तकें हैं।\nनिष्कर्ष: I. कुछ स्टेशनरी कागज हैं। IV. कुछ पुस्तकें कागज हैं।", options: ["केवल I और IV सही हैं", "केवल I और II", "केवल II और III", "केवल I"], answer: 0, explanation: "निष्कर्ष I और IV प्रत्यक्ष रूप से अनुसरण करते हैं।" },
-      { id: 106, question: "कथन: कोई एप्पल बुक नहीं है। सभी एप्पल कप हैं।\nनिष्कर्ष: I. सभी एप्पल बुक हैं। II. एप्पल बुक हो सकती है।", options: ["न तो I न ही II", "केवल II", "दोनों", "केवल I"], answer: 0, explanation: "कथन में स्पष्ट है कि एप्पल बुक नहीं है, अतः दोनों गलत हैं।" },
-      { id: 107, question: "सुकेश की बहन रमेश की पत्नी है। रोनित रानी के भाई (रमेश) का बेटा है। रोनित का सुकेश से क्या संबंध है?", options: ["बेटा", "भाई", "साला", "भांजा / भतीजा"], answer: 3, explanation: "रोनित सुकेश की बहन का पुत्र है, अतः भांजा है।" },
-      { id: 108, question: "किसका अर्थ है कि Z, L की परनानी/नानी है?", options: ["Z & B ! T × J ? L", "Z ! B × T ? J & L", "Z ? B × T & J ! L", "Z ? B ! T & J × L"], answer: 1, explanation: "Z पत्नी है B की, B पिता है T का, T माता है J की और J भाई है L का।" },
-      { id: 109, question: "BELL = 111141, HEAR = 172647 तो MIKE = ?", options: ["410813", "410811", "410812", "410612"], answer: 2, explanation: "उल्टे स्थान मान (Reverse alphabetical position) में से 1 घटाया गया है।" },
-      { id: 110, question: "SOMEONE = 1645655 तो NOVEMBER = ?", options: ["56454259", "45253258", "56254251", "56455259"], answer: 0, explanation: "अक्षरों के स्थान मान का डिजिटल सम (Digital sum) लिया गया है।" },
-      {
-        id: 111,
-        question: "लुप्त संख्या ज्ञात कीजिए:\n" +
-          "<div class='svg-box my-3 flex justify-center'>" +
-          "<svg width='260' height='80' viewBox='0 0 260 80' class='border bg-white rounded shadow-sm font-mono'>" +
-          "<rect x='10' y='10' width='60' height='60' fill='#f8fafc' stroke='#cbd5e1' rx='4'/>" +
-          "<text x='18' y='30' font-size='12' font-weight='bold'>14</text><text x='48' y='30' font-size='12' font-weight='bold'>16</text><text x='32' y='58' font-size='14' fill='#2563eb' font-weight='bold'>13</text>" +
-          "<rect x='100' y='10' width='60' height='60' fill='#f8fafc' stroke='#cbd5e1' rx='4'/>" +
-          "<text x='108' y='30' font-size='12' font-weight='bold'>18</text><text x='138' y='30' font-size='12' font-weight='bold'>?</text><text x='122' y='58' font-size='14' fill='#2563eb' font-weight='bold'>67</text>" +
-          "<rect x='190' y='10' width='60' height='60' fill='#f8fafc' stroke='#cbd5e1' rx='4'/>" +
-          "<text x='198' y='30' font-size='12' font-weight='bold'>12</text><text x='228' y='30' font-size='12' font-weight='bold'>21</text><text x='212' y='58' font-size='14' fill='#2563eb' font-weight='bold'>17</text>" +
-          "</svg></div>",
-        options: ["6", "7", "8", "5"],
-        answer: 1,
-        explanation: "पैटर्न अनुसार लुप्त संख्या 7 है।"
-      },
-      {
-        id: 112,
-        question: "शीट को मोड़कर घन बनाने पर 'Blue' के विपरीत क्या होगा?\n" +
-          "<div class='svg-box my-3 flex justify-center'>" +
-          "<svg width='220' height='140' viewBox='0 0 220 140' class='border bg-white rounded shadow-sm text-xs font-bold'>" +
-          "<rect x='60' y='10' width='45' height='30' fill='#fee2e2' stroke='#ef4444'/><text x='70' y='30'>Red</text>" +
-          "<rect x='60' y='40' width='45' height='30' fill='#dbeafe' stroke='#3b82f6'/><text x='68' y='60'>Blue</text>" +
-          "<rect x='105' y='40' width='45' height='30' fill='#dcfce7' stroke='#22c55e'/><text x='112' y='60'>Green</text>" +
-          "<rect x='15' y='70' width='45' height='30' fill='#fce7f3' stroke='#ec4899'/><text x='24' y='90'>Pink</text>" +
-          "<rect x='60' y='70' width='45' height='30' fill='#f1f5f9' stroke='#475569'/><text x='67' y='90'>Black</text>" +
-          "<rect x='60' y='100' width='45' height='30' fill='#f8fafc' stroke='#94a3b8'/><text x='67' y='120'>White</text>" +
-          "</svg></div>",
-        options: ["Black", "White", "Pink", "Red"],
-        answer: 1,
-        explanation: "सीधे एकांतर क्रम से Blue के विपरीत White आएगा।"
-      },
-      {
-        id: 113,
-        question: "पासे में M के विपरीत फलक पर कौन-सा अक्षर आएगा?\n" +
-          "<div class='svg-box my-3 flex justify-center gap-4'>" +
-          "<svg width='90' height='85' viewBox='0 0 90 85' class='border bg-white rounded text-xs font-bold'>" +
-          "<polygon points='45,8 80,22 45,36 10,22' fill='#e0f2fe' stroke='#0284c7'/><text x='42' y='25'>T</text>" +
-          "<polygon points='10,22 45,36 45,75 10,60' fill='#bae6fd' stroke='#0284c7'/><text x='24' y='52'>M</text>" +
-          "<polygon points='45,36 80,22 80,60 45,75' fill='#7dd3fc' stroke='#0284c7'/><text x='58' y='52'>S</text>" +
-          "</svg>" +
-          "<svg width='90' height='85' viewBox='0 0 90 85' class='border bg-white rounded text-xs font-bold'>" +
-          "<polygon points='45,8 80,22 45,36 10,22' fill='#e0f2fe' stroke='#0284c7'/><text x='42' y='25'>T</text>" +
-          "<polygon points='10,22 45,36 45,75 10,60' fill='#bae6fd' stroke='#0284c7'/><text x='24' y='52'>R</text>" +
-          "<polygon points='45,36 80,22 80,60 45,75' fill='#7dd3fc' stroke='#0284c7'/><text x='58' y='52'>P</text>" +
-          "</svg></div>",
-        options: ["R", "P", "C", "S"],
-        answer: 0,
-        explanation: "समान अक्षर T से दक्षिणावर्त: T-M-S और T-R-P => M के विपरीत R।"
-      },
-      { id: 114, question: "बिंदु A, B से 35m पूर्व में है। बिंदु C, A से 48m उत्तर में है। D, C से 23m पूर्व और E से 14m उत्तर में है। E, F से 48m पूर्व में है। A से F किस दिशा में है?", options: ["उत्तर-पश्चिम", "पूर्व", "उत्तर-पूर्व", "उत्तर"], answer: 0, explanation: "A के सापेक्ष F 10m पश्चिम और 34m उत्तर की ओर (उत्तर-पश्चिम) है।" },
-      { id: 115, question: "BOIL : DRMQ :: SCAR : UFEW :: MAIL : ?", options: ["ODNR", "ODMQ", "ODLR", "ODMS"], answer: 0, explanation: "+2, +3, +4, +5 वृद्धि से MAIL => ODNR." },
-      { id: 116, question: "RATE : SCWI :: HIGH : IKJL :: OPEN : ?", options: ["PRIS", "PQHR", "PSIR", "PRHR"], answer: 1, explanation: "+1, +2, +3, +4 वृद्धि से OPEN => PQHR." },
-      { id: 117, question: "TRAINER : VTCIQHU :: RADIANT : TCFIDQW :: CUSHION : ?", options: ["EWUHLRO", "FWUHLRQ", "FXUHLRQ", "EXUHLRQ"], answer: 3, explanation: "प्रत्येक वर्ण में +2 की वृद्धि से EXUHLRQ बनता है।" },
-      { id: 118, question: "यदि A='+', B='-', C='×', D='÷' हो तो किसका परिणाम 1049 होगा?", options: ["94 D 11 B 180 A 4 C 60", "94 A 11 D 180 B 4 C 60", "94 B 11 D 180 A 4 C 60", "94 C 11 D 180 A 4 B 60"], answer: 3, explanation: "94 × 11 - 180 ÷ 4 + 60 = 1034 - 45 + 60 = 1049." },
-      { id: 119, question: "किन चिह्नों को आपस में बदलने पर समीकरण सही होगा? 57 - 19 × 18 + 9 ÷ 45 = 18", options: ["÷ और -", "- और ×", "+ और -", "+ और ×"], answer: 0, explanation: "- और ÷ बदलने पर: 57 ÷ 19 × 18 + 9 - 45 = 18." },
-      { id: 120, question: "28 B 7 D 176 A 4 C 13 = ? (जहाँ A='÷', B='×', C='+', D='-')", options: ["187", "186", "184", "185"], answer: 3, explanation: "मान 185 प्राप्त होता है।" },
-      { id: 121, question: "45 B 6 D 78 A 3 C 15 = ? (जहाँ A='÷', B='×', C='+', D='-')", options: ["257", "256", "258", "259"], answer: 3, explanation: "45 × 6 - 78 ÷ 3 + 15 = 270 - 26 + 15 = 259." },
-      { id: 122, question: "404 B 2 D 101 A 101 C 6 = ?", options: ["803", "830", "831", "813"], answer: 0, explanation: "गणना अनुसार परिणाम 803 प्राप्त होता है।" },
-      { id: 123, question: "समीकरण सही करने हेतु किन दो संख्याओं और चिह्नों को बदलें? 14 + 16 - 14 × 9 ÷ 4 = 61", options: ["16 और 14, + और ×", "16 और 9, + और -", "14 और 4, - और ÷", "14 और 9, + और ×"], answer: 0, explanation: "16 व 14 तथा + व × परस्पर बदलने पर समीकरण संतुष्ट होता है।" },
-      { id: 124, question: "यदि BINDER शब्द के सभी अक्षरों को वर्णानुक्रम में व्यवस्थित किया जाए, तो कितने अक्षरों की स्थिति अपरिवर्तित रहेगी?", options: ["किसी का भी नहीं", "एक", "दो", "तीन"], answer: 2, explanation: "BINDER -> BDEINR. B और R अपनी मूल स्थिति में हैं (दो अक्षर)।" },
-      { id: 125, question: "ENTOMB शब्द के अक्षरों को वर्णानुक्रम में व्यवस्थित करने पर कितने अक्षरों की स्थिति अपरिवर्तित रहेगी?", options: ["कोई भी नहीं", "दो", "एक", "तीन"], answer: 2, explanation: "ENTOMB -> BEMNOT. केवल एक अक्षर का स्थान अपरिवर्तित रहता है।" },
-      { id: 126, question: "विषम युग्म ज्ञात कीजिए:", options: ["GDI", "XUZ", "LKP", "SPU"], answer: 2, explanation: "LKP अन्य से भिन्न अंतर पैटर्न दर्शाता है।" },
-      { id: 127, question: "विषम अक्षर-समूह चुनिए:", options: ["ONM", "BCD", "RST", "JKL"], answer: 0, explanation: "ONM घटते क्रम में है, बाकी सब बढ़ते क्रम में हैं।" },
-      { id: 128, question: "श्रृंखला में गलत पद चुनिए: YCG, IMQ, SVZ, CGK, MQU", options: ["SVZ", "MQU", "CGK", "IMQ"], answer: 0, explanation: "SVZ पैटर्न से भिन्न है।" },
-      { id: 129, question: "तार्किक क्रम (बड़े से छोटे): 1. पश्चिमी यूरोप 2. जर्मनी 3. म्यूनिख 4. यूरोप 5. बवेरिया", options: ["4, 1, 2, 5, 3", "4, 1, 2, 3, 5", "4, 1, 3, 5, 2", "4, 1, 5, 3, 2"], answer: 0, explanation: "यूरोप -> पश्चिमी यूरोप -> जर्मनी -> बवेरिया -> म्यूनिख।" },
-      { id: 130, question: "AMPLIFY के अक्षरों को वर्णमाला क्रम में रखने पर कितने अक्षरों का स्थान अपरिवर्तित रहेगा?", options: ["तीन", "दो", "चार", "एक"], answer: 3, explanation: "केवल एक अक्षर का स्थान अपरिवर्तित रहेगा।" },
-      { id: 131, question: "शब्दकोश के अनुसार तीसरे स्थान पर कौन-सा शब्द आएगा? 1. Chocolate 2. Chocoholic 3. Chocolaty 4. Chocolatier 5. Chock", options: ["Chocolate", "Chock", "Chocoholic", "Chocolatier"], answer: 0, explanation: "Chock -> Chocoholic -> Chocolate." },
-      {
-        id: 132,
-        question: "दी गई आकृति में कुल त्रिभुजों की संख्या ज्ञात कीजिए:\n" +
-          "<div class='svg-box my-3 flex justify-center'>" +
-          "<svg width='160' height='100' viewBox='0 0 160 100' class='border bg-white rounded shadow-sm'>" +
-          "<polygon points='80,10 15,90 145,90' fill='#f8fafc' stroke='#1e293b' stroke-width='1.5'/>" +
-          "<line x1='80' y1='10' x2='80' y2='90' stroke='#1e293b'/>" +
-          "<line x1='80' y1='10' x2='50' y2='90' stroke='#1e293b'/>" +
-          "<line x1='80' y1='10' x2='110' y2='90' stroke='#1e293b'/>" +
-          "<line x1='35' y1='65' x2='125' y2='65' stroke='#1e293b'/>" +
-          "</svg></div>",
-        options: ["17", "18", "16", "19"],
-        answer: 1,
-        explanation: "विभाजनों के संयोजन से कुल 18 त्रिभुज बनते हैं।"
-      },
-      {
-        id: 133,
-        question: "वेन आरेख का अध्ययन करें: कितनी महिलाएं या तो चतुर हैं या बहादुर हैं या दोनों हैं?\n" +
-          "<div class='svg-box my-3 flex justify-center'>" +
-          "<svg width='240' height='150' viewBox='0 0 240 150' class='border bg-white rounded text-[11px] font-bold'>" +
-          "<circle cx='85' cy='65' r='45' fill='none' stroke='#3b82f6' stroke-width='1.5'/>" +
-          "<circle cx='155' cy='65' r='45' fill='none' stroke='#ef4444' stroke-width='1.5'/>" +
-          "<circle cx='120' cy='105' r='42' fill='none' stroke='#10b981' stroke-width='1.5'/>" +
-          "<text x='55' y='25' fill='#2563eb'>चतुर</text><text x='160' y='25' fill='#dc2626'>बहादुर</text><text x='105' y='145' fill='#059669'>महिलाएं</text>" +
-          "<text x='65' y='65'>20</text><text x='115' y='55'>25</text><text x='165' y='65'>63</text>" +
-          "<text x='117' y='80'>8</text><text x='95' y='102'>13</text><text x='140' y='102'>10</text><text x='115' y='125'>53</text>" +
-          "</svg></div>",
-        options: ["27", "23", "30", "31"],
-        answer: 3,
-        explanation: "13 + 8 + 10 = 31 महिलाएं चतुर या बहादुर या दोनों हैं।"
-      },
-      { id: 134, question: "श्रृंखला में (?) पर क्या आएगा? 40, 37, 43, 34, 46, ?", options: ["51", "61", "31", "41"], answer: 2, explanation: "एकांतर घटाव: 37 - 3 = 34, 34 - 3 = 31." },
-      { id: 135, question: "श्रृंखला में अगला पद क्या होगा? 7, 16, 40, 84, 153, 252", options: ["151", "149", "150", "153"], answer: 3, explanation: "द्वितीय अंतर (+15, +20, +25, +30) से पद 153 प्राप्त होता है।" },
-      { id: 136, question: "श्रृंखला में लुप्त पद ज्ञात करें: 17, 18, 22, 31, ?, 72, ?, 157", options: ["49, 106", "45, 107", "47, 108", "47, 105"], answer: 2, explanation: "+1², +2², +3², +4²(47), +5², +6²(108), +7²." },
-      { id: 137, question: "श्रृंखला में (?) पर क्या आएगा? 7, 16, 43, 124, 367, ?", options: ["1086", "1066", "1076", "1096"], answer: 3, explanation: "(367 × 3) - 5 = 1096." },
-
-      /* ================= Q138 TO Q150 WITH FULL SVG FIGURES ================= */
-      {
-        id: 138,
-        question: "दी गई आकृति में कितने चतुर्भुज (Quadrilaterals) हैं?\n" +
-          "<div class='svg-box my-3 flex justify-center'>" +
-          "<svg width='200' height='120' viewBox='0 0 200 120' class='border bg-white rounded shadow-sm'>" +
-          "  <polygon points='30,15 170,15 140,105 60,105' fill='#f8fafc' stroke='#1e293b' stroke-width='2'/>" +
-          "  <line x1='30' y1='15' x2='140' y2='105' stroke='#2563eb' stroke-width='1.5'/>" +
-          "  <line x1='170' y1='15' x2='60' y2='105' stroke='#2563eb' stroke-width='1.5'/>" +
-          "  <line x1='45' y1='60' x2='155' y2='60' stroke='#1e293b' stroke-width='1.5'/>" +
-          "</svg></div>",
-        options: ["11", "12", "10", "9"],
-        answer: 0,
-        explanation: "समलंब चतुर्भुज और आंतरिक रेखाओं द्वारा कुल 11 चतुर्भुज बनते हैं।"
-      },
-      {
-        id: 139,
-        question: "मोहन ने पश्चिम की ओर 5 किमी यात्रा की, बायीं ओर मुड़कर 3 किमी गया, फिर दायीं ओर मुड़कर 9 किमी गया। वह फिर उत्तर की ओर 3 किमी गया। अब वह प्रारंभिक स्थान से कितनी दूर है?\n" +
-          "<div class='svg-box my-3 flex justify-center'>" +
-          "<svg width='240' height='100' viewBox='0 0 240 100' class='border bg-white rounded text-xs font-bold'>" +
-          "  <circle cx='210' cy='25' r='4' fill='#16a34a'/><text x='195' y='18' fill='#16a34a'>Start</text>" +
-          "  <line x1='210' y1='25' x2='160' y2='25' stroke='#334155' stroke-width='2'/>" +
-          "  <line x1='160' y1='25' x2='160' y2='75' stroke='#334155' stroke-width='2'/>" +
-          "  <line x1='160' y1='75' x2='40' y2='75' stroke='#334155' stroke-width='2'/>" +
-          "  <line x1='40' y1='75' x2='40' y2='25' stroke='#334155' stroke-width='2'/>" +
-          "  <circle cx='40' cy='25' r='4' fill='#dc2626'/><text x='30' y='18' fill='#dc2626'>End</text>" +
-          "  <line x1='40' y1='25' x2='210' y2='25' stroke='#2563eb' stroke-dasharray='4,4' stroke-width='1.5'/>" +
-          "  <text x='105' y='40' fill='#2563eb'>दूरी = 14 km</text>" +
-          "</svg></div>",
-        options: ["5 किमी", "3 किमी", "6 किमी", "14 किमी"],
-        answer: 3,
-        explanation: "उत्तर व दक्षिण का 3 किमी निरस्त हो जाता है। कुल विस्थापन = 5 + 9 = 14 किमी।"
-      },
-      {
-        id: 140,
-        question: "उत्तर आकृतियों में से कौन-सी आकृति, दी गई प्रश्न आकृति का ठीक-ठीक दर्पण प्रतिबिम्ब (Mirror Image) है जब दर्पण रेखा MN पर हो?\n" +
-          "<div class='svg-box my-3 flex justify-center'>" +
-          "<svg width='120' height='90' viewBox='0 0 120 90' class='border bg-white rounded shadow-sm'>" +
-          "  <line x1='20' y1='5' x2='20' y2='85' stroke='#ef4444' stroke-width='2' stroke-dasharray='3,3'/>" +
-          "  <text x='8' y='16' font-size='10' font-weight='bold' fill='#ef4444'>M</text>" +
-          "  <text x='8' y='82' font-size='10' font-weight='bold' fill='#ef4444'>N</text>" +
-          "  <polygon points='45,30 85,20 85,70 45,60' fill='none' stroke='#1e293b' stroke-width='2'/>" +
-          "  <polygon points='45,30 85,20 70,15 35,25' fill='#475569'/>" +
-          "  <polygon points='45,60 85,70 70,75 35,65' fill='#475569'/>" +
-          "</svg></div>",
+        q: "निम्नलिखित कथनों पर विचार कीजिए-\nकथन (A): 4 जुलाई को अपसौर (Aphelion) की घटना होती है।\nकारण (R): अपसौर की स्थिति में पृथ्वी सूर्य से अत्यधिक दूरी पर होती है।\n\nनीचे दिए गए विकल्पों से सही उत्तर चुनिए :",
         options: [
-          "<div class='inline-flex items-center gap-2'><span>(1)</span><svg width='70' height='55' viewBox='0 0 70 55' class='border bg-white rounded'><polygon points='50,18 18,14 18,42 50,38' fill='none' stroke='#1e293b' stroke-width='1.5'/><polygon points='50,18 18,14 26,9 58,13' fill='#475569'/><polygon points='50,38 18,42 26,47 58,43' fill='#475569'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(2)</span><svg width='70' height='55' viewBox='0 0 70 55' class='border bg-white rounded'><polygon points='50,18 18,14 18,42 50,38' fill='none' stroke='#1e293b' stroke-width='1.5'/><polygon points='50,18 18,14 26,9 58,13' fill='#94a3b8'/><polygon points='50,38 18,42 26,47 58,43' fill='#475569'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(3)</span><svg width='70' height='55' viewBox='0 0 70 55' class='border bg-white rounded'><polygon points='18,18 50,14 50,42 18,38' fill='none' stroke='#1e293b' stroke-width='1.5'/><polygon points='18,18 50,14 42,9 10,13' fill='#475569'/><polygon points='18,38 50,42 42,47 10,43' fill='#475569'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(4)</span><svg width='70' height='55' viewBox='0 0 70 55' class='border bg-white rounded'><polygon points='50,18 18,14 18,42 50,38' fill='#f1f5f9' stroke='#1e293b' stroke-width='1.5'/><polygon points='50,18 18,14 26,9 58,13' fill='#1e293b'/></svg></div>"
+          "A और R दोनों सही है और R, A की सही व्याख्या है।",
+          "A और R दोनों सही है परन्तु R, A की सही व्याख्या नहीं है।",
+          "A सही है परन्तु R गलत है।",
+          "R सही है परन्तु A गलत है।"
         ],
-        answer: 1,
-        explanation: "MN रेखा पर पार्श्व परिवर्तन होने से आकृति का मुख बायीं ओर उलट जाता है (विकल्प 2)।"
+        ans: 3
       },
       {
-        id: 141,
-        question: "उत्तर आकृतियों में से प्रश्नवाचक चिह्न (?) वाली आकृति ज्ञात कीजिए:\n" +
-          "<div class='svg-box my-3 flex justify-center gap-2 items-center'>" +
-          "  <svg width='50' height='50' viewBox='0 0 50 50' class='border bg-white rounded shadow-sm'><line x1='25' y1='40' x2='25' y2='10' stroke='#1e293b' stroke-width='2'/><polygon points='21,15 25,7 29,15' fill='#1e293b'/></svg>" +
-          "  <span>&rarr;</span>" +
-          "  <svg width='50' height='50' viewBox='0 0 50 50' class='border bg-white rounded shadow-sm'><line x1='12' y1='38' x2='38' y2='12' stroke='#1e293b' stroke-width='2'/><polygon points='31,11 40,10 39,19' fill='#1e293b'/></svg>" +
-          "  <span>&rarr;</span>" +
-          "  <svg width='50' height='50' viewBox='0 0 50 50' class='border bg-white rounded shadow-sm'><line x1='10' y1='25' x2='40' y2='25' stroke='#1e293b' stroke-width='2'/><polygon points='35,21 43,25 35,29' fill='#1e293b'/></svg>" +
-          "  <span>&rarr;</span>" +
-          "  <div class='w-11 h-11 border-2 border-dashed border-blue-500 rounded flex items-center justify-center font-bold text-blue-600'>?</div>" +
-          "</div>",
+        id: 97,
+        q: "उच्च न्यायालय के न्यायाधीशों की नियुक्ति के संदर्भ में कौन सा कथन सत्य है ?",
         options: [
-          "<div class='inline-flex items-center gap-2'><span>(1)</span><svg width='45' height='45' viewBox='0 0 45 45' class='border bg-white rounded'><line x1='32' y1='12' x2='12' y2='32' stroke='#1e293b' stroke-width='2'/><polygon points='11,25 10,34 19,33' fill='#1e293b'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(2)</span><svg width='45' height='45' viewBox='0 0 45 45' class='border bg-white rounded'><line x1='12' y1='12' x2='32' y2='32' stroke='#1e293b' stroke-width='2'/><polygon points='25,33 34,34 33,25' fill='#1e293b'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(3)</span><svg width='45' height='45' viewBox='0 0 45 45' class='border bg-white rounded'><line x1='22' y1='10' x2='22' y2='35' stroke='#1e293b' stroke-width='2'/><polygon points='18,30 22,38 26,30' fill='#1e293b'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(4)</span><svg width='45' height='45' viewBox='0 0 45 45' class='border bg-white rounded'><line x1='35' y1='22' x2='10' y2='22' stroke='#1e293b' stroke-width='2'/><polygon points='14,18 7,22 14,26' fill='#1e293b'/></svg></div>"
+          "राज्यपाल अपने राज्य के उच्च न्यायालय के न्यायाधीशों की नियुक्ति करता है।",
+          "राष्ट्रपति संबंधित राज्य के राज्यपाल से परामर्श करने के बाद उच्च न्यायालय के न्यायाधीशों की नियुक्ति करता है।",
+          "उच्च न्यायालय के न्यायाधीशों की नियुक्ति मुख्यमंत्री द्वारा किया जाता है।",
+          "उच्च न्यायालय के न्यायाधीशों की नियुक्ति कॉलेजियम प्रणाली द्वारा नहीं होती है।"
         ],
-        answer: 1,
-        explanation: "तीर 45° दक्षिणावर्त घूम रहा है। अगला तीर दक्षिण-पूर्व (विकल्प 2) की ओर होगा।"
+        ans: 1
       },
       {
-        id: 142,
-        question: "निम्नलिखित में से विषम आकृति (Odd Figure Out) ज्ञात कीजिए:",
-        options: [
-          "<div class='inline-flex items-center gap-2'><span>(1)</span><svg width='55' height='55' viewBox='0 0 55 55' class='border bg-white rounded p-1'><circle cx='27' cy='27' r='20' fill='none' stroke='#1e293b' stroke-width='1.5'/><line x1='7' y1='27' x2='47' y2='27' stroke='#1e293b'/><line x1='27' y1='7' x2='27' y2='47' stroke='#1e293b'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(2)</span><svg width='55' height='55' viewBox='0 0 55 55' class='border bg-white rounded p-1'><circle cx='27' cy='27' r='20' fill='none' stroke='#1e293b' stroke-width='1.5'/><line x1='10' y1='17' x2='44' y2='17' stroke='#1e293b'/><line x1='27' y1='7' x2='27' y2='47' stroke='#1e293b'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(3)</span><svg width='55' height='55' viewBox='0 0 55 55' class='border bg-white rounded p-1'><rect x='9' y='9' width='36' height='36' fill='none' stroke='#1e293b' stroke-width='1.5'/><line x1='9' y1='9' x2='45' y2='45' stroke='#1e293b'/><line x1='45' y1='9' x2='9' y2='45' stroke='#1e293b'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(4)</span><svg width='55' height='55' viewBox='0 0 55 55' class='border bg-white rounded p-1'><polygon points='27,8 46,44 8,44' fill='none' stroke='#1e293b' stroke-width='1.5'/><line x1='27' y1='8' x2='27' y2='44' stroke='#1e293b'/></svg></div>"
-        ],
-        answer: 1,
-        explanation: "आकृति (2) में क्षैतिज रेखा केंद्र से न होकर असममित भाग बनाती है।"
+        id: 98,
+        q: "स्वामी विवेकानंद को 'आधुनिक राष्ट्रीय आंदोलन का आध्यात्मिक पिता' किसने कहा था ?",
+        options: ["सुभाषचन्द्र बोस", "बाल गंगाधर तिलक", "ऐनी बेसेंट", "हेनरी विवियन डेरोजियो"],
+        ans: 0
       },
       {
-        id: 143,
-        question: "निर्देश: कौन-सी उत्तर आकृति प्रश्न आकृति को पूरा करेगी?\n" +
-          "<div class='svg-box my-3 flex justify-center'>" +
-          "<svg width='110' height='110' viewBox='0 0 110 110' class='border-2 border-gray-700 bg-white rounded shadow-sm'>" +
-          "  <line x1='55' y1='0' x2='55' y2='110' stroke='#334155' stroke-width='1.5'/>" +
-          "  <line x1='0' y1='55' x2='110' y2='55' stroke='#334155' stroke-width='1.5'/>" +
-          "  <circle cx='55' cy='55' r='36' fill='none' stroke='#2563eb' stroke-width='2'/>" +
-          "  <line x1='55' y1='19' x2='19' y2='55' stroke='#dc2626' stroke-width='1.5'/>" +
-          "  <line x1='55' y1='19' x2='91' y2='55' stroke='#dc2626' stroke-width='1.5'/>" +
-          "  <line x1='19' y1='55' x2='55' y2='91' stroke='#dc2626' stroke-width='1.5'/>" +
-          "  <rect x='55' y='55' width='55' height='55' fill='#f1f5f9' stroke='#94a3b8' stroke-dasharray='3,3'/>" +
-          "  <text x='78' y='88' font-size='18' font-weight='bold' fill='#2563eb'>?</text>" +
-          "</svg></div>",
-        options: [
-          "<div class='inline-flex items-center gap-2'><span>(1)</span><svg width='50' height='50' viewBox='0 0 50 50' class='border bg-white rounded'><path d='M 0,36 A 36,36 0 0,0 36,0' fill='none' stroke='#2563eb' stroke-width='2'/><line x1='0' y1='36' x2='36' y2='0' stroke='#dc2626' stroke-width='1.5'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(2)</span><svg width='50' height='50' viewBox='0 0 50 50' class='border bg-white rounded'><path d='M 0,0 A 36,36 0 0,0 36,36' fill='none' stroke='#2563eb' stroke-width='2'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(3)</span><svg width='50' height='50' viewBox='0 0 50 50' class='border bg-white rounded'><line x1='10' y1='10' x2='40' y2='40' stroke='#dc2626' stroke-width='2'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(4)</span><svg width='50' height='50' viewBox='0 0 50 50' class='border bg-white rounded'><rect x='10' y='10' width='30' height='30' fill='#94a3b8'/></svg></div>"
-        ],
-        answer: 0,
-        explanation: "चौथे चतुर्थांश में वृत्त का चाप और तिरछी रेखा विकल्प (1) में सही है।"
+        id: 99,
+        q: "...... ऊतक में, कोशिकाएँ जीवित, लंबी और कोनों पर अनियमित रूप से मोटी होती हैं।",
+        options: ["स्क्लेरेनकाइमा", "एरेनकाइमा", "कोलेनकाइमा (स्थूलकोण ऊतक)", "पैरेनकाइमा"],
+        ans: 2
       },
       {
-        id: 144,
-        question: "कागज़ के टुकड़े को मोड़कर छिद्रित करने पर, खोले जाने पर वह कैसा दिखाई देगा?\n" +
-          "<div class='svg-box my-3 flex justify-center gap-3 items-center'>" +
-          "  <svg width='50' height='50' viewBox='0 0 50 50' class='border bg-white rounded'><rect x='8' y='8' width='34' height='34' fill='#f8fafc' stroke='#334155'/><line x1='25' y1='8' x2='25' y2='42' stroke='#ef4444' stroke-dasharray='2,2'/></svg>" +
-          "  <span>&rarr;</span>" +
-          "  <svg width='50' height='50' viewBox='0 0 50 50' class='border bg-white rounded'><rect x='25' y='8' width='17' height='34' fill='#f8fafc' stroke='#334155'/><line x1='25' y1='25' x2='42' y2='25' stroke='#ef4444' stroke-dasharray='2,2'/></svg>" +
-          "  <span>&rarr;</span>" +
-          "  <svg width='50' height='50' viewBox='0 0 50 50' class='border bg-white rounded'><rect x='25' y='25' width='17' height='17' fill='#f8fafc' stroke='#334155'/><circle cx='33' cy='33' r='3.5' fill='#2563eb'/></svg>" +
-          "</div>",
-        options: [
-          "<div class='inline-flex items-center gap-2'><span>(1)</span><svg width='48' height='48' viewBox='0 0 48 48' class='border bg-white rounded'><circle cx='24' cy='14' r='2.5' fill='#2563eb'/><circle cx='24' cy='34' r='2.5' fill='#2563eb'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(2)</span><svg width='48' height='48' viewBox='0 0 48 48' class='border bg-white rounded'><circle cx='16' cy='16' r='2.5' fill='#2563eb'/><circle cx='32' cy='16' r='2.5' fill='#2563eb'/><circle cx='16' cy='32' r='2.5' fill='#2563eb'/><circle cx='32' cy='32' r='2.5' fill='#2563eb'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(3)</span><svg width='48' height='48' viewBox='0 0 48 48' class='border bg-white rounded'><circle cx='24' cy='24' r='4' fill='#2563eb'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(4)</span><svg width='48' height='48' viewBox='0 0 48 48' class='border bg-white rounded'><rect x='18' y='18' width='12' height='12' fill='#2563eb'/></svg></div>"
-        ],
-        answer: 1,
-        explanation: "खोलने पर चारों चतुर्थांशों में 1-1 छिद्र (कुल 4 छिद्र) दिखेंगे (विकल्प 2)।"
-      },
-      {
-        id: 145,
-        question: "घन (Dice) की दो स्थितियाँ दी गई हैं। संख्या 4 के विपरीत कौन-सी संख्या होगी?\n" +
-          "<div class='svg-box my-3 flex justify-center gap-4'>" +
-          "  <svg width='85' height='80' viewBox='0 0 85 80' class='border bg-white rounded text-xs font-bold'>" +
-          "    <polygon points='42,8 72,20 42,32 12,20' fill='#e0f2fe' stroke='#0284c7'/><text x='39' y='22'>6</text>" +
-          "    <polygon points='12,20 42,32 42,70 12,58' fill='#bae6fd' stroke='#0284c7'/><text x='24' y='48'>3</text>" +
-          "    <polygon points='42,32 72,20 72,58 42,70' fill='#7dd3fc' stroke='#0284c7'/><text x='54' y='48'>2</text>" +
-          "  </svg>" +
-          "  <svg width='85' height='80' viewBox='0 0 85 80' class='border bg-white rounded text-xs font-bold'>" +
-          "    <polygon points='42,8 72,20 42,32 12,20' fill='#fef08a' stroke='#ca8a04'/><text x='39' y='22'>4</text>" +
-          "    <polygon points='12,20 42,32 42,70 12,58' fill='#fde047' stroke='#ca8a04'/><text x='24' y='48'>3</text>" +
-          "    <polygon points='42,32 72,20 72,58 42,70' fill='#eab308' stroke='#ca8a04'/><text x='54' y='48'>5</text>" +
-          "  </svg>" +
-          "</div>",
-        options: ["1", "2", "6", "5"],
-        answer: 1,
-        explanation: "समान फलक 3 से दक्षिणावर्त: 3-6-2 और 3-5-4 => संख्या 4 के विपरीत 2 है।"
-      },
-      {
-        id: 146,
-        question: "दिए गए कटे हुए टुकड़ों से कौन-सी उत्तर आकृति बनाई जा सकती है?\n" +
-          "<div class='svg-box my-3 flex justify-center'>" +
-          "<svg width='160' height='50' viewBox='0 0 160 50' class='border bg-white rounded shadow-sm'>" +
-          "  <polygon points='15,40 30,12 45,40' fill='#dbeafe' stroke='#1e293b'/>" +
-          "  <polygon points='55,40 70,12 85,40' fill='#dbeafe' stroke='#1e293b'/>" +
-          "  <rect x='100' y='18' width='40' height='22' fill='#fef3c7' stroke='#1e293b'/>" +
-          "</svg></div>",
-        options: [
-          "<div class='inline-flex items-center gap-2'><span>(1)</span><svg width='55' height='45' viewBox='0 0 55 45' class='border bg-white rounded'><polygon points='10,38 27,10 44,38' fill='#dbeafe' stroke='#1e293b'/><rect x='16' y='22' width='22' height='14' fill='#fef3c7' stroke='#1e293b'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(2)</span><svg width='55' height='45' viewBox='0 0 55 45' class='border bg-white rounded'><rect x='8' y='8' width='38' height='28' fill='#f8fafc' stroke='#1e293b'/><line x1='8' y1='8' x2='46' y2='36' stroke='#1e293b'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(3)</span><svg width='55' height='45' viewBox='0 0 55 45' class='border bg-white rounded'><circle cx='27' cy='22' r='16' fill='#dbeafe' stroke='#1e293b'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(4)</span><svg width='55' height='45' viewBox='0 0 55 45' class='border bg-white rounded'><polygon points='8,8 46,8 27,36' fill='#fef3c7' stroke='#1e293b'/></svg></div>"
-        ],
-        answer: 0,
-        explanation: "दो त्रिभुज और एक आयत को संयोजित करने पर आकृति (1) प्राप्त होती है।"
-      },
-      {
-        id: 147,
-        question: "दी गई आकृतियों को तीन वर्गों में समूहित कीजिए:\n" +
-          "<div class='svg-box my-3 flex justify-center'>" +
-          "<svg width='270' height='90' viewBox='0 0 270 90' class='border bg-white rounded text-[10px] font-bold text-center'>" +
-          "  <g transform='translate(10,8)'><circle cx='12' cy='12' r='10' fill='none' stroke='#334155'/><text x='9' y='32'>1</text></g>" +
-          "  <g transform='translate(55,8)'><polygon points='12,2 22,22 2,22' fill='none' stroke='#334155'/><text x='9' y='32'>2</text></g>" +
-          "  <g transform='translate(100,8)'><rect x='2' y='2' width='20' height='20' fill='none' stroke='#334155'/><text x='9' y='32'>3</text></g>" +
-          "  <g transform='translate(145,8)'><circle cx='12' cy='12' r='10' fill='#cbd5e1' stroke='#334155'/><text x='9' y='32'>4</text></g>" +
-          "  <g transform='translate(190,8)'><polygon points='12,2 22,22 2,22' fill='#cbd5e1' stroke='#334155'/><text x='9' y='32'>5</text></g>" +
-          "  <g transform='translate(235,8)'><rect x='2' y='2' width='20' height='20' fill='#cbd5e1' stroke='#334155'/><text x='9' y='32'>6</text></g>" +
-          "  <g transform='translate(55,50)'><circle cx='12' cy='12' r='10' fill='none' stroke='#334155'/><line x1='2' y1='12' x2='22' y2='12' stroke='#334155'/><text x='9' y='32'>7</text></g>" +
-          "  <g transform='translate(125,50)'><polygon points='12,2 22,22 2,22' fill='none' stroke='#334155'/><line x1='12' y1='2' x2='12' y2='22' stroke='#334155'/><text x='9' y='32'>8</text></g>" +
-          "  <g transform='translate(195,50)'><rect x='2' y='2' width='20' height='20' fill='none' stroke='#334155'/><line x1='2' y1='2' x2='22' y2='22' stroke='#334155'/><text x='9' y='32'>9</text></g>" +
-          "</svg></div>",
-        options: [
-          "(1, 4, 7); (2, 5, 8); (3, 6, 9)",
-          "(1, 2, 3); (4, 5, 6); (7, 8, 9)",
-          "(1, 4, 7); (2, 3, 6); (5, 8, 9)",
-          "(1, 5, 4); (7, 8, 6); (2, 9, 3)"
-        ],
-        answer: 0,
-        explanation: "वृत्त वर्ग (1, 4, 7); त्रिभुज वर्ग (2, 5, 8); वर्ग/आयत वर्ग (3, 6, 9)।"
-      },
-      {
-        id: 148,
-        question: "किस उत्तर आकृति में प्रश्न आकृति अंतर्निहित (Embedded) है?\n" +
-          "<div class='svg-box my-3 flex justify-center'>" +
-          "<svg width='70' height='60' viewBox='0 0 70 60' class='border bg-white rounded shadow-sm'>" +
-          "  <path d='M 12,18 L 58,18 L 25,48 L 58,48' fill='none' stroke='#dc2626' stroke-width='2.5'/>" +
-          "</svg></div>",
-        options: [
-          "<div class='inline-flex items-center gap-2'><span>(A)</span><svg width='50' height='50' viewBox='0 0 50 50' class='border bg-white rounded'><rect x='8' y='8' width='34' height='34' fill='none' stroke='#94a3b8'/><line x1='8' y1='8' x2='42' y2='42' stroke='#94a3b8'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(B)</span><svg width='50' height='50' viewBox='0 0 50 50' class='border bg-white rounded'><rect x='8' y='8' width='34' height='34' fill='none' stroke='#94a3b8'/><path d='M 8,15 L 40,15 L 16,38 L 40,38' fill='none' stroke='#dc2626' stroke-width='2'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(C)</span><svg width='50' height='50' viewBox='0 0 50 50' class='border bg-white rounded'><circle cx='25' cy='25' r='16' fill='none' stroke='#94a3b8'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(D)</span><svg width='50' height='50' viewBox='0 0 50 50' class='border bg-white rounded'><polygon points='8,36 25,10 42,36' fill='none' stroke='#94a3b8'/></svg></div>"
-        ],
-        answer: 1,
-        explanation: "Z-आकार पैटर्न विकल्प (B) में अंतर्निहित है।"
-      },
-      {
-        id: 149,
-        question: "दी गई छवि को दक्षिणावर्त 90° (Clockwise) घुमाने पर कौन-सी छवि बनेगी?\n" +
-          "<div class='svg-box my-3 flex justify-center'>" +
-          "<svg width='80' height='60' viewBox='0 0 80 60' class='border bg-white rounded shadow-sm'>" +
-          "  <rect x='15' y='12' width='45' height='36' fill='#f1f5f9' stroke='#1e293b' stroke-width='1.5'/>" +
-          "  <line x1='15' y1='12' x2='60' y2='48' stroke='#1e293b' stroke-width='1.5'/>" +
-          "  <circle cx='30' cy='20' r='3.5' fill='#2563eb'/>" +
-          "</svg></div>",
-        options: [
-          "<div class='inline-flex items-center gap-2'><span>(A)</span><svg width='55' height='55' viewBox='0 0 55 55' class='border bg-white rounded'><rect x='12' y='8' width='28' height='38' fill='#f1f5f9' stroke='#1e293b' stroke-width='1.5'/><line x1='40' y1='8' x2='12' y2='46' stroke='#1e293b' stroke-width='1.5'/><circle cx='33' cy='20' r='3' fill='#2563eb'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(B)</span><svg width='55' height='55' viewBox='0 0 55 55' class='border bg-white rounded'><rect x='12' y='8' width='28' height='38' fill='#f1f5f9' stroke='#1e293b' stroke-width='1.5'/><circle cx='18' cy='35' r='3' fill='#2563eb'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(C)</span><svg width='55' height='55' viewBox='0 0 55 55' class='border bg-white rounded'><rect x='8' y='12' width='38' height='28' fill='#f1f5f9' stroke='#1e293b'/></svg></div>",
-          "<div class='inline-flex items-center gap-2'><span>(D)</span><svg width='55' height='55' viewBox='0 0 55 55' class='border bg-white rounded'><circle cx='27' cy='27' r='14' fill='#2563eb'/></svg></div>"
-        ],
-        answer: 0,
-        explanation: "90° दक्षिणावर्त घुमाने पर आयत ऊर्ध्वाधर हो जाता है और बिंदु दायीं ऊपरी तरफ आता है (विकल्प A)।"
-      },
-      {
-        id: 150,
-        question: "आव्यूह (Matrix) के आधार पर 'YEAR' शब्द के लिए सही संख्या-समूह पहचानिए:\n" +
-          "<div class='svg-box my-3 flex flex-wrap justify-center gap-4 text-xs font-mono'>" +
-          "  <table class='border-collapse border border-gray-400 text-center bg-white shadow-sm'>" +
-          "    <tr class='bg-blue-100 font-bold'><th class='border p-1'>I</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr>" +
-          "    <tr><th class='bg-blue-100 border p-1'>0</th><td class='border p-1'>Y</td><td class='border p-1'>A</td><td class='border p-1'>H</td><td class='border p-1'>M</td><td class='border p-1'>J</td></tr>" +
-          "    <tr><th class='bg-blue-100 border p-1'>1</th><td class='border p-1'>M</td><td class='border p-1'>H</td><td class='border p-1'>A</td><td class='border p-1'>Y</td><td class='border p-1'>O</td></tr>" +
-          "    <tr><th class='bg-blue-100 border p-1'>2</th><td class='border p-1'>A</td><td class='border p-1'>Y</td><td class='border p-1'>T</td><td class='border p-1'>H</td><td class='border p-1'>M</td></tr>" +
-          "    <tr><th class='bg-blue-100 border p-1'>3</th><td class='border p-1'>H</td><td class='border p-1'>J</td><td class='border p-1'>Y</td><td class='border p-1'>M</td><td class='border p-1'>A</td></tr>" +
-          "  </table>" +
-          "  <table class='border-collapse border border-gray-400 text-center bg-white shadow-sm'>" +
-          "    <tr class='bg-blue-100 font-bold'><th class='border p-1'>II</th><th>7</th><th>8</th><th>9</th><th>0</th><th>1</th></tr>" +
-          "    <tr><th class='bg-blue-100 border p-1'>2</th><td class='border p-1'>E</td><td class='border p-1'>R</td><td class='border p-1'>V</td><td class='border p-1'>N</td><td class='border p-1'>R</td></tr>" +
-          "    <tr><th class='bg-blue-100 border p-1'>3</th><td class='border p-1'>V</td><td class='border p-1'>N</td><td class='border p-1'>O</td><td class='border p-1'>E</td><td class='border p-1'>N</td></tr>" +
-          "    <tr><th class='bg-blue-100 border p-1'>4</th><td class='border p-1'>O</td><td class='border p-1'>E</td><td class='border p-1'>R</td><td class='border p-1'>V</td><td class='border p-1'>E</td></tr>" +
-          "    <tr><th class='bg-blue-100 border p-1'>5</th><td class='border p-1'>R</td><td class='border p-1'>V</td><td class='border p-1'>N</td><td class='border p-1'>O</td><td class='border p-1'>V</td></tr>" +
-          "  </table>" +
-          "</div>",
-        options: [
-          "23, 27, 15, 61",
-          "15, 27, 03, 57",
-          "34, 31, 32, 28",
-          "45, 50, 36, 29"
-        ],
-        answer: 1,
-        explanation: "पंक्ति-स्तंभ मिलान: Y=15, E=27, A=03, R=57 मिलकर 'YEAR' बनाते हैं।"
+        id: 100,
+        q: "दी गई श्रेणी में प्रश्न चिह्न (?) के स्थान पर क्या आना चाहिए ?\n178, 142, 117, 101, 92, ?",
+        options: ["63", "75", "81", "88"],
+        ans: 3
       }
     ];
 
-    let candidate = { name: "Candidate", id: "1001" };
-    let currentQIndex = 0;
-    let userAnswers = {};
-    let questionStatus = {};
+    /* ==========================================================
+       STATE MANAGEMENT
+    ========================================================== */
+    let currentIndex = 0;
+    let userAnswers = new Array(100).fill(null);
+    let markedForReview = new Array(100).fill(false);
+    let isReviewMode = false;
     let timerSeconds = 120 * 60;
     let timerInterval = null;
 
-    questions.forEach((_, idx) => {
-      questionStatus[idx] = 'not-visited';
-    });
-
-    function startExam() {
-      const name = document.getElementById('candidate-name').value.trim();
-      const id = document.getElementById('candidate-id').value.trim();
-      if (!name || !id) {
-        alert("कृपया अपना नाम और रोल नंबर अवश्य भरें!");
-        return;
-      }
-      candidate.name = name;
-      candidate.id = id;
-
-      document.getElementById('display-name').textContent = candidate.name;
-      document.getElementById('display-id').textContent = "ID: " + candidate.id;
-      document.getElementById('start-screen').classList.add('hidden');
-
+    function startTest() {
+      document.getElementById('startScreen').classList.add('hidden');
       toggleFullScreen();
-      questionStatus[0] = 'not-answered';
-      renderQuestion(0);
-      renderPalette();
+      buildPalette();
+      loadQuestion(0);
       startTimer();
     }
 
     function toggleFullScreen() {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(() => {});
-      } else if (document.exitFullscreen) {
-        document.exitFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
       }
     }
 
     function startTimer() {
       timerInterval = setInterval(() => {
-        timerSeconds--;
         if (timerSeconds <= 0) {
           clearInterval(timerInterval);
-          autoSubmit();
+          finalizeTest();
+          return;
         }
-        const m = Math.floor(timerSeconds / 60);
-        const s = timerSeconds % 60;
-        document.getElementById('timer-display').textContent = 
-          `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+        timerSeconds--;
+        const hrs = String(Math.floor(timerSeconds / 3600)).padStart(2, '0');
+        const mins = String(Math.floor((timerSeconds % 3600) / 60)).padStart(2, '0');
+        const secs = String(timerSeconds % 60).padStart(2, '0');
+        document.getElementById('timerDisplay').innerText = `${hrs}:${mins}:${secs}`;
       }, 1000);
     }
 
-    function renderQuestion(index) {
-      currentQIndex = index;
-      const q = questions[index];
-      document.getElementById('question-number-badge').textContent = `Question No. ${index + 1} of ${questions.length}`;
-
-      let html = `
-        <div class="mb-4">
-          <div class="font-bold text-gray-900 text-sm sm:text-base leading-relaxed whitespace-pre-line">${index + 1}. ${q.question}</div>
-        </div>
-        <div class="space-y-2.5 mt-4">
-      `;
-
-      q.options.forEach((opt, optIdx) => {
-        const isChecked = userAnswers[index] === optIdx ? 'checked' : '';
-        html += `
-          <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-blue-50 transition border-gray-300">
-            <input type="radio" name="opt-${index}" value="${optIdx}" onchange="selectOption(${index}, ${optIdx})" ${isChecked} class="w-4 h-4 text-blue-600 focus:ring-blue-500 mr-3">
-            <span class="text-xs sm:text-sm text-gray-800 font-medium">(${String.fromCharCode(65 + optIdx)}) ${opt}</span>
-          </label>
-        `;
-      });
-      html += `</div>`;
-
-      document.getElementById('question-container').innerHTML = html;
-      document.getElementById('prev-btn').disabled = (index === 0);
-      updateCounts();
+    function buildPalette() {
+      const palette = document.getElementById('paletteGrid');
+      palette.innerHTML = '';
+      for (let i = 0; i < 100; i++) {
+        const btn = document.createElement('button');
+        btn.id = `palette-btn-${i}`;
+        btn.innerText = i + 1;
+        btn.onclick = () => jumpToQuestion(i);
+        btn.className = "w-full aspect-square flex items-center justify-center rounded border border-slate-300 bg-slate-100 hover:bg-indigo-50 font-bold transition";
+        palette.appendChild(btn);
+      }
+      updatePaletteStatus();
     }
 
-    function selectOption(qIdx, optIdx) {
-      userAnswers[qIdx] = optIdx;
-      if (questionStatus[qIdx] === 'marked') {
-        questionStatus[qIdx] = 'ans-marked';
+    function loadQuestion(index) {
+      currentIndex = index;
+      const qData = questionsData[index];
+
+      document.getElementById('displayQNum').innerText = index + 1;
+      document.getElementById('currentQNumBadge').innerText = index + 1;
+      document.getElementById('questionContainer').innerText = qData.q;
+
+      const reviewBtn = document.getElementById('markReviewBtn');
+      if (markedForReview[index]) {
+        reviewBtn.classList.replace('text-amber-700', 'text-white');
+        reviewBtn.classList.replace('bg-amber-50', 'bg-amber-600');
       } else {
-        questionStatus[qIdx] = 'answered';
+        reviewBtn.classList.replace('text-white', 'text-amber-700');
+        reviewBtn.classList.replace('bg-amber-600', 'bg-amber-50');
       }
-      renderPalette();
+
+      const optContainer = document.getElementById('optionsContainer');
+      optContainer.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+
+      qData.options.forEach((opt, optIdx) => {
+        const label = document.createElement('label');
+        let isSelected = userAnswers[index] === optIdx;
+        let borderClass = isSelected ? "border-indigo-600 bg-indigo-50/80 shadow-sm" : "border-slate-200 hover:bg-slate-50";
+
+        if (isReviewMode) {
+          if (optIdx === qData.ans) {
+            borderClass = "border-emerald-600 bg-emerald-100 text-emerald-900 font-bold";
+          } else if (isSelected && optIdx !== qData.ans) {
+            borderClass = "border-rose-600 bg-rose-100 text-rose-900 font-bold";
+          }
+        }
+
+        label.className = `flex items-start gap-3 p-3.5 rounded-xl border-2 cursor-pointer transition ${borderClass}`;
+        label.innerHTML = `
+          <input type="radio" name="opt_choice" value="${optIdx}" ${isSelected ? 'checked' : ''} ${isReviewMode ? 'disabled' : ''} onchange="selectOption(${optIdx})" class="mt-1 accent-indigo-600">
+          <div class="flex-1">
+            <span class="inline-block font-bold mr-1 text-slate-700">(${letters[optIdx]})</span>
+            <span class="text-sm sm:text-base leading-snug">${opt}</span>
+          </div>
+        `;
+        optContainer.appendChild(label);
+      });
+
+      document.getElementById('prevBtn').disabled = (index === 0);
+      document.getElementById('nextBtn').innerText = (index === 99) ? "समीक्षा / सबमिट" : "अगला";
+
+      updatePaletteStatus();
+    }
+
+    function selectOption(optIdx) {
+      if (isReviewMode) return;
+      userAnswers[currentIndex] = optIdx;
+      updatePaletteStatus();
     }
 
     function clearResponse() {
-      delete userAnswers[currentQIndex];
-      questionStatus[currentQIndex] = 'not-answered';
-      renderQuestion(currentQIndex);
-      renderPalette();
+      if (isReviewMode) return;
+      userAnswers[currentIndex] = null;
+      loadQuestion(currentIndex);
     }
 
-    function markForReviewAndNext() {
-      if (userAnswers[currentQIndex] !== undefined) {
-        questionStatus[currentQIndex] = 'ans-marked';
+    function toggleMarkForReview() {
+      markedForReview[currentIndex] = !markedForReview[currentIndex];
+      loadQuestion(currentIndex);
+    }
+
+    function nextQuestion() {
+      if (currentIndex < 99) {
+        loadQuestion(currentIndex + 1);
       } else {
-        questionStatus[currentQIndex] = 'marked';
+        confirmSubmit();
       }
-      navigateNext();
     }
 
-    function saveAndNext() {
-      if (userAnswers[currentQIndex] !== undefined) {
-        if (questionStatus[currentQIndex] !== 'ans-marked') {
-          questionStatus[currentQIndex] = 'answered';
+    function prevQuestion() {
+      if (currentIndex > 0) {
+        loadQuestion(currentIndex - 1);
+      }
+    }
+
+    function jumpToQuestion(idx) {
+      loadQuestion(idx);
+    }
+
+    function updatePaletteStatus() {
+      let answered = 0, notAnswered = 0, marked = 0;
+
+      for (let i = 0; i < 100; i++) {
+        const btn = document.getElementById(`palette-btn-${i}`);
+        if (!btn) continue;
+
+        btn.className = "w-full aspect-square flex items-center justify-center rounded border font-bold text-xs transition ";
+
+        if (i === currentIndex) {
+          btn.className += "ring-2 ring-indigo-600 ring-offset-1 ";
         }
-      } else {
-        questionStatus[currentQIndex] = 'not-answered';
-      }
-      navigateNext();
-    }
 
-    function navigateNext() {
-      renderPalette();
-      if (currentQIndex < questions.length - 1) {
-        currentQIndex++;
-        if (questionStatus[currentQIndex] === 'not-visited') {
-          questionStatus[currentQIndex] = 'not-answered';
+        if (markedForReview[i]) {
+          marked++;
+          btn.className += "bg-amber-500 text-white border-amber-600";
+        } else if (userAnswers[i] !== null) {
+          answered++;
+          btn.className += "bg-emerald-600 text-white border-emerald-700";
+        } else {
+          notAnswered++;
+          btn.className += "bg-slate-200 text-slate-700 border-slate-300";
         }
-        renderQuestion(currentQIndex);
       }
-      renderPalette();
-    }
 
-    function previousQuestion() {
-      if (currentQIndex > 0) {
-        currentQIndex--;
-        renderQuestion(currentQIndex);
-        renderPalette();
-      }
-    }
-
-    function jumpToQuestion(index) {
-      if (questionStatus[index] === 'not-visited') {
-        questionStatus[index] = 'not-answered';
-      }
-      renderQuestion(index);
-      renderPalette();
-    }
-
-    function renderPalette() {
-      const grid = document.getElementById('palette-grid');
-      grid.innerHTML = '';
-      questions.forEach((_, idx) => {
-        const btn = document.createElement('div');
-        const st = questionStatus[idx];
-        btn.className = `palette-btn status-${st}`;
-        btn.textContent = idx + 1;
-        if (idx === currentQIndex) {
-          btn.classList.add('ring-2', 'ring-blue-600', 'ring-offset-1');
-        }
-        btn.onclick = () => jumpToQuestion(idx);
-        grid.appendChild(btn);
-      });
-      updateCounts();
-    }
-
-    function updateCounts() {
-      let counts = { 'not-visited': 0, 'not-answered': 0, 'answered': 0, 'marked': 0, 'ans-marked': 0 };
-      Object.values(questionStatus).forEach(s => {
-        counts[s] = (counts[s] || 0) + 1;
-      });
-      document.getElementById('count-ans').textContent = counts['answered'];
-      document.getElementById('count-not-ans').textContent = counts['not-answered'];
-      document.getElementById('count-not-vis').textContent = counts['not-visited'];
-      document.getElementById('count-marked').textContent = counts['marked'];
-      document.getElementById('count-ans-marked').textContent = counts['ans-marked'];
+      document.getElementById('countAnswered').innerText = answered;
+      document.getElementById('countNotAnswered').innerText = notAnswered;
+      document.getElementById('countMarked').innerText = marked;
     }
 
     function confirmSubmit() {
-      const ansCount = Object.keys(userAnswers).length;
-      if (confirm(`क्या आप परीक्षा समाप्त करना चाहते हैं?\n\nकुल प्रश्न: ${questions.length}\nउत्तर दिए: ${ansCount}\nशेष: ${questions.length - ansCount}`)) {
-        autoSubmit();
-      }
+      if (isReviewMode) return;
+      let answered = userAnswers.filter(a => a !== null).length;
+      let unattempted = 100 - answered;
+      let marked = markedForReview.filter(m => m === true).length;
+
+      document.getElementById('modalAnswered').innerText = answered;
+      document.getElementById('modalUnanswered').innerText = unattempted;
+      document.getElementById('modalMarked').innerText = marked;
+      document.getElementById('confirmModal').classList.remove('hidden');
     }
 
-    function autoSubmit() {
+    function closeModal() {
+      document.getElementById('confirmModal').classList.add('hidden');
+    }
+
+    function finalizeTest() {
       clearInterval(timerInterval);
+      closeModal();
+
       let correct = 0;
       let incorrect = 0;
       let unattempted = 0;
 
-      questions.forEach((q, idx) => {
-        const ans = userAnswers[idx];
-        if (ans === undefined) {
+      for (let i = 0; i < 100; i++) {
+        if (userAnswers[i] === null) {
           unattempted++;
-        } else if (ans === q.answer) {
+        } else if (userAnswers[i] === questionsData[i].ans) {
           correct++;
         } else {
           incorrect++;
         }
-      });
-
-      const totalMarks = (correct * 2.0) - (incorrect * 0.20);
-      const accuracy = (correct + incorrect) > 0 ? ((correct / (correct + incorrect)) * 100).toFixed(1) : 0;
-
-      document.getElementById('res-score').textContent = `${totalMarks.toFixed(2)} / 300`;
-      document.getElementById('res-correct').textContent = correct;
-      document.getElementById('res-incorrect').textContent = incorrect;
-      document.getElementById('res-accuracy').textContent = `${accuracy}%`;
-
-      document.getElementById('result-screen').classList.remove('hidden');
-
-      sendDataToGoogleSheet({
-        timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-        testName: "EDU TERIA BSSC CGL-4 Set-04",
-        candidateName: candidate.name,
-        candidateId: candidate.id,
-        score: totalMarks.toFixed(2),
-        correct: correct,
-        incorrect: incorrect,
-        unattempted: unattempted,
-        accuracy: `${accuracy}%`
-      });
-
-      buildReviewList();
-    }
-
-    function sendDataToGoogleSheet(data) {
-      const statusBox = document.getElementById('sheet-sync-status');
-      if (!GOOGLE_SHEET_WEBAPP_URL || GOOGLE_SHEET_WEBAPP_URL === "" || GOOGLE_SHEET_WEBAPP_URL.includes("YOUR_GOOGLE_APPS_SCRIPT")) {
-        statusBox.innerHTML = "<span class='text-amber-600 font-semibold'>ℹ Google Sheet URL कॉन्फ़िगर नहीं है।</span>";
-        return;
       }
-      statusBox.innerHTML = "<span class='text-blue-600'>⏳ Google Sheets Leaderboard में रैंक दर्ज की जा रही है...</span>";
 
-      fetch(GOOGLE_SHEET_WEBAPP_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      })
-      .then(() => {
-        statusBox.innerHTML = "<span class='text-emerald-700 font-bold'>✓ स्कोर सफलतापूर्वक Google Sheets Leaderboard में दर्ज हो गया!</span>";
-      })
-      .catch(() => {
-        statusBox.innerHTML = "<span class='text-red-500'>✗ Sheet Sync में त्रुटि आई।</span>";
-      });
+      let rawScore = (correct * 2) - (incorrect * 0.2);
+      let finalScore = Math.max(0, rawScore).toFixed(2);
+      let accuracy = (correct + incorrect > 0) ? Math.round((correct / (correct + incorrect)) * 100) : 0;
+      let percentage = ((rawScore / 200) * 100).toFixed(1);
+
+      document.getElementById('scoreVal').innerText = finalScore;
+      document.getElementById('correctVal').innerText = correct;
+      document.getElementById('incorrectVal').innerText = incorrect;
+      document.getElementById('unattemptedVal').innerText = unattempted;
+      document.getElementById('accuracyVal').innerText = `${accuracy}%`;
+      document.getElementById('percentVal').innerText = `${percentage}%`;
+
+      document.getElementById('resultModal').classList.remove('hidden');
     }
 
-    function toggleReviewMode() {
-      document.getElementById('review-panel').classList.toggle('hidden');
-    }
-
-    function buildReviewList() {
-      const container = document.getElementById('review-list');
-      container.innerHTML = '';
-
-      questions.forEach((q, idx) => {
-        const uAns = userAnswers[idx];
-        const isCorrect = (uAns === q.answer);
-        const isAttempted = (uAns !== undefined);
-
-        let statusBadge = isCorrect 
-          ? `<span class="bg-green-100 text-green-800 text-[10px] sm:text-xs px-2 py-0.5 rounded font-bold">सही (+2.00)</span>`
-          : (isAttempted ? `<span class="bg-red-100 text-red-800 text-[10px] sm:text-xs px-2 py-0.5 rounded font-bold">गलत (-0.20)</span>` : `<span class="bg-gray-100 text-gray-700 text-[10px] sm:text-xs px-2 py-0.5 rounded font-bold">छोड़ा गया (0.00)</span>`);
-
-        let div = document.createElement('div');
-        div.className = "p-3.5 border rounded bg-white shadow-sm";
-        div.innerHTML = `
-          <div class="flex justify-between items-center mb-1.5">
-            <span class="font-bold text-gray-700">प्रश्न सं. ${idx + 1}</span>
-            ${statusBadge}
-          </div>
-          <div class="text-gray-900 font-medium mb-2.5">${q.question}</div>
-          <div class="space-y-1 text-xs">
-            ${q.options.map((opt, oIdx) => {
-              let cls = "p-1.5 rounded border ";
-              if (oIdx === q.answer) cls += "bg-emerald-50 border-emerald-400 font-bold text-emerald-800";
-              else if (oIdx === uAns && !isCorrect) cls += "bg-rose-50 border-rose-400 font-bold text-rose-800";
-              else cls += "border-gray-200 text-gray-600";
-              return `<div class="${cls}">(${String.fromCharCode(65 + oIdx)})${opt}</div>`;
-            }).join('')}
-          </div>
-          <div class="mt-2.5 p-2 bg-blue-50 border border-blue-200 rounded text-xs text-blue-950">
-            <strong>हल एवं व्याख्या:</strong> ${q.explanation}
-          </div>
-        `;
-        container.appendChild(div);
-      });
+    function reviewAnswers() {
+      isReviewMode = true;
+      document.getElementById('resultModal').classList.add('hidden');
+      loadQuestion(0);
     }
   </script>
 </body>
