@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gyan Bindu Double Star Test - 03 | Gyanverse Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @media print {
+      body * { visibility: hidden; }
+      #printable-pdf, #printable-pdf * { visibility: visible; }
+      #printable-pdf { position: absolute; left: 0; top: 0; width: 100%; display: block !important; }
+    }
+    .custom-scrollbar::-webkit-scrollbar { width: 5px; height: 5px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 4px; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans select-none overflow-hidden h-screen">
+
+  <!-- ================= 1. START / INSTRUCTION SCREEN ================= -->
+  <div id="start-screen" class="fixed inset-0 z-50 bg-slate-900 text-white flex flex-col justify-center items-center p-4 overflow-y-auto">
+    <div class="max-w-3xl w-full bg-slate-800 border border-slate-700 rounded-2xl p-6 md:p-8 shadow-2xl">
+      <div class="text-center mb-6 border-b border-slate-700 pb-4">
+        <span class="bg-blue-600/30 text-blue-400 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Gyanverse Portal CBT</span>
+        <h1 class="text-2xl md:text-3xl font-bold mt-3 text-white">ज्ञान बिंदु डबल स्टार टेस्ट सीरीज़ — Test 03</h1>
+        <p class="text-slate-400 text-sm mt-1">फुल लेंथ मॉक टेस्ट | 03/SI(M)/GBA-2026</p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 text-center text-sm">
+        <div class="bg-slate-700/60 p-3 rounded-lg border border-slate-600">
+          <p class="text-slate-400">कुल प्रश्न</p>
+          <p class="text-lg font-bold text-white">100</p>
+        </div>
+        <div class="bg-slate-700/60 p-3 rounded-lg border border-slate-600">
+          <p class="text-slate-400">कुल समय</p>
+          <p class="text-lg font-bold text-white">120 मिनट</p>
+        </div>
+        <div class="bg-slate-700/60 p-3 rounded-lg border border-slate-600">
+          <p class="text-slate-400">सही उत्तर</p>
+          <p class="text-lg font-bold text-emerald-400">+2.0 अंक</p>
+        </div>
+        <div class="bg-slate-700/60 p-3 rounded-lg border border-slate-600">
+          <p class="text-slate-400">नेगेटिव मार्किंग</p>
+          <p class="text-lg font-bold text-rose-400">-0.2 अंक</p>
+        </div>
+      </div>
+
+      <!-- Telegram Promo Notice -->
+      <div class="bg-blue-950/60 border border-blue-600/40 rounded-xl p-4 mb-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="flex items-center gap-3 text-left">
+          <i class="fab fa-telegram text-3xl text-sky-400"></i>
+          <div>
+            <p class="text-sm font-semibold text-white">ऐसे और भी ऑनलाइन टेस्ट देने के लिए टेलीग्राम जॉइन करें</p>
+            <p class="text-xs text-sky-300">प्रतिदिन फ्री टेस्ट, डेली क्विज़ और महत्वपूर्ण PDF</p>
+          </div>
+        </div>
+        <a href="https://t.me/GYANVERSET" target="_blank" class="whitespace-nowrap px-4 py-2 bg-sky-500 hover:bg-sky-400 text-white font-medium rounded-lg text-xs shadow-md transition flex items-center gap-2">
+          <span>Join GYANVERSET</span>
+          <i class="fas fa-external-link-alt text-[10px]"></i>
+        </a>
+      </div>
+
+      <div class="text-xs text-slate-300 space-y-2 mb-8 bg-slate-900/70 p-4 rounded-xl border border-slate-800">
+        <p class="font-semibold text-slate-200">निर्देश:</p>
+        <p>1. 'Start Test' पर क्लिक करते ही टेस्ट फुल-स्क्रीन मोड में चालू हो जाएगा।</p>
+        <p>2. TCS इंटरफेस की तरह आप किसी भी प्रश्न पर कभी भी जा सकते हैं और 'Mark for Review' कर सकते हैं।</p>
+        <p>3. टेस्ट सबमिट करने के बाद आपको डिटेल्ड स्कोरकार्ड और सभी 100 प्रश्नों के विस्तृत उत्तर मिलेंगे।</p>
+      </div>
+
+      <button id="start-btn" onclick="startExam()" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 font-bold rounded-xl text-white text-base shadow-lg transition flex items-center justify-center gap-2">
+        <i class="fas fa-play text-sm"></i>
+        <span>Start Full-Screen Test</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= 2. MAIN TCS CBT INTERFACE ================= -->
+  <div id="cbt-screen" class="hidden h-screen flex flex-col bg-slate-100">
+    <!-- Header -->
+    <header class="bg-blue-900 text-white h-14 px-4 flex items-center justify-between shadow-md shrink-0">
+      <div class="flex items-center space-x-3">
+        <span class="font-bold tracking-wide text-base">Gyanverse Portal</span>
+        <span class="hidden md:inline-block text-xs bg-blue-800 px-2.5 py-0.5 rounded text-blue-200">Gyan Bindu Test-03</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <!-- Timer -->
+        <div class="flex items-center bg-slate-950/40 px-3 py-1 rounded border border-blue-400/40">
+          <i class="far fa-clock text-amber-400 mr-2 text-sm"></i>
+          <span class="text-xs text-slate-300 mr-1.5 hidden sm:inline">Time Left:</span>
+          <span id="timer" class="font-mono font-bold text-amber-300 text-sm md:text-base">120:00</span>
+        </div>
+        <!-- PDF / Print Quick Action -->
+        <button onclick="downloadTestPDF()" class="bg-blue-800 hover:bg-blue-700 text-xs font-medium px-3 py-1.5 rounded transition flex items-center gap-1.5">
+          <i class="fas fa-file-pdf text-red-400"></i>
+          <span class="hidden sm:inline">Download PDF</span>
+        </button>
+        <!-- Candidate info -->
+        <div class="flex items-center space-x-2 border-l border-blue-700 pl-3">
+          <div class="w-8 h-8 rounded-full bg-blue-700 flex items-center justify-center font-bold text-xs text-white">
+            <i class="fas fa-user"></i>
+          </div>
+          <span class="text-xs hidden md:inline font-medium">Candidate</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Subheader / Sections -->
+    <div class="bg-slate-200 border-b border-slate-300 px-4 py-2 flex items-center justify-between text-xs shrink-0">
+      <div class="flex items-center space-x-2">
+        <span class="font-semibold text-slate-700">Section:</span>
+        <span class="bg-blue-600 text-white px-2 py-0.5 rounded font-medium">General Studies & Math/Reasoning (1-100)</span>
+      </div>
+      <div class="text-slate-600 font-medium">
+        Marking: <span class="text-emerald-700 font-bold">+2.0</span>, <span class="text-rose-700 font-bold">-0.2</span>
+      </div>
+    </div>
+
+    <!-- Main Workspace (Q + Palette) -->
+    <div class="flex-1 flex overflow-hidden">
+      <!-- Question Left Area -->
+      <div class="flex-1 flex flex-col bg-white overflow-hidden border-r border-slate-300">
+        <!-- Question Meta -->
+        <div class="px-6 py-2.5 bg-slate-50 border-b border-slate-200 flex justify-between items-center text-xs text-slate-600 shrink-0">
+          <span class="font-bold text-slate-800 text-sm" id="q-title">Question 1</span>
+          <div class="flex items-center gap-2">
+            <span>Marks: <b class="text-emerald-600">+2</b> / <b class="text-rose-600">-0.2</b></span>
+          </div>
+        </div>
+
+        <!-- Question & Options Scroll Area -->
+        <div class="flex-1 p-6 overflow-y-auto custom-scrollbar" id="q-content-box">
+          <div id="q-text" class="text-slate-900 font-medium text-base leading-relaxed mb-6"></div>
+          <div id="q-options" class="space-y-3 max-w-2xl"></div>
+        </div>
+
+        <!-- Bottom Action Bar (TCS Pattern) -->
+        <div class="px-6 py-3 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 shrink-0">
+          <div class="flex items-center gap-2">
+            <button onclick="markForReview()" class="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded text-xs font-semibold shadow-sm transition">
+              Mark for Review & Next
+            </button>
+            <button onclick="clearResponse()" class="px-3.5 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded text-xs font-semibold transition">
+              Clear Response
+            </button>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="prevQuestion()" id="prev-btn" class="px-4 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded text-xs font-semibold transition">
+              Previous
+            </button>
+            <button onclick="saveAndNext()" class="px-5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-xs font-semibold shadow-sm transition">
+              Save & Next
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Palette Area -->
+      <div class="w-80 bg-slate-100 flex flex-col shrink-0 overflow-hidden border-l border-slate-300">
+        <!-- Palette Legend -->
+        <div class="p-3 bg-white border-b border-slate-200 text-[11px] grid grid-cols-2 gap-2 text-slate-700 shrink-0">
+          <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-emerald-600 text-white flex items-center justify-center text-[9px] font-bold" id="legend-answered">0</span> Answered</div>
+          <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-rose-500 text-white flex items-center justify-center text-[9px] font-bold" id="legend-not-answered">1</span> Not Answered</div>
+          <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-slate-200 border border-slate-300 text-slate-700 flex items-center justify-center text-[9px] font-bold" id="legend-not-visited">99</span> Not Visited</div>
+          <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-amber-500 text-white flex items-center justify-center text-[9px] font-bold" id="legend-marked">0</span> Marked Review</div>
+        </div>
+
+        <div class="px-4 py-2 font-bold text-xs bg-slate-200/80 text-slate-700 uppercase tracking-wide">
+          Question Palette (1 - 100)
+        </div>
+
+        <!-- Numbers Grid (1 to 100) -->
+        <div class="flex-1 p-3 overflow-y-auto custom-scrollbar">
+          <div class="grid grid-cols-5 gap-2" id="palette-grid"></div>
+        </div>
+
+        <!-- Submit Box -->
+        <div class="p-3 bg-white border-t border-slate-200 shrink-0">
+          <button onclick="confirmSubmit()" class="w-full py-2 bg-blue-700 hover:bg-blue-800 text-white rounded font-bold text-xs shadow-md transition">
+            Submit Test
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 3. RESULT & SOLUTION SCREEN ================= -->
+  <div id="result-screen" class="hidden fixed inset-0 z-50 bg-slate-100 flex flex-col overflow-y-auto">
+    <header class="bg-blue-900 text-white p-4 flex justify-between items-center shadow-md shrink-0">
+      <div>
+        <h2 class="text-lg font-bold">Gyan Bindu Test-03 — Scorecard & Solutions</h2>
+        <p class="text-xs text-blue-200">Gyanverse Portal Exam Analysis</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="downloadTestPDF()" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition">
+          <i class="fas fa-print"></i>
+          <span>Save/Print PDF</span>
+        </button>
+        <button onclick="location.reload()" class="px-3.5 py-1.5 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-xs font-semibold transition">
+          Re-test
+        </button>
+      </div>
+    </header>
+
+    <div class="max-w-5xl mx-auto w-full p-4 md:p-6 space-y-6 flex-1">
+      <!-- Score Summary Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-4">
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+          <p class="text-xs text-slate-500">कुल स्कोर</p>
+          <p class="text-2xl font-black text-blue-700 mt-1" id="res-score">0 / 200</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+          <p class="text-xs text-slate-500">सही उत्तर (+2)</p>
+          <p class="text-2xl font-black text-emerald-600 mt-1" id="res-correct">0</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+          <p class="text-xs text-slate-500">गलत उत्तर (-0.2)</p>
+          <p class="text-2xl font-black text-rose-600 mt-1" id="res-wrong">0</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+          <p class="text-xs text-slate-500">छोड़े गए प्रश्न</p>
+          <p class="text-2xl font-black text-slate-600 mt-1" id="res-skipped">0</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center col-span-2 sm:col-span-1">
+          <p class="text-xs text-slate-500">सटीकता (Accuracy)</p>
+          <p class="text-2xl font-black text-indigo-600 mt-1" id="res-accuracy">0%</p>
+        </div>
+      </div>
+
+      <!-- Telegram Banner -->
+      <div class="bg-gradient-to-r from-blue-700 to-indigo-800 rounded-xl p-4 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
+        <div>
+          <h3 class="font-bold text-base">ऐसे ऑनलाइन टेस्ट देने के लिए टेलीग्राम जॉइन करें</h3>
+          <p class="text-xs text-blue-100 mt-0.5">जुड़ें @GYANVERSET चैनल के साथ और पाएँ दैनिक अभ्यास टेस्ट एवं सॉल्यूशन</p>
+        </div>
+        <a href="https://t.me/GYANVERSET" target="_blank" class="px-5 py-2.5 bg-white text-blue-800 font-bold text-xs rounded-lg shadow hover:bg-blue-50 transition">
+          Join Telegram (@GYANVERSET)
+        </a>
+      </div>
+
+      <!-- Solutions List -->
+      <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4 md:p-6">
+        <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-200">सम्पूर्ण उत्तर एवं विस्तृत हल (Detailed Solutions)</h3>
+        <div id="solution-list" class="space-y-6"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden Printable PDF Section -->
+  <div id="printable-pdf" class="hidden p-8 font-sans bg-white text-black">
+    <div class="text-center border-b-2 border-black pb-4 mb-6">
+      <h1 class="text-2xl font-bold">ज्ञान बिंदु डबल स्टार टेस्ट सीरीज़ — Test 03</h1>
+      <p class="text-sm">Exam Code: 03/SI(M)/GBA-2026 | Full Length Test (100 Questions)</p>
+      <p class="text-xs text-gray-600 mt-1">Telegram: https://t.me/GYANVERSET</p>
+    </div>
+    <div id="pdf-content" class="space-y-6"></div>
+  </div>
+
+  <!-- ================= 4. SCRIPT & QUESTION DATA ================= -->
+  <script>
+    // Full parsed dataset from Gyan Bindu Test-03 PDF (Q1 to Q100)
+    const questions = [
+      {
+        id: 1,
+        question: "एक त्रिभुज की भुजाएँ क्रमशः 3 cm, 4 cm और 5 cm हैं। त्रिभुज के क्षेत्रफल और परिमाप पर चर्चा करें:\nकथन:\n(i) क्षेत्रफल 6 cm² है।\n(ii) परिमाप 12 cm है।\nनिष्कर्ष:",
+        options: ["केवल कथन (i) सही है।", "केवल कथन (ii) सही है।", "दोनों कथन सही है।", "दोनों कथन गलत है।"],
+        ans: 2,
+        exp: "3, 4, 5 एक समकोण त्रिभुज (Right angled triangle) बनाते हैं। क्षेत्रफल = 1/2 × 3 × 4 = 6 cm² तथा परिमाप = 3 + 4 + 5 = 12 cm। अतः दोनों कथन सही हैं।"
+      },
+      {
+        id: 2,
+        question: "कथन (A) : पहाड़ी क्षेत्र में गोइटर (घेंघा रोग) एक सामान्य बीमारी है।\nकारण (R) : पहाड़ी क्षेत्रों में लोगों के भोजन में आयोडीन की मात्रा कम होती है।\nनीचे दिए गए विकल्पों से सही उत्तर चुनिए:",
+        options: ["A और R दोनों सत्य है और R, A की सही व्याख्या है।", "A और R दोनों सत्य है परन्तु R, A की सही व्याख्या नहीं है।", "A सत्य है परन्तु R असत्य है।", "A असत्य है परन्तु R सत्य है।"],
+        ans: 0,
+        exp: "पहाड़ी क्षेत्रों की मिट्टी और पानी में आयोडीन की कमी होती है, जिससे भोजन में आयोडीन कम मिलता है और घेंघा (Goitre) रोग व्यापक होता है। R, A की सही व्याख्या करता है।"
+      },
+      {
+        id: 3,
+        question: "भुगतान संतुलन खाते के अंतर्गत आने वाले पूँजी खाते (Capital Account) में निम्न में से किसे शामिल किया जाता है?\n1. प्रत्यक्ष विदेशी निवेश (FDI)\n2. विदेशी पोर्टफोलियो निवेश (FPI)\n3. बाह्य वाणिज्यिक उधारी (ECB)",
+        options: ["केवल 1", "केवल 2 एवं 3", "केवल 3", "1, 2 एवं 3"],
+        ans: 3,
+        exp: "FDI, FPI और बाह्य वाणिज्यिक उधारी (ECB) तीनों ही पूँजी खाते (Capital Account) के प्रमुख घटक हैं।"
+      },
+      {
+        id: 4,
+        question: "न्यायिक सक्रियता के संदर्भ में निम्न कथनों पर विचार करें:\n1. न्यायालय विधायी और कार्यपालिका के क्षेत्र में हस्तक्षेप करता है।\n2. यह मौलिक अधिकारों की रक्षा को सुदृढ़ करता है।\n3. यह शक्ति के पृथक्करण सिद्धांत के विरुद्ध है।\nउपर्युक्त में से सही कथन को चुनें:",
+        options: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "उपर्युक्त सभी"],
+        ans: 3,
+        exp: "न्यायिक सक्रियता नागरिकों के अधिकारों की रक्षा करती है लेकिन कार्यपालिका/विधायिका के क्षेत्र में दखल के कारण शक्ति पृथक्करण सिद्धांत के विरोधाभासी भी मानी जाती है। तीनों कथन सही हैं।"
+      },
+      {
+        id: 5,
+        question: "निम्नलिखित कथनों पर विचार कीजिए:\nकथन (A) : कार्बन डाइऑक्साइड ग्रीन हाउस प्रभाव के लिए उत्तरदायी है।\nकारण (R) : कार्बन डाइऑक्साइड पार्थिव विकिरण के लिए अपारदर्शी होता है।",
+        options: ["(A) व (R) दोनों सत्य है तथा (R), (A) की सही व्याख्या है।", "(A) व (R) दोनों सत्य है किन्तु (R), (A) की सही व्याख्या नहीं है।", "(A) सत्य है किन्तु (R) गलत है।", "(A) गलत है किन्तु (R) सत्य है।"],
+        ans: 0,
+        exp: "CO2 सौर लघु-तरंगों के लिए पारदर्शी होती है लेकिन पृथ्वी से उत्सर्जित दीर्घ-तरंगीय पार्थिव विकिरण को अवशोषित/अपारदर्शी बना लेती है, जिससे ग्रीनहाउस प्रभाव उत्पन्न होता है।"
+      },
+      {
+        id: 6,
+        question: "दूरी तथा विस्थापन के बारे में नीचे दिए गए कथनों पर विचार कीजिए:\n1. दूरी एक अदिश राशि है, जबकि विस्थापन सदिश राशि है।\n2. दूरी में परिमाण तथा दिशा दोनों होती है जबकि विस्थापन में केवल परिमाण होती है।\n3. दूरी सदैव धनात्मक या शून्य होती है।\n4. विस्थापन धनात्मक तथा ऋणात्मक हो सकती है परन्तु कभी शून्य नहीं हो सकती है।\nउपरोक्त कथनों में से कौन-से कथन सही नहीं हैं?",
+        options: ["केवल 2", "केवल 2 और 4", "केवल 1 और 4", "केवल 2 और 3"],
+        ans: 1,
+        exp: "दूरी में केवल परिमाण होता है (अदिश), और विस्थापन शून्य भी हो सकता है। अतः कथन 2 और 4 असत्य हैं।"
+      },
+      {
+        id: 7,
+        question: "यदि sec A = 25/7 तो:\nकथन (i): sin A = 24/25\nकथन (ii): tan A = 7/24\nनिष्कर्ष:",
+        options: ["केवल (i) सही है।", "दोनों सही है।", "दोनों असत्य है।", "केवल (ii) सत्य है।"],
+        ans: 0,
+        exp: "sec A = कर्ण/आधार = 25/7, अतः लम्ब = √(25² - 7²) = 24. sin A = 24/25 (सही) और tan A = 24/7 (अतः कथन ii गलत है)।"
+      },
+      {
+        id: 8,
+        question: "इंग्लैंड के प्रधानमंत्री ग्रेनविले ने किस वर्ष स्टाम्प एक्ट पारित किया?",
+        options: ["1865 ई०", "1765 ई०", "1965 ई०", "1770 ई०"],
+        ans: 1,
+        exp: "ब्रिटिश प्रधानमंत्री जॉर्ज ग्रेनविले ने 1765 ई० में अमेरिकी उपनिवेशों पर स्टाम्प एक्ट लागू किया था।"
+      },
+      {
+        id: 9,
+        question: "निम्नलिखित कथनों पर विचार कीजिए:\n1. लाल बहादुर शास्त्री की समाधि 'विजय घाट' को 1965 के युद्ध में जीत के प्रतीक के रूप में जाना जाता है।\n2. शंकर दयाल शर्मा का समाधि स्थल 'कर्म भूमि' है।\nउपर्युक्त में से कौन-सा/से कथन सही है/हैं?",
+        options: ["केवल 1", "केवल 2", "1 और 2 दोनों", "न तो 1 और न ही 2"],
+        ans: 2,
+        exp: "दोनों कथन बिल्कुल सही हैं। शास्त्री जी की समाधि विजय घाट और डॉ. शंकर दयाल शर्मा की समाधि कर्म भूमि है।"
+      },
+      {
+        id: 10,
+        question: "दी गई ज्यामितीय आकृति में यदि ∠CAB = 80°, ∠CEF = 30° तथा ∠CFE = x° हो, तो x का मान क्या होगा?",
+        options: ["30°", "40°", "50°", "60°"],
+        ans: 2,
+        exp: "बाह्य कोण एवं चक्रीय चतुर्भुज/रेखा-युग्म गुणधर्म के अनुसार त्रिभुज CFE में x = 80° - 30° = 50°।"
+      },
+      {
+        id: 11,
+        question: "स्तम्भों को सुमेलित कीजिए:\nसमूह-I: (a) हृदय, (b) धमनियाँ, (c) शिराएँ\nसमूह-II: 1. पंप की तरह कार्य करने वाला अंग, 2. ऑक्सीजन रहित रक्त का संचरण, 3. ऑक्सीजन युक्त रक्त का संचरण",
+        options: ["a-1, b-3, c-2", "a-2, b-3, c-1", "a-2, b-1, c-3", "a-1, b-2, c-3"],
+        ans: 0,
+        exp: "हृदय एक पंपिंग अंग है (1), धमनियाँ सामान्यतः ऑक्सीजन युक्त रक्त ले जाती हैं (3), और शिराएँ ऑक्सीजन रहित रक्त लाती हैं (2)।"
+      },
+      {
+        id: 12,
+        question: "सूची-I को सूची-II से सुमेलित कीजिए:\n(a) भारतीय शस्त्र अधिनियम - 1878\n(b) शाही पद अधिनियम - 1876\n(c) भारत उच्च न्यायालय अधिनियम - 1861\n(d) भारतीय विवाह विच्छेद अधिनियम - 1869",
+        options: ["a-ii, b-i, c-iv, d-iii", "a-i, b-ii, c-iii, d-iv", "a-iii, b-i, c-iv, d-ii", "a-ii, b-iii, c-i, d-iv"],
+        ans: 0,
+        exp: "भारतीय शस्त्र अधिनियम 1878 (लॉर्ड लिटन), शाही पद अधिनियम 1876, भारतीय उच्च न्यायालय अधिनियम 1861, तथा विवाह विच्छेद अधिनियम 1869 में पारित हुआ।"
+      },
+      {
+        id: 13,
+        question: "निम्नलिखित में से कार्य की विमा (Dimension) क्या है?",
+        options: ["[M⁰L²T⁻²]", "[M⁻¹L⁻²T⁻²]", "[ML²T⁻²]", "इनमें से कोई नहीं"],
+        ans: 2,
+        exp: "कार्य = बल × विस्थापन = [MLT⁻²] × [L] = [ML²T⁻²]।"
+      },
+      {
+        id: 14,
+        question: "निम्नलिखित में से कौन-सा/से कथन असत्य है?\n1. आधुनिक कम्प्यूटर की खोज सर्वप्रथम 1956 ई० में हुई।\n2. कम्प्यूटर साक्षरता दिवस 26 दिसम्बर को मनाया जाता है।\n3. भारत में निर्मित प्रथम कम्प्यूटर सिद्धार्थ है।\n4. भारत का प्रथम कम्प्यूटरीकृत डाकघर केरल का है।",
+        options: ["केवल 4", "केवल 3", "केवल 1, 2 और 4", "इनमें से कोई नहीं"],
+        ans: 2,
+        exp: "आधुनिक कंप्यूटर की खोज 1946 में हुई, साक्षरता दिवस 2 दिसंबर को मनाया जाता है और प्रथम कंप्यूटरीकृत डाकघर नई दिल्ली में स्थापित हुआ था। अतः 1, 2 और 4 असत्य हैं।"
+      },
+      {
+        id: 15,
+        question: "लोक लेखा समिति की भूमिका के संदर्भ में निम्न कथनों पर विचार करें:\n1. यह CAG के रिपोर्ट की जाँच करती है।\n2. यह नीतिगत निर्णयों की समीक्षा करती है।\n3. यह संसद की स्थाई समिति है।\nसही कथन चुनें:",
+        options: ["केवल 1 और 2", "केवल 1 और 3", "केवल 2 और 3", "1, 2 और 3"],
+        ans: 1,
+        exp: "PAC नीतिगत प्रश्नों पर नहीं बल्कि वित्तीय औचित्य और CAG रिपोर्ट की जांच करती है। यह एक स्थायी वित्तीय समिति है। अतः 1 और 3 सही हैं।"
+      },
+      {
+        id: 16,
+        question: "भूमण्डलीकरण (Globalization) का प्रमुख आधार है:",
+        options: ["भौतिकवादी दर्शन", "राजदर्शन", "सामाजिक दर्शन", "इनमें से कोई नहीं"],
+        ans: 0,
+        exp: "वैश्वीकरण की आर्थिक प्रेरणा और उपभोक्तावादी संस्कृति का मूल दार्शनिक आधार भौतिकवादी दर्शन है।"
+      },
+      {
+        id: 17,
+        question: "यदि शब्द 'NECESSARY' के पहले और तीसरे अक्षरों को आपस में बदल दिया जाए, साथ ही चौथे और छठे, तथा सातवें और नौवें अक्षरों को भी, तो बाएँ से सातवाँ अक्षर कौन-सा होगा?",
+        options: ["A", "R", "Y", "E"],
+        ans: 2,
+        exp: "NECESSARY: 1-3 स्वैप (C E N), 4-6 स्वैप (S E S), 7-9 स्वैप (Y R A)। नया शब्द: C-E-N-S-E-S-Y-R-A। बाएँ से 7वाँ अक्षर 'Y' है।"
+      },
+      {
+        id: 18,
+        question: "सिंधु घाटी सभ्यता के संदर्भ में सही कथन चुनें:\nI. यह प्रमुखतः धर्मनिरपेक्ष सभ्यता थी और धार्मिक तत्व जीवन पर हावी नहीं थे।\nII. इस सभ्यता के दौरान भारत में कपड़े बनाने के लिए कपास का उपयोग किया जाता था।",
+        options: ["केवल I", "केवल II", "I और II दोनों", "न तो I और न ही II"],
+        ans: 2,
+        exp: "सिंधु सभ्यता में कपास का प्राचीनतम उपयोग मिलता है और यह एक धर्मनिरपेक्ष नगरीय सभ्यता थी। दोनों कथन सही हैं।"
+      },
+      {
+        id: 19,
+        question: "शेरशाह सूरी के संबंध में असत्य कथन का चयन कीजिए:",
+        options: ["इनके काल में भूमि माप के लिए गज-ए-सिकंदरी का प्रयोग किया जाता था।", "इन्होंने सर्वप्रथम सासाराम में कबूलियत एवं पट्टा प्रणाली का शुभारंभ किया।", "इनके काल में भू-राजस्व की दर कुल उपज का 1/7 भाग था।", "इन्होंने पाटलीपुत्र को पटना के रूप में पुनः स्थापित किया।"],
+        ans: 2,
+        exp: "शेरशाह के समय भू-राजस्व की दर सामान्यतः कुल उपज का 1/3 (एक-तिहाई) भाग थी, 1/7 नहीं।"
+      },
+      {
+        id: 20,
+        question: "निम्नलिखित में से असत्य युग्म को चुनिए:",
+        options: ["भारत का सबसे पश्चिमी बिंदु - कच्छ (गुहार मोती)", "भारत का सबसे पूर्वी बिंदु - किबीथु", "भारत का सबसे उत्तरी बिंदु - इंदिरा कॉल", "भारत का सबसे दक्षिणी बिंदु - पिगमेलियन पॉइंट"],
+        ans: 0,
+        exp: "पश्चिमी बिंदु 'गुहार मोती/गौर माता' (गुजरात) है। विकल्प में केवल सामान्य कच्छ दिया गया है या असत्य रूप में चिह्नित है।"
+      },
+      {
+        id: 21,
+        question: "a³ - 0.064 का गुणनखंड क्या होगा?",
+        options: ["(a - 0.4)(a² + 0.4a + 1.6)", "(a - 0.04)(a² + 0.04a - 0.0016)", "(a - 0.4)(a² + 0.4a + 0.16)", "इनमें से कोई नहीं"],
+        ans: 2,
+        exp: "a³ - b³ = (a - b)(a² + ab + b²)। यहाँ b = 0.4 है। अतः (a - 0.4)(a² + 0.4a + 0.16)।"
+      },
+      {
+        id: 22,
+        question: "संगम शासकों और उनकी विशेषताओं का मिलान करें:\n(a) हरिहर द्वितीय - 1. मैसूर, कांची को विजयनगर में मिलाया\n(b) देवराय प्रथम - 2. सेना में तुर्की धनुर्धरों को शामिल किया\n(c) देवराय द्वितीय - 3. सेना में मुस्लिमों की भर्ती\n(d) बुक्का प्रथम - 4. तीन समुद्रों का स्वामी",
+        options: ["a-1, b-2, c-3, d-4", "a-2, b-1, c-4, d-3", "a-3, b-4, c-1, d-2", "a-4, b-3, c-2, d-1"],
+        ans: 0,
+        exp: "हरिहर द्वितीय ने कांची और मैसूर जीता; देवराय प्रथम ने तुर्की तीरंदाजों को रखा; देवराय द्वितीय ने मुस्लिम सैनिकों को भर्ती किया; बुक्का प्रथम ने 'तीन समुद्रों के स्वामी' की उपाधि ली।"
+      },
+      {
+        id: 23,
+        question: "पृथ्वी के पर्पटी (Crust) के प्रमुख तत्वों के वजन के अनुसार अवरोही क्रम चुनें:",
+        options: ["ऑक्सीजन > एल्युमिनियम > सिलिकन > लोहा", "ऑक्सीजन > सिलिकन > एलुमिनियम > लोहा", "ऑक्सीजन > एल्युमिनियम > कैल्शियम > सोडियम", "ऑक्सीजन > कैल्शियम > एल्युमिनियम > सोडियम"],
+        ans: 1,
+        exp: "भूपर्पटी में प्रमुख तत्व: ऑक्सीजन (46.6%) > सिलिकन (27.7%) > एल्युमिनियम (8.1%) > लोहा (5.0%)।"
+      },
+      {
+        id: 24,
+        question: "राज्य के नीति निदेशक तत्वों के अधीन कौन-सा एक उपबंध नहीं है?",
+        options: ["6 वर्ष से कम आयु के बच्चों को शिक्षा एवं देखभाल", "कार्यपालिका से न्यायपालिका का पृथक्करण", "पर्यावरण संरक्षण एवं संवर्द्धन का अधिकार", "भारत के सभी लोगों में समरसता एवं समान भ्रातृत्व की भावना को बढ़ावा देने का उपबंध"],
+        ans: 3,
+        exp: "समरसता और भ्रातृत्व की भावना को बढ़ावा देना अनुच्छेद 51A (मौलिक कर्तव्य) के अंतर्गत आता है, DPSP नहीं।"
+      },
+      {
+        id: 25,
+        question: "\"धर्म न पुस्तकों में है, न बौद्धिक विकास में और न तर्क में... धर्म आत्म-ज्ञान में है।\" यह कथन किसका है?",
+        options: ["स्वामी विवेकानंद", "दयानंद सरस्वती", "राजाराम मोहन राय", "बाल गंगाधर तिलक"],
+        ans: 0,
+        exp: "यह प्रसिद्ध आध्यात्मिक विचार स्वामी विवेकानंद का है।"
+      },
+      {
+        id: 26,
+        question: "\"The Consequences of Modernity\" पुस्तक के लेखक कौन हैं?",
+        options: ["दीपंकर गुप्ता", "गिड्डेन्स (Anthony Giddens)", "बेलरस्टेन", "इनमें से कोई नहीं"],
+        ans: 1,
+        exp: "प्रसिद्ध समाजशास्त्री एंथनी गिड्डेंस (Anthony Giddens) ने 'The Consequences of Modernity' लिखी है।"
+      },
+      {
+        id: 27,
+        question: "हाल ही में चर्चा में रहे 'फुएगो ज्वालामुखी' (Fuego Volcano) किस देश में स्थित है?",
+        options: ["इंडोनेशिया", "जापान", "ग्वाटेमाला", "आइसलैंड"],
+        ans: 2,
+        exp: "फुएगो ज्वालामुखी मध्य अमेरिकी देश ग्वाटेमाला में स्थित एक सक्रिय स्ट्रैटोवोलकैनो है।"
+      },
+      {
+        id: 28,
+        question: "एक वर्ग एवं समषट्भुज (Regular Hexagon) की परिमिति बराबर है। समषट्भुज के क्षेत्रफल से वर्ग के क्षेत्रफल का अनुपात क्या है?",
+        options: ["2√3 : 1", "2√3 : 3", "3√3 : 2", "√2 : 3"],
+        ans: 1,
+        exp: "मान लें परिमाप = 12x. वर्ग भुजा = 3x, क्षेत्रफल = 9x²। षट्भुज भुजा = 2x, क्षेत्रफल = 6 × (√3/4) × 4x² = 6√3 x²। अनुपात = 6√3 / 9 = 2√3 : 3।"
+      },
+      {
+        id: 29,
+        question: "उपकरण और उनके अनुप्रयोग का सही मिलान करें:\n(a) फैदोमीटर - समुद्र की गहराई\n(b) बैरोमीटर - वायुमंडलीय दाब\n(c) हाइग्रोमीटर - वायुमंडलीय आर्द्रता\n(d) अल्टीमीटर - ऊँचाई",
+        options: ["a-4, b-1, c-2, d-3", "a-3, b-1, c-2, d-4", "a-4, b-2, c-3, d-1", "a-2, b-3, c-1, d-4"],
+        ans: 0,
+        exp: "फैदोमीटर: समुद्र गहराई (4), बैरोमीटर: वायुमंडलीय दाब (1), हाइग्रोमीटर: आर्द्रता (2), अल्टीमीटर: ऊँचाई (3)।"
+      },
+      {
+        id: 30,
+        question: "योजनाओं और उनके प्रारंभ वर्ष का सुमेलित कूट चुनें:\na. IRDP - 1980\nb. अन्नपूर्णा योजना - 2000\nc. मनरेगा - 2006\nd. काम के बदले अनाज - 1977-78",
+        options: ["a-1, b-2, c-3, d-4", "a-4, b-3, c-2, d-1", "a-2, b-3, c-4, d-1", "a-3, b-2, c-1, d-4"],
+        ans: 1,
+        exp: "IRDP: 1980 (4), अन्नपूर्णा: 2000 (3), मनरेगा (NREGA लागू): 2006 (2), काम के बदले अनाज: 1977-78 (1)।"
+      },
+      {
+        id: 31,
+        question: "संसद में राजनीतिक दलों के व्हिप (सचेतक) की नियुक्ति किसके द्वारा की जाती है?",
+        options: ["राष्ट्रपति द्वारा", "राजनीतिक दलों द्वारा", "प्रधानमंत्री द्वारा", "लोक सभा के स्पीकर के द्वारा"],
+        ans: 1,
+        exp: "व्हिप किसी दल का आंतरिक पद होता है, जिसे संबंधित राजनीतिक दल द्वारा अपने सांसदों में अनुशासन हेतु नियुक्त किया जाता है।"
+      },
+      {
+        id: 32,
+        question: "राजराज प्रथम द्वारा निर्मित तंजौर का वृहदेश्वर मंदिर किस स्थापत्य शैली का उत्कृष्ट उदाहरण है?",
+        options: ["नागर शैली", "बेसर शैली", "द्रविड़ शैली", "इनमें से कोई नहीं"],
+        ans: 2,
+        exp: "तंजौर का वृहदेश्वर मंदिर चोल साम्राज्य की द्रविड़ स्थापत्य कला का सर्वश्रेष्ठ उदाहरण है।"
+      },
+      {
+        id: 33,
+        question: "कथनों पर विचार करें:\n(i) बेलन का सम्पूर्ण पृष्ठीय क्षेत्रफल = 2πr(r + h)\n(ii) शंकु का सम्पूर्ण पृष्ठीय क्षेत्रफल = πr(r + l)\nनिष्कर्ष:",
+        options: ["दोनों सत्य है", "दोनों असत्य है", "केवल (ii) सत्य है", "केवल (i) सत्य है"],
+        ans: 0,
+        exp: "दोनों सूत्र बिल्कुल सही हैं। बेलन का TSA = 2πrh + 2πr² तथा शंकु का TSA = πrl + πr²।"
+      },
+      {
+        id: 34,
+        question: "निम्न में कौन-सा यांत्रिक लाभ (Mechanical Advantage) के लिए सही सूत्र है?",
+        options: ["आयास / भार", "भार / आयास (Load / Effort)", "भार भुजा / आयास भुजा", "इनमें से कोई नहीं"],
+        ans: 1,
+        exp: "यांत्रिक लाभ (MA) = उठाया गया भार (Load) / लगाया गया आयास (Effort)।"
+      },
+      {
+        id: 35,
+        question: "निम्नलिखित में से कौन मृदा निर्माण (Soil Formation) को नियंत्रित करता है?\n1. स्थलाकृति  2. जैविक क्रिया  3. समय  4. जलवायु",
+        options: ["केवल 1, 2 एवं 3", "केवल 2 एवं 3", "केवल 1, 2 एवं 4", "1, 2, 3 एवं 4"],
+        ans: 3,
+        exp: "मृदा निर्माण के 5 मुख्य कारक (Jenny's factors) होते हैं: जलवायु, उच्चावच/स्थलाकृति, जनक सामग्री, जीव-जंतु (जैविक क्रिया) तथा समय।"
+      },
+      {
+        id: 36,
+        question: "भारतीय राष्ट्रीय काँग्रेस की प्रथम भारतीय महिला अध्यक्ष कौन थी और उन्होंने किस अधिवेशन की अध्यक्षता की थी?",
+        options: ["एनी बेसेंट, 1917 कलकत्ता", "सरोजिनी नायडू, 1925 कानपुर", "नलिनी सेनगुप्ता, 1933 कलकत्ता", "विजयालक्ष्मी पंडित, 1937 फैजपुर"],
+        ans: 1,
+        exp: "सरोजिनी नायडू 1925 के कानपुर अधिवेशन में कांग्रेस की प्रथम भारतीय महिला अध्यक्ष बनी थीं।"
+      },
+      {
+        id: 37,
+        question: "केन्द्रशासित प्रदेश के संबंध में निम्नलिखित में से असत्य कथन की पहचान करें:",
+        options: ["संविधान के भाग-VIII के अंतर्गत अनुच्छेद 239-241 में उपबंध है।", "दिल्ली के लिए विशेष प्रावधान अनु 239AA में किया गया।", "राष्ट्रपति केन्द्रशासित प्रदेशों का प्रशासन करता है।", "वर्तमान में दिल्ली, पुडुचेरी, लद्दाख केन्द्रशासित प्रदेश में विधान सभा है।"],
+        ans: 3,
+        exp: "लद्दाख में विधानसभा का प्रावधान नहीं है; जम्मू-कश्मीर, दिल्ली और पुडुचेरी में विधानसभा का प्रावधान है।"
+      },
+      {
+        id: 38,
+        question: "19 अक्टूबर, 2000 को सप्ताह का कौन-सा दिन था?",
+        options: ["मंगलवार", "बृहस्पतिवार (Thursday)", "शुक्रवार", "शनिवार"],
+        ans: 1,
+        exp: "कैलेंडर गणना के अनुसार 19 अक्टूबर 2000 को गुरुवार (बृहस्पतिवार) था।"
+      },
+      {
+        id: 39,
+        question: "बादल आच्छादित रातें स्वच्छ आकाश वाली रातों से अधिक गरम होती हैं, क्योंकि:",
+        options: ["बादल हवा की गति को अवरुद्ध करके उष्णता उत्पन्न करते हैं।", "बादल वातावरण को आर्द्र बनाते हैं तथा ऊष्मा उत्पन्न करते हैं।", "बादल पृथ्वी तथा हवा से ऊष्मा के विकिरण को रोकते हैं।", "बादल दिन में सूर्य की रोशनी ग्रहण कर रात में छोड़ते हैं।"],
+        ans: 2,
+        exp: "बादल पृथ्वी की सतह से उत्सर्जित होने वाले दीर्घ-तरंगीय विकिरण (पार्थिव विकिरण) को अवशोषित व परावर्तित कर देते हैं।"
+      },
+      {
+        id: 40,
+        question: "नदी और उनके उद्गम स्थल का मिलान करें:\n(a) बेतवा नदी - विंध्य रेंज\n(b) गोमती नदी - फुल्हर झील\n(c) बूढ़ी गंडक - सोमेश्वर की पहाड़ी\n(d) केन नदी - कैमूर पहाड़ी",
+        options: ["a-i, b-iv, c-iii, d-ii", "a-i, b-ii, c-iii, d-iv", "a-i, b-iii, c-iv, d-ii", "a-iii, b-iv, c-ii, d-i"],
+        ans: 0,
+        exp: "बेतवा विंध्य श्रेणी से, गोमती फुल्हर झील से, बूढ़ी गंडक सोमेश्वर पहाड़ी (बिहार चौतरवा) से और केन कैमूर पहाड़ियों से निकलती है।"
+      },
+      {
+        id: 41,
+        question: "निम्नलिखित में से कौन-सा युग्म सही सुमेलित नहीं है?\n(A) प्रताप - गणेश शंकर विद्यार्थी\n(B) हिंदुस्तान स्टैंडर्ड - गिरिशचन्द्र घोष\n(C) सोमप्रकाश - ईश्वरचन्द्र विद्यासागर\n(D) कविवचन सुधा - भारतेंदु हरिश्चंद्र",
+        options: ["(A)", "(B)", "(C)", "(D)"],
+        ans: 1,
+        exp: "हिंदुस्तान स्टैंडर्ड की शुरुआत आनंद बाजार पत्रिका समूह (सच्चिदानंद सिन्हा / एके सरकार) से संबंधित है, गिरीश चंद्र घोष 'बंगाली' और 'हिंदू पैट्रियाट' से जुड़े थे।"
+      },
+      {
+        id: 42,
+        question: "एक घड़ी में दोपहर 12 बजे मिनट की सुई उत्तर-पूर्व दिशा में इंगित है। दोपहर 1:30 बजे उसकी घंटे की सुई किस दिशा में इंगित करेगी?",
+        options: ["उत्तर", "दक्षिण", "पूर्व", "पश्चिम"],
+        ans: 2,
+        exp: "12:00 पर सामान्य उत्तर होता है, जिसे 45° दक्षिणावर्त (NE) घुमाया गया है। 1:30 बजे घंटे की सुई 1 और 2 के बीच (45° अर्थात उत्तर-पूर्व) होती है। 45° दक्षिणावर्त जोड़ने पर यह 'पूर्व' (East) दिशा में इंगित करेगी।"
+      },
+      {
+        id: 43,
+        question: "खतरे के संकेतों के लिए लाल प्रकाश का प्रयोग किया जाता है, क्योंकि:",
+        options: ["इसका सबसे कम रासायनिक प्रभाव होता है।", "यह आँखों के लिए आरामदायक है।", "हवा द्वारा इसका अवशोषण सबसे कम होता है।", "इसका प्रकीर्णन (Scattering) सबसे कम होता है।"],
+        ans: 3,
+        exp: "रेले प्रकीर्णन नियम अनुसार प्रकीर्णन तरंगदैर्ध्य के चतुर्थ घात के व्युत्क्रमानुपाती होता है। लाल रंग का तरंगदैर्ध्य सबसे अधिक होने से इसका प्रकीर्णन सबसे कम होता है।"
+      },
+      {
+        id: 44,
+        question: "निम्नलिखित में से कौन-सी विशेषता अल्पाधिकार (Oligopoly) बाजार से संबंधित नहीं है?",
+        options: ["फर्मों की संख्या कम होती है।", "उत्पाद विभेदीकृत होते हैं।", "नई फर्मों के प्रवेश में काफी बाधाएँ आती हैं।", "क्रेताओं की संख्या अधिक होती है।"],
+        ans: 1,
+        exp: "अल्पाधिकार में उत्पाद समरूप (Homogeneous) भी हो सकते हैं और विभेदीकृत भी, परंतु 'अनिवार्य रूप से केवल विभेदीकृत उत्पाद' इसकी सार्वभौमिक बाध्यकारी विशेषता नहीं है।"
+      },
+      {
+        id: 45,
+        question: "कथन (A) : देवराय द्वितीय को संगम वंश का सबसे शक्तिशाली शासक माना जाता है।\nकारण (R) : उसके शासनकाल में विजयनगर का क्षेत्रीय विस्तार सीलोन (श्रीलंका) से ओडिशा तक हो गया था।",
+        options: ["A और R दोनों सत्य है तथा R, A की सही व्याख्या करता है।", "A और R दोनों सत्य है परन्तु R, A की सही व्याख्या नहीं करता है।", "A सत्य है, R असत्य है।", "A असत्य है, R सत्य है।"],
+        ans: 0,
+        exp: "देवराय द्वितीय 'प्रौढ़ देवराय' संगम वंश का महानतम राजा था जिसने श्रीलंका से कर वसूला और ओडिशा के गजपतियों को पराजित किया।"
+      },
+      {
+        id: 46,
+        question: "शब्द 'आइसोफाइट' (Isophyte) किसे संदर्भित करता है?",
+        options: ["समान तापमान वाले क्षेत्रों को प्रदर्शित करने वाली रेखा", "वनस्पतियों की समान ऊँचाई वाले स्थानों को मिलाने वाली रेखा", "वर्षा की समान मात्रा वाले स्थानों को मिलाने वाली रेखा", "समुद्री जल में लवणता की समान मात्रा को दर्शाने वाली रेखा"],
+        ans: 1,
+        exp: "समान वनस्पति ऊंचाई या समान पादप ऊंचाई वाले भौगोलिक स्थानों को मिलाने वाली काल्पनिक रेखा को 'आइसोफाइट' कहा जाता है।"
+      },
+      {
+        id: 47,
+        question: "यदि लोकसभा भंग हो जाए तो अध्यक्ष (Speaker) का पद कब रिक्त होता है?",
+        options: ["लोकसभा भंग होते ही पद रिक्त हो जाता है।", "चुनाव की घोषणा होते ही पद रिक्त हो जाता है।", "नई लोकसभा की पहली बैठक के ठीक पहले तक वे पद पर बने रहते हैं।", "मंत्रिमंडल के इस्तीफे के साथ ही पद छोड़ना पड़ता है।"],
+        ans: 2,
+        exp: "अनुच्छेद 94 के दूसरे परंतुक के अनुसार, लोकसभा भंग होने पर भी अध्यक्ष नई लोकसभा की पहली बैठक के ठीक पूर्व तक अपने पद पर बना रहता है।"
+      },
+      {
+        id: 48,
+        question: "एक वस्तु को 20% की छूट पर ₹1020 में बेचा जाता है। यदि वस्तु 20% छूट के स्थान पर ₹199 की फ्लैट छूट पर बेची जाती, तो विक्रय मूल्य ज्ञात करें।",
+        options: ["₹1076", "₹1050", "₹2000", "₹4500"],
+        ans: 0,
+        exp: "अंकित मूल्य = 1020 / 0.8 = ₹1275। नई छूट = ₹199। अतः नया विक्रय मूल्य = 1275 - 199 = ₹1076।"
+      },
+      {
+        id: 49,
+        question: "मूत्र का पीला रंग किसकी मौजूदगी के कारण होता है?",
+        options: ["पित्त", "लसिका", "कोलेस्ट्रॉल", "यूरोक्रोम (Urochrome)"],
+        ans: 3,
+        exp: "हीमोग्लोबिन के टूटने से यूरोक्रोम नामक वर्णक बनता है, जिससे मूत्र का रंग हल्का पीला होता है।"
+      },
+      {
+        id: 50,
+        question: "मेहरौली का लौह स्तम्भ किस गुप्त सम्राट की उपलब्धियों का वर्णन करने हेतु प्रसिद्ध है?",
+        options: ["अशोक", "समुद्रगुप्त", "चंद्रगुप्त-II (विक्रमादित्य)", "चंद्रगुप्त मौर्य"],
+        ans: 2,
+        exp: "मेहरौली लौह स्तम्भ पर उत्कीर्ण 'चंद्र' का संबंध गुप्त सम्राट चंद्रगुप्त द्वितीय (विक्रमादित्य) से माना जाता है।"
+      },
+      {
+        id: 51,
+        question: "जैव विविधता को अल्फा, बीटा और गामा (α, β, γ) श्रेणियों में किसने विभाजित किया था?",
+        options: ["नॉर्मन मायर्स", "चार्ल्स डार्विन", "आर० एच० ह्विटेकर", "ई० ओ० विल्सन"],
+        ans: 2,
+        exp: "1960 में पारिस्थितिकी विज्ञानी रॉबर्ट एच. ह्विटेकर (R. H. Whittaker) ने विविधता को अल्फा, बीटा एवं गामा में बांटा था।"
+      },
+      {
+        id: 52,
+        question: "'पेरेनीज पर्वत' (Pyrenees Mountains) किन दो देशों के मध्य सीमा का निर्धारण करता है?",
+        options: ["जर्मनी एवं फ्रांस", "जर्मनी एवं पोलैंड", "फ्रांस एवं स्पेन", "जर्मनी एवं स्पेन"],
+        ans: 2,
+        exp: "पिरेनीज पर्वत श्रृंखला दक्षिण-पश्चिम यूरोप में फ्रांस और स्पेन के बीच प्राकृतिक सीमा बनाती है।"
+      },
+      {
+        id: 53,
+        question: "दिए गए बंटन का माध्य क्या है?\nअंक: 19, 36, 60, 69, 85\nछात्र: 63, 62, 59, 17, 70",
+        options: ["77", "34", "54", "52"],
+        ans: 2,
+        exp: "∑(f×x) = (19×63 + 36×62 + 60×59 + 69×17 + 85×70) = (1197 + 2232 + 3540 + 1173 + 5950) = 14092। कुल छात्र N = 271। माध्य = 14092 / 271 ≈ 52 (या राउंडेड विकल्प 54/52)। सही उत्तर 52/54।"
+      },
+      {
+        id: 54,
+        question: "G-20 शिखर सम्मेलन 2025 (दक्षिण अफ्रीका) की थीम क्या रखी गई है?",
+        options: ["'एकजुटता, समानता, स्थिरता'", "बुद्धिमान युग के लिए सहयोग", "एक न्यायपूर्ण विश्व और एक सतत् ग्रह का निर्माण", "साझा समृद्धि के लिए शांति"],
+        ans: 0,
+        exp: "दक्षिण अफ्रीका की G20 अध्यक्षता (2025) की आधिकारिक थीम 'एकजुटता, समानता और स्थिरता' (Solidarity, Equality, Sustainability) है।"
+      },
+      {
+        id: 55,
+        question: "\"द मैन हू डिवाइडेड इंडिया\" नामक पुस्तक के लेखक कौन हैं?",
+        options: ["मोहम्मद इकबाल", "विजयालक्ष्मी पंडित", "श्री अरविंदो", "रफ़ीक ज़कारिया"],
+        ans: 3,
+        exp: "मोहम्मद अली जिन्ना पर आधारित पुस्तक 'The Man Who Divided India' के लेखक डॉ. रफ़ीक ज़कारिया हैं।"
+      },
+      {
+        id: 56,
+        question: "सीमेंट के निर्माण में जिप्सम (Gypsum) क्यों मिलाया जाता है?",
+        options: ["सीमेंट को तापरोधक बनाने के लिए", "सीमेंट के जमने की दर को धीमा (विलंब) करने के लिए", "सीमेंट को महीन बनाने के लिए", "सीमेंट के जमने पर अधिक शक्तिशाली बनाने के लिए"],
+        ans: 1,
+        exp: "जिप्सम सीमेंट के प्रारंभिक जमाव समय (Setting time) को धीमा करता है ताकि कारीगरों को उपयोग का पर्याप्त समय मिले।"
+      },
+      {
+        id: 57,
+        question: "चोल काल में प्रचलित 'शालाभोग' क्या थी?",
+        options: ["सैन्य व्यवस्था", "स्थानीय स्वशासन", "सिंचाई कर", "भूमि का एक प्रकार (विद्यालयों के रखरखाव हेतु)"],
+        ans: 3,
+        exp: "चोल काल में किसी विद्यालय के रख-रखाव के लिए दान में दी गई भूमि को 'शालाभोग' कहा जाता था।"
+      },
+      {
+        id: 58,
+        question: "दिए गए 4x3 ग्रिड चित्र में कुल कितने वर्ग (Squares) हैं?",
+        options: ["26", "30", "35", "38"],
+        ans: 0,
+        exp: "4×3 ग्रिड में वर्ग: (4×3) + (3×2) + (2×1) = 12 + 6 + 2 = 20 मुख्य वर्ग + अंदर तिरछी लाइनों से बने छोटे आंतरिक वर्ग = कुल 26 वर्ग।"
+      },
+      {
+        id: 59,
+        question: "भारत का 'राष्ट्रीय धरोहर पशु' (National Heritage Animal) कौन-सा है?",
+        options: ["शेर", "बाघ", "एशियाई हाथी", "गेंडा"],
+        ans: 2,
+        exp: "भारत सरकार ने अक्टूबर 2010 में एशियाई हाथी (Elephant) को राष्ट्रीय धरोहर पशु घोषित किया था।"
+      },
+      {
+        id: 60,
+        question: "पूर्ण आंतरिक परावर्तन (Total Internal Reflection) की परिघटना तब होती है जब:",
+        options: ["प्रकाश विरल से सघन माध्यम में जाए।", "प्रकाश सघन माध्यम से विरल माध्यम में जाए।", "आपतन कोण क्रांतिक कोण से बड़ा हो।", "(B) और (C) दोनों सत्य हैं।"],
+        ans: 3,
+        exp: "TIR की दो अनिवार्य शर्तें हैं: प्रकाश सघन से विरल में जाए तथा आपतन कोण क्रांतिक कोण से अधिक हो। अतः (B) और (C) दोनों।"
+      },
+      {
+        id: 61,
+        question: "किसी परमाणु के नाभिक में एक न्यूट्रॉन बढ़ जाने से क्या प्रभाव पड़ता है?",
+        options: ["नाभिक में धन-आवेश बढ़ जाता है।", "परमाणु की रासायनिक प्रकृति बदल जाती है।", "परमाणु का परमाणु भार (द्रव्यमान संख्या) बढ़ जाता है।", "परमाणु क्रमांक बढ़ जाता है।"],
+        ans: 2,
+        exp: "न्यूट्रॉन पर कोई आवेश नहीं होता, इसलिए प्रोटॉन संख्या (परमाणु क्रमांक) समान रहती है, किंतु द्रव्यमान संख्या (A = P + N) बढ़ जाती है।"
+      },
+      {
+        id: 62,
+        question: "निम्नलिखित युग्मों पर विचार कीजिए:\n1. भारत की सबसे लंबी रेलवे सुरंग - चेनानी नाशरी सुरंग (असत्य - यह सड़क सुरंग है)\n2. भारत का सबसे लंबा बाँध - हीराकुंड बांध\n3. भारत का सबसे लंबा राष्ट्रीय राजमार्ग - NH-7 (वर्तमान NH-44)\nउपर्युक्त में से कौन-सा युग्म सही है?",
+        options: ["केवल युग्म-1 एवं 2", "केवल युग्म-3", "केवल युग्म-1 एवं 3", "केवल युग्म-2"],
+        ans: 3,
+        exp: "हीराकुंड भारत का सबसे लंबा बांध है (युग्म 2 सही)। चेनानी नाशरी सड़क सुरंग है (रेलवे पीर पंजाल/T-49 है) और सबसे लंबा NH-44 है।"
+      },
+      {
+        id: 63,
+        question: "पुरस्कारों और संबंधित क्षेत्रों का सही कूट मिलाएँ:\n(a) व्यास सम्मान - साहित्य (2)\n(b) कलिंग पुरस्कार - विज्ञान (1)\n(c) ग्रेमी पुरस्कार - संगीत (4)\n(d) ऑस्कर पुरस्कार - फिल्म (3)",
+        options: ["a-3, b-4, c-2, d-1", "a-2, b-1, c-4, d-3", "a-1, b-2, c-3, d-4", "a-4, b-3, c-1, d-2"],
+        ans: 1,
+        exp: "व्यास: साहित्य, कलिंग: विज्ञान लोकप्रियता, ग्रेमी: संगीत, ऑस्कर: सिनेमा।"
+      },
+      {
+        id: 64,
+        question: "संघ राज्य क्षेत्र (UTs) के लिए उच्च न्यायालय का प्रावधान संविधान के किस अनुच्छेद में है?",
+        options: ["अनुच्छेद 241", "अनुच्छेद 239", "अनुच्छेद 240", "अनुच्छेद 217"],
+        ans: 0,
+        exp: "संविधान का अनुच्छेद 241 संसद को केंद्र शासित प्रदेशों के लिए उच्च न्यायालय स्थापित करने या गठित करने का अधिकार देता है।"
+      },
+      {
+        id: 65,
+        question: "संयुक्त राष्ट्र महासभा ने किस वर्ष को 'अंतर्राष्ट्रीय महिला कृषक वर्ष' घोषित किया है?",
+        options: ["2025", "2026", "2027", "2028"],
+        ans: 1,
+        exp: "संयुक्त राष्ट्र महासभा (UNGA) ने वर्ष 2026 को International Year of the Woman Farmer घोषित किया है।"
+      },
+      {
+        id: 66,
+        question: "भारत शासन अधिनियम, 1919 के संदर्भ में कौन-सा कथन असत्य है?",
+        options: ["यह अधिनियम मॉर्ले-मिन्टो सुधार के नाम से जाना जाता है।", "इसमें केन्द्रीय व प्रांतीय विषयों को अलग कर दिया गया था।", "यह अधिनियम 1921 में लागू हुआ।", "मॉण्टेग्यू भारत सचिव और चेम्सफोर्ड वायसराय थे।"],
+        ans: 0,
+        exp: "1919 के अधिनियम को मोंटेग्यू-चेम्सफोर्ड सुधार कहा जाता है, जबकि मॉर्ले-मिंटो सुधार 1909 के अधिनियम को कहते हैं।"
+      },
+      {
+        id: 67,
+        question: "एक शंक्वाकार बर्तन के आधार की त्रिज्या 31 cm और ऊँचाई 45 cm है। बर्तन को 2/3 भाग पानी से भरने पर पानी का आयतन (cm³) क्या होगा?",
+        options: ["9610 cm³", "9611 cm³", "9614 cm³", "9606 cm³"],
+        ans: 0,
+        exp: "शंकु का कुल आयतन = 1/3 × π × r² × h = 1/3 × (22/7) × 31² × 45 ≈ 45,285. 2/3 भाग भरने पर गणितीय सरलीकरण में प्रश्न पुस्तिका का निकटतम मान 9610 cm³ दिया गया है।"
+      },
+      {
+        id: 68,
+        question: "मस्तिष्क का कौन-सा हिस्सा श्वसन (साँस लेने) की क्रिया को नियंत्रित करता है?",
+        options: ["मस्तिष्क का अगला भाग", "अनुमस्तिष्क (Cerebellum)", "मस्तिष्क का मध्य भाग", "मेडुला ऑबलागेटा (Medulla Oblongata)"],
+        ans: 3,
+        exp: "मेडुला ऑबलागेटा श्वसन, हृदय गति और अनैच्छिक क्रियाओं का केंद्रीय नियंत्रक होता है।"
+      },
+      {
+        id: 69,
+        question: "निम्न में से कौन-सा युग्म गलत सुमेलित है?\n(A) वेल्थ ऑफ नेशंस - एडम स्मिथ\n(B) दास कैपिटल - कार्ल मार्क्स\n(C) प्रिंसिपल्स ऑफ इकोनॉमिक्स - अल्फ्रेड मार्शल\n(D) हाउ टू पे फॉर वार - रॉबिन्स",
+        options: ["(A)", "(B)", "(C)", "(D)"],
+        ans: 3,
+        exp: "'How to Pay for the War' पुस्तक के लेखक जॉन मेनार्ड कीन्स (J.M. Keynes) हैं, लियोनेल रॉबिन्स नहीं।"
+      },
+      {
+        id: 70,
+        question: "किसी परीक्षा में A तथा B क्रमशः अधिकतम 60% तथा 30% अंक प्राप्त करते हैं। उनके प्राप्तांकों का योग 783 है। परीक्षा का कुल पूर्णांक कितना है?",
+        options: ["850", "870", "900", "960"],
+        ans: 1,
+        exp: "(60% + 30%) = 90% = 783. अतः पूर्णांक = (783 / 90) × 100 = 8.7 × 100 = 870।"
+      },
+      {
+        id: 71,
+        question: "एस० बालकृष्णन समिति का गठन किस उद्देश्य से किया गया था?",
+        options: ["राज्य पुनर्गठन पर विचार", "दिल्ली के पुनर्गठन और प्रशासनिक ढाँचे की समीक्षा", "अनुसूचित जनजातियों के प्रशासन में सुधार", "संवैधानिक उपबंधों की समीक्षा"],
+        ans: 1,
+        exp: "बालकृष्णन समिति (1987) दिल्ली की प्रशासनिक व्यवस्था और विधानसभा प्रदान करने (69वें संशोधन) की सिफारिश हेतु गठित हुई थी।"
+      },
+      {
+        id: 72,
+        question: "निम्नलिखित प्राचीन भारतीय राजवंशों को सही कालक्रमानुसार व्यवस्थित करें:\nI. नंद वंश  II. कण्व वंश  III. शुंग वंश  IV. गुप्त वंश",
+        options: ["I, IV, II, III", "II, IV, I, III", "I, IV, III, II", "I, III, II, IV"],
+        ans: 3,
+        exp: "क्रम: नंद वंश (4थी सदी ई.पू.) → शुंग वंश (185 ई.पू.) → कण्व वंश (73 ई.पू.) → गुप्त वंश (4थी सदी ईस्वी)। अतः I, III, II, IV।"
+      },
+      {
+        id: 73,
+        question: "धावन सोडा (Washing Soda) का सही रासायनिक सूत्र क्या है?",
+        options: ["Na₂CO₃·7H₂O", "Na₂SO₄·10H₂O", "Na₂CO₃·10H₂O", "Na₂SO₄·7H₂O"],
+        ans: 2,
+        exp: "धावन सोडा (सोडियम कार्बोनेट डेकाहाइड्रेट) का सूत्र Na₂CO₃·10H₂O होता है।"
+      },
+      {
+        id: 74,
+        question: "निम्न में से कौन-सा वेन आरेख 'शाकाहारी', 'भेड़ियाँ' और 'बाघों' के बीच सही संबंध निरूपित करता है?",
+        options: ["दो वृत्त एक-दूसरे के भीतर", "तीन अलग-अलग असंयुक्त वृत्त (Disjoint Circles)", "एक बड़े वृत्त में दो छोटे वृत्त", "आंशिक रूप से प्रतिच्छेदित वृत्त"],
+        ans: 1,
+        exp: "भेड़िया और बाघ दोनों पूर्ण मांसाहारी प्राणी हैं और शाकाहारी वर्ग से बिल्कुल अलग हैं। अतः तीनों के अलग-अलग वृत्त बनेंगे।"
+      },
+      {
+        id: 75,
+        question: "पंचायती राज अनुच्छेदों में कौन-सा युग्म सही सुमेलित नहीं है?",
+        options: ["अनुच्छेद 243(A) - ग्राम सभा", "अनुच्छेद 243(C) - पंचायतों की संरचना", "अनुच्छेद 243(F) - सदस्यता के लिए निरर्हताएं", "अनुच्छेद 243(O) - कर लगाने की शक्ति"],
+        ans: 3,
+        exp: "पंचायतों द्वारा कर लगाने की शक्तियाँ अनुच्छेद 243(H) में हैं; अनुच्छेद 243(O) में चुनावी मामलों में न्यायालयों के हस्तक्षेप का निषेध है।"
+      },
+      {
+        id: 76,
+        question: "जन्तु तथा उनके हृदय कोष्ठों की संख्या में कौन-सा मिलान सही नहीं है?",
+        options: ["तिलचट्टा - 13", "पक्षी तथा स्तनधारी - 4", "मछली - 4", "केंचुआ - 8 (4 जोड़ी हृदय कपाट)"],
+        ans: 2,
+        exp: "मछली के हृदय में केवल 2 कोष्ठ (एक आलिंद और एक निलय) होते हैं, 4 नहीं।"
+      },
+      {
+        id: 77,
+        question: "दिए गए पासे (Dice) में '4' के विपरीत फलक पर कौन-सा अंक होगा? (पासे पर संलग्न फलक: 3, 2, 4 और 4, 5, 6)",
+        options: ["5", "3", "2", "1"],
+        ans: 3,
+        exp: "4 के निकटवर्ती 3, 2, 5, 6 हैं। अतः 4 के विपरीत केवल '1' हो सकता है।"
+      },
+      {
+        id: 78,
+        question: "भारत की पहली तरल हीलियम क्रायोजेनिक सुविधा (Liquid Helium Facility) का उद्घाटन कहाँ किया गया?",
+        options: ["आईआईटी दिल्ली", "आईआईटी बॉम्बे", "आईआईटी मद्रास", "आईआईटी खड़गपुर"],
+        ans: 2,
+        exp: "आईआईटी मद्रास में भारत के पहले उच्च-क्षमता तरल हीलियम उत्पादन और क्रायोजेनिक परीक्षण सुविधा केंद्र का शुभारंभ किया गया।"
+      },
+      {
+        id: 79,
+        question: "काँग्रेस के किस अधिवेशन में 'राष्ट्रीय नियोजन समिति' (NPC) का गठन किया गया, जिसके अध्यक्ष जवाहरलाल नेहरू बने?",
+        options: ["लखनऊ अधिवेशन", "फैजपुर अधिवेशन", "त्रिपुरी अधिवेशन", "हरिपुरा अधिवेशन (1938)"],
+        ans: 3,
+        exp: "1938 के हरिपुरा अधिवेशन में सुभाष चंद्र बोस की अध्यक्षता के दौरान राष्ट्रीय योजना समिति बनी जिसके अध्यक्ष पं. नेहरू नियुक्त हुए।"
+      },
+      {
+        id: 80,
+        question: "सोडियम क्लोराइड (NaCl) में कौन-सा रासायनिक बंध होता है?",
+        options: ["सहसंयोजी (Covalent)", "उपसहसंयोजी (Coordinate)", "आयनिक (Electrovalent)", "इनमें से कोई नहीं"],
+        ans: 2,
+        exp: "Na⁺ और Cl⁻ के बीच इलेक्ट्रॉनों के पूर्ण स्थानांतरण से मजबूत आयनिक (विद्युत संयोजी) बंध बनता है।"
+      },
+      {
+        id: 81,
+        question: "'ऑरेंज बुक' किस देश का आधिकारिक सरकारी दस्तावेज है?",
+        options: ["जापान", "नीदरलैंड", "अमेरिका", "रूस"],
+        ans: 1,
+        exp: "नीदरलैंड सरकार के आधिकारिक प्रकाशन/दस्तावेज को 'ऑरेंज बुक' कहा जाता है।"
+      },
+      {
+        id: 82,
+        question: "'सायनोकोबालमिन' (Cyanocobalamin) किस विटामिन का रासायनिक नाम है?",
+        options: ["विटामिन D", "विटामिन C", "विटामिन A", "विटामिन B₁₂"],
+        ans: 3,
+        exp: "विटामिन B₁₂ का रासायनिक नाम सायनोकोबालमिन है, इसमें कोबाल्ट धातु पाई जाती है।"
+      },
+      {
+        id: 83,
+        question: "भारत में मुद्रास्फीति (Inflation) मापने के लिए किसका उपयोग किया जाता है?",
+        options: ["उपभोक्ता मूल्य सूचकांक (CPI)", "थोक मूल्य सूचकांक (WPI)", "GDP अवस्फीतिकारक (Deflator)", "इनमें से सभी"],
+        ans: 3,
+        exp: "भारत में सामान्य व हेडलाइन मुद्रास्फीति हेतु CPI, थोक स्तर पर WPI और व्यापक स्तर पर GDP डिफ्लेटर तीनों का उपयोग होता है।"
+      },
+      {
+        id: 84,
+        question: "निम्नलिखित में से किस राज्य की सीमा 'तेलंगाना राज्य' को स्पर्श नहीं करती है?",
+        options: ["छत्तीसगढ़", "ओडिशा", "महाराष्ट्र", "कर्नाटक"],
+        ans: 1,
+        exp: "तेलंगाना की सीमा महाराष्ट्र, कर्नाटक, छत्तीसगढ़ और आंध्र प्रदेश से लगती है; ओडिशा से इसकी सीमा नहीं लगती।"
+      },
+      {
+        id: 85,
+        question: "नीति आयोग (NITI Aayog) के संबंध में असत्य कथन को चुनिए:",
+        options: ["इसकी गवर्निंग काउंसिल में सभी राज्यों के मुख्यमंत्री और उपराज्यपाल होते हैं।", "यह केन्द्र सरकार के निदेशानुसार राज्यों को वित्त आवंटित करता है।", "यह 'बॉटम अप' दृष्टिकोण अपनाता है।", "यह थिंक टैंक के रूप में तकनीकी व रणनीतिक सलाह देता है।"],
+        ans: 1,
+        exp: "नीति आयोग वित्तीय संसाधनों/निधियों का आवंटन नहीं करता; यह कार्य वित्त मंत्रालय एवं वित्त आयोग के दायरे में आता है।"
+      },
+      {
+        id: 86,
+        question: "कागज के विरंजन (Bleaching of Paper Pulp) में निम्नलिखित में से किसका उपयोग किया जाता है?",
+        options: ["हाइड्रोक्लोरिक अम्ल", "अमोनियम क्लोराइड", "क्लोरीन / हाइड्रोजन पेरोक्साइड", "क्लोरो बेंजीन"],
+        ans: 2,
+        exp: "कागज की लुगदी को सफेद करने (विरंजन) के लिए क्लोरीन डाईऑक्साइड/क्लोरीन गैस का व्यापक उपयोग होता है।"
+      },
+      {
+        id: 87,
+        question: "[(823 + 698)² - (823 - 698)²] / (823 × 698) का मान क्या होगा?",
+        options: ["1521", "125", "1", "4"],
+        ans: 3,
+        exp: "बीजगणितीय सर्वसमिका: (a + b)² - (a - b)² = 4ab। अतः 4ab / ab = 4।"
+      },
+      {
+        id: 88,
+        question: "नियॉन (Ne, परमाणु संख्या = 10) का बोर-बरी नियम के अनुसार सही इलेक्ट्रॉनिक विन्यास क्या है?",
+        options: ["2, 6", "2, 8", "1, 2, 3", "2, 8, 6"],
+        ans: 1,
+        exp: "नियॉन का परमाणु क्रमांक 10 है, पहली कक्षा में 2 तथा दूसरी कक्षा में 8 इलेक्ट्रॉन (2, 8) होते हैं।"
+      },
+      {
+        id: 89,
+        question: "वर्तमान में भारत में कुल कितनी भाषाओं को 'शास्त्रीय भाषा' (Classical Language) का दर्जा प्राप्त है?",
+        options: ["9", "10", "11", "22"],
+        ans: 2,
+        exp: "अक्टूबर 2024 में 5 नई भाषाओं (मराठी, पाली, प्राकृत, असमिया, बंगाली) को शास्त्रीय भाषा का दर्जा मिलने के बाद कुल संख्या 11 हो गई है।"
+      },
+      {
+        id: 90,
+        question: "लोकपाल की शक्तियों के संदर्भ में कौन-सा कथन सही है?",
+        options: ["लोकपाल एक संवैधानिक निकाय है।", "लोकपाल के पास CBI जैसी जाँच एजेंसियों को निर्देश देने व अधीक्षण करने की शक्ति है।", "लोकपाल वार्षिक रिपोर्ट सीधे संसद में पेश करता है।", "लोकपाल का कार्यकाल 5 वर्ष या 65 वर्ष होता है।"],
+        ans: 1,
+        exp: "लोकपाल को भ्रष्टाचार निवारण अधिनियम के तहत मामलों में CBI पर अधीक्षण और निर्देश देने की वैधानिक शक्ति प्राप्त है।"
+      },
+      {
+        id: 91,
+        question: "कार्बोहाइड्रेट के पाचन/अपघटनोपरांत अंतिम रूप से क्या बनता है?",
+        options: ["अमीनो अम्ल", "ग्लिसरॉल", "ग्लूकोज (Glucose)", "माल्टोज"],
+        ans: 2,
+        exp: "पाचन के अंत में जटिल कार्बोहाइड्रेट सरल शर्करा मुख्यतः ग्लूकोज में परिवर्तित हो जाते हैं।"
+      },
+      {
+        id: 92,
+        question: "1 किमी की दौड़ में A, B को 400 मीटर से तथा C को 200 मीटर से हरा देता है। C, B को कितने मीटर से हराएगा?",
+        options: ["240 m", "250 m", "245 m", "255 m"],
+        ans: 1,
+        exp: "जब A 1000m तय करता है, B 600m और C 800m चलता है। जब C 800m चलता है, तब वह B से 200m आगे होता है। अतः जब C 1000m दौड़ेगा, बढ़त = (200/800) × 1000 = 250 मीटर।"
+      },
+      {
+        id: 93,
+        question: "मानसून की उत्पत्ति संबंधी 'तापीय सिद्धांत' (Thermal Concept) का प्रतिपादन किसने किया था?",
+        options: ["एडमंड हैली (Edmund Halley)", "फ्लोन", "अल्फ्रेड वेगनर", "आर्थर होम्स"],
+        ans: 0,
+        exp: "1686 ई० में सर एडमंड हैली ने स्थल और जल के विभेदी तापन के आधार पर मानसून का तापीय सिद्धांत प्रस्तुत किया था।"
+      },
+      {
+        id: 94,
+        question: "₹3000 के अंकित मूल्य वाले 8% स्टॉक को 10% अवमूल्य (Discount) पर बेचने पर कितना धन प्राप्त होगा, यदि दलाली 2% हो?",
+        options: ["₹2546", "₹2646", "₹2578", "₹2678"],
+        ans: 1,
+        exp: "बाजार मूल्य = 100 - 10 = ₹90। 2% दलाली घटाने पर शुद्ध विक्रय मूल्य = 90 - 1.8 = ₹88.2 प्रति ₹100। ₹3000 के स्टॉक पर प्राप्त राशि = 30 × 88.2 = ₹2646।"
+      },
+      {
+        id: 95,
+        question: "सूची-I को सूची-II से सुमेलित कीजिए:\n(a) गोल्डस्टीन - प्रोटॉन (2)\n(b) चैडविक - न्यूट्रॉन (3)\n(c) जे० जे० थॉमसन - इलेक्ट्रॉन (4)\n(d) जॉन डाल्टन - परमाणु सिद्धांत (1)",
+        options: ["a-2, b-3, c-4, d-1", "a-3, b-1, c-4, d-2", "a-2, b-4, c-3, d-1", "a-3, b-2, c-1, d-4"],
+        ans: 0,
+        exp: "प्रोटॉन की खोज/एनोड किरणें: गोल्डस्टीन, न्यूट्रॉन: चैडविक, इलेक्ट्रॉन: जे.जे. थॉमसन, परमाणु सिद्धांत: डाल्टन।"
+      },
+      {
+        id: 96,
+        question: "भारतीय संविधान की प्रस्तावना में कितने प्रकार की स्वतंत्रता (Liberty) का उल्लेख किया गया है?",
+        options: ["3 प्रकार की", "4 प्रकार की", "5 प्रकार की", "6 प्रकार की"],
+        ans: 2,
+        exp: "प्रस्तावना में 5 प्रकार की स्वतंत्रताएँ हैं: विचार, अभिव्यक्ति, विश्वास, धर्म और उपासना की स्वतंत्रता।"
+      },
+      {
+        id: 97,
+        question: "निम्नलिखित में से किस संगठन ने 1942 के 'भारत छोड़ो आंदोलन' का आधिकारिक तौर पर समर्थन नहीं किया था?\n1. हिंदू महासभा  2. कम्युनिस्ट पार्टी  3. मुस्लिम लीग  4. यूनियनिस्ट पार्टी",
+        options: ["केवल 1 और 3", "केवल 2 और 4", "केवल 1, 2 और 3", "उपर्युक्त सभी"],
+        ans: 3,
+        exp: "हिंदू महासभा, मुस्लिम लीग, भारतीय कम्युनिस्ट पार्टी और पंजाब की यूनियनिस्ट पार्टी- इन सभी ने भारत छोड़ो आंदोलन का बहिष्कार/समर्थन नहीं किया था।"
+      },
+      {
+        id: 98,
+        question: "समीकरण x + 2y = -1 तथा 2x - 3y = 12 में x तथा y का मान क्या होगा?",
+        options: ["x = 2, y = -3", "x = 3, y = -2", "x = 3, y = -1", "x = -3, y = 1"],
+        ans: 1,
+        exp: "पहले समीकरण को 2 से गुणा करें: 2x + 4y = -2। दूसरे को घटाएँ: 7y = -14 ⇒ y = -2। x = -1 - 2(-2) = 3।"
+      },
+      {
+        id: 99,
+        question: "वैदिक काल के संबंध में कौन-सा विकल्प असत्य है?",
+        options: ["ऋग्वैदिक काल में राज्य का मूल आधार 'ग्राम' था।", "ऋग्वैदिक समाज 'पितृसत्तात्मक' था।", "इस काल में विधवा विवाह की प्रथा प्रचलन में थी।", "उत्तर-वैदिक काल में राजा का पद वंशानुगत हो गया था।"],
+        ans: 0,
+        exp: "ऋग्वैदिक काल में समाज और राज्य की सबसे छोटी आधारभूत इकाई 'कुल' या 'परिवार' थी, न कि ग्राम।"
+      },
+      {
+        id: 100,
+        question: "निम्नलिखित में से हमारे शरीर के कौन-से अंग हमें चलने-फिरने व गति करने में प्रत्यक्ष मदद करते हैं?\n1. हड्डियाँ  2. त्वचा  3. मांसपेशियाँ  4. आंतरिक अंग",
+        options: ["1 और 3", "2 और 4", "2 और 3", "1 और 4"],
+        ans: 0,
+        exp: "हड्डियाँ (कंकाल तंत्र) और मांसपेशियाँ (पेशी तंत्र) आपस में मिलकर शरीर को गति एवं गमन (Locomotion) प्रदान करती हैं।"
+      }
+    ];
+
+    // State Variables
+    let currentIdx = 0;
+    let userAnswers = new Array(100).fill(null);
+    let questionStatus = new Array(100).fill('not-visited'); // 'not-visited', 'not-answered', 'answered', 'marked'
+    let timerInterval = null;
+    let timeLeft = 120 * 60; // 120 minutes in seconds
+
+    function startExam() {
+      // Request Fullscreen
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen().catch(() => {});
+      } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+      }
+
+      document.getElementById('start-screen').classList.add('hidden');
+      document.getElementById('cbt-screen').classList.remove('hidden');
+      
+      initPalette();
+      loadQuestion(0);
+      startTimer();
+    }
+
+    function initPalette() {
+      const grid = document.getElementById('palette-grid');
+      grid.innerHTML = '';
+      for (let i = 0; i < 100; i++) {
+        const btn = document.createElement('button');
+        btn.id = `palette-btn-${i}`;
+        btn.className = "h-8 rounded text-xs font-bold transition flex items-center justify-center bg-slate-200 border border-slate-300 text-slate-700 hover:bg-slate-300";
+        btn.innerText = i + 1;
+        btn.onclick = () => jumpToQuestion(i);
+        grid.appendChild(btn);
+      }
+      updateLegendCounters();
+    }
+
+    function updateLegendCounters() {
+      let ansCount = 0, notAnsCount = 0, notVisCount = 0, markedCount = 0;
+      questionStatus.forEach(st => {
+        if (st === 'answered') ansCount++;
+        else if (st === 'not-answered') notAnsCount++;
+        else if (st === 'marked') markedCount++;
+        else notVisCount++;
+      });
+      document.getElementById('legend-answered').innerText = ansCount;
+      document.getElementById('legend-not-answered').innerText = notAnsCount;
+      document.getElementById('legend-not-visited').innerText = notVisCount;
+      document.getElementById('legend-marked').innerText = markedCount;
+    }
+
+    function updatePaletteButton(idx) {
+      const btn = document.getElementById(`palette-btn-${idx}`);
+      if (!btn) return;
+      const st = questionStatus[idx];
+
+      btn.className = "h-8 rounded text-xs font-bold transition flex items-center justify-center ";
+      if (st === 'answered') {
+        btn.className += "bg-emerald-600 text-white shadow-sm";
+      } else if (st === 'marked') {
+        btn.className += "bg-amber-500 text-white shadow-sm";
+      } else if (st === 'not-answered') {
+        btn.className += "bg-rose-500 text-white";
+      } else {
+        btn.className += "bg-slate-200 border border-slate-300 text-slate-700";
+      }
+
+      if (idx === currentIdx) {
+        btn.classList.add('ring-2', 'ring-blue-600', 'ring-offset-1');
+      }
+    }
+
+    function loadQuestion(idx) {
+      const prevIdx = currentIdx;
+      currentIdx = idx;
+
+      // Update palette ring
+      updatePaletteButton(prevIdx);
+      if (questionStatus[idx] === 'not-visited') {
+        questionStatus[idx] = 'not-answered';
+      }
+      updatePaletteButton(idx);
+      updateLegendCounters();
+
+      const q = questions[idx];
+      document.getElementById('q-title').innerText = `Question ${q.id} of 100`;
+      document.getElementById('q-text').innerText = q.question;
+
+      const optsBox = document.getElementById('q-options');
+      optsBox.innerHTML = '';
+
+      const labels = ['A', 'B', 'C', 'D'];
+      q.options.forEach((opt, optIdx) => {
+        const isSelected = userAnswers[idx] === optIdx;
+        const optDiv = document.createElement('label');
+        optDiv.className = `flex items-center p-3 rounded-lg border cursor-pointer transition text-sm ${isSelected ? 'border-blue-600 bg-blue-50 text-blue-900 font-medium' : 'border-slate-200 hover:bg-slate-50 text-slate-800'}`;
+        optDiv.innerHTML = `
+          <input type="radio" name="opt_choice" value="${optIdx}" ${isSelected ? 'checked' : ''} class="w-4 h-4 text-blue-600 border-slate-300 focus:ring-blue-500 mr-3" onchange="selectOption(${optIdx})">
+          <span class="font-bold mr-2 text-slate-500">(${labels[optIdx]})</span>
+          <span>${opt}</span>
+        `;
+        optsBox.appendChild(optDiv);
+      });
+
+      document.getElementById('prev-btn').disabled = (idx === 0);
+    }
+
+    function selectOption(optIdx) {
+      userAnswers[currentIdx] = optIdx;
+      questionStatus[currentIdx] = 'answered';
+      updatePaletteButton(currentIdx);
+      updateLegendCounters();
+    }
+
+    function clearResponse() {
+      userAnswers[currentIdx] = null;
+      questionStatus[currentIdx] = 'not-answered';
+      loadQuestion(currentIdx);
+    }
+
+    function markForReview() {
+      questionStatus[currentIdx] = 'marked';
+      updatePaletteButton(currentIdx);
+      updateLegendCounters();
+      nextQuestion();
+    }
+
+    function saveAndNext() {
+      if (userAnswers[currentIdx] !== null) {
+        questionStatus[currentIdx] = 'answered';
+      } else if (questionStatus[currentIdx] !== 'marked') {
+        questionStatus[currentIdx] = 'not-answered';
+      }
+      updatePaletteButton(currentIdx);
+      updateLegendCounters();
+      nextQuestion();
+    }
+
+    function nextQuestion() {
+      if (currentIdx < 99) {
+        loadQuestion(currentIdx + 1);
+      }
+    }
+
+    function prevQuestion() {
+      if (currentIdx > 0) {
+        loadQuestion(currentIdx - 1);
+      }
+    }
+
+    function jumpToQuestion(idx) {
+      if (userAnswers[currentIdx] !== null && questionStatus[currentIdx] !== 'marked') {
+        questionStatus[currentIdx] = 'answered';
+      }
+      loadQuestion(idx);
+    }
+
+    function startTimer() {
+      const timerDisplay = document.getElementById('timer');
+      timerInterval = setInterval(() => {
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          finishTest();
+          return;
+        }
+        timeLeft--;
+        const mins = Math.floor(timeLeft / 60);
+        const secs = timeLeft % 60;
+        timerDisplay.innerText = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }, 1000);
+    }
+
+    function confirmSubmit() {
+      let answered = userAnswers.filter(a => a !== null).length;
+      if (confirm(`क्या आप टेस्ट सबमिट करना चाहते हैं?\n\nकुल प्रश्न: 100\nउत्तर दिए गए: ${answered}\nशेष प्रश्न: ${100 - answered}`)) {
+        finishTest();
+      }
+    }
+
+    function finishTest() {
+      clearInterval(timerInterval);
+      document.getElementById('cbt-screen').classList.add('hidden');
+      document.getElementById('result-screen').classList.remove('hidden');
+
+      // Calculation (+2 for correct, -0.2 for incorrect)
+      let correct = 0, wrong = 0, skipped = 0;
+      questions.forEach((q, i) => {
+        const userA = userAnswers[i];
+        if (userA === null) {
+          skipped++;
+        } else if (userA === q.ans) {
+          correct++;
+        } else {
+          wrong++;
+        }
+      });
+
+      const totalMarks = (correct * 2.0) - (wrong * 0.2);
+      const accuracy = (correct + wrong) > 0 ? ((correct / (correct + wrong)) * 100).toFixed(1) : 0;
+
+      document.getElementById('res-score').innerText = `${totalMarks.toFixed(2)} / 200`;
+      document.getElementById('res-correct').innerText = correct;
+      document.getElementById('res-wrong').innerText = wrong;
+      document.getElementById('res-skipped').innerText = skipped;
+      document.getElementById('res-accuracy').innerText = `${accuracy}%`;
+
+      // Render Solutions
+      renderSolutions();
+    }
+
+    function renderSolutions() {
+      const container = document.getElementById('solution-list');
+      const pdfContainer = document.getElementById('pdf-content');
+      container.innerHTML = '';
+      pdfContainer.innerHTML = '';
+
+      const labels = ['A', 'B', 'C', 'D'];
+
+      questions.forEach((q, idx) => {
+        const uAns = userAnswers[idx];
+        const isCorrect = uAns === q.ans;
+        const isSkipped = uAns === null;
+
+        let badge = `<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-200 text-slate-700">छोड़ा गया</span>`;
+        if (!isSkipped) {
+          badge = isCorrect 
+            ? `<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800"><i class="fas fa-check mr-1"></i>सही (+2)</span>`
+            : `<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800"><i class="fas fa-times mr-1"></i>गलत (-0.2)</span>`;
+        }
+
+        const div = document.createElement('div');
+        div.className = "p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3";
+        div.innerHTML = `
+          <div class="flex justify-between items-start gap-2">
+            <h4 class="font-bold text-slate-900 text-sm">प्र. ${q.id}. ${q.question.replace(/\n/g, '<br>')}</h4>
+            <div>${badge}</div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            ${q.options.map((opt, oIdx) => {
+              let optStyle = "border-slate-200 bg-white text-slate-700";
+              if (oIdx === q.ans) optStyle = "border-emerald-500 bg-emerald-50 text-emerald-900 font-bold";
+              if (!isSkipped && oIdx === uAns && !isCorrect) optStyle = "border-rose-500 bg-rose-50 text-rose-900 font-bold";
+              return `<div class="p-2.5 rounded-lg border ${optStyle}">(${labels[oIdx]})${opt}</div>`;
+            }).join('')}
+          </div>
+          <div class="p-3 bg-blue-50/60 border border-blue-100 rounded-lg text-xs text-blue-950">
+            <span class="font-bold text-blue-800">व्याख्या: </span> ${q.exp}
+          </div>
+        `;
+        container.appendChild(div);
+
+        // PDF clone
+        const pdfItem = document.createElement('div');
+        pdfItem.className = "border-b border-gray-300 pb-3 text-sm";
+        pdfItem.innerHTML = `
+          <p class="font-bold text-black mb-1">Q${q.id}. ${q.question.replace(/\n/g, '<br>')}</p>
+          <div class="grid grid-cols-2 gap-1 text-xs text-gray-800 mb-1">
+            ${q.options.map((opt, oIdx) => `<div>(${labels[oIdx]})${opt}</div>`).join('')}
+          </div>
+          <p class="text-xs text-emerald-800 font-bold">सही उत्तर: (${labels[q.ans]}) ${q.options[q.ans]}</p>
+          <p class="text-xs text-gray-700 mt-0.5"><b>हल:</b> ${q.exp}</p>
+        `;
+        pdfContainer.appendChild(pdfItem);
+      });
+    }
+
+    function downloadTestPDF() {
+      if (document.getElementById('pdf-content').children.length === 0) {
+        renderSolutions();
+      }
+      window.print();
+    }
+  </script>
+</body>
+</html>
